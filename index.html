@@ -14,348 +14,369 @@
   --slate:#3a6b8f;--olive:#5a6b3a;--gray:#5a5a5a;--endow:#8f6b1e;--purple:#5c3d8f;
   --sh:0 4px 20px rgba(26,39,68,.15);--shsm:0 2px 8px rgba(26,39,68,.1);
 }
-body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--tdark);padding:32px 14px 60px;
+body{
+  font-family:'Nunito',sans-serif;background:var(--cream);color:var(--tdark);padding:32px 14px 60px;
   background-image:radial-gradient(ellipse at 10% 10%,rgba(46,74,173,.05) 0%,transparent 50%),
-  radial-gradient(ellipse at 90% 90%,rgba(192,144,42,.05) 0%,transparent 50%);}
+  radial-gradient(ellipse at 90% 90%,rgba(192,144,42,.05) 0%,transparent 50%);
+}
 h1.t{font-family:'Playfair Display',serif;font-size:clamp(14px,2vw,22px);font-weight:700;color:var(--navy);text-align:center;margin-bottom:4px;line-height:1.3}
 h2.st{font-size:10px;font-weight:700;color:var(--accent);text-align:center;margin-bottom:28px;letter-spacing:.12em;text-transform:uppercase}
 .wrap{max-width:1500px;margin:0 auto;display:flex;flex-direction:column;align-items:center}
-.card{background:white;border-radius:10px;padding:11px 13px;box-shadow:var(--shsm);border-top:4px solid transparent;transition:box-shadow .2s}
+
+/* Accordion */
+.accordion-container{display:flex;flex-direction:column;gap:8px;width:100%;max-width:1460px}
+.accordion-item{width:100%}
+.accordion-header{
+  display:flex;justify-content:space-between;align-items:center;width:100%;
+  padding:12px 16px;background:white;border:none;cursor:pointer;
+  border-left:5px solid transparent;border-radius:8px;box-shadow:var(--shsm);
+  text-align:left;transition:box-shadow .2s;font-family:'Nunito',sans-serif;
+}
+.accordion-header:hover,.accordion-header.open{box-shadow:var(--sh)}
+.accordion-header-text{flex:1;min-width:0}
+.accordion-title{display:block;font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:var(--navy);line-height:1.3}
+.accordion-subtitle{display:block;font-size:9.5px;color:var(--tmid);margin-top:2px;font-style:italic;line-height:1.4}
+.accordion-chevron{font-size:18px;color:var(--tmid);margin-left:12px;transition:transform .3s;line-height:1;flex-shrink:0}
+.accordion-header.open .accordion-chevron{transform:rotate(180deg)}
+.accordion-content{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.accordion-content-inner{padding:12px 0}
+
+/* Group divider */
+.group-header{font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;text-align:center;padding:20px 0 8px;width:100%}
+
+/* Grid */
+.grid-layout{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+
+/* Card */
+.card{background:white;border-radius:10px;padding:11px 13px;box-shadow:var(--shsm);border-top:4px solid transparent;transition:box-shadow .2s;display:flex;gap:12px;align-items:center}
 .card:hover{box-shadow:var(--sh)}
+.card-text{flex:1;min-width:0}
 .card .role{font-size:8.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;opacity:.6;margin-bottom:4px;line-height:1.4}
 .card .name{font-family:'Playfair Display',serif;font-size:13px;font-weight:600;line-height:1.3;color:var(--navy);margin-bottom:2px}
 .card .deg{font-size:10px;color:var(--tmid);font-style:italic}
-.c-dir{border-top-color:var(--accent)}.c-dep{border-top-color:var(--blue)}
-.c-d1{border-top-color:var(--brown)}.c-d2{border-top-color:var(--green)}
-.c-d3{border-top-color:#6b3a8f}.c-lab{border-top-color:var(--teal)}
-.c-ac{border-top-color:var(--red)}.c-sc{border-top-color:var(--purple)}
-.c-sup{border-top-color:var(--gray)}.c-lib{border-top-color:var(--slate)}
-.c-mfc{border-top-color:var(--olive)}.c-end{border-top-color:var(--endow)}.c-ctr{border-top-color:#2a7a6a}
-.lbl{font-size:8.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:white;padding:3px 12px;border-radius:20px;display:inline-block;margin-bottom:7px}
-.ln{background:var(--navy)}.lb{background:var(--blue)}.lbr{background:var(--brown)}
-.lg{background:var(--green)}.lp2{background:#6b3a8f}.lt{background:var(--teal)}
-.lr{background:var(--red)}.lp{background:var(--purple)}.lgr{background:var(--gray)}
-.lsl{background:var(--slate)}.lo{background:var(--olive)}.le{background:var(--endow)}.lctr{background:#2a7a6a}
-.sl{margin-top:7px;border-top:1px solid var(--warm);padding-top:5px;display:flex;flex-direction:column;gap:2px}
-.si{font-size:9px;color:var(--tmid);display:flex;gap:4px;flex-wrap:wrap;align-items:baseline;line-height:1.4}
-.si .sn{font-weight:700;color:var(--navy)}.si .sd{font-style:italic}
-.sub{background:var(--cream);border-radius:6px;padding:6px 9px;margin-top:6px;border-left:3px solid var(--warm)}
-.sub .sn{font-size:10.5px;font-weight:600;color:var(--navy);margin-bottom:1px}
-.sub .sd{font-size:9px;color:var(--tmid);font-style:italic}
-.cv{width:2px;background:var(--warm);margin:0 auto}
-.dv{width:2px;height:8px;background:var(--warm)}
-.row{display:flex;gap:11px;justify-content:center;width:100%}
-.row .card{flex:1;max-width:340px;min-width:170px}
-.tb{width:100%;max-width:380px;text-align:center}
-.dg{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;width:100%;max-width:1460px;align-items:start}
-.dc{display:flex;flex-direction:column;align-items:center}
-.dc .card{width:100%}
-.bg{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:11px;width:100%;max-width:1460px;align-items:start}
-.bc{display:flex;flex-direction:column;align-items:center;gap:0}
-.bc .card{width:100%}
-.hr{border-top:1px solid var(--warm);margin:6px 0}
-@media(max-width:1050px){.dg,.bg{grid-template-columns:1fr}.row{flex-direction:column;align-items:center}.row .card{max-width:480px;width:100%}}
+
+/* Avatar */
+.avatar,.avatar-placeholder{width:50px;height:50px;border-radius:50%;flex-shrink:0}
+.avatar{object-fit:cover}
+.avatar-placeholder{display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:14px;font-family:'Nunito',sans-serif}
+
+/* Section notes */
+.section-notes{padding:4px 0 8px;display:flex;flex-direction:column;gap:5px}
+.note-item{font-size:11px;color:var(--tmid);font-style:italic}
+
+@media(max-width:1050px){.grid-layout{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}}
+@media(max-width:600px){.grid-layout{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<h1 class="t">Институт психологии и комплексной реабилитации<br>Московского городского педагогического университета</h1>
-<h2 class="st">Организационная структура &middot; МГПУ &middot; 2026</h2>
-
-<div class="tb">
-  <span class="lbl ln">Директор</span>
-  <div class="card c-dir">
-    <div class="role">Директор ИПКР &middot; Председатель учёного совета</div>
-    <div class="name">Ушакова Елена Викторовна</div>
-    <div class="deg">доцент, к. пс. н.</div>
-  </div>
+  <h1 class="t">Институт психологии и комплексной реабилитации<br>Московского городского педагогического университета</h1>
+  <h2 class="st">Организационная структура &middot; МГПУ &middot; 2026</h2>
+  <div id="org-structure" class="accordion-container"></div>
 </div>
-<div class="cv" style="height:20px"></div>
-<div style="text-align:center;width:100%"><span class="lbl lb">Заместители директора</span></div>
-<div class="row" style="max-width:740px">
-  <div class="card c-dep">
-    <div class="role">Замдиректора по учебной работе</div>
-    <div class="name">Челышева Юлия Вячеславовна</div>
-    <div class="deg">доцент, к. пед. н.</div>
-  </div>
-  <div class="card c-dep">
-    <div class="role">Замдиректора по воспитательной работе &middot; Координатор по работе с молодёжью</div>
-    <div class="name">Журавлёва Жанна Игоревна</div>
-    <div class="deg">доцент, к. псих. н.</div>
-  </div>
-</div>
-<div class="cv" style="height:20px"></div>
-<div style="text-align:center;width:100%"><span class="lbl ln">Департаменты</span></div>
-<div class="dg">
+<script>
+const orgData = [
+  {
+    id: 'director',
+    group: null,
+    title: 'Директор',
+    subtitle: 'Директор ИПКР · Председатель учёного совета',
+    color: 'var(--accent)',
+    staff: [
+      { name: 'Ушакова Елена Викторовна', role: 'Директор ИПКР · Председатель учёного совета', deg: 'доцент, к. пс. н.', photo: null }
+    ]
+  },
+  {
+    id: 'deputies',
+    group: null,
+    title: 'Заместители директора',
+    subtitle: null,
+    color: 'var(--blue)',
+    staff: [
+      { name: 'Челышева Юлия Вячеславовна', role: 'Замдиректора по учебной работе', deg: 'доцент, к. пед. н.', photo: null },
+      { name: 'Журавлёва Жанна Игоревна', role: 'Замдиректора по воспитательной работе · Координатор по работе с молодёжью', deg: 'доцент, к. псих. н.', photo: null }
+    ]
+  },
+  {
+    id: 'dept-admin',
+    group: 'Департаменты',
+    title: 'Административный',
+    subtitle: 'Деп. организации образовательного процесса и работы с молодёжью · каб. 405–406',
+    color: 'var(--brown)',
+    staff: [
+      { name: 'Парамонова Галина Витальевна', role: 'Начальник департамента', deg: 'ст. преп.', note: 'ликвидация акад. задолженностей, досрочная/продлённая сессия, общие вопросы образ. процесса — каб. 406', photo: null },
+      { name: 'расписание', role: '', deg: 'вакансия', vacant: true, photo: null },
+      { name: 'Вдовина Валентина Владимировна', role: '', deg: 'специалист по УМР · каб. 405', photo: null },
+      { name: 'Горожанкина Оксана Николаевна', role: '', deg: 'специалист · представительская площадка ИПКР · каб. 202', photo: null },
+      { name: 'Гришина Лилия Игоревна', role: '', deg: 'специалист · матподдержка, соц. стипендия, рассрочка и скидка на обучение — каб. 405', photo: null },
+      { name: 'Кондратова Мария Александровна', role: '', deg: 'специалист', photo: null },
+      { name: 'Лебедева Виктория Александровна', role: '', deg: 'специалист по УМР · каб. 405', photo: null },
+      { name: 'Попова Ольга Владимировна', role: '', deg: 'специалист · практика студентов · каб. 507', photo: null },
+      { name: 'Салькова Анна Алексеевна', role: '', deg: 'специалист, ассистент · вопросы образовательного процесса', photo: null },
+      { name: 'Соколова Ольга Андреевна', role: '', deg: 'специалист по УМР · каб. 405', photo: null }
+    ]
+  },
+  {
+    id: 'dept-social',
+    group: null,
+    title: 'Социально-психологический',
+    subtitle: 'Деп. социально-психологических технологий и коррекционно-развивающих методик · каб. 403',
+    color: 'var(--green)',
+    staff: [
+      { name: 'Яковлева Ирина Михайловна', role: 'Начальник департамента', deg: 'проф., д. пед. н.', photo: null },
+      { name: 'Афанасьева Юлия Анатольевна', role: '', deg: 'доц., к. пед. н.', photo: null },
+      { name: 'Беглова Ольга Александровна', role: '', deg: 'доц., к. пед. н.', photo: null },
+      { name: 'Браткова Маргарита Владимировна', role: '', deg: 'доц., к. пед. н.', photo: null },
+      { name: 'Бутко Галина Анатольевна', role: '', deg: 'доц., к. пед. н.', photo: null },
+      { name: 'Варламова Алла Вячеславовна', role: '', deg: 'доц., к. пед. н.', photo: null },
+      { name: 'Вильшанская Аделя Дамировна', role: '', deg: 'доц., к. пед. н.', photo: null },
+      { name: 'Волковская Татьяна Николаевна', role: '', deg: 'проф., д. пс. н.', photo: null },
+      { name: 'Галкина Вера Александровна', role: '', deg: 'доц., к. пед. н.', photo: null },
+      { name: 'Григоренко Наталья Юрьевна', role: '', deg: 'доц., к. пед. н. · ДПО', photo: null },
+      { name: 'Гусейнова Аща Айирмагомедовна', role: '', deg: 'доц., к. пед. н.', photo: null },
+      { name: 'Долгих Ольга Владимировна', role: '', deg: 'доц., к. филол. н.', photo: null },
+      { name: 'Дорошенко Татьяна Николаевна', role: '', deg: 'доц., к. пед. н.', photo: null },
+      { name: 'Екжанова Елена Анатольевна', role: '', deg: 'проф., д. пед. н.', photo: null },
+      { name: 'Журавлёва Жанна Игоревна', role: '', deg: 'доц., к. пс. н. (замдир.)', photo: null },
+      { name: 'Зарецкая Анна Романовна', role: '', deg: 'ассистент', photo: null },
+      { name: 'Звягинцева Анна Алексеевна', role: '', deg: 'ст. преп.', photo: null },
+      { name: 'Караневская Ольга Викторовна', role: '', deg: 'доц., к. пед. н.', photo: null },
+      { name: 'Киселева Наталья Юрьевна', role: '', deg: 'доц., к. пед. н.', photo: null },
+      { name: 'Кремнева Татьяна Леонидовна', role: '', deg: 'проф., д. пед. н.', photo: null },
+      { name: 'Кузнецова Галина Васильевна', role: '', deg: 'доц., к. пед. н.', photo: null },
+      { name: 'Леонова Ирина Владиславовна', role: '', deg: 'ст. преп.', photo: null },
+      { name: 'Мануйлова Виктория Викторовна', role: '', deg: 'проф., д. пед. н. · аспирантура · каб. 412', photo: null },
+      { name: 'Медведева Елена Алексеевна', role: '', deg: 'проф., д. пс. н.', photo: null },
+      { name: 'Миронова Ангелина Валерьевна', role: '', deg: 'ст. преп. · центр науки и инноваций ИПКР · каб. 410', photo: null },
+      { name: 'Михеева Евгения Игоревна', role: '', deg: 'преподаватель', photo: null },
+      { name: 'Моргачева Елена Николаевна', role: '', deg: 'проф., д. пед. н.', photo: null },
+      { name: 'Новикова Диана Эдуардовна', role: '', deg: 'ст. преп. · координатор по орг. вопросам · Telegram и сайт ИПКР', photo: null },
+      { name: 'Олешова Варвара Васильевна', role: '', deg: 'ст. преп., к. пед. н.', photo: null },
+      { name: 'Олтаржевская Любовь Евгеньевна', role: '', deg: 'к. пед. н. · приглашённый эксперт', photo: null },
+      { name: 'Павлова Анна Сергеевна', role: '', deg: 'доц., к. псих. н. · уч. секр. УС / Профбюро · каб. 503', photo: null },
+      { name: 'Покровская Юлия Александровна', role: '', deg: 'ст. преп.', photo: null },
+      { name: 'Полякова Надежда Петровна', role: '', deg: 'доц., к. пед. н.', photo: null },
+      { name: 'Прочухаева Марина Михайловна', role: '', deg: 'ст. преп.', photo: null },
+      { name: 'Пыченкова Анастасия Александровна', role: '', deg: 'ассистент', photo: null },
+      { name: 'Русецкая Маргарита Николаевна', role: '', deg: 'проф., д. пед. н.', photo: null },
+      { name: 'Рыкова Елена Алексеевна', role: '', deg: 'ст. преп. · отв. за конкурсы в институте', photo: null },
+      { name: 'Савченко Игорь Анатольевич', role: '', deg: 'доц., к. пс. н.', photo: null },
+      { name: 'Скира Елена Васильевна', role: '', deg: 'доц., к. пед. н.', photo: null },
+      { name: 'Соколова Ольга Юрьевна', role: '', deg: 'доц., к. пед. н.', photo: null },
+      { name: 'Соловьева Ирина Леонидовна', role: '', deg: 'доц., к. пед. н.', photo: null },
+      { name: 'Титова Оксана Владимировна', role: '', deg: 'доц., к. пед. н.', photo: null },
+      { name: 'Тюрина Надия Шамильевна', role: '', deg: 'доц., к. пед. н.', photo: null },
+      { name: 'Тютченко Александр Максимович', role: '', deg: 'проф., к. ист. н.', photo: null },
+      { name: 'Уклонская Дарья Викторовна', role: '', deg: 'проф., д. пед. н.', photo: null },
+      { name: 'Филатова Ирина Александровна', role: '', deg: 'доц., к. пед. н.', photo: null },
+      { name: 'Хорошавина Екатерина Владимировна', role: '', deg: 'ст. преп., к. пед. н.', photo: null },
+      { name: 'Черешнева Виктория Евгеньевна', role: '', deg: 'доц., к. пед. н.', photo: null },
+      { name: 'Шулекина Юлия Александровна', role: '', deg: 'доц., к. пед. н.', photo: null },
+      { name: 'Яценко София Григорьевна', role: '', deg: 'ст. преп.', photo: null }
+    ]
+  },
+  {
+    id: 'dept-clinical',
+    group: null,
+    title: 'Клинико-психологический',
+    subtitle: 'Деп. клинических, психологических и педагогических основ развития личности · каб. 402',
+    color: '#6b3a8f',
+    staff: [
+      { name: 'Овчаренко Лариса Юрьевна', role: 'Начальник департамента', deg: 'доцент, к. пс. н.', photo: null },
+      { name: 'Ананьева Елена Владимировна', role: '', deg: 'ст. преп.', photo: null },
+      { name: 'Баранова Екатерина Михайловна', role: '', deg: 'доц., к. пед. н. · акад. мобильность, студенты-иностранцы, межд. конкурсы', photo: null },
+      { name: 'Бершедова Людмила Ивановна', role: '', deg: 'проф., д. пс. н.', photo: null },
+      { name: 'Богданова Тамара Геннадиевна', role: '', deg: 'проф., д. пс. н.', photo: null },
+      { name: 'Валявко Светлана Михайловна', role: '', deg: 'доц., к. пс. н.', photo: null },
+      { name: 'Волкова Наталья Николаевна', role: '', deg: 'доц., к. соц. н.', photo: null },
+      { name: 'Гильяно Альбина Сергеевна', role: '', deg: 'доц., к. пс. н.', photo: null },
+      { name: 'Гравицкая Елена Геннадьевна', role: '', deg: 'доц., к. биол. н.', photo: null },
+      { name: 'Данилина Анна Андреевна', role: '', deg: 'доц., к. филол. н.', photo: null },
+      { name: 'Клепцова Елена Юрьевна', role: '', deg: 'доц., к. пс. н.', photo: null },
+      { name: 'Комарова Дарья Сергеевна', role: '', deg: 'ст. преп.', photo: null },
+      { name: 'Комарова Оксана Николаевна', role: '', deg: 'доц., к. пс. н.', photo: null },
+      { name: 'Лапин Игорь Александрович', role: '', deg: 'проф., д. мед. н.', photo: null },
+      { name: 'Лысенко Наталья Николаевна', role: '', deg: 'доц., к. биол. н.', photo: null },
+      { name: 'Львова Светлана Владимировна', role: '', deg: 'доц., к. пс. н.', photo: null },
+      { name: 'Минаева Оксана Дмитриевна', role: '', deg: 'доц., к. биол. н.', photo: null },
+      { name: 'Морозова Татьяна Юрьевна', role: '', deg: 'ст. преп.', photo: null },
+      { name: 'Назарова Наталия Михайловна', role: '', deg: 'проф., д. пед. н.', photo: null },
+      { name: 'Немов Роберт Семёнович', role: '', deg: 'проф., д. пс. н.', photo: null },
+      { name: 'Рассказова Алла Львовна', role: '', deg: 'доц., к. пс. н.', photo: null },
+      { name: 'Романова Евгения Сергеевна', role: '', deg: 'проф., д. пс. н. · зав. лаб.', photo: null },
+      { name: 'Рыжов Борис Николаевич', role: '', deg: 'проф., д. пс. н.', photo: null },
+      { name: 'Рычихина Элина Николаевна', role: '', deg: 'проф., д. соц. н.', photo: null },
+      { name: 'Усанова Елена Алексеевна', role: '', deg: 'доц., к. мед. н.', photo: null },
+      { name: 'Чудина Наталья Владимировна', role: '', deg: 'ст. преп.', photo: null },
+      { name: 'Щеткина Мария Александровна', role: '', deg: 'ассистент', photo: null }
+    ]
+  },
+  {
+    id: 'lab-social',
+    group: 'Научные, коллегиальные и обеспечивающие структуры',
+    title: 'Лаб. социально-психологических исследований в образовании',
+    subtitle: 'каб. 310–311',
+    color: 'var(--teal)',
+    staff: [
+      { name: 'Романова Евгения Сергеевна', role: 'Заведующий · Зампред Учёного совета', deg: 'проф., д. пс. н.', photo: null },
+      { name: 'Иванцов Олег Владимирович', role: '', deg: 'доц., ст. науч. сотр., к. пс. н. · каб. 401', photo: null },
+      { name: 'Карманова Татьяна Михайловна', role: '', deg: 'доц., ст. науч. сотр., к. пс. н.', photo: null }
+    ]
+  },
+  {
+    id: 'lab-inclusive',
+    group: null,
+    title: 'Лаборатория инклюзивного образования',
+    subtitle: 'каб. 414',
+    color: 'var(--teal)',
+    staff: [
+      { name: 'Левченко Ирина Юрьевна', role: 'Заведующий', deg: 'проф., д. пс. н.', photo: null },
+      { name: 'Колягина Виктория Геннадьевна', role: '', deg: 'вед. науч. сотр., доц., к. пс. н.', photo: null },
+      { name: 'Джафар-Заде Дарья Авсафовна', role: '', deg: 'мл. науч. сотр.', photo: null },
+      { name: 'Скребец Татьяна Викторовна', role: '', deg: 'доц., к. пс. н.', photo: null },
+      { name: 'Урожаева Алёна Владимировна', role: '', deg: 'специалист', photo: null }
+    ]
+  },
+  {
+    id: 'academic-council',
+    group: null,
+    title: 'Учёный совет',
+    subtitle: 'Учёный совет ИПКР',
+    color: 'var(--red)',
+    staff: [
+      { name: 'Ушакова Елена Викторовна', role: 'Председатель', deg: 'Директор ИПКР', photo: null },
+      { name: 'Романова Евгения Сергеевна', role: 'Заместитель председателя', deg: 'проф., д. пс. н.', photo: null },
+      { name: 'Павлова Анна Сергеевна', role: 'Учёный секретарь УС · Глава Профбюро ИПКР · каб. 503', deg: 'доцент, к. псих. н.', photo: null }
+    ]
+  },
+  {
+    id: 'student-council',
+    group: null,
+    title: 'Совет студентов и аспирантов',
+    subtitle: 'ССиА ИПКР',
+    color: 'var(--purple)',
+    staff: [
+      { name: 'Толоконников Кирилл Андреевич', role: 'Председатель', deg: 'студент 3 курса, Психология личности', photo: null },
+      { name: 'Транковская Анна Сергеевна', role: 'Зампредседателя · Рук. аналитического направления', deg: 'студентка 3 курса, Логопедия', photo: null },
+      { name: 'Крючков Георгий Александрович', role: 'Руководитель проектного направления', deg: 'студент 3 курса, Организация работы с молодёжью', photo: null },
+      { name: 'Злобина Дарья Антоновна', role: 'Руководитель медианаправления', deg: 'студентка 3 курса, Логопедия', photo: null },
+      { name: 'Костикова Александра Александровна', role: 'Ответственная за старост', deg: 'студентка 2 курса, Организация работы с молодёжью', photo: null },
+      { name: 'Коротун Григорий Владимирович', role: 'Секретарь ССиА ИПКР', deg: 'студент 1 курса, Логопедия', photo: null }
+    ]
+  },
+  {
+    id: 'resource-support',
+    group: null,
+    title: 'Ресурсное обеспечение',
+    subtitle: 'Отдел развития ресурсного обеспечения образовательного процесса',
+    color: 'var(--gray)',
+    staff: [
+      { name: 'Ушаков Константин Валериевич', role: 'Начальник отдела · руководит инженерами и завхозом', deg: 'каб. 102а', photo: null },
+      { name: 'Гапоненко Сергей Михайлович', role: '', deg: 'инженер-электроник, фотограф · каб. 307', photo: null },
+      { name: 'Зиннятуллин Рамиль Равильевич', role: 'Заведующий хозяйством', deg: '', photo: null }
+    ]
+  },
+  {
+    id: 'mfc',
+    group: null,
+    title: 'МФЦ · каб. 210',
+    subtitle: 'Многофункциональный студенческий центр',
+    color: 'var(--olive)',
+    notes: [
+      'оплата обучения, доп. соглашения',
+      'ПН–ЧТ 9:30–18:30 · ПТ 9:30–17:15 · СБ–ВС вых.',
+      'Сотрудники: выясняется'
+    ],
+    staff: []
+  },
+  {
+    id: 'youth-center',
+    group: null,
+    title: 'Центр работы с молодёжью',
+    subtitle: 'каб. 411',
+    color: '#2a7a6a',
+    staff: [
+      { name: 'Журавлёва Жанна Игоревна', role: 'Руководитель', deg: 'доц., к. пс. н. · замдир. ИПКР', note: 'общее руководство восп. работой, паблик ВК ИПКР, взаимодействие с ССиА', photo: null },
+      { name: 'Григоренко Наталья Юрьевна', role: '', deg: 'доц., к. пед. н. · ДПО (ПК, проф. переподгот.)', photo: null },
+      { name: 'Львова Светлана Владимировна', role: '', deg: 'доц., к. пс. н. · культурно-масс. мероприятия, конкурсы, куратор восп. работы', photo: null },
+      { name: 'Пыченкова Анастасия Александровна', role: '', deg: 'ассистент · профориентация', photo: null },
+      { name: 'Соловьева Ирина Леонидовна', role: '', deg: 'доц., к. пед. н. · волонтёрство, письма в зону СВО', photo: null }
+    ]
+  }
+];
 
-<div class="dc">
-  <span class="lbl lbr">Административный</span>
-  <div class="card c-d1">
-    <div class="role">Деп. организации образовательного процесса и работы с молодёжью &middot; каб. 405&ndash;406</div>
-    <div class="hr"></div>
-    <div class="role">Начальник департамента</div>
-    <div class="name">Парамонова Галина Витальевна</div>
-    <div class="deg">ст. преп.</div>
-    <div class="sl">
-      <div class="si"><span class="sd">ликвидация акад. задолженностей, досрочная/продлённая сессия, общие вопросы образ. процесса &mdash; каб. 406</span></div>
-      <div class="si"><span class="sn">расписание</span><span class="sd" style="color:#c0392b">вакансия</span></div>
-      <div class="si"><span class="sn">Вдовина Валентина Владимировна</span><span class="sd">специалист по УМР &middot; каб. 405</span></div>
-      <div class="si"><span class="sn">Горожанкина Оксана Николаевна</span><span class="sd">специалист &middot; представительская площадка ИПКР &middot; каб. 202</span></div>
-      <div class="si"><span class="sn">Гришина Лилия Игоревна</span><span class="sd">специалист &middot; матподдержка, соц. стипендия, рассрочка и скидка на обучение &mdash; каб. 405</span></div>
-      <div class="si"><span class="sn">Кондратова Мария Александровна</span><span class="sd">специалист</span></div>
-      <div class="si"><span class="sn">Лебедева Виктория Александровна</span><span class="sd">специалист по УМР &middot; каб. 405</span></div>
-      <div class="si"><span class="sn">Попова Ольга Владимировна</span><span class="sd">специалист &middot; практика студентов &middot; каб. 507</span></div>
-      <div class="si"><span class="sn">Салькова Анна Алексеевна</span><span class="sd">специалист, ассистент &middot; вопросы образовательного процесса</span></div>
-      <div class="si"><span class="sn">Соколова Ольга Андреевна</span><span class="sd">специалист по УМР &middot; каб. 405</span></div>
+function getInitials(name) {
+  const p = name.trim().split(/\s+/);
+  return (p[0] ? p[0][0] : '') + (p[1] ? p[1][0] : '');
+}
+
+function renderCard(person, color) {
+  if (person.vacant) {
+    return `<div class="card" style="border-top-color:${color}">
+      <div class="avatar-placeholder" style="background:#c0392b">?</div>
+      <div class="card-text">
+        <div class="role" style="color:#c0392b;opacity:1">${person.name}</div>
+        <div class="deg" style="color:#c0392b">${person.deg}</div>
+      </div>
+    </div>`;
+  }
+  const avatar = person.photo
+    ? `<img class="avatar" src="${person.photo}" alt="${person.name}">`
+    : `<div class="avatar-placeholder" style="background:${color}">${getInitials(person.name)}</div>`;
+  return `<div class="card" style="border-top-color:${color}">
+    ${avatar}
+    <div class="card-text">
+      ${person.role ? `<div class="role">${person.role}</div>` : ''}
+      <div class="name">${person.name}</div>
+      ${person.deg ? `<div class="deg">${person.deg}</div>` : ''}
+      ${person.note ? `<div class="deg" style="margin-top:3px">${person.note}</div>` : ''}
     </div>
-  </div>
-</div>
+  </div>`;
+}
 
-<div class="dc">
-  <span class="lbl lg">Социально-психологический</span>
-  <div class="card c-d2">
-    <div class="role">Деп. социально-психологических технологий и коррекционно-развивающих методик &middot; каб. 403</div>
-    <div class="hr"></div>
-    <div class="role">Начальник департамента</div>
-    <div class="name">Яковлева Ирина Михайловна</div>
-    <div class="deg">проф., д. пед. н.</div>
-    <div class="sl">
-      <div class="si"><span class="sn">Афанасьева Юлия Анатольевна</span><span class="sd">доц., к. пед. н.</span></div>
-      <div class="si"><span class="sn">Беглова Ольга Александровна</span><span class="sd">доц., к. пед. н.</span></div>
-      <div class="si"><span class="sn">Браткова Маргарита Владимировна</span><span class="sd">доц., к. пед. н.</span></div>
-      <div class="si"><span class="sn">Бутко Галина Анатольевна</span><span class="sd">доц., к. пед. н.</span></div>
-      <div class="si"><span class="sn">Варламова Алла Вячеславовна</span><span class="sd">доц., к. пед. н.</span></div>
-      <div class="si"><span class="sn">Вильшанская Аделя Дамировна</span><span class="sd">доц., к. пед. н.</span></div>
-      <div class="si"><span class="sn">Волковская Татьяна Николаевна</span><span class="sd">проф., д. пс. н.</span></div>
-      <div class="si"><span class="sn">Галкина Вера Александровна</span><span class="sd">доц., к. пед. н.</span></div>
-      <div class="si"><span class="sn">Григоренко Наталья Юрьевна</span><span class="sd">доц., к. пед. н. &middot; ДПО</span></div>
-      <div class="si"><span class="sn">Гусейнова Аща Айирмагомедовна</span><span class="sd">доц., к. пед. н.</span></div>
-      <div class="si"><span class="sn">Долгих Ольга Владимировна</span><span class="sd">доц., к. филол. н.</span></div>
-      <div class="si"><span class="sn">Дорошенко Татьяна Николаевна</span><span class="sd">доц., к. пед. н.</span></div>
-      <div class="si"><span class="sn">Екжанова Елена Анатольевна</span><span class="sd">проф., д. пед. н.</span></div>
-      <div class="si"><span class="sn">Журавлёва Жанна Игоревна</span><span class="sd">доц., к. пс. н. (замдир.)</span></div>
-      <div class="si"><span class="sn">Зарецкая Анна Романовна</span><span class="sd">ассистент</span></div>
-      <div class="si"><span class="sn">Звягинцева Анна Алексеевна</span><span class="sd">ст. преп.</span></div>
-      <div class="si"><span class="sn">Караневская Ольга Викторовна</span><span class="sd">доц., к. пед. н.</span></div>
-      <div class="si"><span class="sn">Киселева Наталья Юрьевна</span><span class="sd">доц., к. пед. н.</span></div>
-      <div class="si"><span class="sn">Кремнева Татьяна Леонидовна</span><span class="sd">проф., д. пед. н.</span></div>
-      <div class="si"><span class="sn">Кузнецова Галина Васильевна</span><span class="sd">доц., к. пед. н.</span></div>
-      <div class="si"><span class="sn">Леонова Ирина Владиславовна</span><span class="sd">ст. преп.</span></div>
-      <div class="si"><span class="sn">Мануйлова Виктория Викторовна</span><span class="sd">проф., д. пед. н. &middot; аспирантура &middot; каб. 412</span></div>
-      <div class="si"><span class="sn">Медведева Елена Алексеевна</span><span class="sd">проф., д. пс. н.</span></div>
-      <div class="si"><span class="sn">Миронова Ангелина Валерьевна</span><span class="sd">ст. преп. &middot; центр науки и инноваций ИПКР &middot; каб. 410</span></div>
-      <div class="si"><span class="sn">Михеева Евгения Игоревна</span><span class="sd">преподаватель</span></div>
-      <div class="si"><span class="sn">Моргачева Елена Николаевна</span><span class="sd">проф., д. пед. н.</span></div>
-      <div class="si"><span class="sn">Новикова Диана Эдуардовна</span><span class="sd">ст. преп. &middot; координатор по орг. вопросам &middot; Telegram и сайт ИПКР</span></div>
-      <div class="si"><span class="sn">Олешова Варвара Васильевна</span><span class="sd">ст. преп., к. пед. н.</span></div>
-      <div class="si"><span class="sn">Олтаржевская Любовь Евгеньевна</span><span class="sd">к. пед. н. &middot; приглашённый эксперт</span></div>
-      <div class="si"><span class="sn">Павлова Анна Сергеевна</span><span class="sd">доц., к. псих. н. &middot; уч. секр. УС / Профбюро &middot; каб. 503</span></div>
-      <div class="si"><span class="sn">Покровская Юлия Александровна</span><span class="sd">ст. преп.</span></div>
-      <div class="si"><span class="sn">Полякова Надежда Петровна</span><span class="sd">доц., к. пед. н.</span></div>
-      <div class="si"><span class="sn">Прочухаева Марина Михайловна</span><span class="sd">ст. преп.</span></div>
-      <div class="si"><span class="sn">Пыченкова Анастасия Александровна</span><span class="sd">ассистент</span></div>
-      <div class="si"><span class="sn">Русецкая Маргарита Николаевна</span><span class="sd">проф., д. пед. н.</span></div>
-      <div class="si"><span class="sn">Рыкова Елена Алексеевна</span><span class="sd">ст. преп. &middot; отв. за конкурсы в институте</span></div>
-      <div class="si"><span class="sn">Савченко Игорь Анатольевич</span><span class="sd">доц., к. пс. н.</span></div>
-      <div class="si"><span class="sn">Скира Елена Васильевна</span><span class="sd">доц., к. пед. н.</span></div>
-      <div class="si"><span class="sn">Соколова Ольга Юрьевна</span><span class="sd">доц., к. пед. н.</span></div>
-      <div class="si"><span class="sn">Соловьева Ирина Леонидовна</span><span class="sd">доц., к. пед. н.</span></div>
-      <div class="si"><span class="sn">Титова Оксана Владимировна</span><span class="sd">доц., к. пед. н.</span></div>
-      <div class="si"><span class="sn">Тюрина Надия Шамильевна</span><span class="sd">доц., к. пед. н.</span></div>
-      <div class="si"><span class="sn">Тютченко Александр Максимович</span><span class="sd">проф., к. ист. н.</span></div>
-      <div class="si"><span class="sn">Уклонская Дарья Викторовна</span><span class="sd">проф., д. пед. н.</span></div>
-      <div class="si"><span class="sn">Филатова Ирина Александровна</span><span class="sd">доц., к. пед. н.</span></div>
-      <div class="si"><span class="sn">Хорошавина Екатерина Владимировна</span><span class="sd">ст. преп., к. пед. н.</span></div>
-      <div class="si"><span class="sn">Черешнева Виктория Евгеньевна</span><span class="sd">доц., к. пед. н.</span></div>
-      <div class="si"><span class="sn">Шулекина Юлия Александровна</span><span class="sd">доц., к. пед. н.</span></div>
-      <div class="si"><span class="sn">Яценко София Григорьевна</span><span class="sd">ст. преп.</span></div>
-    </div>
-  </div>
-</div>
+function renderStructure() {
+  const container = document.getElementById('org-structure');
+  let html = '';
+  let lastGroup = '__none__';
 
-<div class="dc">
-  <span class="lbl lp2">Клинико-психологический</span>
-  <div class="card c-d3">
-    <div class="role">Деп. клинических, психологических и педагогических основ развития личности &middot; каб. 402</div>
-    <div class="hr"></div>
-    <div class="role">Начальник департамента</div>
-    <div class="name">Овчаренко Лариса Юрьевна</div>
-    <div class="deg">доцент, к. пс. н.</div>
-    <div class="sl">
-      <div class="si"><span class="sn">Ананьева Елена Владимировна</span><span class="sd">ст. преп.</span></div>
-      <div class="si"><span class="sn">Баранова Екатерина Михайловна</span><span class="sd">доц., к. пед. н. &middot; акад. мобильность, студенты-иностранцы, межд. конкурсы</span></div>
-      <div class="si"><span class="sn">Бершедова Людмила Ивановна</span><span class="sd">проф., д. пс. н.</span></div>
-      <div class="si"><span class="sn">Богданова Тамара Геннадиевна</span><span class="sd">проф., д. пс. н.</span></div>
-      <div class="si"><span class="sn">Валявко Светлана Михайловна</span><span class="sd">доц., к. пс. н.</span></div>
-      <div class="si"><span class="sn">Волкова Наталья Николаевна</span><span class="sd">доц., к. соц. н.</span></div>
-      <div class="si"><span class="sn">Гильяно Альбина Сергеевна</span><span class="sd">доц., к. пс. н.</span></div>
-      <div class="si"><span class="sn">Гравицкая Елена Геннадьевна</span><span class="sd">доц., к. биол. н.</span></div>
-      <div class="si"><span class="sn">Данилина Анна Андреевна</span><span class="sd">доц., к. филол. н.</span></div>
-      <div class="si"><span class="sn">Клепцова Елена Юрьевна</span><span class="sd">доц., к. пс. н.</span></div>
-      <div class="si"><span class="sn">Комарова Дарья Сергеевна</span><span class="sd">ст. преп.</span></div>
-      <div class="si"><span class="sn">Комарова Оксана Николаевна</span><span class="sd">доц., к. пс. н.</span></div>
-      <div class="si"><span class="sn">Лапин Игорь Александрович</span><span class="sd">проф., д. мед. н.</span></div>
-      <div class="si"><span class="sn">Лысенко Наталья Николаевна</span><span class="sd">доц., к. биол. н.</span></div>
-      <div class="si"><span class="sn">Львова Светлана Владимировна</span><span class="sd">доц., к. пс. н.</span></div>
-      <div class="si"><span class="sn">Минаева Оксана Дмитриевна</span><span class="sd">доц., к. биол. н.</span></div>
-      <div class="si"><span class="sn">Морозова Татьяна Юрьевна</span><span class="sd">ст. преп.</span></div>
-      <div class="si"><span class="sn">Назарова Наталия Михайловна</span><span class="sd">проф., д. пед. н.</span></div>
-      <div class="si"><span class="sn">Немов Роберт Семёнович</span><span class="sd">проф., д. пс. н.</span></div>
-      <div class="si"><span class="sn">Рассказова Алла Львовна</span><span class="sd">доц., к. пс. н.</span></div>
-      <div class="si"><span class="sn">Романова Евгения Сергеевна</span><span class="sd">проф., д. пс. н. &middot; зав. лаб.</span></div>
-      <div class="si"><span class="sn">Рыжов Борис Николаевич</span><span class="sd">проф., д. пс. н.</span></div>
-      <div class="si"><span class="sn">Рычихина Элина Николаевна</span><span class="sd">проф., д. соц. н.</span></div>
-      <div class="si"><span class="sn">Усанова Елена Алексеевна</span><span class="sd">доц., к. мед. н.</span></div>
-      <div class="si"><span class="sn">Чудина Наталья Владимировна</span><span class="sd">ст. преп.</span></div>
-      <div class="si"><span class="sn">Щеткина Мария Александровна</span><span class="sd">ассистент</span></div>
-    </div>
-  </div>
-</div>
+  for (const section of orgData) {
+    if (section.group !== null && section.group !== lastGroup) {
+      html += `<div class="group-header">${section.group}</div>`;
+      lastGroup = section.group;
+    }
+    const notesHtml = (section.notes || []).map(n => `<div class="note-item">${n}</div>`).join('');
+    const cardsHtml = section.staff.map(p => renderCard(p, section.color)).join('');
+    html += `<div class="accordion-item">
+      <button class="accordion-header" style="border-left-color:${section.color}">
+        <div class="accordion-header-text">
+          <span class="accordion-title">${section.title}</span>
+          ${section.subtitle ? `<span class="accordion-subtitle">${section.subtitle}</span>` : ''}
+        </div>
+        <span class="accordion-chevron">&#9662;</span>
+      </button>
+      <div class="accordion-content">
+        <div class="accordion-content-inner">
+          ${notesHtml ? `<div class="section-notes">${notesHtml}</div>` : ''}
+          ${cardsHtml ? `<div class="grid-layout">${cardsHtml}</div>` : ''}
+        </div>
+      </div>
+    </div>`;
+  }
 
-</div>
-<div class="cv" style="height:24px"></div>
-<div style="text-align:center;width:100%"><span class="lbl ln">Научные, коллегиальные и обеспечивающие структуры</span></div>
-<div class="bg">
+  container.innerHTML = html;
 
-<div class="bc">
-  <span class="lbl lt">Научные лаборатории</span>
-  <div class="card c-lab" style="margin-top:8px">
-    <div class="role">Лаб. социально-психологических исследований в образовании &middot; каб. 310&ndash;311</div>
-    <div class="hr"></div>
-    <div class="role">Заведующий &middot; Зампред Учёного совета</div>
-    <div class="name">Романова Евгения Сергеевна</div>
-    <div class="deg">проф., д. пс. н.</div>
-    <div class="sl">
-      <div class="si"><span class="sn">Иванцов Олег Владимирович</span><span class="sd">доц., ст. науч. сотр., к. пс. н. &middot; каб. 401</span></div>
-      <div class="si"><span class="sn">Карманова Татьяна Михайловна</span><span class="sd">доц., ст. науч. сотр., к. пс. н.</span></div>
-    </div>
-  </div>
-  <div class="dv"></div>
-  <div class="card c-lab">
-    <div class="role">Лаборатория инклюзивного образования &middot; каб. 414</div>
-    <div class="hr"></div>
-    <div class="role">Заведующий</div>
-    <div class="name">Левченко Ирина Юрьевна</div>
-    <div class="deg">проф., д. пс. н.</div>
-    <div class="sl">
-      <div class="si"><span class="sn">Колягина Виктория Геннадьевна</span><span class="sd">вед. науч. сотр., доц., к. пс. н.</span></div>
-      <div class="si"><span class="sn">Джафар-Заде Дарья Авсафовна</span><span class="sd">мл. науч. сотр.</span></div>
-      <div class="si"><span class="sn">Скребец Татьяна Викторовна</span><span class="sd">доц., к. пс. н.</span></div>
-      <div class="si"><span class="sn">Урожаева Алёна Владимировна</span><span class="sd">специалист</span></div>
-    </div>
-  </div>
-</div>
+  document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+      header.classList.toggle('open');
+      const content = header.nextElementSibling;
+      content.style.maxHeight = header.classList.contains('open')
+        ? content.scrollHeight + 'px'
+        : '0';
+    });
+  });
+}
 
-<div class="bc">
-  <span class="lbl lr">Учёный совет</span>
-  <div class="card c-ac" style="margin-top:8px">
-    <div class="role">Председатель</div>
-    <div class="name">Ушакова Елена Викторовна</div>
-    <div class="deg">Директор ИПКР</div>
-  </div>
-  <div class="dv"></div>
-  <div class="card c-ac">
-    <div class="role">Заместитель председателя</div>
-    <div class="name">Романова Евгения Сергеевна</div>
-    <div class="deg">проф., д. пс. н.</div>
-  </div>
-  <div class="dv"></div>
-  <div class="card c-ac">
-    <div class="role">Учёный секретарь УС &middot; Глава Профбюро ИПКР &middot; каб. 503</div>
-    <div class="name">Павлова Анна Сергеевна</div>
-    <div class="deg">доцент, к. псих. н.</div>
-  </div>
-  <div style="height:12px"></div>
-  <span class="lbl lp">Совет студентов и аспирантов</span>
-  <div class="card c-sc" style="margin-top:8px">
-    <div class="role">Председатель</div>
-    <div class="name">Толоконников Кирилл Андреевич</div>
-    <div class="deg">студент 3 курса, Психология личности</div>
-  </div>
-  <div class="dv"></div>
-  <div class="card c-sc">
-    <div class="role">Зампредседателя &middot; Рук. аналитического направления</div>
-    <div class="name">Транковская Анна Сергеевна</div>
-    <div class="deg">студентка 3 курса, Логопедия</div>
-  </div>
-  <div class="dv"></div>
-  <div class="card c-sc">
-    <div class="role">Руководитель проектного направления</div>
-    <div class="name">Крючков Георгий Александрович</div>
-    <div class="deg">студент 3 курса, Организация работы с молодёжью</div>
-  </div>
-  <div class="dv"></div>
-  <div class="card c-sc">
-    <div class="role">Руководитель медианаправления</div>
-    <div class="name">Злобина Дарья Антоновна</div>
-    <div class="deg">студентка 3 курса, Логопедия</div>
-  </div>
-  <div class="dv"></div>
-  <div class="card c-sc">
-    <div class="role">Ответственная за старост</div>
-    <div class="name">Костикова Александра Александровна</div>
-    <div class="deg">студентка 2 курса, Организация работы с молодёжью</div>
-  </div>
-  <div class="dv"></div>
-  <div class="card c-sc">
-    <div class="role">Секретарь ССиА ИПКР</div>
-    <div class="name">Коротун Григорий Владимирович</div>
-    <div class="deg">студент 1 курса, Логопедия</div>
-  </div>
-</div>
-
-<div class="bc">
-  <span class="lbl lgr">Ресурсное обеспечение</span>
-  <div class="card c-sup" style="margin-top:8px">
-    <div class="role">Отдел развития ресурсного обеспечения образовательного процесса</div>
-    <div class="hr"></div>
-    <div class="role">Начальник отдела &middot; руководит инженерами и завхозом</div>
-    <div class="name">Ушаков Константин Валериевич</div>
-    <div class="deg">каб. 102а</div>
-    <div class="sl">
-      <div class="si"><span class="sn">Гапоненко Сергей Михайлович</span><span class="sd">инженер-электроник, фотограф &middot; каб. 307</span></div>
-    </div>
-  </div>
-  <div class="dv"></div>
-  <div class="card c-sup">
-    <div class="role">Заведующий хозяйством</div>
-    <div class="name">Зиннятуллин Рамиль Равильевич</div>
-  </div>
-  <div style="height:12px"></div>
-  <span class="lbl lo">МФЦ &middot; каб. 210</span>
-  <div class="card c-mfc" style="margin-top:8px">
-    <div class="role">Многофункциональный студенческий центр</div>
-    <div class="sl">
-      <div class="si"><span class="sd">оплата обучения, доп. соглашения</span></div>
-      <div class="si"><span class="sd">ПН&ndash;ЧТ 9:30&ndash;18:30 &middot; ПТ 9:30&ndash;17:15 &middot; СБ&ndash;ВС вых.</span></div>
-      <div class="si"><span class="sd" style="color:#aaa">Сотрудники: выясняется</span></div>
-    </div>
-  </div>
-</div>
-
-<div class="bc">
-  <span class="lbl lctr">Центр работы с молодёжью</span>
-  <div class="card c-ctr" style="margin-top:8px">
-    <div class="role">Каб. 411</div>
-    <div class="hr"></div>
-    <div class="role">Руководитель</div>
-    <div class="name">Журавлёва Жанна Игоревна</div>
-    <div class="deg">доц., к. пс. н. &middot; замдир. ИПКР</div>
-    <div class="sl">
-      <div class="si"><span class="sd">общее руководство восп. работой, паблик ВК ИПКР, взаимодействие с ССиА</span></div>
-    </div>
-    <div class="hr"></div>
-    <div class="role">Сотрудники</div>
-    <div class="sl">
-      <div class="si"><span class="sn">Григоренко Наталья Юрьевна</span><span class="sd">доц., к. пед. н. &middot; ДПО (ПК, проф. переподгот.)</span></div>
-      <div class="si"><span class="sn">Львова Светлана Владимировна</span><span class="sd">доц., к. пс. н. &middot; культурно-масс. мероприятия, конкурсы, куратор восп. работы</span></div>
-      <div class="si"><span class="sn">Пыченкова Анастасия Александровна</span><span class="sd">ассистент &middot; профориентация</span></div>
-      <div class="si"><span class="sn">Соловьева Ирина Леонидовна</span><span class="sd">доц., к. пед. н. &middot; волонтёрство, письма в зону СВО</span></div>
-    </div>
-  </div>
-</div>
-
-</div>
-</div>
+renderStructure();
+</script>
 </body>
 </html>
