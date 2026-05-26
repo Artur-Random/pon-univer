@@ -85,6 +85,17 @@ h2.st{font-size:10px;font-weight:700;color:var(--accent);text-align:center;margi
 /* Footer */
 .main-footer{background:white;border-top:1px solid var(--warm);margin-top:60px;padding:20px 14px;text-align:center}
 .footer-container{max-width:1500px;margin:0 auto;font-size:11px;color:var(--tmid);opacity:.8;line-height:1.4}
+
+/* University cards */
+.uni-card{background:white;padding:20px;border-radius:12px;box-shadow:var(--shsm);border-top:4px solid var(--accent);display:flex;flex-direction:column;gap:12px}
+.uni-title{font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);font-size:16px;line-height:1.2}
+.uni-subtitle{font-size:11px;color:var(--tmid);font-style:italic;line-height:1.3}
+.uni-address-list{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.uni-address-item{display:flex;flex-direction:column;gap:2px}
+.uni-addr-text{font-size:13px;font-weight:600;color:var(--tdark)}
+.uni-addr-comment{font-size:11px;color:var(--tmid)}
+.uni-email{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--blue);text-decoration:none;font-weight:600;margin-top:auto;padding-top:12px;border-top:1px solid var(--warm);transition:color .2s}
+.uni-email:hover{color:var(--accent)}
 </style>
 </head>
 <body>
@@ -419,7 +430,7 @@ function renderStructure() {
 renderStructure();
 
 function renderPlaceholders() {
-  ['mgpu', 'rights', 'pass', 'discipline'].forEach(id => {
+  ['rights', 'pass', 'discipline'].forEach(id => {
     const sec = document.getElementById('sec-' + id);
     if (sec && !sec.innerHTML.trim()) {
       sec.innerHTML = `<div class="placeholder-card">
@@ -431,6 +442,132 @@ function renderPlaceholders() {
 }
 
 renderPlaceholders();
+
+const universityData = [
+  {
+    title: "Институт психологии и комплексной реабилитации (ИПКР)",
+    color: "--accent",
+    email: "ipkr@mgpu.ru",
+    campuses: [{ address: "ул. Панфёрова, д. 8, корп. 2", comment: "Основной корпус" }]
+  },
+  {
+    title: "Институт гуманитарных наук (ИГН)",
+    color: "--blue",
+    email: "ign.info@mgpu.ru",
+    campuses: [{ address: "2-й Сельскохозяйственный проезд, д. 4", comment: "Основной корпус" }]
+  },
+  {
+    title: "Институт иностранных языков (ИИЯ)",
+    color: "--teal",
+    email: "iiya.info@mgpu.ru",
+    campuses: [
+      { address: "ул. Полтавская, д. 3", comment: "Корпус Полтавская" },
+      { address: "Малый Казённый пер., д. 5Б", comment: "Корпус Курская" }
+    ]
+  },
+  {
+    title: "Институт культуры и искусств (ИКИ)",
+    color: "--red",
+    email: "iki.info@mgpu.ru",
+    campuses: [
+      { address: "ул. Фабрициуса, д. 21", comment: "Корпус Сходненская" },
+      { address: "ул. Марии Ульяновой, д. 21", comment: "Корпус Университет" },
+      { address: "пер. Каменная Слобода, д. 4", comment: "Корпус Смоленская" }
+    ]
+  },
+  {
+    title: "Институт педагогики и психологии образования (ИППО)",
+    color: "--brown",
+    email: "ippo.info@mgpu.ru",
+    campuses: [{ address: "Столярный пер., д. 16", comment: "Основной корпус" }]
+  },
+  {
+    title: "Институт экономики, управления и права (ИЭУиП)",
+    color: "--purple",
+    email: "ieup.info@mgpu.ru",
+    campuses: [
+      { address: "Новокузнецкая ул., д. 16, стр. 10", comment: "Основной корпус" },
+      { address: "2-й Тульский пер., д. 4", comment: "Гуманитарно-правовой колледж ИЭУиП" }
+    ]
+  },
+  {
+    title: "Институт естествознания и спортивных технологий (ИЕСТ)",
+    color: "--green",
+    email: "iest@mgpu.ru",
+    campuses: [
+      { address: "ул. Чечулина, д. 1", comment: "Корпус 1" },
+      { address: "ул. Чечулина, д. 3", comment: "Корпус 2" }
+    ]
+  },
+  {
+    title: "Институт цифрового образования (ИЦО)",
+    color: "--slate",
+    email: "ide@mgpu.ru",
+    campuses: [
+      { address: "Шереметьевская ул., д. 28", comment: "Корпус 1" },
+      { address: "Шереметьевская ул., д. 29", comment: "Корпус 2" }
+    ]
+  },
+  {
+    title: "Институт среднего профессионального образования им. К.Д. Ушинского (ИСПО)",
+    color: "--olive",
+    email: "ispo.info@mgpu.ru",
+    campuses: [
+      { address: "Поклонная ул., д. 2", comment: "«Колледж Дорогомилово»" },
+      { address: "Измайловский бульвар, д. 19", comment: "«Колледж Измайлово»" },
+      { address: "Большая Академическая ул., д. 77А, стр. 1", comment: "«Колледж им. С. Я. Маршака»" },
+      { address: "ул. Грекова, д. 3, корп. 1", comment: "«Колледж Медведково»" },
+      { address: "ул. Цюрупы, д. 14Б", comment: "«Колледж Черемушки»" },
+      { address: "Варшавское ш., д. 44А", comment: "«Колледж Варшавка-Арт»" },
+      { address: "Зеленоград, корп. 1140", comment: "«Колледж Зеленоград»" },
+      { address: "ул. Чечулина, д. 3, корп. 1", comment: "Спортивное отделение ИСПО" }
+    ]
+  },
+  {
+    title: "Дирекция образовательных программ (ДОП)",
+    subtitle: "Особый статус: подготовка только магистров (педагоги, психологи, управленцы в сфере образования и социальных инициатив)",
+    color: "--endow",
+    email: "dep.info@mgpu.ru",
+    campuses: [
+      { address: "2-й Сельскохозяйственный проезд, д. 4, каб. 2202", comment: "Адрес руководства / дирекция" },
+      { address: "Садово-Самотёчная, д. 8", comment: "Корпус для занятий (магистратура)" }
+    ]
+  },
+  {
+    title: "Самарский филиал МГПУ",
+    color: "--gray",
+    email: null,
+    campuses: [{ address: "г. Самара, ул. Стара Загора, д. 76", comment: "Филиал" }]
+  }
+];
+
+function renderUniversity() {
+  const sec = document.getElementById('sec-mgpu');
+  if (!sec) return;
+  const grid = document.createElement('div');
+  grid.className = 'grid-layout';
+  universityData.forEach(item => {
+    const addressesHtml = item.campuses.map(c => `
+      <div class="uni-address-item">
+        <span class="uni-addr-text">${c.address}</span>
+        <span class="uni-addr-comment">${c.comment}</span>
+      </div>`).join('');
+    const subtitleHtml = item.subtitle
+      ? `<div class="uni-subtitle">${item.subtitle}</div>` : '';
+    const emailHtml = item.email
+      ? `<a class="uni-email" href="mailto:${item.email}">✉ ${item.email}</a>` : '';
+    grid.innerHTML += `
+      <div class="uni-card" style="border-top-color:var(${item.color})">
+        <div class="uni-title">${item.title}</div>
+        ${subtitleHtml}
+        <div class="uni-address-list">${addressesHtml}</div>
+        ${emailHtml}
+      </div>`;
+  });
+  sec.appendChild(grid);
+}
+
+document.addEventListener('DOMContentLoaded', renderUniversity);
 
 document.querySelectorAll('.nav-btn').forEach(btn => {
   btn.addEventListener('click', () => {
