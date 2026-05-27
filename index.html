@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ПОНЯТНЫЙ УНИВЕРСИТЕТ | МГПУ</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -15,7 +15,7 @@
   --sh:0 4px 20px rgba(26,39,68,.15);--shsm:0 2px 8px rgba(26,39,68,.1);
 }
 body{
-  font-family:'Nunito',sans-serif;background:var(--cream);color:var(--tdark);padding:0 0 60px;
+  font-family:'EB Garamond',serif;background:var(--cream);color:var(--tdark);padding:0 0 60px;
   background-image:radial-gradient(ellipse at 10% 10%,rgba(46,74,173,.05) 0%,transparent 50%),
   radial-gradient(ellipse at 90% 90%,rgba(192,144,42,.05) 0%,transparent 50%);
 }
@@ -70,7 +70,7 @@ h2.st{font-size:10px;font-weight:700;color:var(--accent);text-align:center;margi
 /* Navigation */
 .main-nav{background:white;position:sticky;top:0;z-index:1000;box-shadow:var(--shsm);margin-bottom:24px}
 .nav-container{max-width:1500px;margin:0 auto;display:flex;gap:8px;padding:12px 14px;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.nav-btn{padding:8px 16px;border:none;background:transparent;border-radius:20px;font-weight:600;font-size:13px;color:var(--tmid);cursor:pointer;transition:all .2s;white-space:nowrap;font-family:'Nunito',sans-serif}
+.nav-btn{padding:8px 16px;border:none;background:transparent;border-radius:20px;font-weight:600;font-size:15px;color:var(--tmid);cursor:pointer;transition:all .2s;white-space:nowrap;font-family:'EB Garamond',serif}
 .nav-btn:hover{background:var(--warm);color:var(--navy)}
 .nav-btn.active{background:var(--navy);color:white}
 
@@ -448,18 +448,21 @@ const universityData = [
     title: "Институт психологии и комплексной реабилитации (ИПКР)",
     color: "--accent",
     email: "ipkr@mgpu.ru",
+    director: { name: "Ушакова Елена Викторовна", role: "Директор института", deg: "кандидат психологических наук, доцент", photo: null },
     campuses: [{ address: "ул. Панфёрова, д. 8, корп. 2", comment: "Основной корпус" }]
   },
   {
     title: "Институт гуманитарных наук (ИГН)",
     color: "--blue",
     email: "ign.info@mgpu.ru",
+    director: { name: "Кириллов Виктор Васильевич", role: "Директор института", deg: "кандидат исторических наук, профессор", photo: null },
     campuses: [{ address: "2-й Сельскохозяйственный проезд, д. 4", comment: "Основной корпус" }]
   },
   {
     title: "Институт иностранных языков (ИИЯ)",
     color: "--teal",
     email: "iiya.info@mgpu.ru",
+    director: { name: "Тарева Елена Генриховна", role: "Директор института", deg: "доктор педагогических наук, профессор", photo: null },
     campuses: [
       { address: "ул. Полтавская, д. 3", comment: "Корпус Полтавская" },
       { address: "Малый Казённый пер., д. 5Б", comment: "Корпус Курская / Администрация" }
@@ -469,6 +472,7 @@ const universityData = [
     title: "Институт культуры и искусств (ИКИ)",
     color: "--red",
     email: "iki.info@mgpu.ru",
+    director: { name: "Левина Ирина Дмитриевна", role: "Директор института", deg: "кандидат педагогических наук, доцент", photo: null },
     campuses: [
       { address: "ул. Фабрициуса, д. 21", comment: "Корпус Сходненская" },
       { address: "ул. Марии Ульяновой, д. 21", comment: "Основной корпус / Администрация" },
@@ -479,12 +483,14 @@ const universityData = [
     title: "Институт педагогики и психологии образования (ИППО)",
     color: "--brown",
     email: "ippo.info@mgpu.ru",
+    director: { name: "Савенков Александр Ильич", role: "Директор института", deg: "академик РАО, доктор педагогических наук, доктор психологических наук, профессор", photo: null },
     campuses: [{ address: "Столярный пер., д. 16", comment: "Основной корпус" }]
   },
   {
     title: "Институт экономики, управления и права (ИЭУиП)",
     color: "--purple",
     email: "ieup.info@mgpu.ru",
+    director: { name: "Абрамов Руслан Агарунович", role: "Директор института", deg: "доктор экономических наук, профессор", photo: null },
     campuses: [
       { address: "Новокузнецкая ул., д. 16, стр. 10", comment: "Основной корпус" },
       { address: "2-й Тульский пер., д. 4", comment: "Гуманитарно-правовой колледж ИЭУиП" }
@@ -494,6 +500,7 @@ const universityData = [
     title: "Институт естествознания и спортивных технологий (ИЕСТ)",
     color: "--green",
     email: "iest@mgpu.ru",
+    director: { name: "Страдзе Александр Эдуардович", role: "Директор института", deg: "доктор социологических наук, профессор", photo: null },
     campuses: [
       { address: "ул. Чечулина, д. 1", comment: "Корпус 1" },
       { address: "ул. Чечулина, д. 3, корп. 1", comment: "Основной корпус / Администрация" }
@@ -503,6 +510,7 @@ const universityData = [
     title: "Институт цифрового образования (ИЦО)",
     color: "--slate",
     email: "ide@mgpu.ru",
+    director: { name: "Абрамов Владимир Иванович", role: "Директор института", deg: "кандидат экономических наук", photo: null },
     campuses: [
       { address: "Шереметьевская ул., д. 28", comment: "Корпус Б / Администрация" },
       { address: "Шереметьевская ул., д. 29", comment: "Корпус А" }
@@ -512,6 +520,7 @@ const universityData = [
     title: "Институт среднего профессионального образования им. К.Д. Ушинского (ИСПО)",
     color: "--olive",
     email: "ispo.info@mgpu.ru",
+    director: { name: "Ерёмин Сергей Владимирович", role: "Директор института", deg: "кандидат педагогических наук", photo: null },
     campuses: [
       { address: "Поклонная ул., д. 2", comment: "«Колледж Дорогомилово»" },
       { address: "Измайловский бульвар, д. 19", comment: "«Колледж Измайлово»" },
@@ -528,6 +537,7 @@ const universityData = [
     subtitle: "Особый статус: подготовка только магистров (педагоги, психологи, управленцы в сфере образования и социальных инициатив)",
     color: "--endow",
     email: "dep.info@mgpu.ru",
+    director: { name: "Никитина Евгения Сергеевна", role: "Директор дирекции", deg: "", photo: null },
     campuses: [
       { address: "2-й Сельскохозяйственный проезд, д. 4, каб. 2202", comment: "Адрес руководства / дирекция" },
       { address: "Садово-Самотёчная, д. 8", comment: "Корпус для занятий (магистратура)" }
@@ -537,6 +547,7 @@ const universityData = [
     title: "Самарский филиал МГПУ",
     color: "--gray",
     email: "samara@mgpu.ru",
+    director: { name: "Козловская Галина Ефимовна", role: "Директор филиала", deg: "доктор исторических наук, профессор", photo: null },
     campuses: [{ address: "г. Самара, ул. Стара Загора, д. 76", comment: "Филиал" }]
   }
 ];
@@ -544,27 +555,64 @@ const universityData = [
 function renderUniversity() {
   const sec = document.getElementById('sec-mgpu');
   if (!sec) return;
-  const grid = document.createElement('div');
-  grid.className = 'grid-layout';
+  sec.innerHTML = '';
+  const container = document.createElement('div');
+  container.className = 'accordion-container';
+
   universityData.forEach(item => {
+    const d = item.director;
+    const initials = getInitials(d.name);
+    const avatarHtml = d.photo
+      ? `<img class="avatar" src="${d.photo}" alt="${d.name}">`
+      : `<div class="avatar-placeholder" style="background:var(${item.color})">${initials}</div>`;
+    const degHtml = d.deg ? `<div class="deg">${d.deg}</div>` : '';
+    const subtitleHtml = item.subtitle
+      ? `<span class="accordion-subtitle">${item.subtitle}</span>` : '';
     const addressesHtml = item.campuses.map(c => `
       <div class="uni-address-item">
         <span class="uni-addr-text">${c.address}</span>
         <span class="uni-addr-comment">${c.comment}</span>
       </div>`).join('');
-    const subtitleHtml = item.subtitle
-      ? `<div class="uni-subtitle">${item.subtitle}</div>` : '';
     const emailHtml = item.email
       ? `<a class="uni-email" href="mailto:${item.email}">✉ ${item.email}</a>` : '';
-    grid.innerHTML += `
-      <div class="uni-card" style="border-top-color:var(${item.color})">
-        <div class="uni-title">${item.title}</div>
-        ${subtitleHtml}
-        <div class="uni-address-list">${addressesHtml}</div>
-        ${emailHtml}
+
+    const el = document.createElement('div');
+    el.className = 'accordion-item';
+    el.innerHTML = `
+      <button class="accordion-header" style="border-left-color:var(${item.color})">
+        <div class="accordion-header-text">
+          <span class="accordion-title">${item.title}</span>
+          ${subtitleHtml}
+        </div>
+        <span class="accordion-chevron">&#9662;</span>
+      </button>
+      <div class="accordion-content">
+        <div class="accordion-content-inner">
+          <div class="card" style="border-top-color:var(${item.color});margin-bottom:16px">
+            ${avatarHtml}
+            <div class="card-text">
+              <div class="role">${d.role}</div>
+              <div class="name">${d.name}</div>
+              ${degHtml}
+            </div>
+          </div>
+          <div class="uni-address-list">${addressesHtml}</div>
+          ${emailHtml}
+        </div>
       </div>`;
+    container.appendChild(el);
   });
-  sec.appendChild(grid);
+
+  sec.appendChild(container);
+
+  sec.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+      header.classList.toggle('open');
+      const content = header.nextElementSibling;
+      content.style.maxHeight = header.classList.contains('open')
+        ? content.scrollHeight + 'px' : '0';
+    });
+  });
 }
 
 document.addEventListener('DOMContentLoaded', renderUniversity);
