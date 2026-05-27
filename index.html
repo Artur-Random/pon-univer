@@ -19,7 +19,8 @@ body{
   background-image:radial-gradient(ellipse at 10% 10%,rgba(46,74,173,.05) 0%,transparent 50%),
   radial-gradient(ellipse at 90% 90%,rgba(192,144,42,.05) 0%,transparent 50%);
 }
-h1.t{font-family:'Playfair Display',serif;font-size:clamp(14px,2vw,22px);font-weight:700;color:var(--navy);text-align:center;margin-bottom:4px;line-height:1.3}
+h1.t{font-family:'Verdana',sans-serif;font-size:clamp(16px,2.2vw,24px);font-weight:700;color:var(--navy);text-align:center;padding:20px 14px 10px;line-height:1.3;background:var(--cream)}
+.section-title{font-family:'EB Garamond',serif;font-size:clamp(20px,2.5vw,26px);font-weight:600;color:var(--navy);text-align:center;margin-bottom:24px;line-height:1.3}
 h2.st{font-size:10px;font-weight:700;color:var(--accent);text-align:center;margin-bottom:28px;letter-spacing:.12em;text-transform:uppercase}
 .wrap{max-width:1500px;margin:0 auto;display:flex;flex-direction:column;align-items:center;padding:32px 14px 0}
 
@@ -99,6 +100,7 @@ h2.st{font-size:10px;font-weight:700;color:var(--accent);text-align:center;margi
 </style>
 </head>
 <body>
+<h1 class="t">ПОНЯТНЫЙ УНИВЕРСИТЕТ | МГПУ</h1>
 <nav class="main-nav">
   <div class="nav-container">
     <button class="nav-btn active" data-section="ipkr">Структура ИПКР</button>
@@ -109,9 +111,8 @@ h2.st{font-size:10px;font-weight:700;color:var(--accent);text-align:center;margi
   </div>
 </nav>
 <div class="wrap">
-  <h1 class="t">ПОНЯТНЫЙ УНИВЕРСИТЕТ | МГПУ</h1>
   <section id="sec-ipkr" class="main-section active">
-    <h2 class="st">Организационная структура &middot; МГПУ &middot; 2026</h2>
+    <h2 class="section-title">Институт психологии и комплексной реабилитации</h2>
     <div id="org-structure" class="accordion-container"></div>
   </section>
   <section id="sec-mgpu" class="main-section"></section>
@@ -555,7 +556,7 @@ const universityData = [
 function renderUniversity() {
   const sec = document.getElementById('sec-mgpu');
   if (!sec) return;
-  sec.innerHTML = '';
+  sec.innerHTML = '<h2 class="section-title">Московский городской педагогический университет</h2>';
   const container = document.createElement('div');
   container.className = 'accordion-container';
 
