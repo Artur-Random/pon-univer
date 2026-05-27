@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ПОНЯТНЫЙ УНИВЕРСИТЕТ | МГПУ</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2a3153">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Справочник ИПКР">
+<link rel="apple-touch-icon" href="images/app.png">
 <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -20,36 +26,88 @@ body{
   background-image:radial-gradient(ellipse at 10% 10%,rgba(46,74,173,.05) 0%,transparent 50%),
   radial-gradient(ellipse at 90% 90%,rgba(192,144,42,.05) 0%,transparent 50%);
 }
-h1.t{font-family:'Verdana',sans-serif;font-size:clamp(16px,2.2vw,24px);font-weight:700;color:var(--navy);text-align:center;padding:20px 14px 10px;line-height:1.3;background:var(--cream)}
-.section-title{font-size:clamp(20px,2.5vw,26px);font-weight:600;color:var(--navy);text-align:center;margin-bottom:24px;line-height:1.3}
-h2.st{font-size:10px;font-weight:700;color:var(--accent);text-align:center;margin-bottom:28px;letter-spacing:.12em;text-transform:uppercase}
-.wrap{max-width:1500px;margin:0 auto;display:flex;flex-direction:column;align-items:center;padding:32px 14px 0}
 
-/* Accordion */
-.accordion-container{display:flex;flex-direction:column;gap:8px;width:100%;max-width:1460px}
-.accordion-item{width:100%}
-.accordion-header{
-  display:flex;justify-content:space-between;align-items:center;width:100%;
-  padding:12px 16px;background:white;border:none;cursor:pointer;
-  border-left:5px solid transparent;border-radius:8px;box-shadow:var(--shsm);
-  text-align:left;transition:box-shadow .2s;
+/* ── Header ── */
+.site-header{
+  background:white;position:sticky;top:0;z-index:1001;box-shadow:var(--shsm);
+  display:flex;align-items:center;padding:10px 14px;gap:10px;height:62px;
 }
-.accordion-header:hover,.accordion-header.open{box-shadow:var(--sh)}
-.accordion-header-text{flex:1;min-width:0}
-.accordion-title{display:block;font-size:15px;font-weight:600;color:var(--navy);line-height:1.3}
-.accordion-subtitle{display:block;font-size:9.5px;color:var(--tmid);margin-top:2px;line-height:1.4}
-.accordion-chevron{font-size:18px;color:var(--tmid);margin-left:12px;transition:transform .3s;line-height:1;flex-shrink:0}
-.accordion-header.open .accordion-chevron{transform:rotate(180deg)}
-.accordion-content{max-height:0;overflow:hidden;transition:max-height .4s ease}
-.accordion-content-inner{padding:12px 0}
+.site-logo{height:40px;width:auto;border-radius:8px;flex-shrink:0}
+h1.t{
+  font-family:'Verdana',sans-serif;font-size:clamp(12px,1.8vw,20px);font-weight:700;
+  color:var(--navy);line-height:1.2;background:none;padding:0;flex:1;
+}
+.icon-btn{
+  background:none;border:none;cursor:pointer;padding:7px;color:var(--navy);
+  border-radius:8px;transition:background .2s,color .2s;display:flex;align-items:center;
+  justify-content:center;flex-shrink:0;width:38px;height:38px;
+}
+.icon-btn:hover{background:var(--warm);color:var(--accent)}
 
-/* Group divider */
-.group-header{font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;text-align:center;padding:20px 0 8px;width:100%}
+/* ── Search bar ── */
+#search-bar-container{
+  position:fixed;top:62px;left:0;right:0;z-index:1000;background:white;
+  box-shadow:0 8px 24px rgba(42,49,83,.22);
+  transform:translateY(-110%);opacity:0;
+  transition:transform .3s cubic-bezier(.4,0,.2,1),opacity .25s ease;
+  max-height:calc(80vh - 62px);overflow-y:auto;
+}
+#search-bar-container.open{transform:translateY(0);opacity:1}
+.search-bar-inner{padding:12px 16px 10px;border-bottom:1px solid var(--warm)}
+#search-input{
+  width:100%;border:none;outline:none;font-size:18px;
+  font-family:'Tenor Sans',sans-serif;color:var(--tdark);background:transparent;
+}
+#search-input::placeholder{color:var(--tmid)}
+#search-results{padding:6px 16px 14px;display:flex;flex-direction:column;gap:6px}
+.search-result-item{
+  background:var(--cream);border-left:4px solid var(--accent);border-radius:6px;
+  padding:10px 12px;cursor:pointer;transition:background .15s;
+}
+.search-result-item:hover{background:var(--warm)}
+.search-result-name{font-size:13px;font-weight:600;color:var(--navy)}
+.search-result-sub{font-size:11px;color:var(--tmid);margin-top:2px}
+.search-no-results{font-size:13px;color:var(--tmid);padding:8px 0;text-align:center}
 
-/* Grid */
+/* ── Section titles ── */
+.section-title{font-size:clamp(18px,2.5vw,26px);font-weight:600;color:var(--navy);text-align:center;margin-bottom:24px;line-height:1.3}
+
+/* ── Wrap ── */
+.wrap{max-width:1500px;margin:0 auto;padding:32px 14px 0}
+
+/* ── Grid ── */
 .grid-layout{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+@media(max-width:1050px){.grid-layout{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}}
+@media(max-width:600px){.grid-layout{grid-template-columns:1fr}}
 
-/* Card */
+/* ── Master cards ── */
+.master-card{
+  background:white;border-radius:10px;padding:16px;box-shadow:var(--shsm);
+  border-top:4px solid transparent;cursor:pointer;
+  transition:box-shadow .2s,transform .15s;
+}
+.master-card:hover{box-shadow:var(--sh);transform:translateY(-2px)}
+.master-card:active{transform:translateY(0)}
+.master-card-title{font-size:15px;font-weight:600;color:var(--navy);line-height:1.3;margin-bottom:4px}
+.master-card-sub{font-size:11px;color:var(--tmid);line-height:1.4}
+.master-card-count{font-size:10px;font-weight:700;color:var(--accent);margin-top:10px;text-transform:uppercase;letter-spacing:.05em}
+.master-group-label{
+  grid-column:1/-1;font-size:9px;font-weight:700;color:var(--accent);
+  letter-spacing:.12em;text-transform:uppercase;padding:16px 0 2px;
+}
+
+/* ── Back button & detail header ── */
+.btn-back{
+  display:inline-flex;align-items:center;gap:6px;margin-bottom:20px;
+  color:var(--accent);font-weight:600;cursor:pointer;padding:8px 0;font-size:16px;
+  background:none;border:none;font-family:'Tenor Sans',sans-serif;transition:color .2s;
+}
+.btn-back:hover{color:var(--navy)}
+.detail-header{margin-bottom:20px}
+.detail-title{font-size:20px;font-weight:700;color:var(--navy);margin-bottom:4px;line-height:1.3}
+.detail-subtitle{font-size:12px;color:var(--tmid);line-height:1.4}
+
+/* ── Staff card ── */
 .card{background:white;border-radius:10px;padding:11px 13px;box-shadow:var(--shsm);border-top:4px solid transparent;transition:box-shadow .2s;display:flex;gap:12px;align-items:flex-start}
 .card:hover{box-shadow:var(--sh)}
 .card-text{flex:1;min-width:0}
@@ -57,12 +115,12 @@ h2.st{font-size:10px;font-weight:700;color:var(--accent);text-align:center;margi
 .card .name{font-size:13px;font-weight:600;line-height:1.3;color:var(--navy);margin-bottom:2px}
 .card .deg{font-size:10px;color:var(--tmid)}
 
-/* Avatar */
+/* ── Avatar ── */
 .avatar,.avatar-placeholder{width:50px;height:50px;border-radius:50%;flex-shrink:0}
 .avatar{object-fit:cover}
 .avatar-placeholder{display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:14px}
 
-/* Card contacts & schedule */
+/* ── Card contacts & schedule ── */
 .card-contacts{display:flex;flex-direction:column;gap:4px;margin-top:10px;font-size:13px;color:var(--tmid);border-top:1px dashed var(--warm);padding-top:10px}
 .card-contact-item{display:flex;align-items:center;gap:6px}
 .card-contact-item a{color:var(--navy);text-decoration:none;font-weight:600;transition:color .2s}
@@ -73,54 +131,71 @@ h2.st{font-size:10px;font-weight:700;color:var(--accent);text-align:center;margi
 .schedule-line:last-child{border-bottom:none;padding-bottom:0}
 .schedule-line strong{color:var(--tdark)}
 
-/* Section notes */
+/* ── Section notes ── */
 .section-notes{padding:4px 0 8px;display:flex;flex-direction:column;gap:5px}
 .note-item{font-size:11px;color:var(--tmid)}
 
-/* ССиА official links block */
+/* ── ССиА links block ── */
 .ssia-official-links{background:var(--cream);padding:14px 16px;border-radius:8px;margin-bottom:16px;border-left:4px solid var(--accent)}
 .ssia-links-title{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em}
 .ssia-links-list{display:flex;flex-direction:column;gap:7px}
 .ssia-link-item{font-size:13px;color:var(--navy);text-decoration:none;font-weight:600;transition:color .2s}
 .ssia-link-item:hover{color:var(--accent)}
 
-@media(max-width:1050px){.grid-layout{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}}
-@media(max-width:600px){.grid-layout{grid-template-columns:1fr}}
-
-/* Navigation */
-.main-nav{background:white;position:sticky;top:0;z-index:1000;box-shadow:var(--shsm);margin-bottom:24px}
+/* ── Navigation ── */
+.main-nav{background:white;position:sticky;top:62px;z-index:999;box-shadow:var(--shsm);margin-bottom:24px}
 .nav-container{max-width:1500px;margin:0 auto;display:flex;gap:8px;padding:12px 14px;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.nav-btn{padding:8px 16px;border:none;background:transparent;border-radius:20px;font-weight:600;font-size:15px;color:var(--tmid);cursor:pointer;transition:all .2s;white-space:nowrap}
+.nav-btn{padding:8px 16px;border:none;background:transparent;border-radius:20px;font-weight:600;font-size:15px;color:var(--tmid);cursor:pointer;transition:all .2s;white-space:nowrap;font-family:'Tenor Sans',sans-serif}
 .nav-btn:hover:not(.active){background:var(--warm);color:var(--accent)}
 .nav-btn.active{background:var(--navy);color:white;position:relative}
 .nav-btn.active::after{content:'';position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:20px;height:3px;background:var(--accent);border-radius:2px}
 
-/* Sections */
+/* ── Sections ── */
 .main-section{display:none;width:100%}
 .main-section.active{display:block;animation:fadeIn .3s ease}
 @keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 
-/* Placeholder */
-.placeholder-card{text-align:center;background:white;padding:50px 20px;border-radius:12px;box-shadow:var(--shsm);max-width:500px;margin:60px auto;border-top:4px solid var(--warm)}
+/* ── Placeholder ── */
+.placeholder-card{text-align:center;background:white;padding:50px 20px;border-radius:12px;box-shadow:var(--shsm);max-width:500px;margin:40px auto;border-top:4px solid var(--warm)}
 
-/* Footer */
+/* ── Footer ── */
 .main-footer{background:var(--navy);border-top:3px solid var(--accent);margin-top:60px;padding:20px 14px;text-align:center;color:white}
-.footer-container{max-width:1500px;margin:0 auto;font-size:11px;color:var(--warm);opacity:1;line-height:1.4}
+.footer-container{max-width:1500px;margin:0 auto;font-size:11px;color:var(--warm);line-height:1.4}
 
-/* University cards */
-.uni-card{background:white;padding:20px;border-radius:12px;box-shadow:var(--shsm);border-top:4px solid var(--accent);display:flex;flex-direction:column;gap:12px}
-.uni-title{font-weight:700;color:var(--navy);font-size:16px;line-height:1.2}
-.uni-subtitle{font-size:11px;color:var(--tmid);line-height:1.3}
-.uni-address-list{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+/* ── University addresses ── */
+.uni-address-list{display:flex;flex-direction:column;gap:8px;margin:16px 0 8px}
 .uni-address-item{display:flex;flex-direction:column;gap:2px}
 .uni-addr-text{font-size:13px;font-weight:600;color:var(--tdark)}
 .uni-addr-comment{font-size:11px;color:var(--tmid)}
-.uni-email{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--navy);text-decoration:none;font-weight:600;margin-top:auto;padding-top:12px;border-top:1px solid var(--warm);transition:color .2s}
+.uni-email{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--navy);text-decoration:none;font-weight:600;padding-top:12px;border-top:1px solid var(--warm);transition:color .2s}
 .uni-email:hover{color:var(--accent)}
 </style>
 </head>
 <body>
-<h1 class="t">ПОНЯТНЫЙ УНИВЕРСИТЕТ | МГПУ</h1>
+
+<header class="site-header">
+  <img src="images/pu.png" alt="Логотип" class="site-logo">
+  <h1 class="t">ПОНЯТНЫЙ УНИВЕРСИТЕТ | МГПУ</h1>
+  <button id="search-btn" class="icon-btn" aria-label="Поиск">
+    <svg id="icon-search" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <svg id="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="display:none">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+    <svg id="icon-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+      <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+    </svg>
+  </button>
+</header>
+
+<div id="search-bar-container">
+  <div class="search-bar-inner">
+    <input type="text" id="search-input" placeholder="Поиск по сотрудникам и институтам..." autocomplete="off">
+  </div>
+  <div id="search-results"></div>
+</div>
+
 <nav class="main-nav">
   <div class="nav-container">
     <button class="nav-btn active" data-section="ipkr">Структура ИПКР</button>
@@ -130,22 +205,38 @@ h2.st{font-size:10px;font-weight:700;color:var(--accent);text-align:center;margi
     <button class="nav-btn" data-section="discipline">Дисциплинарный блок</button>
   </div>
 </nav>
+
 <div class="wrap">
   <section id="sec-ipkr" class="main-section active">
     <h2 class="section-title">Институт психологии и комплексной реабилитации</h2>
-    <div id="org-structure" class="accordion-container"></div>
+    <div id="ipkr-master" class="grid-layout"></div>
+    <div id="ipkr-detail" style="display:none;"></div>
   </section>
-  <section id="sec-mgpu" class="main-section"></section>
-  <section id="sec-rights" class="main-section"></section>
+  <section id="sec-mgpu" class="main-section">
+    <h2 class="section-title">Московский городской педагогический университет</h2>
+    <div id="uni-master" class="grid-layout"></div>
+    <div id="uni-detail" style="display:none;"></div>
+  </section>
+  <section id="sec-rights" class="main-section">
+    <h2 class="section-title">Права и обязанности студента</h2>
+    <div id="rights-master" class="grid-layout"></div>
+    <div id="rights-detail" style="display:none;"></div>
+  </section>
   <section id="sec-pass" class="main-section"></section>
   <section id="sec-discipline" class="main-section"></section>
 </div>
+
 <footer class="main-footer">
   <div class="footer-container">
     Сделано членами Совета студентов и аспирантов Института психологии и комплексной реабилитации ГАОУ ВО МГПУ &bull; v. 1.0 &bull; 2026
   </div>
 </footer>
+
 <script>
+// ═══════════════════════════════════════════
+//  DATA
+// ═══════════════════════════════════════════
+
 const orgData = [
   {
     id: 'director',
@@ -351,113 +442,6 @@ const orgData = [
   }
 ];
 
-function getInitials(name) {
-  const p = name.trim().split(/\s+/);
-  return (p[0] ? p[0][0] : '') + (p[1] ? p[1][0] : '');
-}
-
-function renderCard(person, color) {
-  if (person.vacant) {
-    return `<div class="card" style="border-top-color:${color}">
-      <div class="avatar-placeholder" style="background:#c0392b">?</div>
-      <div class="card-text">
-        <div class="role" style="color:#c0392b;opacity:1">${person.name}</div>
-        <div class="deg" style="color:#c0392b">${person.deg}</div>
-      </div>
-    </div>`;
-  }
-  const avatar = person.photo
-    ? `<img class="avatar" src="${person.photo}" alt="${person.name}">`
-    : `<div class="avatar-placeholder" style="background:${color}">${getInitials(person.name)}</div>`;
-  const hasContacts = person.room || person.phone || person.email || person.vk;
-  const contactsHtml = hasContacts ? `<div class="card-contacts">
-    ${person.room ? `<div class="card-contact-item">📍 ${person.room}</div>` : ''}
-    ${person.phone ? `<div class="card-contact-item">📞 <a href="tel:${person.phone.replace(/\s+/g,'')}">${person.phone}</a></div>` : ''}
-    ${person.email ? `<div class="card-contact-item">✉️ <a href="mailto:${person.email}">${person.email}</a></div>` : ''}
-    ${person.vk ? `<div class="card-contact-item">VK: <a href="${person.vk}" target="_blank">Перейти на страницу</a></div>` : ''}
-  </div>` : '';
-  const scheduleHtml = person.schedule ? `<div class="card-schedule">
-    ${person.scheduleNote ? `<span class="schedule-note">⚠️ ${person.scheduleNote}</span>` : ''}
-    ${person.schedule.map(s => `<div class="schedule-line"><span>${s.label}</span> <strong>${s.time}</strong></div>`).join('')}
-  </div>` : '';
-  return `<div class="card" style="border-top-color:${color}">
-    ${avatar}
-    <div class="card-text">
-      ${person.role ? `<div class="role">${person.role}</div>` : ''}
-      <div class="name">${person.name}</div>
-      ${person.deg ? `<div class="deg">${person.deg}</div>` : ''}
-      ${person.note ? `<div class="deg" style="margin-top:3px">${person.note}</div>` : ''}
-      ${contactsHtml}
-      ${scheduleHtml}
-    </div>
-  </div>`;
-}
-
-function renderStructure() {
-  const container = document.getElementById('org-structure');
-  let html = '';
-  let lastGroup = '__none__';
-
-  for (const section of orgData) {
-    if (section.group !== null && section.group !== lastGroup) {
-      html += `<div class="group-header">${section.group}</div>`;
-      lastGroup = section.group;
-    }
-    const notesHtml = (section.notes || []).map(n => `<div class="note-item">${n}</div>`).join('');
-    const cardsHtml = section.staff.map(p => renderCard(p, section.color)).join('');
-    const linksHtml = section.links ? `<div class="ssia-official-links">
-      <div class="ssia-links-title">Официальные ресурсы ССиА ИПКР:</div>
-      <div class="ssia-links-list">
-        ${section.links.map(l => `<a href="${l.url}" ${l.url.startsWith('http') ? 'target="_blank"' : ''} class="ssia-link-item">${l.label}</a>`).join('')}
-      </div>
-    </div>` : '';
-    html += `<div class="accordion-item">
-      <button class="accordion-header" style="border-left-color:${section.color}">
-        <div class="accordion-header-text">
-          <span class="accordion-title">${section.title}</span>
-          ${section.subtitle ? `<span class="accordion-subtitle">${section.subtitle}</span>` : ''}
-        </div>
-        <span class="accordion-chevron">&#9662;</span>
-      </button>
-      <div class="accordion-content">
-        <div class="accordion-content-inner">
-          ${notesHtml ? `<div class="section-notes">${notesHtml}</div>` : ''}
-          ${linksHtml}
-          ${cardsHtml ? `<div class="grid-layout">${cardsHtml}</div>` : ''}
-        </div>
-      </div>
-    </div>`;
-  }
-
-  container.innerHTML = html;
-
-  document.querySelectorAll('.accordion-header').forEach(header => {
-    header.addEventListener('click', () => {
-      header.classList.toggle('open');
-      const content = header.nextElementSibling;
-      content.style.maxHeight = header.classList.contains('open')
-        ? content.scrollHeight + 'px'
-        : '0';
-    });
-  });
-}
-
-renderStructure();
-
-function renderPlaceholders() {
-  ['rights', 'pass', 'discipline'].forEach(id => {
-    const sec = document.getElementById('sec-' + id);
-    if (sec && !sec.innerHTML.trim()) {
-      sec.innerHTML = `<div class="placeholder-card">
-        <h3 style="color:var(--navy);font-size:22px;margin-bottom:10px;">Привет, друг!</h3>
-        <p style="color:var(--tmid);font-size:14px;">Скоро тут будет информация!</p>
-      </div>`;
-    }
-  });
-}
-
-renderPlaceholders();
-
 const universityData = [
   {
     title: "Институт психологии и комплексной реабилитации (ИПКР)",
@@ -576,84 +560,412 @@ const universityData = [
   }
 ];
 
-function renderUniversity() {
-  const sec = document.getElementById('sec-mgpu');
-  if (!sec) return;
-  sec.innerHTML = '<h2 class="section-title">Московский городской педагогический университет</h2>';
-  const container = document.createElement('div');
-  container.className = 'accordion-container';
+const rightsData = [
+  { title: 'Материальная помощь', subtitle: 'Государственная и вузовская поддержка', color: '--green' },
+  { title: 'Академические права', subtitle: 'Права обучающихся по закону об образовании', color: '--blue' },
+  { title: 'Пересдачи и задолженности', subtitle: 'Порядок ликвидации академических задолженностей', color: '--brown' },
+  { title: 'Психологическая поддержка', subtitle: 'Помощь при трудностях и кризисных ситуациях', color: '--teal' }
+];
 
-  universityData.forEach(item => {
-    const d = item.director;
-    const initials = getInitials(d.name);
-    const avatarHtml = d.photo
-      ? `<img class="avatar" src="${d.photo}" alt="${d.name}">`
-      : `<div class="avatar-placeholder" style="background:var(${item.color})">${initials}</div>`;
-    const degHtml = d.deg ? `<div class="deg">${d.deg}</div>` : '';
-    const subtitleHtml = item.subtitle
-      ? `<span class="accordion-subtitle">${item.subtitle}</span>` : '';
-    const addressesHtml = item.campuses.map(c => `
-      <div class="uni-address-item">
-        <span class="uni-addr-text">${c.address}</span>
-        <span class="uni-addr-comment">${c.comment}</span>
-      </div>`).join('');
-    const emailHtml = item.email
-      ? `<a class="uni-email" href="mailto:${item.email}">✉ ${item.email}</a>` : '';
+// ═══════════════════════════════════════════
+//  HELPERS
+// ═══════════════════════════════════════════
 
-    const el = document.createElement('div');
-    el.className = 'accordion-item';
-    const ssiaChairHtml = item.ssiaChair ? renderCard(item.ssiaChair, `var(${item.color})`) : '';
-    el.innerHTML = `
-      <button class="accordion-header" style="border-left-color:var(${item.color})">
-        <div class="accordion-header-text">
-          <span class="accordion-title">${item.title}</span>
-          ${subtitleHtml}
-        </div>
-        <span class="accordion-chevron">&#9662;</span>
-      </button>
-      <div class="accordion-content">
-        <div class="accordion-content-inner">
-          <div class="grid-layout" style="margin-bottom:16px">
-            <div class="card" style="border-top-color:var(${item.color})">
-              ${avatarHtml}
-              <div class="card-text">
-                <div class="role">${d.role}</div>
-                <div class="name">${d.name}</div>
-                ${degHtml}
-              </div>
-            </div>
-            ${ssiaChairHtml}
-          </div>
-          <div class="uni-address-list">${addressesHtml}</div>
-          ${emailHtml}
-        </div>
-      </div>`;
-    container.appendChild(el);
+function getInitials(name) {
+  const p = name.trim().split(/\s+/);
+  return (p[0] ? p[0][0] : '') + (p[1] ? p[1][0] : '');
+}
+
+function renderCard(person, color) {
+  if (person.vacant) {
+    return `<div class="card" style="border-top-color:${color}">
+      <div class="avatar-placeholder" style="background:#c0392b">?</div>
+      <div class="card-text">
+        <div class="role" style="color:#c0392b;opacity:1">${person.name}</div>
+        <div class="deg" style="color:#c0392b">${person.deg || ''}</div>
+      </div>
+    </div>`;
+  }
+  const avatar = person.photo
+    ? `<img class="avatar" src="${person.photo}" alt="${person.name}">`
+    : `<div class="avatar-placeholder" style="background:${color}">${getInitials(person.name)}</div>`;
+  const hasContacts = person.room || person.phone || person.email || person.vk;
+  const contactsHtml = hasContacts ? `<div class="card-contacts">
+    ${person.room ? `<div class="card-contact-item">📍 ${person.room}</div>` : ''}
+    ${person.phone ? `<div class="card-contact-item">📞 <a href="tel:${person.phone.replace(/\s+/g,'')}">${person.phone}</a></div>` : ''}
+    ${person.email ? `<div class="card-contact-item">✉️ <a href="mailto:${person.email}">${person.email}</a></div>` : ''}
+    ${person.vk ? `<div class="card-contact-item">VK: <a href="${person.vk}" target="_blank">Перейти на страницу</a></div>` : ''}
+  </div>` : '';
+  const scheduleHtml = person.schedule ? `<div class="card-schedule">
+    ${person.scheduleNote ? `<span class="schedule-note">⚠️ ${person.scheduleNote}</span>` : ''}
+    ${person.schedule.map(s => `<div class="schedule-line"><span>${s.label}</span> <strong>${s.time}</strong></div>`).join('')}
+  </div>` : '';
+  return `<div class="card" style="border-top-color:${color}">
+    ${avatar}
+    <div class="card-text">
+      ${person.role ? `<div class="role">${person.role}</div>` : ''}
+      <div class="name">${person.name}</div>
+      ${person.deg ? `<div class="deg">${person.deg}</div>` : ''}
+      ${person.note ? `<div class="deg" style="margin-top:3px">${person.note}</div>` : ''}
+      ${contactsHtml}
+      ${scheduleHtml}
+    </div>
+  </div>`;
+}
+
+// ═══════════════════════════════════════════
+//  IPKR MASTER-DETAIL
+// ═══════════════════════════════════════════
+
+function renderIPKRMaster() {
+  const master = document.getElementById('ipkr-master');
+  let lastGroup = '__none__';
+  let html = '';
+
+  orgData.forEach((section, idx) => {
+    if (section.group !== null && section.group !== lastGroup) {
+      html += `<div class="master-group-label">${section.group}</div>`;
+      lastGroup = section.group;
+    }
+    const staffCount = section.staff.filter(p => !p.vacant).length;
+    html += `<div class="master-card" style="border-top-color:${section.color}" data-idx="${idx}">
+      <div class="master-card-title">${section.title}</div>
+      ${section.subtitle ? `<div class="master-card-sub">${section.subtitle}</div>` : ''}
+      <div class="master-card-count">${staffCount} чел.</div>
+    </div>`;
   });
 
-  sec.appendChild(container);
-
-  sec.querySelectorAll('.accordion-header').forEach(header => {
-    header.addEventListener('click', () => {
-      header.classList.toggle('open');
-      const content = header.nextElementSibling;
-      content.style.maxHeight = header.classList.contains('open')
-        ? content.scrollHeight + 'px' : '0';
-    });
+  master.innerHTML = html;
+  master.querySelectorAll('.master-card').forEach(card => {
+    card.addEventListener('click', () => showIPKRDetail(parseInt(card.dataset.idx)));
   });
 }
 
-document.addEventListener('DOMContentLoaded', renderUniversity);
+function showIPKRDetail(idx) {
+  const section = orgData[idx];
+  const master = document.getElementById('ipkr-master');
+  const detail = document.getElementById('ipkr-detail');
+  master.style.display = 'none';
+  detail.style.display = '';
 
-document.querySelectorAll('.nav-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.main-section').forEach(s => s.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('sec-' + btn.dataset.section).classList.add('active');
+  const notesHtml = (section.notes || []).map(n => `<div class="note-item">${n}</div>`).join('');
+  const cardsHtml = section.staff.map(p => renderCard(p, section.color)).join('');
+  const linksHtml = section.links ? `<div class="ssia-official-links">
+    <div class="ssia-links-title">Официальные ресурсы ССиА ИПКР:</div>
+    <div class="ssia-links-list">
+      ${section.links.map(l => `<a href="${l.url}" ${l.url.startsWith('http') ? 'target="_blank"' : ''} class="ssia-link-item">${l.label}</a>`).join('')}
+    </div>
+  </div>` : '';
+
+  detail.innerHTML = `
+    <button class="btn-back" id="ipkr-back-btn">← Назад</button>
+    <div class="detail-header">
+      <div class="detail-title" style="color:${section.color}">${section.title}</div>
+      ${section.subtitle ? `<div class="detail-subtitle">${section.subtitle}</div>` : ''}
+    </div>
+    ${notesHtml ? `<div class="section-notes" style="margin-bottom:12px">${notesHtml}</div>` : ''}
+    ${linksHtml}
+    <div class="grid-layout">${cardsHtml}</div>
+  `;
+
+  document.getElementById('ipkr-back-btn').addEventListener('click', () => {
+    detail.style.display = 'none';
+    master.style.display = '';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ═══════════════════════════════════════════
+//  UNIVERSITY MASTER-DETAIL
+// ═══════════════════════════════════════════
+
+function renderUniMaster() {
+  const master = document.getElementById('uni-master');
+  master.innerHTML = universityData.map((item, idx) => `
+    <div class="master-card" style="border-top-color:var(${item.color})" data-idx="${idx}">
+      <div class="master-card-title">${item.title}</div>
+      <div class="master-card-sub">${item.director.name}</div>
+      ${item.campuses.length > 1 ? `<div class="master-card-count">${item.campuses.length} корп.</div>` : ''}
+    </div>
+  `).join('');
+
+  master.querySelectorAll('.master-card').forEach(card => {
+    card.addEventListener('click', () => showInstituteDetail(parseInt(card.dataset.idx)));
+  });
+}
+
+function showInstituteDetail(idx) {
+  const item = universityData[idx];
+  const master = document.getElementById('uni-master');
+  const detail = document.getElementById('uni-detail');
+  master.style.display = 'none';
+  detail.style.display = '';
+
+  const d = item.director;
+  const dirCard = `<div class="card" style="border-top-color:var(${item.color})">
+    <div class="avatar-placeholder" style="background:var(${item.color})">${getInitials(d.name)}</div>
+    <div class="card-text">
+      <div class="role">${d.role}</div>
+      <div class="name">${d.name}</div>
+      ${d.deg ? `<div class="deg">${d.deg}</div>` : ''}
+    </div>
+  </div>`;
+  const ssiaHtml = item.ssiaChair ? renderCard(item.ssiaChair, `var(${item.color})`) : '';
+  const addressesHtml = item.campuses.map(c => `
+    <div class="uni-address-item">
+      <span class="uni-addr-text">${c.address}</span>
+      <span class="uni-addr-comment">${c.comment}</span>
+    </div>`).join('');
+
+  detail.innerHTML = `
+    <button class="btn-back" id="uni-back-btn">← Назад</button>
+    <div class="detail-header">
+      <div class="detail-title">${item.title}</div>
+      ${item.subtitle ? `<div class="detail-subtitle">${item.subtitle}</div>` : ''}
+    </div>
+    <div class="grid-layout" style="margin-bottom:16px">${dirCard}${ssiaHtml}</div>
+    <div class="uni-address-list">${addressesHtml}</div>
+    ${item.email ? `<a class="uni-email" href="mailto:${item.email}">✉ ${item.email}</a>` : ''}
+  `;
+
+  document.getElementById('uni-back-btn').addEventListener('click', () => {
+    detail.style.display = 'none';
+    master.style.display = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ═══════════════════════════════════════════
+//  RIGHTS MASTER-DETAIL
+// ═══════════════════════════════════════════
+
+function renderRightsMaster() {
+  const master = document.getElementById('rights-master');
+  master.innerHTML = rightsData.map((r, idx) => `
+    <div class="master-card" style="border-top-color:var(${r.color})" data-idx="${idx}">
+      <div class="master-card-title">${r.title}</div>
+      <div class="master-card-sub">${r.subtitle}</div>
+    </div>
+  `).join('');
+
+  master.querySelectorAll('.master-card').forEach(card => {
+    card.addEventListener('click', () => showRightsDetail(parseInt(card.dataset.idx)));
+  });
+}
+
+function showRightsDetail(idx) {
+  const item = rightsData[idx];
+  const master = document.getElementById('rights-master');
+  const detail = document.getElementById('rights-detail');
+  master.style.display = 'none';
+  detail.style.display = '';
+
+  detail.innerHTML = `
+    <button class="btn-back" id="rights-back-btn">← Назад</button>
+    <div class="detail-header">
+      <div class="detail-title" style="color:var(${item.color})">${item.title}</div>
+      <div class="detail-subtitle">${item.subtitle}</div>
+    </div>
+    <div class="placeholder-card" style="margin-top:20px">
+      <p style="color:var(--tmid);font-size:14px;">Раздел находится в разработке. Скоро здесь появится подробная информация!</p>
+    </div>
+  `;
+
+  document.getElementById('rights-back-btn').addEventListener('click', () => {
+    detail.style.display = 'none';
+    master.style.display = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ═══════════════════════════════════════════
+//  PLACEHOLDER SECTIONS
+// ═══════════════════════════════════════════
+
+function renderPlaceholders() {
+  ['pass', 'discipline'].forEach(id => {
+    const sec = document.getElementById('sec-' + id);
+    if (sec && !sec.innerHTML.trim()) {
+      sec.innerHTML = `<div class="placeholder-card">
+        <h3 style="color:var(--navy);font-size:22px;margin-bottom:10px;">Привет, друг!</h3>
+        <p style="color:var(--tmid);font-size:14px;">Скоро тут будет информация!</p>
+      </div>`;
+    }
+  });
+}
+
+// ═══════════════════════════════════════════
+//  NAVIGATION
+// ═══════════════════════════════════════════
+
+function showMaster(prefix) {
+  const master = document.getElementById(prefix + '-master');
+  const detail = document.getElementById(prefix + '-detail');
+  if (master) master.style.display = '';
+  if (detail) detail.style.display = 'none';
+}
+
+function switchSection(id) {
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.main-section').forEach(s => s.classList.remove('active'));
+  const btn = document.querySelector('[data-section="' + id + '"]');
+  if (btn) btn.classList.add('active');
+  const sec = document.getElementById('sec-' + id);
+  if (sec) sec.classList.add('active');
+  showMaster('ipkr');
+  showMaster('uni');
+  showMaster('rights');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ═══════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════
+
+renderIPKRMaster();
+renderUniMaster();
+renderRightsMaster();
+renderPlaceholders();
+
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => switchSection(btn.dataset.section));
 });
+
+// ═══════════════════════════════════════════
+//  SEARCH
+// ═══════════════════════════════════════════
+
+const searchBtn = document.getElementById('search-btn');
+const searchBar = document.getElementById('search-bar-container');
+const searchInput = document.getElementById('search-input');
+const searchResultsEl = document.getElementById('search-results');
+const iconSearch = document.getElementById('icon-search');
+const iconClose = document.getElementById('icon-close');
+const iconArrow = document.getElementById('icon-arrow');
+
+let searchState = 'closed'; // 'closed' | 'open-empty' | 'open-text'
+let _searchResults = [];
+
+function updateSearchIcon() {
+  iconSearch.style.display = searchState === 'closed' ? '' : 'none';
+  iconClose.style.display = searchState === 'open-empty' ? '' : 'none';
+  iconArrow.style.display = searchState === 'open-text' ? '' : 'none';
+}
+
+function closeSearch() {
+  searchState = 'closed';
+  searchBar.classList.remove('open');
+  searchInput.value = '';
+  searchResultsEl.innerHTML = '';
+  _searchResults = [];
+  updateSearchIcon();
+}
+
+searchBtn.addEventListener('click', () => {
+  if (searchState === 'closed') {
+    searchState = 'open-empty';
+    searchBar.classList.add('open');
+    updateSearchIcon();
+    searchInput.focus();
+  } else if (searchState === 'open-empty') {
+    closeSearch();
+  } else {
+    // open-text: arrow icon → blur keyboard
+    searchInput.blur();
+  }
+});
+
+searchInput.addEventListener('input', () => {
+  const val = searchInput.value.trim();
+  if (val) {
+    searchState = 'open-text';
+    doSearch(val);
+  } else {
+    searchState = 'open-empty';
+    searchResultsEl.innerHTML = '';
+    _searchResults = [];
+  }
+  updateSearchIcon();
+});
+
+function doSearch(query) {
+  const q = query.toLowerCase();
+  const raw = [];
+
+  // IPKR staff
+  orgData.forEach((section, sIdx) => {
+    section.staff.forEach(person => {
+      if (!person.vacant && person.name.toLowerCase().includes(q)) {
+        raw.push({
+          type: 'ipkr', sectionIdx: sIdx,
+          label: person.name,
+          sub: (person.role ? person.role + ' · ' : '') + section.title,
+          color: section.color.startsWith('var(') ? section.color : section.color
+        });
+      }
+    });
+    if (section.title.toLowerCase().includes(q)) {
+      raw.push({
+        type: 'ipkr', sectionIdx: sIdx,
+        label: section.title,
+        sub: section.subtitle || 'ИПКР',
+        color: section.color.startsWith('var(') ? section.color : section.color
+      });
+    }
+  });
+
+  // University institutes & directors
+  universityData.forEach((uni, uIdx) => {
+    const titleMatch = uni.title.toLowerCase().includes(q);
+    const dirMatch = uni.director.name.toLowerCase().includes(q);
+    if (titleMatch || dirMatch) {
+      raw.push({
+        type: 'uni', uniIdx: uIdx,
+        label: uni.title,
+        sub: uni.director.name,
+        color: `var(${uni.color})`
+      });
+    }
+  });
+
+  // Deduplicate
+  const seen = new Set();
+  _searchResults = raw.filter(r => {
+    const key = r.type + ':' + r.label;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  }).slice(0, 12);
+
+  if (_searchResults.length === 0) {
+    searchResultsEl.innerHTML = '<div class="search-no-results">Ничего не найдено</div>';
+    return;
+  }
+
+  searchResultsEl.innerHTML = _searchResults.map((r, i) => `
+    <div class="search-result-item" data-ridx="${i}" style="border-left-color:${r.color}">
+      <div class="search-result-name">${r.label}</div>
+      <div class="search-result-sub">${r.sub}</div>
+    </div>
+  `).join('');
+
+  searchResultsEl.querySelectorAll('.search-result-item').forEach(el => {
+    el.addEventListener('click', () => {
+      const r = _searchResults[parseInt(el.dataset.ridx)];
+      closeSearch();
+      if (r.type === 'ipkr') {
+        switchSection('ipkr');
+        showIPKRDetail(r.sectionIdx);
+      } else if (r.type === 'uni') {
+        switchSection('mgpu');
+        showInstituteDetail(r.uniIdx);
+      }
+    });
+  });
+}
 </script>
 </body>
 </html>
