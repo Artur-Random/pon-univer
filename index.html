@@ -50,7 +50,7 @@ h2.st{font-size:10px;font-weight:700;color:var(--accent);text-align:center;margi
 .grid-layout{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
 
 /* Card */
-.card{background:white;border-radius:10px;padding:11px 13px;box-shadow:var(--shsm);border-top:4px solid transparent;transition:box-shadow .2s;display:flex;gap:12px;align-items:center}
+.card{background:white;border-radius:10px;padding:11px 13px;box-shadow:var(--shsm);border-top:4px solid transparent;transition:box-shadow .2s;display:flex;gap:12px;align-items:flex-start}
 .card:hover{box-shadow:var(--sh)}
 .card-text{flex:1;min-width:0}
 .card .role{font-size:8.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;opacity:.6;margin-bottom:4px;line-height:1.4}
@@ -61,6 +61,17 @@ h2.st{font-size:10px;font-weight:700;color:var(--accent);text-align:center;margi
 .avatar,.avatar-placeholder{width:50px;height:50px;border-radius:50%;flex-shrink:0}
 .avatar{object-fit:cover}
 .avatar-placeholder{display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:14px;font-family:'Nunito',sans-serif}
+
+/* Card contacts & schedule */
+.card-contacts{display:flex;flex-direction:column;gap:4px;margin-top:10px;font-size:13px;color:var(--tmid);border-top:1px dashed var(--warm);padding-top:10px}
+.card-contact-item{display:flex;align-items:center;gap:6px}
+.card-contact-item a{color:var(--navy);text-decoration:none;font-weight:600;transition:color .2s}
+.card-contact-item a:hover{color:var(--accent)}
+.card-schedule{background:var(--cream);border-left:3px solid var(--accent);padding:10px 12px;margin-top:10px;border-radius:0 6px 6px 0;font-size:12px}
+.schedule-note{color:var(--burgundy);font-weight:600;font-size:11px;margin-bottom:6px;display:block;text-transform:uppercase;letter-spacing:.05em}
+.schedule-line{display:flex;justify-content:space-between;margin-top:4px;color:var(--tmid);border-bottom:1px solid rgba(0,0,0,.05);padding-bottom:2px}
+.schedule-line:last-child{border-bottom:none;padding-bottom:0}
+.schedule-line strong{color:var(--tdark)}
 
 /* Section notes */
 .section-notes{padding:4px 0 8px;display:flex;flex-direction:column;gap:5px}
@@ -136,7 +147,14 @@ const orgData = [
     subtitle: 'Директор ИПКР · Председатель учёного совета',
     color: 'var(--accent)',
     staff: [
-      { name: 'Ушакова Елена Викторовна', role: 'Директор ИПКР · Председатель учёного совета', deg: 'доцент, к. пс. н.', photo: null }
+      { name: 'Ушакова Елена Викторовна', role: 'Директор ИПКР · Председатель учёного совета', deg: 'доцент, к. пс. н.', photo: null,
+        email: 'Ushakova@mgpu.ru', phone: '+7 499 132 05 62', room: 'каб. 409',
+        scheduleNote: 'Обязательная предварительная запись по телефону',
+        schedule: [
+          { label: 'Для обучающихся', time: 'ПТ 14:00–16:00' },
+          { label: 'По личным вопросам', time: 'ПН 14:00–16:00' }
+        ]
+      }
     ]
   },
   {
@@ -339,6 +357,16 @@ function renderCard(person, color) {
   const avatar = person.photo
     ? `<img class="avatar" src="${person.photo}" alt="${person.name}">`
     : `<div class="avatar-placeholder" style="background:${color}">${getInitials(person.name)}</div>`;
+  const hasContacts = person.room || person.phone || person.email;
+  const contactsHtml = hasContacts ? `<div class="card-contacts">
+    ${person.room ? `<div class="card-contact-item">📍 ${person.room}</div>` : ''}
+    ${person.phone ? `<div class="card-contact-item">📞 <a href="tel:${person.phone.replace(/\s+/g,'')}">${person.phone}</a></div>` : ''}
+    ${person.email ? `<div class="card-contact-item">✉️ <a href="mailto:${person.email}">${person.email}</a></div>` : ''}
+  </div>` : '';
+  const scheduleHtml = person.schedule ? `<div class="card-schedule">
+    ${person.scheduleNote ? `<span class="schedule-note">⚠️ ${person.scheduleNote}</span>` : ''}
+    ${person.schedule.map(s => `<div class="schedule-line"><span>${s.label}</span> <strong>${s.time}</strong></div>`).join('')}
+  </div>` : '';
   return `<div class="card" style="border-top-color:${color}">
     ${avatar}
     <div class="card-text">
@@ -346,6 +374,8 @@ function renderCard(person, color) {
       <div class="name">${person.name}</div>
       ${person.deg ? `<div class="deg">${person.deg}</div>` : ''}
       ${person.note ? `<div class="deg" style="margin-top:3px">${person.note}</div>` : ''}
+      ${contactsHtml}
+      ${scheduleHtml}
     </div>
   </div>`;
 }
