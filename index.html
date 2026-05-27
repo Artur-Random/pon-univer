@@ -8,11 +8,12 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --navy:#1a2744;--blue:#2e4aad;--accent:#c0902a;
-  --cream:#f7f4ee;--warm:#e8e2d8;--tdark:#1a1a2e;--tmid:#3d3d5c;
+  --navy:#2a3153;--blue:#2e4aad;--accent:#fb700b;
+  --cream:#fbfbfb;--warm:#e6e6e6;--tdark:#000000;--tmid:#4a4a4a;
   --green:#2a6b4a;--teal:#1e6b7a;--red:#8f3d3d;--brown:#7a5c1e;
   --slate:#3a6b8f;--olive:#5a6b3a;--gray:#5a5a5a;--endow:#8f6b1e;--purple:#5c3d8f;
-  --sh:0 4px 20px rgba(26,39,68,.15);--shsm:0 2px 8px rgba(26,39,68,.1);
+  --burgundy:#800020;
+  --sh:0 4px 20px rgba(42,49,83,.15);--shsm:0 2px 8px rgba(42,49,83,.1);
 }
 body{
   font-family:'EB Garamond',serif;background:var(--cream);color:var(--tdark);padding:0 0 60px;
@@ -72,8 +73,9 @@ h2.st{font-size:10px;font-weight:700;color:var(--accent);text-align:center;margi
 .main-nav{background:white;position:sticky;top:0;z-index:1000;box-shadow:var(--shsm);margin-bottom:24px}
 .nav-container{max-width:1500px;margin:0 auto;display:flex;gap:8px;padding:12px 14px;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .nav-btn{padding:8px 16px;border:none;background:transparent;border-radius:20px;font-weight:600;font-size:15px;color:var(--tmid);cursor:pointer;transition:all .2s;white-space:nowrap;font-family:'EB Garamond',serif}
-.nav-btn:hover{background:var(--warm);color:var(--navy)}
-.nav-btn.active{background:var(--navy);color:white}
+.nav-btn:hover:not(.active){background:var(--warm);color:var(--accent)}
+.nav-btn.active{background:var(--navy);color:white;position:relative}
+.nav-btn.active::after{content:'';position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:20px;height:3px;background:var(--accent);border-radius:2px}
 
 /* Sections */
 .main-section{display:none;width:100%}
@@ -84,8 +86,8 @@ h2.st{font-size:10px;font-weight:700;color:var(--accent);text-align:center;margi
 .placeholder-card{text-align:center;background:white;padding:50px 20px;border-radius:12px;box-shadow:var(--shsm);max-width:500px;margin:60px auto;border-top:4px solid var(--warm)}
 
 /* Footer */
-.main-footer{background:white;border-top:1px solid var(--warm);margin-top:60px;padding:20px 14px;text-align:center}
-.footer-container{max-width:1500px;margin:0 auto;font-size:11px;color:var(--tmid);opacity:.8;line-height:1.4}
+.main-footer{background:var(--navy);border-top:3px solid var(--accent);margin-top:60px;padding:20px 14px;text-align:center;color:white}
+.footer-container{max-width:1500px;margin:0 auto;font-size:11px;color:var(--warm);opacity:1;line-height:1.4}
 
 /* University cards */
 .uni-card{background:white;padding:20px;border-radius:12px;box-shadow:var(--shsm);border-top:4px solid var(--accent);display:flex;flex-direction:column;gap:12px}
@@ -95,7 +97,7 @@ h2.st{font-size:10px;font-weight:700;color:var(--accent);text-align:center;margi
 .uni-address-item{display:flex;flex-direction:column;gap:2px}
 .uni-addr-text{font-size:13px;font-weight:600;color:var(--tdark)}
 .uni-addr-comment{font-size:11px;color:var(--tmid)}
-.uni-email{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--blue);text-decoration:none;font-weight:600;margin-top:auto;padding-top:12px;border-top:1px solid var(--warm);transition:color .2s}
+.uni-email{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--navy);text-decoration:none;font-weight:600;margin-top:auto;padding-top:12px;border-top:1px solid var(--warm);transition:color .2s}
 .uni-email:hover{color:var(--accent)}
 </style>
 </head>
@@ -293,7 +295,7 @@ const orgData = [
     group: null,
     title: 'Учёный совет',
     subtitle: 'Учёный совет ИПКР',
-    color: 'var(--red)',
+    color: 'var(--burgundy)',
     staff: [
       { name: 'Ушакова Елена Викторовна', role: 'Председатель', deg: 'Директор ИПКР', photo: null },
       { name: 'Романова Евгения Сергеевна', role: 'Заместитель председателя', deg: 'проф., д. пс. н.', photo: null },
@@ -305,7 +307,7 @@ const orgData = [
     group: null,
     title: 'Совет студентов и аспирантов',
     subtitle: 'ССиА ИПКР',
-    color: 'var(--purple)',
+    color: 'var(--accent)',
     staff: [
       { name: 'Толоконников Кирилл Андреевич', role: 'Председатель', deg: 'студент 3 курса, Психология личности', photo: null },
       { name: 'Транковская Анна Сергеевна', role: 'Зампредседателя · Рук. аналитического направления', deg: 'студентка 3 курса, Логопедия', photo: null },
