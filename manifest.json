@@ -1,0 +1,9 @@
+{
+  "name": "Понятный Университет | МГПУ",
+  "short_name": "Справочник",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#2a3153",
+  "theme_color": "#2a3153",
+  "icons": [{ "src": "images/app.png", "sizes": "1024x1024", "type": "image/png", "purpose": "any maskable" }]
+}
