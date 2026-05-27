@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ПОНЯТНЫЙ УНИВЕРСИТЕТ | МГПУ</title>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -16,12 +16,12 @@
   --sh:0 4px 20px rgba(42,49,83,.15);--shsm:0 2px 8px rgba(42,49,83,.1);
 }
 body{
-  font-family:'EB Garamond',serif;background:var(--cream);color:var(--tdark);padding:0 0 60px;
+  font-family:'Tenor Sans',sans-serif;background:var(--cream);color:var(--tdark);padding:0 0 60px;
   background-image:radial-gradient(ellipse at 10% 10%,rgba(46,74,173,.05) 0%,transparent 50%),
   radial-gradient(ellipse at 90% 90%,rgba(192,144,42,.05) 0%,transparent 50%);
 }
 h1.t{font-family:'Verdana',sans-serif;font-size:clamp(16px,2.2vw,24px);font-weight:700;color:var(--navy);text-align:center;padding:20px 14px 10px;line-height:1.3;background:var(--cream)}
-.section-title{font-family:'EB Garamond',serif;font-size:clamp(20px,2.5vw,26px);font-weight:600;color:var(--navy);text-align:center;margin-bottom:24px;line-height:1.3}
+.section-title{font-size:clamp(20px,2.5vw,26px);font-weight:600;color:var(--navy);text-align:center;margin-bottom:24px;line-height:1.3}
 h2.st{font-size:10px;font-weight:700;color:var(--accent);text-align:center;margin-bottom:28px;letter-spacing:.12em;text-transform:uppercase}
 .wrap{max-width:1500px;margin:0 auto;display:flex;flex-direction:column;align-items:center;padding:32px 14px 0}
 
@@ -32,12 +32,12 @@ h2.st{font-size:10px;font-weight:700;color:var(--accent);text-align:center;margi
   display:flex;justify-content:space-between;align-items:center;width:100%;
   padding:12px 16px;background:white;border:none;cursor:pointer;
   border-left:5px solid transparent;border-radius:8px;box-shadow:var(--shsm);
-  text-align:left;transition:box-shadow .2s;font-family:'Nunito',sans-serif;
+  text-align:left;transition:box-shadow .2s;
 }
 .accordion-header:hover,.accordion-header.open{box-shadow:var(--sh)}
 .accordion-header-text{flex:1;min-width:0}
-.accordion-title{display:block;font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:var(--navy);line-height:1.3}
-.accordion-subtitle{display:block;font-size:9.5px;color:var(--tmid);margin-top:2px;font-style:italic;line-height:1.4}
+.accordion-title{display:block;font-size:15px;font-weight:600;color:var(--navy);line-height:1.3}
+.accordion-subtitle{display:block;font-size:9.5px;color:var(--tmid);margin-top:2px;line-height:1.4}
 .accordion-chevron{font-size:18px;color:var(--tmid);margin-left:12px;transition:transform .3s;line-height:1;flex-shrink:0}
 .accordion-header.open .accordion-chevron{transform:rotate(180deg)}
 .accordion-content{max-height:0;overflow:hidden;transition:max-height .4s ease}
@@ -54,13 +54,13 @@ h2.st{font-size:10px;font-weight:700;color:var(--accent);text-align:center;margi
 .card:hover{box-shadow:var(--sh)}
 .card-text{flex:1;min-width:0}
 .card .role{font-size:8.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;opacity:.6;margin-bottom:4px;line-height:1.4}
-.card .name{font-family:'Playfair Display',serif;font-size:13px;font-weight:600;line-height:1.3;color:var(--navy);margin-bottom:2px}
-.card .deg{font-size:10px;color:var(--tmid);font-style:italic}
+.card .name{font-size:13px;font-weight:600;line-height:1.3;color:var(--navy);margin-bottom:2px}
+.card .deg{font-size:10px;color:var(--tmid)}
 
 /* Avatar */
 .avatar,.avatar-placeholder{width:50px;height:50px;border-radius:50%;flex-shrink:0}
 .avatar{object-fit:cover}
-.avatar-placeholder{display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:14px;font-family:'Nunito',sans-serif}
+.avatar-placeholder{display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:14px}
 
 /* Card contacts & schedule */
 .card-contacts{display:flex;flex-direction:column;gap:4px;margin-top:10px;font-size:13px;color:var(--tmid);border-top:1px dashed var(--warm);padding-top:10px}
@@ -75,7 +75,14 @@ h2.st{font-size:10px;font-weight:700;color:var(--accent);text-align:center;margi
 
 /* Section notes */
 .section-notes{padding:4px 0 8px;display:flex;flex-direction:column;gap:5px}
-.note-item{font-size:11px;color:var(--tmid);font-style:italic}
+.note-item{font-size:11px;color:var(--tmid)}
+
+/* ССиА official links block */
+.ssia-official-links{background:var(--cream);padding:14px 16px;border-radius:8px;margin-bottom:16px;border-left:4px solid var(--accent)}
+.ssia-links-title{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em}
+.ssia-links-list{display:flex;flex-direction:column;gap:7px}
+.ssia-link-item{font-size:13px;color:var(--navy);text-decoration:none;font-weight:600;transition:color .2s}
+.ssia-link-item:hover{color:var(--accent)}
 
 @media(max-width:1050px){.grid-layout{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}}
 @media(max-width:600px){.grid-layout{grid-template-columns:1fr}}
@@ -83,7 +90,7 @@ h2.st{font-size:10px;font-weight:700;color:var(--accent);text-align:center;margi
 /* Navigation */
 .main-nav{background:white;position:sticky;top:0;z-index:1000;box-shadow:var(--shsm);margin-bottom:24px}
 .nav-container{max-width:1500px;margin:0 auto;display:flex;gap:8px;padding:12px 14px;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.nav-btn{padding:8px 16px;border:none;background:transparent;border-radius:20px;font-weight:600;font-size:15px;color:var(--tmid);cursor:pointer;transition:all .2s;white-space:nowrap;font-family:'EB Garamond',serif}
+.nav-btn{padding:8px 16px;border:none;background:transparent;border-radius:20px;font-weight:600;font-size:15px;color:var(--tmid);cursor:pointer;transition:all .2s;white-space:nowrap}
 .nav-btn:hover:not(.active){background:var(--warm);color:var(--accent)}
 .nav-btn.active{background:var(--navy);color:white;position:relative}
 .nav-btn.active::after{content:'';position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:20px;height:3px;background:var(--accent);border-radius:2px}
@@ -102,8 +109,8 @@ h2.st{font-size:10px;font-weight:700;color:var(--accent);text-align:center;margi
 
 /* University cards */
 .uni-card{background:white;padding:20px;border-radius:12px;box-shadow:var(--shsm);border-top:4px solid var(--accent);display:flex;flex-direction:column;gap:12px}
-.uni-title{font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);font-size:16px;line-height:1.2}
-.uni-subtitle{font-size:11px;color:var(--tmid);font-style:italic;line-height:1.3}
+.uni-title{font-weight:700;color:var(--navy);font-size:16px;line-height:1.2}
+.uni-subtitle{font-size:11px;color:var(--tmid);line-height:1.3}
 .uni-address-list{display:flex;flex-direction:column;gap:8px;margin-top:4px}
 .uni-address-item{display:flex;flex-direction:column;gap:2px}
 .uni-addr-text{font-size:13px;font-weight:600;color:var(--tdark)}
@@ -144,10 +151,10 @@ const orgData = [
     id: 'director',
     group: null,
     title: 'Директор',
-    subtitle: 'Директор ИПКР · Председатель учёного совета',
+    subtitle: 'Директор ИПКР',
     color: 'var(--accent)',
     staff: [
-      { name: 'Ушакова Елена Викторовна', role: 'Директор ИПКР · Председатель учёного совета', deg: 'доцент, к. пс. н.', photo: null,
+      { name: 'Ушакова Елена Викторовна', role: 'Директор ИПКР', deg: 'доцент, к. пс. н.', photo: null,
         email: 'Ushakova@mgpu.ru', phone: '+7 499 132 05 62', room: 'каб. 409',
         scheduleNote: 'Обязательная предварительная запись по телефону',
         schedule: [
@@ -224,7 +231,7 @@ const orgData = [
       { name: 'Новикова Диана Эдуардовна', role: '', deg: 'ст. преп. · координатор по орг. вопросам · Telegram и сайт ИПКР', photo: null },
       { name: 'Олешова Варвара Васильевна', role: '', deg: 'ст. преп., к. пед. н.', photo: null },
       { name: 'Олтаржевская Любовь Евгеньевна', role: '', deg: 'к. пед. н. · приглашённый эксперт', photo: null },
-      { name: 'Павлова Анна Сергеевна', role: '', deg: 'доц., к. псих. н. · уч. секр. УС / Профбюро · каб. 503', photo: null },
+      { name: 'Павлова Анна Сергеевна', role: '', deg: 'доц., к. псих. н. · Профбюро · каб. 503', photo: null },
       { name: 'Покровская Юлия Александровна', role: '', deg: 'ст. преп.', photo: null },
       { name: 'Полякова Надежда Петровна', role: '', deg: 'доц., к. пед. н.', photo: null },
       { name: 'Прочухаева Марина Михайловна', role: '', deg: 'ст. преп.', photo: null },
@@ -288,13 +295,18 @@ const orgData = [
     title: 'Совет студентов и аспирантов',
     subtitle: 'ССиА ИПКР',
     color: 'var(--accent)',
+    links: [
+      { label: 'Официальная группа VK', url: 'https://vk.ru/ssia_ipkr' },
+      { label: 'Неформальный канал (Telegram)', url: 'https://t.me/ipik_mi' },
+      { label: 'info@ssia-ipkr.ru', url: 'mailto:info@ssia-ipkr.ru' }
+    ],
     staff: [
-      { name: 'Толоконников Кирилл Андреевич', role: 'Председатель', deg: 'студент 3 курса, Психология личности', photo: null },
+      { name: 'Толоконников Кирилл Андреевич', role: 'Председатель ССиА ИПКР', deg: 'студент 3 курса, Психология', photo: null, email: 'TolokonnikovKA944@mgpu.ru', vk: 'https://vk.ru/odessa__1794' },
       { name: 'Транковская Анна Сергеевна', role: 'Зампредседателя · Рук. аналитического направления', deg: 'студентка 3 курса, Логопедия', photo: null },
       { name: 'Крючков Георгий Александрович', role: 'Руководитель проектного направления', deg: 'студент 3 курса, Организация работы с молодёжью', photo: null },
       { name: 'Злобина Дарья Антоновна', role: 'Руководитель медианаправления', deg: 'студентка 3 курса, Логопедия', photo: null },
       { name: 'Костикова Александра Александровна', role: 'Ответственная за старост', deg: 'студентка 2 курса, Организация работы с молодёжью', photo: null },
-      { name: 'Коротун Григорий Владимирович', role: 'Секретарь ССиА ИПКР', deg: 'студент 1 курса, Логопедия', photo: null }
+      { name: 'Коротун Григорий Владимирович', role: 'Референт ССиА ИПКР', deg: 'студент 1 курса, Логопедия', photo: null }
     ]
   },
   {
@@ -357,11 +369,12 @@ function renderCard(person, color) {
   const avatar = person.photo
     ? `<img class="avatar" src="${person.photo}" alt="${person.name}">`
     : `<div class="avatar-placeholder" style="background:${color}">${getInitials(person.name)}</div>`;
-  const hasContacts = person.room || person.phone || person.email;
+  const hasContacts = person.room || person.phone || person.email || person.vk;
   const contactsHtml = hasContacts ? `<div class="card-contacts">
     ${person.room ? `<div class="card-contact-item">📍 ${person.room}</div>` : ''}
     ${person.phone ? `<div class="card-contact-item">📞 <a href="tel:${person.phone.replace(/\s+/g,'')}">${person.phone}</a></div>` : ''}
     ${person.email ? `<div class="card-contact-item">✉️ <a href="mailto:${person.email}">${person.email}</a></div>` : ''}
+    ${person.vk ? `<div class="card-contact-item">VK: <a href="${person.vk}" target="_blank">Перейти на страницу</a></div>` : ''}
   </div>` : '';
   const scheduleHtml = person.schedule ? `<div class="card-schedule">
     ${person.scheduleNote ? `<span class="schedule-note">⚠️ ${person.scheduleNote}</span>` : ''}
@@ -392,6 +405,12 @@ function renderStructure() {
     }
     const notesHtml = (section.notes || []).map(n => `<div class="note-item">${n}</div>`).join('');
     const cardsHtml = section.staff.map(p => renderCard(p, section.color)).join('');
+    const linksHtml = section.links ? `<div class="ssia-official-links">
+      <div class="ssia-links-title">Официальные ресурсы ССиА ИПКР:</div>
+      <div class="ssia-links-list">
+        ${section.links.map(l => `<a href="${l.url}" ${l.url.startsWith('http') ? 'target="_blank"' : ''} class="ssia-link-item">${l.label}</a>`).join('')}
+      </div>
+    </div>` : '';
     html += `<div class="accordion-item">
       <button class="accordion-header" style="border-left-color:${section.color}">
         <div class="accordion-header-text">
@@ -403,6 +422,7 @@ function renderStructure() {
       <div class="accordion-content">
         <div class="accordion-content-inner">
           ${notesHtml ? `<div class="section-notes">${notesHtml}</div>` : ''}
+          ${linksHtml}
           ${cardsHtml ? `<div class="grid-layout">${cardsHtml}</div>` : ''}
         </div>
       </div>
@@ -429,8 +449,8 @@ function renderPlaceholders() {
     const sec = document.getElementById('sec-' + id);
     if (sec && !sec.innerHTML.trim()) {
       sec.innerHTML = `<div class="placeholder-card">
-        <h3 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:22px;margin-bottom:10px;">Привет, друг!</h3>
-        <p style="color:var(--tmid);font-size:14px;font-style:italic;">Скоро тут будет информация!</p>
+        <h3 style="color:var(--navy);font-size:22px;margin-bottom:10px;">Привет, друг!</h3>
+        <p style="color:var(--tmid);font-size:14px;">Скоро тут будет информация!</p>
       </div>`;
     }
   });
@@ -444,6 +464,7 @@ const universityData = [
     color: "--accent",
     email: "ipkr@mgpu.ru",
     director: { name: "Ушакова Елена Викторовна", role: "Директор института", deg: "кандидат психологических наук, доцент", photo: null },
+    ssiaChair: { name: "Толоконников Кирилл Андреевич", role: "Председатель ССиА ИПКР" },
     campuses: [{ address: "ул. Панфёрова, д. 8, корп. 2", comment: "Основной корпус" }]
   },
   {
@@ -451,6 +472,7 @@ const universityData = [
     color: "--blue",
     email: "ign.info@mgpu.ru",
     director: { name: "Кириллов Виктор Васильевич", role: "Директор института", deg: "кандидат исторических наук, профессор", photo: null },
+    ssiaChair: { name: "Данные уточняются", role: "Председатель ССиА", vacant: true },
     campuses: [{ address: "2-й Сельскохозяйственный проезд, д. 4", comment: "Основной корпус" }]
   },
   {
@@ -458,6 +480,7 @@ const universityData = [
     color: "--teal",
     email: "iiya.info@mgpu.ru",
     director: { name: "Тарева Елена Генриховна", role: "Директор института", deg: "доктор педагогических наук, профессор", photo: null },
+    ssiaChair: { name: "Данные уточняются", role: "Председатель ССиА", vacant: true },
     campuses: [
       { address: "ул. Полтавская, д. 3", comment: "Корпус Полтавская" },
       { address: "Малый Казённый пер., д. 5Б", comment: "Корпус Курская / Администрация" }
@@ -468,6 +491,7 @@ const universityData = [
     color: "--red",
     email: "iki.info@mgpu.ru",
     director: { name: "Левина Ирина Дмитриевна", role: "Директор института", deg: "кандидат педагогических наук, доцент", photo: null },
+    ssiaChair: { name: "Данные уточняются", role: "Председатель ССиА", vacant: true },
     campuses: [
       { address: "ул. Фабрициуса, д. 21", comment: "Корпус Сходненская" },
       { address: "ул. Марии Ульяновой, д. 21", comment: "Основной корпус / Администрация" },
@@ -479,6 +503,7 @@ const universityData = [
     color: "--brown",
     email: "ippo.info@mgpu.ru",
     director: { name: "Савенков Александр Ильич", role: "Директор института", deg: "академик РАО, доктор педагогических наук, доктор психологических наук, профессор", photo: null },
+    ssiaChair: { name: "Данные уточняются", role: "Председатель ССиА", vacant: true },
     campuses: [{ address: "Столярный пер., д. 16", comment: "Основной корпус" }]
   },
   {
@@ -486,6 +511,7 @@ const universityData = [
     color: "--purple",
     email: "ieup.info@mgpu.ru",
     director: { name: "Абрамов Руслан Агарунович", role: "Директор института", deg: "доктор экономических наук, профессор", photo: null },
+    ssiaChair: { name: "Данные уточняются", role: "Председатель ССиА", vacant: true },
     campuses: [
       { address: "Новокузнецкая ул., д. 16, стр. 10", comment: "Основной корпус" },
       { address: "2-й Тульский пер., д. 4", comment: "Гуманитарно-правовой колледж ИЭУиП" }
@@ -496,6 +522,7 @@ const universityData = [
     color: "--green",
     email: "iest@mgpu.ru",
     director: { name: "Страдзе Александр Эдуардович", role: "Директор института", deg: "доктор социологических наук, профессор", photo: null },
+    ssiaChair: { name: "Данные уточняются", role: "Председатель ССиА", vacant: true },
     campuses: [
       { address: "ул. Чечулина, д. 1", comment: "Корпус 1" },
       { address: "ул. Чечулина, д. 3, корп. 1", comment: "Основной корпус / Администрация" }
@@ -506,6 +533,7 @@ const universityData = [
     color: "--slate",
     email: "ide@mgpu.ru",
     director: { name: "Абрамов Владимир Иванович", role: "Директор института", deg: "кандидат экономических наук", photo: null },
+    ssiaChair: { name: "Данные уточняются", role: "Председатель ССиА", vacant: true },
     campuses: [
       { address: "Шереметьевская ул., д. 28", comment: "Корпус Б / Администрация" },
       { address: "Шереметьевская ул., д. 29", comment: "Корпус А" }
@@ -516,6 +544,7 @@ const universityData = [
     color: "--olive",
     email: "ispo.info@mgpu.ru",
     director: { name: "Ерёмин Сергей Владимирович", role: "Директор института", deg: "кандидат педагогических наук", photo: null },
+    ssiaChair: { name: "Данные уточняются", role: "Председатель ССиА", vacant: true },
     campuses: [
       { address: "Поклонная ул., д. 2", comment: "«Колледж Дорогомилово»" },
       { address: "Измайловский бульвар, д. 19", comment: "«Колледж Измайлово»" },
@@ -573,6 +602,7 @@ function renderUniversity() {
 
     const el = document.createElement('div');
     el.className = 'accordion-item';
+    const ssiaChairHtml = item.ssiaChair ? renderCard(item.ssiaChair, `var(${item.color})`) : '';
     el.innerHTML = `
       <button class="accordion-header" style="border-left-color:var(${item.color})">
         <div class="accordion-header-text">
@@ -583,13 +613,16 @@ function renderUniversity() {
       </button>
       <div class="accordion-content">
         <div class="accordion-content-inner">
-          <div class="card" style="border-top-color:var(${item.color});margin-bottom:16px">
-            ${avatarHtml}
-            <div class="card-text">
-              <div class="role">${d.role}</div>
-              <div class="name">${d.name}</div>
-              ${degHtml}
+          <div class="grid-layout" style="margin-bottom:16px">
+            <div class="card" style="border-top-color:var(${item.color})">
+              ${avatarHtml}
+              <div class="card-text">
+                <div class="role">${d.role}</div>
+                <div class="name">${d.name}</div>
+                ${degHtml}
+              </div>
             </div>
+            ${ssiaChairHtml}
           </div>
           <div class="uni-address-list">${addressesHtml}</div>
           ${emailHtml}
