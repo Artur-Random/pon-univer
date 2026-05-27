@@ -169,7 +169,12 @@ h1.t{
 .uni-addr-comment{font-size:11px;color:var(--tmid)}
 .uni-email{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--navy);text-decoration:none;font-weight:600;padding-top:12px;border-top:1px solid var(--warm);transition:color .2s}
 .uni-email:hover{color:var(--accent)}
+
+/* ── Map section ── */
+.map-section{padding:0 !important;overflow:hidden}
+#global-map{width:100%;height:calc(100vh - 115px)}
 </style>
+<script src="https://api-maps.yandex.ru/2.1/?apikey=ecdebaf5-41e1-4637-9bc8-329ab1d63c93&lang=ru_RU" type="text/javascript"></script>
 </head>
 <body>
 
@@ -203,6 +208,9 @@ h1.t{
     <button class="nav-btn" data-section="rights">Права и обязанности</button>
     <button class="nav-btn" data-section="pass">Пропускной режим</button>
     <button class="nav-btn" data-section="discipline">Дисциплинарный блок</button>
+    <button class="nav-btn" data-section="map">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Карта
+    </button>
   </div>
 </nav>
 
@@ -225,6 +233,10 @@ h1.t{
   <section id="sec-pass" class="main-section"></section>
   <section id="sec-discipline" class="main-section"></section>
 </div>
+
+<section id="sec-map" class="main-section map-section">
+  <div id="global-map"></div>
+</section>
 
 <footer class="main-footer">
   <div class="footer-container">
@@ -818,7 +830,11 @@ function switchSection(id) {
   showMaster('ipkr');
   showMaster('uni');
   showMaster('rights');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (id === 'map' && globalYMap) {
+    setTimeout(() => globalYMap.container.fitToViewport(), 50);
+  } else {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }
 
 // ═══════════════════════════════════════════
@@ -965,6 +981,49 @@ function doSearch(query) {
       }
     });
   });
+}
+
+// ═══════════════════════════════════════════
+//  YANDEX MAP
+// ═══════════════════════════════════════════
+
+let globalYMap = null;
+
+function initYandexMap() {
+  globalYMap = new ymaps.Map('global-map', {
+    center: [55.751244, 37.618423],
+    zoom: 10,
+    controls: ['zoomControl']
+  });
+
+  universityData.forEach(inst => {
+    const shortName = inst.title.match(/\(([^)]+)\)/)?.[1] || inst.title;
+    inst.campuses.forEach(campus => {
+      const query = campus.address.startsWith('г. Самара')
+        ? campus.address
+        : 'Москва, ' + campus.address;
+
+      ymaps.geocode(query, { results: 1 }).then(res => {
+        const geoObj = res.geoObjects.get(0);
+        if (!geoObj) return;
+        const coords = geoObj.geometry.getCoordinates();
+        const placemark = new ymaps.Placemark(coords, {
+          balloonContent: `<strong style="color:#2a3153">${shortName}</strong><br>
+            <span style="font-size:12px;color:#4a4a4a">${inst.title}</span><br>
+            <span style="font-size:12px;color:#fb700b">${campus.address}</span><br>
+            <span style="font-size:11px;color:#4a4a4a">${campus.comment}</span>`,
+          hintContent: shortName + ' · ' + campus.comment
+        }, {
+          preset: 'islands#orangeDotIcon'
+        });
+        globalYMap.geoObjects.add(placemark);
+      });
+    });
+  });
+}
+
+if (typeof ymaps !== 'undefined') {
+  ymaps.ready(initYandexMap);
 }
 </script>
 </body>
