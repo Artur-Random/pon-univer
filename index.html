@@ -153,8 +153,7 @@ h1.t{
 .nav-container{max-width:1500px;margin:0 auto;display:flex;gap:8px;padding:12px 14px;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .nav-btn{padding:8px 16px;border:none;background:transparent;border-radius:4px;font-weight:600;font-size:15px;color:var(--tmid);cursor:pointer;transition:all .2s;white-space:nowrap;font-family:'Tenor Sans',sans-serif}
 .nav-btn:hover:not(.active){background:var(--warm);color:var(--accent)}
-.nav-btn.active{background:var(--navy);color:white;position:relative}
-.nav-btn.active::after{content:'';position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:20px;height:3px;background:var(--accent);border-radius:0}
+.nav-btn.active{background:var(--navy);color:white}
 
 /* ── Sections ── */
 .main-section{display:none;width:100%}
@@ -210,6 +209,7 @@ body.dark-theme .card .name,body.dark-theme .detail-title,body.dark-theme .maste
 body.dark-theme .contacts-item-value,body.dark-theme .section-title,body.dark-theme h1.t,
 body.dark-theme .card-contact-item a,body.dark-theme .uni-addr-text{color:var(--tdark)}
 body.dark-theme #search-input{color:var(--tdark)}
+body.dark-theme #search-btn{color:var(--accent)}
 body.dark-theme .main-footer{background:#0a0a0a}
 
 /* ── FAB Up ── */
