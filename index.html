@@ -32,6 +32,7 @@ body{
 .site-header{
   background:white;position:sticky;top:0;z-index:1001;box-shadow:var(--shsm);
   display:flex;align-items:center;padding:10px 14px;gap:10px;height:62px;
+  transition:transform .3s ease;
 }
 .site-logo{height:40px;width:auto;border-radius:8px;flex-shrink:0}
 h1.t{
@@ -194,6 +195,48 @@ a.contacts-item:active{background:rgba(251,112,11,.1);transform:scale(0.99)}
 .contacts-item-label{display:block;font-size:10px;font-weight:700;color:var(--tmid);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
 .contacts-item-value{display:block;font-size:14px;font-weight:600;color:var(--navy);word-break:break-all;line-height:1.3}
 a.contacts-item:hover .contacts-item-value{color:var(--accent)}
+
+/* ── Dark theme ── */
+body.dark-theme{--cream:#121212;--warm:#2a2a2a;--tdark:#e8e8e8;--tmid:#909090;background-image:none}
+body.dark-theme .site-header,body.dark-theme .main-nav,
+body.dark-theme #search-bar-container,body.dark-theme .search-bar-inner{background:#1e1e1e}
+body.dark-theme .card,body.dark-theme .master-card,
+body.dark-theme .placeholder-card,body.dark-theme .contacts-card{background:#1e1e1e}
+body.dark-theme .search-result-item{background:#2a2a2a}
+body.dark-theme .search-result-item:hover{background:#333}
+body.dark-theme .avatar-placeholder{background:#2a2a2a}
+body.dark-theme .card-schedule,body.dark-theme .ssia-official-links{background:#2a2a2a}
+body.dark-theme .card .name,body.dark-theme .detail-title,body.dark-theme .master-card-title,
+body.dark-theme .contacts-item-value,body.dark-theme .section-title,body.dark-theme h1.t,
+body.dark-theme .card-contact-item a,body.dark-theme .uni-addr-text{color:var(--tdark)}
+body.dark-theme #search-input{color:var(--tdark)}
+body.dark-theme .main-footer{background:#0a0a0a}
+
+/* ── FAB Up ── */
+.fab-up{
+  position:fixed;bottom:24px;right:16px;z-index:900;
+  width:44px;height:44px;border-radius:50%;background:var(--navy);color:white;
+  border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 16px rgba(0,0,0,.25);
+  opacity:0;pointer-events:none;transform:translateY(10px);
+  transition:opacity .25s ease,transform .25s ease;
+}
+.fab-up.visible{opacity:1;pointer-events:auto;transform:translateY(0)}
+.fab-up:active{transform:scale(.92) !important}
+
+/* ── Toast ── */
+.toast{
+  position:fixed;bottom:88px;left:50%;z-index:2000;
+  transform:translateX(-50%) translateY(10px);
+  background:rgba(42,49,83,.95);color:white;
+  padding:10px 20px;border-radius:20px;font-size:13px;font-weight:600;
+  opacity:0;pointer-events:none;white-space:nowrap;
+  transition:opacity .25s ease,transform .25s ease;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── Copy cursor ── */
+[data-copy]{cursor:pointer}
 </style>
 <script src="https://api-maps.yandex.ru/2.1/?apikey=ecdebaf5-41e1-4637-9bc8-329ab1d63c93&lang=ru_RU" type="text/javascript"></script>
 </head>
@@ -202,6 +245,7 @@ a.contacts-item:hover .contacts-item-value{color:var(--accent)}
 <header class="site-header">
   <img src="images/pu.png" alt="Логотип" class="site-logo">
   <h1 class="t">ПОНЯТНЫЙ УНИВЕРСИТЕТ | МГПУ</h1>
+  <button id="theme-btn" class="icon-btn" aria-label="Сменить тему"><span id="theme-icon" style="font-size:18px;line-height:1">🌙</span></button>
   <button id="search-btn" class="icon-btn" aria-label="Поиск">
     <svg id="icon-search" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -259,7 +303,7 @@ a.contacts-item:hover .contacts-item-value{color:var(--accent)}
     <div class="contacts-card">
       <div class="contacts-block-title">Совет студентов и аспирантов ИПКР</div>
       <div class="contacts-list">
-        <div class="contacts-item">
+        <div class="contacts-item" data-copy="119261, г. Москва, ул. Панфёрова, д. 8, корп. 2">
           <svg class="contacts-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
           <div class="contacts-item-text">
             <span class="contacts-item-label">Адрес</span>
@@ -295,6 +339,11 @@ a.contacts-item:hover .contacts-item-value{color:var(--accent)}
 <section id="sec-map" class="main-section map-section">
   <div id="global-map"></div>
 </section>
+
+<button id="fab-up" class="fab-up" aria-label="Наверх">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+</button>
+<div id="toast" class="toast"></div>
 
 <footer class="main-footer">
   <div class="footer-container">
@@ -647,6 +696,8 @@ function animateFadeIn(el) {
   el.classList.add('animate-fade-in');
 }
 
+let currentDetailPrefix = null;
+
 const AVATAR_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" style="width:70%;height:70%;opacity:0.6"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>';
 
 function renderCard(person, color) {
@@ -715,6 +766,8 @@ function renderIPKRMaster() {
 }
 
 function showIPKRDetail(idx) {
+  history.pushState({ page: 'detail', prefix: 'ipkr' }, '', '#detail');
+  currentDetailPrefix = 'ipkr';
   const section = orgData[idx];
   const master = document.getElementById('ipkr-master');
   const detail = document.getElementById('ipkr-detail');
@@ -742,12 +795,7 @@ function showIPKRDetail(idx) {
     <div class="grid-layout">${cardsHtml}</div>
   `;
 
-  document.getElementById('ipkr-back-btn').addEventListener('click', () => {
-    detail.style.display = 'none';
-    master.style.display = '';
-    animateFadeIn(master);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  document.getElementById('ipkr-back-btn').addEventListener('click', () => history.back());
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -771,6 +819,8 @@ function renderUniMaster() {
 }
 
 function showInstituteDetail(idx) {
+  history.pushState({ page: 'detail', prefix: 'uni' }, '', '#detail');
+  currentDetailPrefix = 'uni';
   const item = universityData[idx];
   const master = document.getElementById('uni-master');
   const detail = document.getElementById('uni-detail');
@@ -805,12 +855,7 @@ function showInstituteDetail(idx) {
     ${item.email ? `<a class="uni-email" href="mailto:${item.email}">✉ ${item.email}</a>` : ''}
   `;
 
-  document.getElementById('uni-back-btn').addEventListener('click', () => {
-    detail.style.display = 'none';
-    master.style.display = '';
-    animateFadeIn(master);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  document.getElementById('uni-back-btn').addEventListener('click', () => history.back());
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -886,6 +931,7 @@ function showMaster(prefix) {
 }
 
 function switchSection(id) {
+  localStorage.setItem('activeTab', id);
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.main-section').forEach(s => s.classList.remove('active'));
   const btn = document.querySelector('[data-section="' + id + '"]');
@@ -970,6 +1016,13 @@ searchInput.addEventListener('input', () => {
   updateSearchIcon();
 });
 
+function escapeRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+function highlightMatch(text, query) {
+  if (!query) return text;
+  return text.replace(new RegExp('(' + escapeRe(query) + ')', 'gi'),
+    '<span style="color:var(--accent);font-weight:700">$1</span>');
+}
+
 function doSearch(query) {
   const q = query.toLowerCase();
   const raw = [];
@@ -1026,7 +1079,7 @@ function doSearch(query) {
 
   searchResultsEl.innerHTML = _searchResults.map((r, i) => `
     <div class="search-result-item" data-ridx="${i}" style="border-left-color:${r.color}">
-      <div class="search-result-name">${r.label}</div>
+      <div class="search-result-name">${highlightMatch(r.label, query)}</div>
       <div class="search-result-sub">${r.sub}</div>
     </div>
   `).join('');
@@ -1082,6 +1135,123 @@ function initYandexMap() {
 if (typeof ymaps !== 'undefined') {
   ymaps.ready(initYandexMap);
 }
+
+// ═══════════════════════════════════════════
+//  DARK MODE
+// ═══════════════════════════════════════════
+
+const themeBtn = document.getElementById('theme-btn');
+const themeIcon = document.getElementById('theme-icon');
+
+function applyTheme(isDark) {
+  document.body.classList.toggle('dark-theme', isDark);
+  themeIcon.textContent = isDark ? '☀️' : '🌙';
+}
+
+(function() {
+  const saved = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(saved === 'dark' || (!saved && prefersDark));
+})();
+
+themeBtn.addEventListener('click', () => {
+  const isDark = !document.body.classList.contains('dark-theme');
+  applyTheme(isDark);
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});
+
+// ═══════════════════════════════════════════
+//  HISTORY API (BACK NAVIGATION)
+// ═══════════════════════════════════════════
+
+history.replaceState({ page: 'home' }, '', location.pathname + location.search);
+
+window.addEventListener('popstate', () => {
+  if (currentDetailPrefix) {
+    const prefix = currentDetailPrefix;
+    currentDetailPrefix = null;
+    const master = document.getElementById(prefix + '-master');
+    const detail = document.getElementById(prefix + '-detail');
+    if (detail) detail.style.display = 'none';
+    if (master) { master.style.display = ''; animateFadeIn(master); }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+});
+
+// ═══════════════════════════════════════════
+//  STATE PERSISTENCE (TAB RESTORE)
+// ═══════════════════════════════════════════
+
+(function() {
+  const saved = localStorage.getItem('activeTab');
+  if (saved && saved !== 'ipkr') switchSection(saved);
+})();
+
+// ═══════════════════════════════════════════
+//  SMART SCROLL + FAB UP
+// ═══════════════════════════════════════════
+
+let lastScrollY = 0;
+let scrollTicking = false;
+const siteHeader = document.querySelector('.site-header');
+const fabUp = document.getElementById('fab-up');
+
+window.addEventListener('scroll', () => {
+  if (scrollTicking) return;
+  scrollTicking = true;
+  requestAnimationFrame(() => {
+    const y = window.scrollY;
+    siteHeader.style.transform = (y > lastScrollY && y > 80) ? 'translateY(-100%)' : '';
+    fabUp.classList.toggle('visible', y > 300);
+    lastScrollY = y;
+    scrollTicking = false;
+  });
+}, { passive: true });
+
+fabUp.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// ═══════════════════════════════════════════
+//  TOAST + TAP-TO-COPY + HAPTIC
+// ═══════════════════════════════════════════
+
+const toastEl = document.getElementById('toast');
+let toastTimer = null;
+
+function showToast(msg) {
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2000);
+}
+
+document.querySelectorAll('[data-copy]').forEach(el => {
+  el.addEventListener('click', () => {
+    navigator.clipboard.writeText(el.dataset.copy).catch(() => {});
+    if (navigator.vibrate) navigator.vibrate(15);
+    showToast('Скопировано');
+  });
+});
+
+// ═══════════════════════════════════════════
+//  SWIPE TO DISMISS
+// ═══════════════════════════════════════════
+
+function addSwipeToDismiss(el) {
+  if (!el) return;
+  let sx = 0, sy = 0;
+  el.addEventListener('touchstart', e => {
+    sx = e.touches[0].clientX;
+    sy = e.touches[0].clientY;
+  }, { passive: true });
+  el.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - sx;
+    const dy = Math.abs(e.changedTouches[0].clientY - sy);
+    if (dx > 100 && dy < 80 && currentDetailPrefix) history.back();
+  }, { passive: true });
+}
+
+addSwipeToDismiss(document.getElementById('ipkr-detail'));
+addSwipeToDismiss(document.getElementById('uni-detail'));
 </script>
 </body>
 </html>
