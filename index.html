@@ -248,7 +248,7 @@ body.dark-theme .uni-email{color:var(--tdark)}
 <body>
 
 <header class="site-header">
-  <img src="images/pu.png" alt="Логотип" class="site-logo">
+  <img src="images/pu.png" alt="Логотип" id="main-logo" class="site-logo">
   <h1 class="t">ПОНЯТНЫЙ УНИВЕРСИТЕТ | МГПУ</h1>
   <button id="theme-btn" class="icon-btn" aria-label="Сменить тему"><span id="theme-icon" style="font-size:18px;line-height:1">🌙</span></button>
   <button id="search-btn" class="icon-btn" aria-label="Поиск">
@@ -1151,6 +1151,7 @@ const themeIcon = document.getElementById('theme-icon');
 function applyTheme(isDark) {
   document.body.classList.toggle('dark-theme', isDark);
   themeIcon.textContent = isDark ? '☀️' : '🌙';
+  document.getElementById('main-logo').src = isDark ? 'images/dark.png' : 'images/pu.png';
 }
 
 (function() {
