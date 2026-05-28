@@ -121,7 +121,7 @@ h1.t{
 /* ── Avatar ── */
 .avatar,.avatar-placeholder{width:50px;height:50px;border-radius:50%;flex-shrink:0}
 .avatar{object-fit:cover}
-.avatar-placeholder{display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:14px}
+.avatar-placeholder{display:flex;align-items:center;justify-content:center;overflow:hidden;background-color:#f0f4f8;color:var(--tmid)}
 
 /* ── Card contacts & schedule ── */
 .card-contacts{display:flex;flex-direction:column;gap:4px;margin-top:10px;font-size:13px;color:var(--tmid);border-top:1px dashed var(--warm);padding-top:10px}
@@ -589,15 +589,12 @@ const rightsData = [
 //  HELPERS
 // ═══════════════════════════════════════════
 
-function getInitials(name) {
-  const p = name.trim().split(/\s+/);
-  return (p[0] ? p[0][0] : '') + (p[1] ? p[1][0] : '');
-}
+const AVATAR_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" style="width:70%;height:70%;opacity:0.6"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>';
 
 function renderCard(person, color) {
   if (person.vacant) {
     return `<div class="card" style="border-top-color:${color}">
-      <div class="avatar-placeholder" style="background:#c0392b">?</div>
+      <div class="avatar-placeholder">${AVATAR_SVG}</div>
       <div class="card-text">
         <div class="role" style="color:#c0392b;opacity:1">${person.name}</div>
         <div class="deg" style="color:#c0392b">${person.deg || ''}</div>
@@ -606,7 +603,7 @@ function renderCard(person, color) {
   }
   const avatar = person.photo
     ? `<img class="avatar" src="${person.photo}" alt="${person.name}">`
-    : `<div class="avatar-placeholder" style="background:${color}">${getInitials(person.name)}</div>`;
+    : `<div class="avatar-placeholder">${AVATAR_SVG}</div>`;
   const hasContacts = person.room || person.phone || person.email || person.vk;
   const contactsHtml = hasContacts ? `<div class="card-contacts">
     ${person.room ? `<div class="card-contact-item">📍 ${person.room}</div>` : ''}
@@ -722,7 +719,7 @@ function showInstituteDetail(idx) {
 
   const d = item.director;
   const dirCard = `<div class="card" style="border-top-color:var(${item.color})">
-    <div class="avatar-placeholder" style="background:var(${item.color})">${getInitials(d.name)}</div>
+    <div class="avatar-placeholder">${AVATAR_SVG}</div>
     <div class="card-text">
       <div class="role">${d.role}</div>
       <div class="name" style="font-weight:700">${d.name}</div>
