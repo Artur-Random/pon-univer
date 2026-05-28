@@ -111,8 +111,9 @@ h1.t{
 .detail-subtitle{font-size:12px;color:var(--tmid);line-height:1.4}
 
 /* ── Staff card ── */
-.card{background:white;border-radius:10px;padding:11px 13px;box-shadow:var(--shsm);border-top:4px solid transparent;transition:box-shadow .2s;display:flex;gap:12px;align-items:flex-start}
+.card{background:white;border-radius:10px;padding:11px 13px;box-shadow:0 4px 16px rgba(0,0,0,.06);border-top:4px solid transparent;transition:transform .15s ease,box-shadow .15s ease;display:flex;gap:12px;align-items:flex-start}
 .card:hover{box-shadow:var(--sh)}
+.card:active{transform:scale(0.97);box-shadow:0 2px 8px rgba(0,0,0,.04)}
 .card-text{flex:1;min-width:0}
 .card .role{font-size:8.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;opacity:.6;margin-bottom:4px;line-height:1.4}
 .card .name{font-size:13px;font-weight:600;line-height:1.3;color:var(--navy);margin-bottom:2px}
@@ -158,6 +159,8 @@ h1.t{
 .main-section{display:none;width:100%}
 .main-section.active{display:block;animation:fadeIn .3s ease}
 @keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+.animate-fade-in{animation:fadeInUp .4s cubic-bezier(.2,.8,.2,1) forwards}
 
 /* ── Placeholder ── */
 .placeholder-card{text-align:center;background:white;padding:50px 20px;border-radius:12px;box-shadow:var(--shsm);max-width:500px;margin:40px auto;border-top:4px solid var(--warm)}
@@ -589,6 +592,12 @@ const rightsData = [
 //  HELPERS
 // ═══════════════════════════════════════════
 
+function animateFadeIn(el) {
+  el.classList.remove('animate-fade-in');
+  void el.offsetWidth;
+  el.classList.add('animate-fade-in');
+}
+
 const AVATAR_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" style="width:70%;height:70%;opacity:0.6"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>';
 
 function renderCard(person, color) {
@@ -662,6 +671,7 @@ function showIPKRDetail(idx) {
   const detail = document.getElementById('ipkr-detail');
   master.style.display = 'none';
   detail.style.display = '';
+  animateFadeIn(detail);
 
   const notesHtml = (section.notes || []).map(n => `<div class="note-item">${n}</div>`).join('');
   const cardsHtml = section.staff.map(p => renderCard(p, section.color)).join('');
@@ -686,6 +696,7 @@ function showIPKRDetail(idx) {
   document.getElementById('ipkr-back-btn').addEventListener('click', () => {
     detail.style.display = 'none';
     master.style.display = '';
+    animateFadeIn(master);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -716,6 +727,7 @@ function showInstituteDetail(idx) {
   const detail = document.getElementById('uni-detail');
   master.style.display = 'none';
   detail.style.display = '';
+  animateFadeIn(detail);
 
   const d = item.director;
   const dirCard = `<div class="card" style="border-top-color:var(${item.color})">
@@ -747,6 +759,7 @@ function showInstituteDetail(idx) {
   document.getElementById('uni-back-btn').addEventListener('click', () => {
     detail.style.display = 'none';
     master.style.display = '';
+    animateFadeIn(master);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -819,7 +832,7 @@ function renderPlaceholders() {
 function showMaster(prefix) {
   const master = document.getElementById(prefix + '-master');
   const detail = document.getElementById(prefix + '-detail');
-  if (master) master.style.display = '';
+  if (master) { master.style.display = ''; animateFadeIn(master); }
   if (detail) detail.style.display = 'none';
 }
 
