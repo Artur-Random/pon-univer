@@ -467,7 +467,7 @@ const universityData = [
     email: "ipkr@mgpu.ru",
     director: { name: "Ушакова Елена Викторовна", role: "Директор института", deg: "кандидат психологических наук, доцент", photo: null },
     ssiaChair: { name: "Толоконников Кирилл Андреевич", role: "Председатель ССиА ИПКР" },
-    campuses: [{ address: "ул. Панфёрова, д. 8, корп. 2", comment: "Основной корпус" }]
+    campuses: [{ address: "ул. Панфёрова, д. 8, корп. 2", comment: "Основной корпус", coords: [55.690858, 37.534832] }]
   },
   {
     title: "Институт гуманитарных наук (ИГН)",
@@ -475,7 +475,7 @@ const universityData = [
     email: "ign.info@mgpu.ru",
     director: { name: "Кириллов Виктор Васильевич", role: "Директор института", deg: "кандидат исторических наук, профессор", photo: null },
     ssiaChair: { name: "Данные уточняются", role: "Председатель ССиА", vacant: true },
-    campuses: [{ address: "2-й Сельскохозяйственный проезд, д. 4", comment: "Основной корпус" }]
+    campuses: [{ address: "2-й Сельскохозяйственный проезд, д. 4", comment: "Основной корпус", coords: [55.835409, 37.643329] }]
   },
   {
     title: "Институт иностранных языков (ИИЯ)",
@@ -484,8 +484,8 @@ const universityData = [
     director: { name: "Тарева Елена Генриховна", role: "Директор института", deg: "доктор педагогических наук, профессор", photo: null },
     ssiaChair: { name: "Данные уточняются", role: "Председатель ССиА", vacant: true },
     campuses: [
-      { address: "ул. Полтавская, д. 3", comment: "Корпус Полтавская" },
-      { address: "Малый Казённый пер., д. 5Б", comment: "Корпус Курская / Администрация" }
+      { address: "ул. Полтавская, д. 3", comment: "Корпус Полтавская", coords: [55.795292, 37.574697] },
+      { address: "Малый Казённый пер., д. 5Б", comment: "Корпус Курская / Администрация", coords: [55.761614, 37.653457] }
     ]
   },
   {
@@ -495,9 +495,9 @@ const universityData = [
     director: { name: "Левина Ирина Дмитриевна", role: "Директор института", deg: "кандидат педагогических наук, доцент", photo: null },
     ssiaChair: { name: "Данные уточняются", role: "Председатель ССиА", vacant: true },
     campuses: [
-      { address: "ул. Фабрициуса, д. 21", comment: "Корпус Сходненская" },
-      { address: "ул. Марии Ульяновой, д. 21", comment: "Основной корпус / Администрация" },
-      { address: "пер. Каменная Слобода, д. 4", comment: "Корпус Арбат" }
+      { address: "ул. Фабрициуса, д. 21", comment: "Корпус Сходненская", coords: [55.845914, 37.433877] },
+      { address: "ул. Марии Ульяновой, д. 21", comment: "Основной корпус / Администрация", coords: [55.682540, 37.534958] },
+      { address: "пер. Каменная Слобода, д. 4", comment: "Корпус Арбат", coords: [55.750130, 37.584346] }
     ]
   },
   {
@@ -506,7 +506,7 @@ const universityData = [
     email: "ippo.info@mgpu.ru",
     director: { name: "Савенков Александр Ильич", role: "Директор института", deg: "академик РАО, доктор педагогических наук, доктор психологических наук, профессор", photo: null },
     ssiaChair: { name: "Данные уточняются", role: "Председатель ССиА", vacant: true },
-    campuses: [{ address: "Столярный пер., д. 16", comment: "Основной корпус" }]
+    campuses: [{ address: "Столярный пер., д. 16", comment: "Основной корпус", coords: [55.764491, 37.569476] }]
   },
   {
     title: "Институт экономики, управления и права (ИЭУиП)",
@@ -515,8 +515,8 @@ const universityData = [
     director: { name: "Абрамов Руслан Агарунович", role: "Директор института", deg: "доктор экономических наук, профессор", photo: null },
     ssiaChair: { name: "Данные уточняются", role: "Председатель ССиА", vacant: true },
     campuses: [
-      { address: "Новокузнецкая ул., д. 16, стр. 10", comment: "Основной корпус" },
-      { address: "2-й Тульский пер., д. 4", comment: "Гуманитарно-правовой колледж ИЭУиП" }
+      { address: "Новокузнецкая ул., д. 16, стр. 10", comment: "Основной корпус", coords: [55.736932, 37.630048] },
+      { address: "2-й Тульский пер., д. 4", comment: "Гуманитарно-правовой колледж ИЭУиП", coords: [55.707736, 37.619077] }
     ]
   },
   {
@@ -526,8 +526,8 @@ const universityData = [
     director: { name: "Страдзе Александр Эдуардович", role: "Директор института", deg: "доктор социологических наук, профессор", photo: null },
     ssiaChair: { name: "Данные уточняются", role: "Председатель ССиА", vacant: true },
     campuses: [
-      { address: "ул. Чечулина, д. 1", comment: "Корпус 1" },
-      { address: "ул. Чечулина, д. 3, корп. 1", comment: "Основной корпус / Администрация" }
+      { address: "ул. Чечулина, д. 1", comment: "Корпус 1", coords: [55.769970, 37.828629] },
+      { address: "ул. Чечулина, д. 3, корп. 1", comment: "Основной корпус / Администрация", coords: [55.771217, 37.828234] }
     ]
   },
   {
@@ -537,8 +537,8 @@ const universityData = [
     director: { name: "Абрамов Владимир Иванович", role: "Директор института", deg: "кандидат экономических наук", photo: null },
     ssiaChair: { name: "Данные уточняются", role: "Председатель ССиА", vacant: true },
     campuses: [
-      { address: "Шереметьевская ул., д. 28", comment: "Корпус Б" },
-      { address: "Шереметьевская ул., д. 29", comment: "Корпус А / Администрация" }
+      { address: "Шереметьевская ул., д. 28", comment: "Корпус Б", coords: [55.800057, 37.616055] },
+      { address: "Шереметьевская ул., д. 29", comment: "Корпус А / Администрация", coords: [55.801646, 37.614609] }
     ]
   },
   {
@@ -548,25 +548,25 @@ const universityData = [
     director: { name: "Ерёмин Сергей Владимирович", role: "Директор института", deg: "кандидат педагогических наук", photo: null },
     ssiaChair: { name: "Данные уточняются", role: "Председатель ССиА", vacant: true },
     campuses: [
-      { address: "Поклонная ул., д. 2", comment: "«Колледж Дорогомилово»" },
-      { address: "Измайловский бульвар, д. 19", comment: "«Колледж Измайлово»" },
-      { address: "Большая Академическая ул., д. 77А, стр. 1", comment: "«Колледж им. С. Я. Маршака»" },
-      { address: "ул. Грекова, д. 3, корп. 1", comment: "«Колледж Медведково»" },
-      { address: "ул. Цюрупы, д. 14Б", comment: "«Колледж Черемушки»" },
-      { address: "Варшавское ш., д. 44А", comment: "«Колледж Варшавка-Арт» / Администрация" },
-      { address: "Зеленоград, корп. 1140", comment: "«Колледж Зеленоград»" },
-      { address: "ул. Чечулина, д. 3, корп. 1", comment: "Спортивное отделение ИСПО" }
+      { address: "Поклонная ул., д. 2", comment: "«Колледж Дорогомилово»", coords: [55.736399, 37.525656] },
+      { address: "Измайловский бульвар, д. 19", comment: "«Колледж Измайлово»", coords: [55.795897, 37.801686] },
+      { address: "Большая Академическая ул., д. 77А, стр. 1", comment: "«Колледж им. С. Я. Маршака»", coords: [55.836814, 37.545938] },
+      { address: "ул. Грекова, д. 3, корп. 1", comment: "«Колледж Медведково»", coords: [55.889028, 37.662580] },
+      { address: "ул. Цюрупы, д. 14Б", comment: "«Колледж Черемушки»", coords: [55.666997, 37.568344] },
+      { address: "Варшавское ш., д. 44А", comment: "«Колледж Варшавка-Арт» / Администрация", coords: [55.679165, 37.625345] },
+      { address: "Зеленоград, корп. 1140", comment: "«Колледж Зеленоград»", coords: [55.996160, 37.190623] },
+      { address: "ул. Чечулина, д. 3, корп. 1", comment: "Спортивное отделение ИСПО", coords: [55.771217, 37.828234] }
     ]
   },
   {
     title: "Дирекция образовательных программ (ДОП)",
-    subtitle: "Особый статус: подготовка только магистров (педагоги, психологи, управленцы в сфере образования и социальных инициатив)",
+    subtitle: "Особый статус: подготовка только магистров",
     color: "--endow",
     email: "dep.info@mgpu.ru",
     director: { name: "Никитина Евгения Сергеевна", role: "Директор дирекции", deg: "", photo: null },
     campuses: [
-      { address: "2-й Сельскохозяйственный проезд, д. 4, каб. 2202", comment: "Адрес руководства / дирекция" },
-      { address: "Садово-Самотёчная, д. 8", comment: "Корпус для занятий (магистратура)" }
+      { address: "2-й Сельскохозяйственный проезд, д. 4, каб. 2202", comment: "Адрес руководства / дирекция", coords: [55.835409, 37.643329] },
+      { address: "Садово-Самотёчная, д. 8", comment: "Корпус для занятий (магистратура)", coords: [55.774577, 37.620959] }
     ]
   },
   {
@@ -574,7 +574,7 @@ const universityData = [
     color: "--gray",
     email: "samara@mgpu.ru",
     director: { name: "Козловская Галина Ефимовна", role: "Директор филиала", deg: "доктор исторических наук, профессор", photo: null },
-    campuses: [{ address: "г. Самара, ул. Стара Загора, д. 76", comment: "Филиал" }]
+    campuses: [{ address: "г. Самара, ул. Стара Загора, д. 76", comment: "Филиал", coords: [53.232371, 50.218525] }]
   }
 ];
 
@@ -1001,41 +1001,24 @@ function initYandexMap() {
   });
 
   const collection = new ymaps.GeoObjectCollection();
-  const promises = [];
 
   universityData.forEach(inst => {
-    const shortName = inst.title.match(/\(([^)]+)\)/)?.[1] || inst.title;
-    inst.campuses.forEach(campus => {
-      const query = campus.address.startsWith('г. Самара')
-        ? campus.address
-        : 'Москва, ' + campus.address;
-
-      promises.push(
-        ymaps.geocode(query, { results: 1 }).then(res => {
-          const geoObj = res.geoObjects.get(0);
-          if (!geoObj) return;
-          const coords = geoObj.geometry.getCoordinates();
-          const placemark = new ymaps.Placemark(coords, {
-            balloonContent: `<strong style="color:#2a3153">${shortName}</strong><br>
-              <span style="font-size:12px;color:#4a4a4a">${inst.title}</span><br>
-              <span style="font-size:12px;color:#fb700b">${campus.address}</span><br>
-              <span style="font-size:11px;color:#4a4a4a">${campus.comment}</span>`,
-            hintContent: shortName + ' · ' + campus.comment
+    if (inst.campuses) {
+      inst.campuses.forEach(campus => {
+        if (campus.coords) {
+          const placemark = new ymaps.Placemark(campus.coords, {
+            balloonContent: '<strong style="color:#2a3153">' + inst.title + '</strong><br><span style="font-size:12px">' + campus.comment + '</span><br><span style="color:#fb700b;font-size:12px">' + campus.address + '</span>'
           }, {
             preset: 'islands#orangeDotIcon'
           });
           collection.add(placemark);
-        })
-      );
-    });
-  });
-
-  Promise.all(promises).then(() => {
-    globalYMap.geoObjects.add(collection);
-    if (collection.getLength() > 0) {
-      globalYMap.setBounds(collection.getBounds(), { checkZoomRange: true, zoomMargin: 20 });
+        }
+      });
     }
   });
+
+  globalYMap.geoObjects.add(collection);
+  globalYMap.setBounds(collection.getBounds(), { checkZoomRange: true, zoomMargin: 20 });
 }
 
 if (typeof ymaps !== 'undefined') {
