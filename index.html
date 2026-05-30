@@ -127,6 +127,8 @@ h1.t{
 
 /* ── Card contacts & schedule ── */
 .card-contacts{display:flex;flex-direction:column;gap:4px;margin-top:10px;font-size:13px;color:var(--tmid);border-top:1px dashed var(--warm);padding-top:10px}
+.contact-stub{display:inline-flex;align-items:center;font-size:11px;color:var(--tmid);opacity:.6;padding:4px 0;cursor:default;user-select:none}
+.contact-stub::before{content:'✉';margin-right:4px;font-size:13px}
 .card-contact-item{display:flex;align-items:center;gap:6px}
 .card a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
 .ssia-motto{font-size:14px;font-style:italic;color:var(--navy);text-align:center;margin:0 0 20px;padding:12px 14px;border-top:1px solid rgba(0,0,0,.06);border-bottom:1px solid rgba(0,0,0,.06);font-weight:600}
@@ -370,11 +372,11 @@ body.dark-theme .search-bar-inner{background:transparent;border-bottom:1px solid
 
 const orgData = [
   {
-    id: 'director',
-    group: null,
-    title: 'Директор',
-    subtitle: 'Директор ИПКР',
-    color: 'var(--accent)',
+    id: 'ipkr-admin',
+    group: 'Администрация',
+    title: 'Администрация ИПКР',
+    subtitle: 'Дирекция и руководители департаментов',
+    color: 'var(--navy)',
     staff: [
       { name: 'Ушакова Елена Викторовна', role: 'Директор ИПКР', deg: 'доцент, к. пс. н.', photo: null,
         email: 'Ushakova@mgpu.ru', phone: '+7 499 132 05 62', room: 'каб. 409',
@@ -383,18 +385,13 @@ const orgData = [
           { label: 'Для обучающихся', time: 'ПТ 14:00–16:00' },
           { label: 'По личным вопросам', time: 'ПН 14:00–16:00' }
         ]
-      }
-    ]
-  },
-  {
-    id: 'deputies',
-    group: null,
-    title: 'Заместители директора',
-    subtitle: null,
-    color: 'var(--blue)',
-    staff: [
+      },
       { name: 'Челышева Юлия Вячеславовна', role: 'Замдиректора по учебной работе', deg: 'доцент, к. пед. н.', photo: null },
-      { name: 'Журавлёва Жанна Игоревна', role: 'Замдиректора по воспитательной работе · Координатор по работе с молодёжью', deg: 'доцент, к. псих. н.', photo: null }
+      { name: 'Журавлёва Жанна Игоревна', role: 'Замдиректора по воспитательной работе · Координатор по работе с молодёжью', deg: 'доцент, к. псих. н.', photo: null },
+      { divider: 'Руководители департаментов' },
+      { name: 'Парамонова Галина Витальевна', role: 'Начальник деп. организации образовательного процесса', deg: 'ст. преп.', photo: null },
+      { name: 'Яковлева Ирина Михайловна', role: 'Начальник деп. социально-психологических технологий', deg: 'проф., д. пед. н.', photo: null },
+      { name: 'Овчаренко Лариса Юрьевна', role: 'Начальник деп. клинических и психологических основ', deg: 'доцент, к. пс. н.', photo: null }
     ]
   },
   {
@@ -423,7 +420,9 @@ const orgData = [
     subtitle: 'Деп. социально-психологических технологий и коррекционно-развивающих методик · каб. 403',
     color: 'var(--green)',
     staff: [
+      { divider: 'Руководство' },
       { name: 'Яковлева Ирина Михайловна', role: 'Начальник департамента', deg: 'проф., д. пед. н.', photo: null },
+      { divider: 'Профессорско-преподавательский состав' },
       { name: 'Афанасьева Юлия Анатольевна', role: '', deg: 'доц., к. пед. н.', photo: null },
       { name: 'Беглова Ольга Александровна', role: '', deg: 'доц., к. пед. н.', photo: null },
       { name: 'Браткова Маргарита Владимировна', role: '', deg: 'доц., к. пед. н.', photo: null },
@@ -482,7 +481,9 @@ const orgData = [
     subtitle: 'Деп. клинических, психологических и педагогических основ развития личности · каб. 402',
     color: '#6b3a8f',
     staff: [
+      { divider: 'Руководство' },
       { name: 'Овчаренко Лариса Юрьевна', role: 'Начальник департамента', deg: 'доцент, к. пс. н.', photo: null },
+      { divider: 'Профессорско-преподавательский состав' },
       { name: 'Ананьева Елена Владимировна', role: '', deg: 'ст. преп.', photo: null },
       { name: 'Баранова Екатерина Михайловна', role: '', deg: 'доц., к. пед. н. · акад. мобильность, студенты-иностранцы, межд. конкурсы', photo: null },
       { name: 'Бершедова Людмила Ивановна', role: '', deg: 'проф., д. пс. н.', photo: null },
@@ -737,7 +738,7 @@ function renderCard(person, color) {
   const contactsHtml = hasContacts ? `<div class="card-contacts">
     ${person.room ? `<div class="card-contact-item">📍 ${person.room}</div>` : ''}
     ${person.phone ? `<div class="card-contact-item">📞 <a href="tel:${person.phone.replace(/\s+/g,'')}">${person.phone}</a></div>` : ''}
-    ${person.email ? `<div class="card-contact-item">✉️ <a href="mailto:${person.email}">${person.email}</a></div>` : ''}
+    ${person.email ? `<div class="card-contact-item">✉️ <a href="mailto:${person.email}">${person.email}</a></div>` : `<div class="card-contact-item"><span class="contact-stub">Почта уточняется</span></div>`}
     ${person.vk ? `<div class="card-contact-item">VK: <a href="${person.vk}" target="_blank">Перейти на страницу</a></div>` : ''}
   </div>` : '';
   const scheduleHtml = person.schedule ? `<div class="card-schedule">
