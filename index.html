@@ -128,8 +128,18 @@ h1.t{
 /* ── Card contacts & schedule ── */
 .card-contacts{display:flex;flex-direction:column;gap:4px;margin-top:10px;font-size:13px;color:var(--tmid);border-top:1px dashed var(--warm);padding-top:10px}
 .card-contact-item{display:flex;align-items:center;gap:6px}
-.card a,.ssia-official-links a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
-.card-contact-item a{color:var(--navy);text-decoration:none;font-weight:600;transition:color .2s}
+.card a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.ssia-motto{font-size:14px;font-style:italic;color:var(--navy);text-align:center;margin:0 0 20px;padding:12px 14px;border-top:1px solid rgba(0,0,0,.06);border-bottom:1px solid rgba(0,0,0,.06);font-weight:600}
+body.dark-theme .ssia-motto{color:var(--tdark);border-color:rgba(255,255,255,.08)}
+.action-hub{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:24px}
+.pill-btn{display:inline-flex;align-items:center;padding:10px 20px;border-radius:20px;font-size:12px;font-weight:700;color:white !important;text-decoration:none;text-transform:uppercase;letter-spacing:.05em;transition:transform .15s,opacity .15s}
+.pill-btn:active{transform:scale(0.95)}
+.card.hero{grid-column:1/-1;max-width:600px;margin:0 auto;width:100%;flex-direction:column;align-items:center;text-align:center;padding:24px 16px;border-top:4px solid var(--accent) !important;box-shadow:0 4px 12px rgba(42,49,83,.08)}
+.card.hero .avatar,.card.hero .avatar-placeholder{width:70px;height:70px;margin-bottom:4px}
+.card.hero .role{font-size:11px}
+.card.hero .name{font-size:16px;margin-bottom:6px}
+.card.hero .card-contacts{align-items:center}
+.card.hero .card-text{display:flex;flex-direction:column;align-items:center;width:100%}.card-contact-item a{color:var(--navy);text-decoration:none;font-weight:600;transition:color .2s}
 .card-contact-item a:hover{color:var(--accent)}
 .card-schedule{background:var(--cream);border-left:3px solid var(--accent);padding:10px 12px;margin-top:10px;border-radius:0 4px 4px 0;font-size:12px}
 .schedule-note{color:var(--burgundy);font-weight:600;font-size:11px;margin-bottom:6px;display:block;text-transform:uppercase;letter-spacing:.05em}
@@ -142,11 +152,6 @@ h1.t{
 .note-item{font-size:11px;color:var(--tmid)}
 
 /* ── ССиА links block ── */
-.ssia-official-links{background:var(--cream);padding:14px 16px;border-radius:4px;margin-bottom:16px;border-left:4px solid var(--accent)}
-.ssia-links-title{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em}
-.ssia-links-list{display:flex;flex-direction:column;gap:7px}
-.ssia-link-item{font-size:13px;color:var(--navy);text-decoration:none;font-weight:600;transition:color .2s}
-.ssia-link-item:hover{color:var(--accent)}
 
 /* ── Navigation ── */
 .main-nav{background:white;position:sticky;top:62px;z-index:999;box-shadow:var(--shsm);margin-bottom:24px}
@@ -203,7 +208,7 @@ body.dark-theme .placeholder-card,body.dark-theme .contacts-card{background:#1e1
 body.dark-theme .search-result-item{background:#2a2a2a}
 body.dark-theme .search-result-item:hover{background:#333}
 body.dark-theme .avatar-placeholder{background:#2a2a2a}
-body.dark-theme .card-schedule,body.dark-theme .ssia-official-links{background:#2a2a2a}
+body.dark-theme .card-schedule{background:#2a2a2a}
 body.dark-theme .card .name,body.dark-theme .detail-title,body.dark-theme .master-card-title,
 body.dark-theme .contacts-item-value,body.dark-theme .section-title,body.dark-theme h1.t,
 body.dark-theme .card-contact-item a,body.dark-theme .uni-addr-text{color:var(--tdark)}
@@ -213,7 +218,6 @@ body.dark-theme .main-footer{background:#0a0a0a}
 body.dark-theme .schedule-note{color:#ff6b6b}
 body.dark-theme .search-result-name{color:#e2e8f0}
 body.dark-theme .search-result-sub{color:#94a3b8}
-body.dark-theme .ssia-links-title,body.dark-theme .ssia-link-item{color:var(--tdark)}
 body.dark-theme .uni-email{color:var(--tdark)}
 body.dark-theme .card,body.dark-theme .master-card,
 body.dark-theme .contacts-card{border-color:rgba(255,255,255,.08)}
@@ -513,14 +517,15 @@ const orgData = [
     title: 'Совет студентов и аспирантов',
     subtitle: 'ССиА ИПКР',
     color: 'var(--accent)',
+    motto: 'Если хочешь что-то изменить, измени сам!',
     links: [
-      { label: 'Официальная группа VK', url: 'https://vk.ru/ssia_ipkr' },
-      { label: 'Неформальный канал (Telegram)', url: 'https://t.me/ipik_mi' },
-      { label: 'info@ssia-ipkr.ru', url: 'mailto:info@ssia-ipkr.ru' }
+      { label: 'ВКонтакте', url: 'https://vk.ru/ssia_ipkr', color: '#2787F5' },
+      { label: 'Telegram', url: 'https://t.me/ipik_mi', color: '#2AABEE' },
+      { label: 'Почта', url: 'mailto:info@ssia-ipkr.ru', color: 'var(--navy)' }
     ],
     staff: [
       { divider: 'Руководство ССиА' },
-      { name: 'Толоконников Кирилл Андреевич', role: 'Председатель', deg: 'студент 3 курса, Психология', photo: null, email: 'TolokonnikovKA944@mgpu.ru', vk: 'https://vk.ru/odessa__1794' },
+      { hero: true, name: 'Толоконников Кирилл Андреевич', role: 'Председатель', deg: 'студент 3 курса, Психология', photo: null, email: 'TolokonnikovKA944@mgpu.ru', vk: 'https://vk.ru/odessa__1794' },
       { name: 'Транковская Анна Сергеевна', role: 'Зампредседателя', deg: 'студентка 3 курса, Логопедия', photo: null },
       { divider: 'Руководители направлений' },
       { name: 'Крючков Георгий Александрович', role: 'Проектное направление', deg: 'студент 3 курса, ОРМ', photo: null },
@@ -739,7 +744,7 @@ function renderCard(person, color) {
     ${person.scheduleNote ? `<span class="schedule-note">⚠️ ${person.scheduleNote}</span>` : ''}
     ${person.schedule.map(s => `<div class="schedule-line"><span>${s.label}</span> <strong>${s.time}</strong></div>`).join('')}
   </div>` : '';
-  return `<div class="card">
+  return `<div class="card${person.hero ? ' hero' : ''}">
     ${avatar}
     <div class="card-text">
       ${person.role ? `<div class="role">${person.role}</div>` : ''}
@@ -792,11 +797,9 @@ function showIPKRDetail(idx) {
 
   const notesHtml = (section.notes || []).map(n => `<div class="note-item">${n}</div>`).join('');
   const cardsHtml = section.staff.map(p => renderCard(p, section.color)).join('');
-  const linksHtml = section.links ? `<div class="ssia-official-links">
-    <div class="ssia-links-title">Официальные ресурсы ССиА ИПКР:</div>
-    <div class="ssia-links-list">
-      ${section.links.map(l => `<a href="${l.url}" ${l.url.startsWith('http') ? 'target="_blank"' : ''} class="ssia-link-item">${l.label}</a>`).join('')}
-    </div>
+  const mottoHtml = section.motto ? `<div class="ssia-motto">«${section.motto}»</div>` : '';
+  const linksHtml = section.links ? `<div class="action-hub">
+    ${section.links.map(l => `<a href="${l.url}" ${l.url.startsWith('http') ? 'target="_blank"' : ''} class="pill-btn" style="background:${l.color || 'var(--navy)'}">${l.label}</a>`).join('')}
   </div>` : '';
 
   detail.innerHTML = `
@@ -805,8 +808,9 @@ function showIPKRDetail(idx) {
       <div class="detail-title" style="color:${section.color}">${section.title}</div>
       ${section.subtitle ? `<div class="detail-subtitle">${section.subtitle}</div>` : ''}
     </div>
-    ${notesHtml ? `<div class="section-notes" style="margin-bottom:12px">${notesHtml}</div>` : ''}
+    ${mottoHtml}
     ${linksHtml}
+    ${notesHtml ? `<div class="section-notes" style="margin-bottom:12px">${notesHtml}</div>` : ''}
     <div class="grid-layout">${cardsHtml}</div>
   `;
 
