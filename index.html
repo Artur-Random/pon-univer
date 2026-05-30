@@ -1241,7 +1241,7 @@ searchInput.addEventListener('input', () => {
   const val = searchInput.value.trim();
   if (val) {
     searchState = 'open-text';
-    doSearch(val);
+    try { doSearch(val); } catch(e) { console.error('doSearch error:', e); }
   } else {
     searchState = 'open-empty';
     searchResultsEl.innerHTML = '';
@@ -1264,7 +1264,8 @@ function doSearch(query) {
   // IPKR staff
   orgData.forEach((section, sIdx) => {
     section.staff.forEach(person => {
-      if (!person.vacant && person.name.toLowerCase().includes(q)) {
+      if (person.divider || person.vacant || !person.name) return;
+      if (person.name.toLowerCase().includes(q)) {
         raw.push({
           type: 'ipkr', sectionIdx: sIdx,
           label: person.name,
