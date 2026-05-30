@@ -157,8 +157,8 @@ body.dark-theme .ssia-motto{color:var(--tdark);border-color:rgba(255,255,255,.08
 
 /* ── Navigation ── */
 .main-nav{background:white;position:sticky;top:62px;z-index:999;box-shadow:var(--shsm);margin-bottom:24px}
-.nav-container{max-width:1500px;margin:0 auto;display:flex;gap:8px;padding:12px 14px;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.nav-btn{padding:8px 16px;border:none;background:transparent;border-radius:4px;font-weight:600;font-size:15px;color:var(--tmid);cursor:pointer;transition:all .2s;white-space:nowrap;font-family:'Tenor Sans',sans-serif}
+.nav-container{max-width:1500px;margin:0 auto;display:flex}
+.nav-btn{flex:1;padding:12px 8px;border:none;border-radius:0;background:transparent;font-weight:600;font-size:14px;color:var(--tmid);cursor:pointer;transition:all .2s;white-space:nowrap;font-family:'Tenor Sans',sans-serif;text-align:center}
 .nav-btn:hover:not(.active){background:var(--warm);color:var(--accent)}
 .nav-btn.active{background:var(--navy);color:white}
 
@@ -185,8 +185,6 @@ body.dark-theme .ssia-motto{color:var(--tdark);border-color:rgba(255,255,255,.08
 .uni-email:hover{color:var(--accent)}
 
 /* ── Map section ── */
-.map-section{padding:0 !important;overflow:hidden}
-#global-map{width:100%;height:calc(100vh - 115px)}
 
 /* ── Contacts section ── */
 .contacts-card{background:white;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.06);padding:20px 4px;max-width:600px}
@@ -282,13 +280,10 @@ body.dark-theme .search-bar-inner{background:transparent;border-bottom:1px solid
 
 <nav class="main-nav">
   <div class="nav-container">
-    <button class="nav-btn active" data-section="ipkr">Структура ИПКР</button>
-    <button class="nav-btn" data-section="mgpu">Университет (МГПУ)</button>
-    <button class="nav-btn" data-section="rights">Права и обязанности</button>
-    <button class="nav-btn" data-section="pass">Пропускной режим</button>
-    <button class="nav-btn" data-section="discipline">Дисциплинарный блок</button>
-    <button class="nav-btn" data-section="map">Карта</button>
-    <button class="nav-btn" data-section="contacts">Контакты</button>
+    <button class="nav-btn active" data-target="ipkr">ИПКР</button>
+    <button class="nav-btn" data-target="uni">МГПУ</button>
+    <button class="nav-btn" data-target="handbook">Справочник</button>
+    <button class="nav-btn" data-target="contacts">Контакты</button>
   </div>
 </nav>
 
@@ -298,20 +293,28 @@ body.dark-theme .search-bar-inner{background:transparent;border-bottom:1px solid
     <div id="ipkr-master" class="grid-layout"></div>
     <div id="ipkr-detail" style="display:none;"></div>
   </section>
-  <section id="sec-mgpu" class="main-section">
+  <section id="sec-uni" class="main-section">
     <h2 class="section-title">Московский городской педагогический университет</h2>
     <div id="uni-master" class="grid-layout"></div>
     <div id="uni-detail" style="display:none;"></div>
   </section>
-  <section id="sec-rights" class="main-section">
-    <h2 class="section-title">Права и обязанности студента</h2>
-    <div class="placeholder-card">
-      <h3 style="color:var(--navy);font-size:22px;margin-bottom:10px;">Раздел в разработке</h3>
-      <p style="color:var(--tmid);font-size:14px;">Здесь скоро появится подробная информация о правах и обязанностях студентов МГПУ.</p>
+  <section id="sec-handbook" class="main-section">
+    <h2 class="section-title">Справочник студента</h2>
+    <div class="grid-layout">
+      <div class="master-card">
+        <div class="master-card-title">Права и обязанности</div>
+        <div class="master-card-sub">Академические права студентов МГПУ</div>
+      </div>
+      <div class="master-card">
+        <div class="master-card-title">Пропускной режим</div>
+        <div class="master-card-sub">Правила доступа в корпуса университета</div>
+      </div>
+      <div class="master-card">
+        <div class="master-card-title">Дисциплинарный блок</div>
+        <div class="master-card-sub">Порядок привлечения к дисциплинарной ответственности</div>
+      </div>
     </div>
   </section>
-  <section id="sec-pass" class="main-section"></section>
-  <section id="sec-discipline" class="main-section"></section>
   <section id="sec-contacts" class="main-section">
     <h2 class="section-title">Контакты ССиА ИПКР</h2>
     <div class="contacts-card">
@@ -347,12 +350,10 @@ body.dark-theme .search-bar-inner{background:transparent;border-bottom:1px solid
         </a>
       </div>
     </div>
+    <h2 class="section-title" style="margin-top:32px">Карта кампусов МГПУ</h2>
+    <div id="global-map" style="width:100%;height:calc(100vh - 200px);border-radius:8px;overflow:hidden;margin-bottom:24px"></div>
   </section>
 </div>
-
-<section id="sec-map" class="main-section map-section">
-  <div id="global-map"></div>
-</section>
 
 <button id="fab-up" class="fab-up" aria-label="Наверх">
   <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
@@ -954,13 +955,13 @@ function switchSection(id) {
   localStorage.setItem('activeTab', id);
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.main-section').forEach(s => s.classList.remove('active'));
-  const btn = document.querySelector('[data-section="' + id + '"]');
+  const btn = document.querySelector('[data-target="' + id + '"]');
   if (btn) btn.classList.add('active');
   const sec = document.getElementById('sec-' + id);
   if (sec) sec.classList.add('active');
   showMaster('ipkr');
   showMaster('uni');
-  if (id === 'map' && globalYMap) {
+  if (id === 'contacts' && globalYMap) {
     setTimeout(() => globalYMap.container.fitToViewport(), 50);
   } else {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -976,7 +977,7 @@ renderUniMaster();
 renderPlaceholders();
 
 document.querySelectorAll('.nav-btn').forEach(btn => {
-  btn.addEventListener('click', () => switchSection(btn.dataset.section));
+  btn.addEventListener('click', () => switchSection(btn.dataset.target));
 });
 
 // ═══════════════════════════════════════════
@@ -1112,7 +1113,7 @@ function doSearch(query) {
         switchSection('ipkr');
         showIPKRDetail(r.sectionIdx);
       } else if (r.type === 'uni') {
-        switchSection('mgpu');
+        switchSection('uni');
         showInstituteDetail(r.uniIdx);
       }
     });
@@ -1205,7 +1206,8 @@ window.addEventListener('popstate', (e) => {
 
 (function() {
   const saved = localStorage.getItem('activeTab');
-  if (saved && saved !== 'ipkr') switchSection(saved);
+  const validTabs = ['ipkr', 'uni', 'handbook', 'contacts'];
+  if (saved && saved !== 'ipkr' && validTabs.includes(saved)) switchSection(saved);
 })();
 
 // ═══════════════════════════════════════════
