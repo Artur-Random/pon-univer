@@ -26,11 +26,12 @@ body{
   background-image:radial-gradient(ellipse at 10% 10%,rgba(46,74,173,.05) 0%,transparent 50%),
   radial-gradient(ellipse at 90% 90%,rgba(192,144,42,.05) 0%,transparent 50%);
   display:flex;flex-direction:column;min-height:100vh;margin:0;padding:0;
+  padding-top:62px;
 }
 
 /* ── Header ── */
 .site-header{
-  background:white;position:sticky;top:0;z-index:1001;box-shadow:var(--shsm);
+  background:white;position:fixed;top:0;left:0;right:0;z-index:1001;box-shadow:var(--shsm);
   display:flex;align-items:center;padding:10px 14px;gap:10px;height:62px;
   transition:transform .3s ease;
 }
@@ -84,11 +85,12 @@ h1.t{
 
 /* ── Master cards ── */
 .master-card{
-  background:white;border-radius:8px;padding:16px;box-shadow:var(--shsm);
+  background:white;border-radius:8px;padding:16px;
+  box-shadow:0 2px 4px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.06);
   border-top:4px solid transparent;cursor:pointer;
   transition:box-shadow .2s,transform .15s;
 }
-.master-card:hover{box-shadow:var(--sh);transform:translateY(-2px)}
+.master-card:hover{box-shadow:0 4px 10px rgba(42,49,83,.12);transform:translateY(-2px)}
 .master-card:active{transform:translateY(0)}
 .master-card-title{font-size:15px;font-weight:600;color:var(--navy);line-height:1.3;margin-bottom:4px}
 .master-card-sub{font-size:11px;font-weight:600;color:var(--tmid);line-height:1.4;text-transform:uppercase;letter-spacing:.05em}
@@ -113,7 +115,7 @@ h1.t{
 
 /* ── Staff card ── */
 .card{background:white;border-radius:8px;padding:11px 13px;box-shadow:0 2px 4px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.06);border-top:4px solid transparent;transition:transform .15s ease,box-shadow .15s ease;display:flex;gap:12px;align-items:flex-start}
-.card:hover{box-shadow:var(--sh)}
+.card:hover{box-shadow:0 4px 10px rgba(42,49,83,.12)}
 .card:active{transform:scale(0.97);box-shadow:0 2px 8px rgba(0,0,0,.04)}
 .card-text{flex:1;min-width:0}
 .card .role{font-size:8.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;opacity:.6;margin-bottom:4px;line-height:1.4}
@@ -216,6 +218,8 @@ body.dark-theme .search-result-name{color:#e2e8f0}
 body.dark-theme .search-result-sub{color:#94a3b8}
 body.dark-theme .ssia-links-title,body.dark-theme .ssia-link-item{color:var(--tdark)}
 body.dark-theme .uni-email{color:var(--tdark)}
+body.dark-theme .card,body.dark-theme .master-card,
+body.dark-theme .contacts-card{border-color:rgba(255,255,255,.08)}
 
 /* ── FAB Up ── */
 .fab-up{
@@ -1172,8 +1176,8 @@ themeBtn.addEventListener('click', () => {
 
 history.replaceState({ page: 'home' }, '', location.pathname + location.search);
 
-window.addEventListener('popstate', () => {
-  if (currentDetailPrefix) {
+window.addEventListener('popstate', (e) => {
+  if (currentDetailPrefix && e.state?.page !== 'detail') {
     const prefix = currentDetailPrefix;
     currentDetailPrefix = null;
     const master = document.getElementById(prefix + '-master');
