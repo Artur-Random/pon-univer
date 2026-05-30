@@ -950,7 +950,7 @@ function renderIPKRMaster() {
     html += `<div class="master-card" data-idx="${idx}">
       <div class="master-card-title">${section.title}</div>
       ${section.subtitle ? `<div class="master-card-sub">${section.subtitle}</div>` : ''}
-      <div class="master-card-count">${staffCount} чел.</div>
+      ${section.id !== 'student-council' ? `<div class="master-card-count">${staffCount} чел.</div>` : ''}
     </div>`;
   });
 
