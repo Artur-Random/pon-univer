@@ -588,6 +588,46 @@ const orgData = [
 
 const universityData = [
   {
+    id: 'mgpu-admin',
+    kind: 'people',
+    title: 'Администрация МГПУ',
+    subtitle: 'Руководство университета',
+    color: '--navy',
+    label: 'Руководство',
+    staff: [
+      { name: 'Геворкян Ереван Нишанович', role: 'и.о. Ректора', deg: 'доктор педагогических наук, профессор, академик РАО', email: 'gevorkyanens@mgpu.ru', hero: true },
+      { divider: 'Проректоры' },
+      { name: 'Буренкова Наталья Владимировна', role: 'Проректор по учебно-методической работе', email: 'burenkovanv@mgpu.ru' },
+      { name: 'Мамедова Лала Вугар кызы', role: 'Проректор по научной работе', email: 'mamedovaly@mgpu.ru' },
+      { name: 'Панков Роман Вадимович', role: 'Проректор по административно-хозяйственной работе', email: 'pankovry@mgpu.ru' },
+      { name: 'Сергеев Вячеслав Романович', role: 'Проректор по развитию цифровой среды', email: 'sergeevvr@mgpu.ru' },
+      { name: 'Шастина Татьяна Владимировна', role: 'Проректор по международному и межрегиональному сотрудничеству', email: 'shastinaty@mgpu.ru' },
+      { divider: 'Управления' },
+      { name: 'Клюев Дмитрий Анатольевич', role: 'Начальник Управления по правовым вопросам', email: 'kluevda@mgpu.ru' },
+      { name: 'Лебедев Сергей Анатольевич', role: 'Начальник Управления по экономике и финансам', email: 'lebedevsa@mgpu.ru' },
+      { name: 'Назаров Алексей Юрьевич', role: 'Начальник Управления по цифровой трансформации', email: 'nazarovay@mgpu.ru' }
+    ]
+  },
+  {
+    id: 'mgpu-ssia',
+    kind: 'people',
+    title: 'Совет студентов и аспирантов МГПУ',
+    subtitle: 'Студенческое самоуправление университета',
+    color: '--accent',
+    label: 'Состав',
+    staff: [
+      { name: 'Пурбайрам Буянтогс Батмунхийн', role: 'Председатель ССиА МГПУ', email: 'mgpu-ssia@mgpu.ru', hero: true },
+      { divider: 'Заместители Председателя' },
+      { name: 'Ивакина Светлана Александровна', role: 'Заместитель Председателя по учебной работе', email: 'mgpu-ssia@mgpu.ru' },
+      { name: 'Носиков Илья Александрович', role: 'Заместитель Председателя по культурно-массовой работе', email: 'mgpu-ssia@mgpu.ru' },
+      { vacant: true, name: 'Вакансия', deg: 'Заместитель Председателя по спортивной работе' },
+      { name: 'Комиссарова Карина Арсеньевна', role: 'Заместитель Председателя по информационной работе', email: 'mgpu-ssia@mgpu.ru' },
+      { divider: 'Члены совета' },
+      { name: 'Пимнева Ангелина Алексеевна', role: 'Ответственный секретарь', email: 'mgpu-ssia@mgpu.ru' },
+      { name: 'Невядомская Алёна Артёмовна', role: 'Член совета', email: 'mgpu-ssia@mgpu.ru' }
+    ]
+  },
+  {
     title: "Институт психологии и комплексной реабилитации (ИПКР)",
     color: "--accent",
     email: "ipkr@mgpu.ru",
@@ -830,15 +870,31 @@ function showIPKRDetail(idx) {
 //  UNIVERSITY MASTER-DETAIL
 // ═══════════════════════════════════════════
 
+function getUniColor(item) {
+  if (!item.color) return 'var(--navy)';
+  return item.color.startsWith('var(') ? item.color : `var(${item.color})`;
+}
+
 function renderUniMaster() {
   const master = document.getElementById('uni-master');
-  master.innerHTML = universityData.map((item, idx) => `
-    <div class="master-card" data-idx="${idx}">
-      <div class="master-card-title">${item.title}</div>
-      <div class="master-card-sub">${item.director.name}</div>
-      ${item.campuses.length > 1 ? `<div class="master-card-count">${item.campuses.length} корп.</div>` : ''}
-    </div>
-  `).join('');
+  master.innerHTML = universityData.map((item, idx) => {
+    const isPeople = item.kind === 'people';
+    const subtitle = isPeople
+      ? (item.subtitle || '')
+      : (item.director ? item.director.name : (item.subtitle || ''));
+    const countHtml = isPeople
+      ? `<div class="master-card-count">${item.label || 'Состав'}</div>`
+      : (item.campuses && item.campuses.length > 1
+          ? `<div class="master-card-count">${item.campuses.length} корп.</div>`
+          : '');
+    return `
+      <div class="master-card" data-idx="${idx}" style="border-top-color:${getUniColor(item)}">
+        <div class="master-card-title">${item.title}</div>
+        <div class="master-card-sub">${subtitle}</div>
+        ${countHtml}
+      </div>
+    `;
+  }).join('');
 
   master.querySelectorAll('.master-card').forEach(card => {
     card.addEventListener('click', () => showInstituteDetail(parseInt(card.dataset.idx)));
@@ -855,6 +911,21 @@ function showInstituteDetail(idx) {
   detail.style.display = '';
   animateFadeIn(detail);
 
+  if (item.kind === 'people') {
+    const cardsHtml = item.staff.map(p => renderCard(p, getUniColor(item))).join('');
+    detail.innerHTML = `
+      <button class="btn-back" id="uni-back-btn">← Назад</button>
+      <div class="detail-header">
+        <div class="detail-title" style="color:${getUniColor(item)}">${item.title}</div>
+        ${item.subtitle ? `<div class="detail-subtitle">${item.subtitle}</div>` : ''}
+      </div>
+      <div class="grid-layout">${cardsHtml}</div>
+    `;
+    document.getElementById('uni-back-btn').addEventListener('click', () => history.back());
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return;
+  }
+
   const d = item.director;
   const dirCard = `<div class="card">
     <div class="avatar-placeholder">${AVATAR_SVG}</div>
@@ -865,7 +936,7 @@ function showInstituteDetail(idx) {
     </div>
   </div>`;
   const ssiaHtml = item.ssiaChair ? renderCard(item.ssiaChair, `var(${item.color})`) : '';
-  const addressesHtml = item.campuses.map(c => `
+  const addressesHtml = (item.campuses || []).map(c => `
     <div class="uni-address-item">
       <span class="uni-addr-text">${c.address}</span>
       <span class="uni-addr-comment">${c.comment}</span>
@@ -1076,17 +1147,38 @@ function doSearch(query) {
     }
   });
 
-  // University institutes & directors
+  // University institutes, people-sections & directors
   universityData.forEach((uni, uIdx) => {
-    const titleMatch = uni.title.toLowerCase().includes(q);
-    const dirMatch = uni.director.name.toLowerCase().includes(q);
-    if (titleMatch || dirMatch) {
-      raw.push({
-        type: 'uni', uniIdx: uIdx,
-        label: uni.title,
-        sub: uni.director.name,
-        color: `var(${uni.color})`
+    const color = getUniColor(uni);
+    if (uni.kind === 'people') {
+      if (uni.title.toLowerCase().includes(q)) {
+        raw.push({ type: 'uni', uniIdx: uIdx, label: uni.title, sub: uni.subtitle || '', color });
+      }
+      uni.staff.forEach(person => {
+        if (person.divider || person.vacant) return;
+        const nameMatch = person.name.toLowerCase().includes(q);
+        const roleMatch = person.role && person.role.toLowerCase().includes(q);
+        const emailMatch = person.email && person.email.toLowerCase().includes(q);
+        if (nameMatch || roleMatch || emailMatch) {
+          raw.push({
+            type: 'uni', uniIdx: uIdx,
+            label: person.name,
+            sub: (person.role ? person.role + ' · ' : '') + uni.title,
+            color
+          });
+        }
       });
+    } else {
+      const titleMatch = uni.title.toLowerCase().includes(q);
+      const dirMatch = uni.director && uni.director.name.toLowerCase().includes(q);
+      if (titleMatch || dirMatch) {
+        raw.push({
+          type: 'uni', uniIdx: uIdx,
+          label: uni.title,
+          sub: uni.director ? uni.director.name : (uni.subtitle || ''),
+          color
+        });
+      }
     }
   });
 
