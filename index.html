@@ -166,7 +166,7 @@ h1.t{
 .placeholder-card{text-align:center;background:white;padding:50px 20px;border-radius:8px;box-shadow:var(--shsm);max-width:500px;margin:40px auto;border-top:4px solid var(--warm)}
 
 /* ── Footer ── */
-.main-footer{background:var(--navy);border-top:3px solid var(--accent);margin-top:auto;padding:20px 14px;text-align:center;color:white}
+.main-footer{background:var(--navy);border-top:3px solid var(--accent);margin-top:auto;padding:20px 14px 80px;text-align:center;color:white}
 .footer-container{max-width:1500px;margin:0 auto;font-size:11px;color:var(--warm);line-height:1.4}
 
 /* ── University addresses ── */
@@ -1217,7 +1217,6 @@ window.addEventListener('scroll', () => {
   scrollTicking = true;
   requestAnimationFrame(() => {
     const y = window.scrollY;
-    siteHeader.style.transform = (y > lastScrollY && y > 80) ? 'translateY(-100%)' : '';
     fabUp.classList.toggle('visible', y > 300);
     lastScrollY = y;
     scrollTicking = false;
