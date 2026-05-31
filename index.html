@@ -541,15 +541,12 @@ body.dark-theme .detail-source{border-top-color:rgba(255,255,255,.08)}
   <img src="images/pu.png" alt="Логотип" id="main-logo" class="site-logo">
   <h1 class="t">ПОНЯТНЫЙ УНИВЕРСИТЕТ | МГПУ</h1>
   <button id="theme-btn" class="icon-btn" aria-label="Сменить тему"><span id="theme-icon" style="font-size:18px;line-height:1">🌙</span></button>
-  <button id="search-btn" class="icon-btn" aria-label="Поиск">
+  <button id="search-btn" class="icon-btn" aria-label="Открыть поиск">
     <svg id="icon-search" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
     </svg>
     <svg id="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="display:none">
       <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-    </svg>
-    <svg id="icon-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
-      <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
     </svg>
   </button>
 </header>
@@ -1516,6 +1513,7 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     if (document.getElementById('img-modal').classList.contains('active')) closeImageModal();
     else if (sheetOverlay && sheetOverlay.classList.contains('active')) closeSheet();
+    else if (searchState !== 'closed') closeSearch();
   }
 });
 
@@ -1618,15 +1616,15 @@ const searchInput = document.getElementById('search-input');
 const searchResultsEl = document.getElementById('search-results');
 const iconSearch = document.getElementById('icon-search');
 const iconClose = document.getElementById('icon-close');
-const iconArrow = document.getElementById('icon-arrow');
 
-let searchState = 'closed'; // 'closed' | 'open-empty' | 'open-text'
+let searchState = 'closed'; // 'closed' | 'open'
 let _searchResults = [];
 
 function updateSearchIcon() {
-  iconSearch.style.display = searchState === 'closed' ? '' : 'none';
-  iconClose.style.display = searchState === 'open-empty' ? '' : 'none';
-  iconArrow.style.display = searchState === 'open-text' ? '' : 'none';
+  const isOpen = searchState !== 'closed';
+  iconSearch.style.display = isOpen ? 'none' : '';
+  iconClose.style.display = isOpen ? '' : 'none';
+  searchBtn.setAttribute('aria-label', isOpen ? 'Закрыть поиск' : 'Открыть поиск');
 }
 
 function closeSearch() {
@@ -1635,34 +1633,29 @@ function closeSearch() {
   searchInput.value = '';
   searchResultsEl.innerHTML = '';
   _searchResults = [];
+  searchInput.blur();
   updateSearchIcon();
 }
 
 searchBtn.addEventListener('click', () => {
   if (searchState === 'closed') {
-    searchState = 'open-empty';
+    searchState = 'open';
     searchBar.classList.add('open');
     updateSearchIcon();
     searchInput.focus();
-  } else if (searchState === 'open-empty') {
-    closeSearch();
   } else {
-    // open-text: arrow icon → blur keyboard
-    searchInput.blur();
+    closeSearch();
   }
 });
 
 searchInput.addEventListener('input', () => {
   const val = searchInput.value.trim();
   if (val) {
-    searchState = 'open-text';
     try { doSearch(val); } catch(e) { console.error('doSearch error:', e); }
   } else {
-    searchState = 'open-empty';
     searchResultsEl.innerHTML = '';
     _searchResults = [];
   }
-  updateSearchIcon();
 });
 
 function escapeRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
