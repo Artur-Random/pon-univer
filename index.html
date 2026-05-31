@@ -1363,7 +1363,7 @@ function renderHandbookMaster() {
       ${item.locked ? `<div class="soon-badge">${item.badge || 'СКОРО'}</div>` : ''}
       <div class="master-card-title">${item.title}</div>
       <div class="master-card-sub">${item.subtitle}</div>
-      ${!item.locked && item.cards ? `<div class="master-card-count">${item.cards.length} ${item.cards.length === 1 ? 'карточка' : 'карточек'}</div>` : ''}
+      ${''/* card count removed */}
     </div>
   `).join('');
 
