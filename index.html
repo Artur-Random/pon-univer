@@ -237,6 +237,31 @@ body.dark-theme .card.hero{
 @media(min-width:768px){
   .card.staff-card--deputy{grid-column:1/-1;max-width:620px;margin:0 auto;width:100%}
 }
+/* ── IPKR director wide card ── */
+@media(min-width:768px){
+  .card.staff-card--ipkr-director{
+    grid-column:1/-1;width:100%;max-width:none;
+    display:flex;align-items:flex-start;gap:16px;padding:18px 20px;
+  }
+  .card.staff-card--ipkr-director .card-text{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(240px,300px);
+    column-gap:20px;align-items:start;width:100%;
+  }
+  .card.staff-card--ipkr-director .role,
+  .card.staff-card--ipkr-director .name,
+  .card.staff-card--ipkr-director .deg,
+  .card.staff-card--ipkr-director .card-contacts{grid-column:1}
+  .card.staff-card--ipkr-director .card-schedule{
+    grid-column:2;grid-row:1/span 5;
+    margin-top:0;align-self:start;width:100%;
+  }
+}
+@media(max-width:767px){
+  .card.staff-card--ipkr-director{grid-column:auto}
+  .card.staff-card--ipkr-director .card-text{display:block}
+  .card.staff-card--ipkr-director .card-schedule{margin-top:10px;width:100%}
+}
 /* ── Institute director / ssia-chair card variants ── */
 .card-badge{
   display:inline-flex;width:fit-content;margin-bottom:6px;
@@ -812,6 +837,7 @@ const orgData = [
     color: 'var(--navy)',
     staff: [
       { name: 'Ушакова Елена Викторовна', role: 'Директор ИПКР', deg: 'доцент, к. пс. н.', photo: 'images/people/mgpu/Ushakova-EV.webp',
+        featured: 'ipkr-director',
         email: 'Ushakova@mgpu.ru', phone: '+7 499 132 05 62', room: 'каб. 409',
         scheduleNote: 'Обязательная предварительная запись по телефону',
         schedule: [
@@ -1319,13 +1345,14 @@ function renderCard(person, color, options = {}) {
     ${person.schedule.map(s => `<div class="schedule-line"><span>${s.label}</span> <strong>${s.time}</strong></div>`).join('')}
   </div>` : '';
   const deputyClass = person.featured === 'deputy' ? ' staff-card--deputy' : '';
+  const ipkrDirectorClass = person.featured === 'ipkr-director' ? ' staff-card--ipkr-director' : '';
   const variantClass = options.variant === 'director' ? ' card--director' : options.variant === 'ssia-chair' ? ' card--ssia-chair' : '';
   const badgeHtml = options.variant === 'director'
     ? `<span class="card-badge card-badge--director">Директор</span>`
     : options.variant === 'ssia-chair'
     ? `<span class="card-badge card-badge--ssia">ССиА</span>`
     : '';
-  return `<div class="card${person.hero ? ' hero' : ''}${deputyClass}${variantClass}">
+  return `<div class="card${person.hero ? ' hero' : ''}${deputyClass}${ipkrDirectorClass}${variantClass}">
     ${avatar}
     <div class="card-text">
       ${badgeHtml}
