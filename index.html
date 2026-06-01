@@ -161,10 +161,40 @@ body.dark-theme .btn-back{
 .card .name{font-size:13px;font-weight:600;line-height:1.3;color:var(--navy);margin-bottom:2px}
 .card .deg{font-size:11.5px;font-weight:600;color:var(--tmid);line-height:1.4}
 
-/* ── Avatar ── */
-.avatar,.avatar-placeholder{width:50px;height:50px;border-radius:50%;flex-shrink:0}
-.avatar{object-fit:cover}
-.avatar-placeholder{display:flex;align-items:center;justify-content:center;overflow:hidden;background-color:#f0f4f8;color:var(--tmid)}
+/* ── Avatar shell / squircle ── */
+.avatar-shell{
+  width:58px;height:58px;flex-shrink:0;
+  border-radius:22px;padding:3px;
+  background:rgba(255,255,255,.35);
+  border:1px solid rgba(255,255,255,.55);
+  box-shadow:0 10px 24px rgba(42,49,83,.12),inset 0 1px 0 rgba(255,255,255,.65);
+  backdrop-filter:blur(14px) saturate(150%);
+  -webkit-backdrop-filter:blur(14px) saturate(150%);
+}
+body.dark-theme .avatar-shell{
+  background:rgba(255,255,255,.06);
+  border-color:rgba(255,255,255,.10);
+  box-shadow:0 12px 26px rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.08);
+}
+.avatar-frame{
+  width:100%;height:100%;
+  padding:2px;
+  background:var(--avatar-accent,var(--gold));
+  border-radius:17px;overflow:hidden;
+}
+.avatar-media{
+  width:100%;height:100%;
+  display:block;object-fit:cover;object-position:center;
+  aspect-ratio:1/1;border-radius:13px;
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 50 0 C 90 0 100 10 100 50 C 100 90 90 100 50 100 C 10 100 0 90 0 50 C 0 10 10 0 50 0 Z'/%3E%3C/svg%3E");
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 50 0 C 90 0 100 10 100 50 C 100 90 90 100 50 100 C 10 100 0 90 0 50 C 0 10 10 0 50 0 Z'/%3E%3C/svg%3E");
+  -webkit-mask-size:100% 100%;mask-size:100% 100%;
+}
+.avatar-placeholder.avatar-media{
+  background:#f0f4f8;color:var(--tmid);
+  display:flex;align-items:center;justify-content:center;
+}
+body.dark-theme .avatar-placeholder.avatar-media{background:rgba(40,48,70,.85)}
 
 /* ── Card contacts & schedule ── */
 .card-contacts{display:flex;flex-direction:column;gap:4px;margin-top:10px;font-size:13px;color:var(--tmid);border-top:1px dashed var(--warm);padding-top:10px}
@@ -191,7 +221,9 @@ body.dark-theme .card.hero{
   border:1px solid rgba(201,151,74,.22);
   border-top-color:var(--gold) !important;
 }
-.card.hero .avatar,.card.hero .avatar-placeholder{width:70px;height:70px;margin-bottom:4px}
+.card.hero .avatar-shell{width:82px;height:82px;margin-bottom:6px;border-radius:28px}
+.card.hero .avatar-frame{border-radius:23px}
+.card.hero .avatar-media{border-radius:19px}
 .card.hero .role{font-size:11px}
 .card.hero .name{font-size:16px;margin-bottom:6px}
 .card.hero .card-contacts{align-items:center}
@@ -671,7 +703,7 @@ const orgData = [
     subtitle: 'Дирекция и руководители департаментов',
     color: 'var(--navy)',
     staff: [
-      { name: 'Ушакова Елена Викторовна', role: 'Директор ИПКР', deg: 'доцент, к. пс. н.', photo: null,
+      { name: 'Ушакова Елена Викторовна', role: 'Директор ИПКР', deg: 'доцент, к. пс. н.', photo: 'images/people/mgpu/Ushakova-EV.webp',
         email: 'Ushakova@mgpu.ru', phone: '+7 499 132 05 62', room: 'каб. 409',
         scheduleNote: 'Обязательная предварительная запись по телефону',
         schedule: [
@@ -679,12 +711,12 @@ const orgData = [
           { label: 'По личным вопросам', time: 'ПН 14:00–16:00' }
         ]
       },
-      { name: 'Челышева Юлия Вячеславовна', role: 'Замдиректора по учебной работе', deg: 'доцент, к. пед. н.', photo: null },
-      { name: 'Журавлёва Жанна Игоревна', role: 'Замдиректора по воспитательной работе · Координатор по работе с молодёжью', deg: 'доцент, к. псих. н.', photo: null },
+      { name: 'Челышева Юлия Вячеславовна', role: 'Замдиректора по учебной работе', deg: 'доцент, к. пед. н.', photo: 'images/people/mgpu/Chelysheva-YV.webp' },
+      { name: 'Журавлёва Жанна Игоревна', role: 'Замдиректора по воспитательной работе · Координатор по работе с молодёжью', deg: 'доцент, к. псих. н.', photo: 'images/people/mgpu/Juravleva-JI.webp' },
       { divider: 'Руководители департаментов' },
-      { name: 'Парамонова Галина Витальевна', role: 'Начальник деп. организации образовательного процесса', deg: 'ст. преп.', photo: null },
-      { name: 'Яковлева Ирина Михайловна', role: 'Начальник деп. социально-психологических технологий', deg: 'проф., д. пед. н.', photo: null },
-      { name: 'Овчаренко Лариса Юрьевна', role: 'Начальник деп. клинических и психологических основ', deg: 'доцент, к. пс. н.', photo: null }
+      { name: 'Парамонова Галина Витальевна', role: 'Начальник деп. организации образовательного процесса', deg: 'ст. преп.', photo: 'images/people/mgpu/Paramonova-GV.webp' },
+      { name: 'Яковлева Ирина Михайловна', role: 'Начальник деп. социально-психологических технологий', deg: 'проф., д. пед. н.', photo: 'images/people/mgpu/Yakovleva-IM.webp' },
+      { name: 'Овчаренко Лариса Юрьевна', role: 'Начальник деп. клинических и психологических основ', deg: 'доцент, к. пс. н.', photo: 'images/people/mgpu/Ovcharenko-LY.webp' }
     ]
   },
   {
@@ -694,7 +726,7 @@ const orgData = [
     subtitle: 'Деп. организации образовательного процесса и работы с молодёжью · каб. 405–406',
     color: 'var(--brown)',
     staff: [
-      { name: 'Парамонова Галина Витальевна', role: 'Начальник департамента', deg: 'ст. преп.', note: 'ликвидация акад. задолженностей, досрочная/продлённая сессия, общие вопросы образ. процесса — каб. 406', photo: null },
+      { name: 'Парамонова Галина Витальевна', role: 'Начальник департамента', deg: 'ст. преп.', note: 'ликвидация акад. задолженностей, досрочная/продлённая сессия, общие вопросы образ. процесса — каб. 406', photo: 'images/people/mgpu/Paramonova-GV.webp' },
       { name: 'расписание', role: '', deg: 'вакансия', vacant: true, photo: null },
       { name: 'Вдовина Валентина Владимировна', role: '', deg: 'специалист по УМР · каб. 405', photo: null },
       { name: 'Горожанкина Оксана Николаевна', role: '', deg: 'специалист · представительская площадка ИПКР · каб. 202', photo: null },
@@ -714,7 +746,7 @@ const orgData = [
     color: 'var(--green)',
     staff: [
       { divider: 'Руководство' },
-      { name: 'Яковлева Ирина Михайловна', role: 'Начальник департамента', deg: 'проф., д. пед. н.', photo: null },
+      { name: 'Яковлева Ирина Михайловна', role: 'Начальник департамента', deg: 'проф., д. пед. н.', photo: 'images/people/mgpu/Yakovleva-IM.webp' },
       { divider: 'Профессорско-преподавательский состав' },
       { name: 'Афанасьева Юлия Анатольевна', role: '', deg: 'доц., к. пед. н.', photo: null },
       { name: 'Беглова Ольга Александровна', role: '', deg: 'доц., к. пед. н.', photo: null },
@@ -729,7 +761,7 @@ const orgData = [
       { name: 'Долгих Ольга Владимировна', role: '', deg: 'доц., к. филол. н.', photo: null },
       { name: 'Дорошенко Татьяна Николаевна', role: '', deg: 'доц., к. пед. н.', photo: null },
       { name: 'Екжанова Елена Анатольевна', role: '', deg: 'проф., д. пед. н.', photo: null },
-      { name: 'Журавлёва Жанна Игоревна', role: '', deg: 'доц., к. пс. н. (замдир.)', photo: null },
+      { name: 'Журавлёва Жанна Игоревна', role: '', deg: 'доц., к. пс. н. (замдир.)', photo: 'images/people/mgpu/Juravleva-JI.webp' },
       { name: 'Зарецкая Анна Романовна', role: '', deg: 'ассистент', photo: null },
       { name: 'Звягинцева Анна Алексеевна', role: '', deg: 'ст. преп.', photo: null },
       { name: 'Караневская Ольга Викторовна', role: '', deg: 'доц., к. пед. н.', photo: null },
@@ -775,7 +807,7 @@ const orgData = [
     color: '#6b3a8f',
     staff: [
       { divider: 'Руководство' },
-      { name: 'Овчаренко Лариса Юрьевна', role: 'Начальник департамента', deg: 'доцент, к. пс. н.', photo: null },
+      { name: 'Овчаренко Лариса Юрьевна', role: 'Начальник департамента', deg: 'доцент, к. пс. н.', photo: 'images/people/mgpu/Ovcharenko-LY.webp' },
       { divider: 'Профессорско-преподавательский состав' },
       { name: 'Ананьева Елена Владимировна', role: '', deg: 'ст. преп.', photo: null },
       { name: 'Баранова Екатерина Михайловна', role: '', deg: 'доц., к. пед. н. · акад. мобильность, студенты-иностранцы, межд. конкурсы', photo: null },
@@ -819,12 +851,12 @@ const orgData = [
     ],
     staff: [
       { divider: 'Руководство ССиА' },
-      { hero: true, name: 'Толоконников Кирилл Андреевич', role: 'Председатель', deg: 'студент 3 курса, Психология', photo: null, email: 'TolokonnikovKA944@mgpu.ru', vk: 'https://vk.ru/odessa__1794' },
-      { name: 'Транковская Анна Сергеевна', role: 'Зампредседателя', deg: 'студентка 3 курса, Логопедия', photo: null, featured: 'deputy' },
+      { hero: true, name: 'Толоконников Кирилл Андреевич', role: 'Председатель', deg: 'студент 3 курса, Психология', photo: 'images/people/ssia/Tolokonnikov.webp', email: 'TolokonnikovKA944@mgpu.ru', vk: 'https://vk.ru/odessa__1794' },
+      { name: 'Транковская Анна Сергеевна', role: 'Зампредседателя', deg: 'студентка 3 курса, Логопедия', photo: 'images/people/ssia/Trankovskaya.webp', featured: 'deputy' },
       { divider: 'Руководители направлений' },
       { name: 'Крючков Георгий Александрович', role: 'Проектное направление', deg: 'студент 3 курса, ОРМ', photo: null },
       { name: 'Злобина Дарья Антоновна', role: 'Медианаправление', deg: 'студентка 3 курса, Логопедия', photo: null },
-      { name: 'Транковская Анна Сергеевна', role: 'Аналитическое направление', deg: 'студентка 3 курса, Логопедия', photo: null },
+      { name: 'Транковская Анна Сергеевна', role: 'Аналитическое направление', deg: 'студентка 3 курса, Логопедия', photo: 'images/people/ssia/Trankovskaya.webp' },
       { divider: 'Организационный блок' },
       { name: 'Костикова Александра Александровна', role: 'Ответственная за старост', deg: 'студентка 2 курса, ОРМ', photo: null },
       { name: 'Коротун Григорий Владимирович', role: 'Референт', deg: 'студент 1 курса, Логопедия', photo: null }
@@ -863,7 +895,7 @@ const orgData = [
     subtitle: 'каб. 411',
     color: '#2a7a6a',
     staff: [
-      { name: 'Журавлёва Жанна Игоревна', role: 'Руководитель', deg: 'доц., к. пс. н. · замдир. ИПКР', note: 'общее руководство восп. работой, паблик ВК ИПКР, взаимодействие с ССиА', photo: null },
+      { name: 'Журавлёва Жанна Игоревна', role: 'Руководитель', deg: 'доц., к. пс. н. · замдир. ИПКР', note: 'общее руководство восп. работой, паблик ВК ИПКР, взаимодействие с ССиА', photo: 'images/people/mgpu/Juravleva-JI.webp' },
       { name: 'Григоренко Наталья Юрьевна', role: '', deg: 'доц., к. пед. н. · ДПО (ПК, проф. переподгот.)', photo: null },
       { name: 'Львова Светлана Владимировна', role: '', deg: 'доц., к. пс. н. · культурно-масс. мероприятия, конкурсы, куратор восп. работы', photo: null },
       { name: 'Пыченкова Анастасия Александровна', role: '', deg: 'ассистент · профориентация', photo: null },
@@ -881,17 +913,17 @@ const universityData = [
     color: '--navy',
     label: 'Управленческий состав',
     staff: [
-      { hero: true, name: 'Геворкян Елена Николаевна', role: 'и. о. Ректора', deg: 'доктор экономических наук, профессор', photo: null, email: 'Gevorcian@mgpu.ru' },
+      { hero: true, name: 'Геворкян Елена Николаевна', role: 'и. о. Ректора', deg: 'доктор экономических наук, профессор', photo: 'images/people/mgpu/Gevorkyan-EN.webp', email: 'Gevorcian@mgpu.ru' },
       { divider: 'Проректоры' },
-      { name: 'Агранат Дмитрий Львович', role: 'Проректор по учебной работе', deg: 'доктор социологических наук, доцент', photo: null, email: 'Agranat@mgpu.ru' },
-      { name: 'Комаров Роман Владимирович', role: 'Проректор', deg: 'кандидат психологических наук, доцент', photo: null, email: 'KomarovRV@mgpu.ru' },
-      { name: 'Сильянов Евгений Александрович', role: 'Проректор', deg: 'кандидат философских наук, доцент', photo: null, email: 'SiluanovEA@mgpu.ru' },
-      { name: 'Сулейманов Руслан Сулейманович', role: 'Проректор', deg: 'кандидат технических наук', photo: null, email: 'SulejmanovRS@mgpu.ru' },
-      { name: 'Закиров Олег Алиевич', role: 'Проректор по развитию молодёжной политики', deg: 'кандидат исторических наук', photo: null, email: 'ZakirovOA@mgpu.ru' },
+      { name: 'Агранат Дмитрий Львович', role: 'Проректор по учебной работе', deg: 'доктор социологических наук, доцент', photo: 'images/people/mgpu/Agranat-DL.webp', email: 'Agranat@mgpu.ru' },
+      { name: 'Комаров Роман Владимирович', role: 'Проректор', deg: 'кандидат психологических наук, доцент', photo: 'images/people/mgpu/Komarov-RV.webp', email: 'KomarovRV@mgpu.ru' },
+      { name: 'Сильянов Евгений Александрович', role: 'Проректор', deg: 'кандидат философских наук, доцент', photo: 'images/people/mgpu/Silyanov-EA.webp', email: 'SiluanovEA@mgpu.ru' },
+      { name: 'Сулейманов Руслан Сулейманович', role: 'Проректор', deg: 'кандидат технических наук', photo: 'images/people/mgpu/Suleymanov-RS.webp', email: 'SulejmanovRS@mgpu.ru' },
+      { name: 'Закиров Олег Алиевич', role: 'Проректор по развитию молодёжной политики', deg: 'кандидат исторических наук', photo: 'images/people/mgpu/Zakirov-OA.webp', email: 'ZakirovOA@mgpu.ru' },
       { divider: 'Управления' },
-      { name: 'Гусар Екатерина Николаевна', role: 'Начальник управления финансов МГПУ', deg: '', photo: null, email: 'GusarE@mgpu.ru' },
-      { name: 'Кутунов Алексей Борисович', role: 'Начальник управления безопасности и административно-хозяйственного обеспечения МГПУ', deg: '', photo: null, email: 'KitunovAB@mgpu.ru' },
-      { name: 'Барсов Вячеслав Юрьевич', role: 'Начальник управления коммуникаций и молодёжной политики МГПУ', deg: 'УКМП', photo: null, email: 'Barsov@mgpu.ru' }
+      { name: 'Гусар Екатерина Николаевна', role: 'Начальник управления финансов МГПУ', deg: '', photo: 'images/people/mgpu/Gusar-EN.webp', email: 'GusarE@mgpu.ru' },
+      { name: 'Кутунов Алексей Борисович', role: 'Начальник управления безопасности и административно-хозяйственного обеспечения МГПУ', deg: '', photo: 'images/people/mgpu/Kutunov-AB.webp', email: 'KitunovAB@mgpu.ru' },
+      { name: 'Барсов Вячеслав Юрьевич', role: 'Начальник управления коммуникаций и молодёжной политики МГПУ', deg: 'УКМП', photo: 'images/people/mgpu/Barsov-VY.webp', email: 'Barsov@mgpu.ru' }
     ]
   },
   {
@@ -902,39 +934,39 @@ const universityData = [
     color: '--accent',
     label: 'Актив совета',
     staff: [
-      { hero: true, name: 'Пурбайрам Таисия Мехмановна', role: 'Председатель ССиА МГПУ', deg: '', photo: null, email: 'purbairam@mgpu.ru' },
+      { hero: true, name: 'Пурбайрам Таисия Мехмановна', role: 'Председатель ССиА МГПУ', deg: '', photo: 'images/people/ssia/Purbayram.webp', email: 'purbairam@mgpu.ru' },
       { divider: 'Заместители председателя' },
-      { name: 'Виташова Анастасия Андреевна', role: 'Заместитель председателя ССиА МГПУ по внутренним делам', deg: '', photo: null, email: 'vitashovaaa999@mgpu.ru' },
-      { name: 'Чумакова Алёна Леонидовна', role: 'Заместитель председателя ССиА МГПУ по медиа и информационному освещению', deg: '', photo: null, email: 'chumakovaal408@mgpu.ru' },
-      { name: 'Саньков Даниил Дмитриевич', role: 'Заместитель председателя ССиА МГПУ по административной работе', deg: '', photo: null, email: 'sankovdd990@mgpu.ru' },
+      { name: 'Виташова Анастасия Андреевна', role: 'Заместитель председателя ССиА МГПУ по внутренним делам', deg: '', photo: 'images/people/ssia/Vitashova.webp', email: 'vitashovaaa999@mgpu.ru' },
+      { name: 'Чумакова Алёна Леонидовна', role: 'Заместитель председателя ССиА МГПУ по медиа и информационному освещению', deg: '', photo: 'images/people/ssia/Chumakova.webp', email: 'chumakovaal408@mgpu.ru' },
+      { name: 'Саньков Даниил Дмитриевич', role: 'Заместитель председателя ССиА МГПУ по административной работе', deg: '', photo: 'images/people/ssia/Sankov.webp', email: 'sankovdd990@mgpu.ru' },
       { vacant: true, name: 'Вакантно', role: 'Заместитель председателя ССиА МГПУ по позиционированию и внешним взаимодействиям', deg: 'вакансия', photo: null },
       { divider: 'Секретариат и направления' },
-      { name: 'Гуляев Артём Дмитриевич', role: 'Ответственный секретарь ССиА МГПУ', deg: '', photo: null, email: 'gulyaevad531@mgpu.ru' },
-      { name: 'Хиценко Анастасия Михайловна', role: 'Ответственная за работу со старостами', deg: '', photo: null, email: 'khitsenkoam384@mgpu.ru' }
+      { name: 'Гуляев Артём Дмитриевич', role: 'Ответственный секретарь ССиА МГПУ', deg: '', photo: 'images/people/ssia/Gulyaev.webp', email: 'gulyaevad531@mgpu.ru' },
+      { name: 'Хиценко Анастасия Михайловна', role: 'Ответственная за работу со старостами', deg: '', photo: 'images/people/ssia/Hitsenko.webp', email: 'khitsenkoam384@mgpu.ru' }
     ]
   },
   {
     title: "Институт психологии и комплексной реабилитации (ИПКР)",
     color: "--accent",
     email: "ipkr@mgpu.ru",
-    director: { name: "Ушакова Елена Викторовна", role: "Директор института", deg: "кандидат психологических наук, доцент", photo: null },
-    ssiaChair: { name: "Толоконников Кирилл Андреевич", role: "Председатель ССиА ИПКР" },
+    director: { name: "Ушакова Елена Викторовна", role: "Директор института", deg: "кандидат психологических наук, доцент", photo: "images/people/mgpu/Ushakova-EV.webp" },
+    ssiaChair: { name: "Толоконников Кирилл Андреевич", role: "Председатель ССиА ИПКР", photo: "images/people/ssia/Tolokonnikov.webp" },
     campuses: [{ address: "ул. Панфёрова, д. 8, корп. 2", comment: "Основной корпус", coords: [55.680620, 37.542419] }]
   },
   {
     title: "Институт гуманитарных наук (ИГН)",
     color: "--blue",
     email: "ign.info@mgpu.ru",
-    director: { name: "Кириллов Виктор Васильевич", role: "Директор института", deg: "кандидат исторических наук, профессор", photo: null },
-    ssiaChair: { name: "Джавахадзе Эмилия Виталиевна", role: "Председатель ССиА ИГН" },
+    director: { name: "Кириллов Виктор Васильевич", role: "Директор института", deg: "кандидат исторических наук, профессор", photo: "images/people/mgpu/Kirillov-VV.webp" },
+    ssiaChair: { name: "Джавахадзе Эмилия Виталиевна", role: "Председатель ССиА ИГН", photo: "images/people/ssia/Dzhavakhadze.webp" },
     campuses: [{ address: "2-й Сельскохозяйственный проезд, д. 4, корп. 1", comment: "Основной корпус", coords: [55.833643, 37.643471] }]
   },
   {
     title: "Институт иностранных языков (ИИЯ)",
     color: "--teal",
     email: "iiya.info@mgpu.ru",
-    director: { name: "Тарева Елена Генриховна", role: "Директор института", deg: "доктор педагогических наук, профессор", photo: null },
-    ssiaChair: { name: "Талдонова Арина Александровна", role: "Председатель ССиА ИИЯ" },
+    director: { name: "Тарева Елена Генриховна", role: "Директор института", deg: "доктор педагогических наук, профессор", photo: "images/people/mgpu/Tareva-EG.webp" },
+    ssiaChair: { name: "Талдонова Арина Александровна", role: "Председатель ССиА ИИЯ", photo: "images/people/ssia/Taldonova.webp" },
     campuses: [
       { address: "ул. Полтавская, д. 3", comment: "Корпус Полтавская", coords: [55.793652, 37.573043] },
       { address: "Малый Казённый пер., д. 5Б", comment: "Корпус Курская / Администрация", coords: [55.761558, 37.654295] }
@@ -944,8 +976,8 @@ const universityData = [
     title: "Институт культуры и искусств (ИКИ)",
     color: "--red",
     email: "iki.info@mgpu.ru",
-    director: { name: "Левина Ирина Дмитриевна", role: "Директор института", deg: "кандидат педагогических наук, доцент", photo: null },
-    ssiaChair: { name: "Носиков Илья Александрович", role: "Председатель ССиА ИКИ" },
+    director: { name: "Левина Ирина Дмитриевна", role: "Директор института", deg: "кандидат педагогических наук, доцент", photo: "images/people/mgpu/Levina-ID.webp" },
+    ssiaChair: { name: "Носиков Илья Александрович", role: "Председатель ССиА ИКИ", photo: "images/people/ssia/Nosikov.webp" },
     campuses: [
       { address: "ул. Фабрициуса, д. 21", comment: "Корпус Сходненская", coords: [55.843394, 37.434047] },
       { address: "ул. Марии Ульяновой, д. 21", comment: "Основной корпус / Администрация", coords: [55.679534, 37.520509] },
@@ -956,16 +988,16 @@ const universityData = [
     title: "Институт педагогики и психологии образования (ИППО)",
     color: "--brown",
     email: "ippo.info@mgpu.ru",
-    director: { name: "Савенков Александр Ильич", role: "Директор института", deg: "академик РАО, доктор педагогических наук, доктор психологических наук, профессор", photo: null },
-    ssiaChair: { name: "Пимнева Ангелина Алексеевна", role: "Председатель ССиА ИППО" },
+    director: { name: "Савенков Александр Ильич", role: "Директор института", deg: "академик РАО, доктор педагогических наук, доктор психологических наук, профессор", photo: "images/people/mgpu/Savenkov-AI.webp" },
+    ssiaChair: { name: "Пимнева Ангелина Алексеевна", role: "Председатель ССиА ИППО", photo: "images/people/ssia/Pimneva.webp" },
     campuses: [{ address: "Столярный пер., д. 16, стр. 1", comment: "Основной корпус", coords: [55.764131, 37.566198] }]
   },
   {
     title: "Институт экономики, управления и права (ИЭУиП)",
     color: "--purple",
     email: "ieup.info@mgpu.ru",
-    director: { name: "Абрамов Руслан Агарунович", role: "Директор института", deg: "доктор экономических наук, профессор", photo: null },
-    ssiaChair: { name: "Невядомская Алёна Артёмовна", role: "и. о. Председателя ССиА ИЭУиП" },
+    director: { name: "Абрамов Руслан Агарунович", role: "Директор института", deg: "доктор экономических наук, профессор", photo: "images/people/mgpu/Abramov-RA.webp" },
+    ssiaChair: { name: "Невядомская Алёна Артёмовна", role: "и. о. Председателя ССиА ИЭУиП", photo: "images/people/ssia/Nevyadomskaya.webp" },
     campuses: [
       { address: "Новокузнецкая ул., д. 16, стр. 10", comment: "Основной корпус", coords: [55.737040, 37.629816] },
       { address: "2-й Тульский пер., д. 4", comment: "Гуманитарно-правовой колледж ИЭУиП", coords: [55.703941, 37.619899] }
@@ -975,8 +1007,8 @@ const universityData = [
     title: "Институт естествознания и спортивных технологий (ИЕСТ)",
     color: "--green",
     email: "iest@mgpu.ru",
-    director: { name: "Страдзе Александр Эдуардович", role: "Директор института", deg: "доктор социологических наук, профессор", photo: null },
-    ssiaChair: { name: "Саньков Даниил Дмитриевич", role: "Председатель ССиА ИЕСТ" },
+    director: { name: "Страдзе Александр Эдуардович", role: "Директор института", deg: "доктор социологических наук, профессор", photo: "images/people/mgpu/Stradze-AE.webp" },
+    ssiaChair: { name: "Саньков Даниил Дмитриевич", role: "Председатель ССиА ИЕСТ", photo: "images/people/ssia/Sankov.webp" },
     campuses: [
       { address: "ул. Чечулина, д. 1", comment: "Корпус 1", coords: [55.779793, 37.820600] },
       { address: "ул. Чечулина, д. 3, корп. 1", comment: "Основной корпус / Администрация", coords: [55.780243, 37.823888] }
@@ -986,8 +1018,8 @@ const universityData = [
     title: "Институт цифрового образования (ИЦО)",
     color: "--slate",
     email: "ide@mgpu.ru",
-    director: { name: "Абрамов Владимир Иванович", role: "Директор института", deg: "кандидат экономических наук", photo: null },
-    ssiaChair: { name: "Комиссарова Карина Арсеньевна", role: "Председатель ССиА ИЦО" },
+    director: { name: "Абрамов Владимир Иванович", role: "Директор института", deg: "кандидат экономических наук", photo: "images/people/mgpu/Abramov-VI.webp" },
+    ssiaChair: { name: "Комиссарова Карина Арсеньевна", role: "Председатель ССиА ИЦО", photo: "images/people/ssia/Komissarova.webp" },
     campuses: [
       { address: "Шереметьевская ул., д. 28", comment: "Корпус Б / Администрация", coords: [55.806439, 37.616243] },
       { address: "Шереметьевская ул., д. 29", comment: "Корпус А", coords: [55.804106, 37.614985] }
@@ -997,8 +1029,8 @@ const universityData = [
     title: "Институт среднего профессионального образования им. К.Д. Ушинского (ИСПО)",
     color: "--olive",
     email: "ispo.info@mgpu.ru",
-    director: { name: "Ерёмин Сергей Владимирович", role: "Директор института", deg: "кандидат педагогических наук", photo: null },
-    ssiaChair: { name: "Кузин Алексей Михайлович", role: "Председатель ССиА ИСПО" },
+    director: { name: "Ерёмин Сергей Владимирович", role: "Директор института", deg: "кандидат педагогических наук", photo: "images/people/mgpu/Eremin-SV.webp" },
+    ssiaChair: { name: "Кузин Алексей Михайлович", role: "Председатель ССиА ИСПО", photo: "images/people/ssia/Kuzin-AM.webp" },
     campuses: [
       { address: "Поклонная ул., д. 2", comment: "«Колледж Дорогомилово»", coords: [55.737649, 37.531631] },
       { address: "Измайловский бульвар, д. 19", comment: "«Колледж Измайлово»", coords: [55.797680, 37.790462] },
@@ -1015,7 +1047,7 @@ const universityData = [
     subtitle: "Особый статус: подготовка только магистров",
     color: "--endow",
     email: "dep.info@mgpu.ru",
-    director: { name: "Никитина Евгения Сергеевна", role: "Директор дирекции", deg: "", photo: null },
+    director: { name: "Никитина Евгения Сергеевна", role: "Директор дирекции", deg: "", photo: "images/people/mgpu/Nikitina-ES.webp" },
     campuses: [
       { address: "2-й Сельскохозяйственный проезд, д. 4, корп. 2, каб. 2202", comment: "Адрес руководства / дирекция", coords: [55.833450, 37.642743] },
       { address: "Садовая-Самотёчная ул., д. 8", comment: "Корпус для занятий (магистратура) / Представительский корпус МГПУ", coords: [55.772948, 37.614437] }
@@ -1025,7 +1057,7 @@ const universityData = [
     title: "Самарский филиал МГПУ",
     color: "--gray",
     email: "samara@mgpu.ru",
-    director: { name: "Козловская Галина Ефимовна", role: "Директор филиала", deg: "доктор исторических наук, профессор", photo: null },
+    director: { name: "Козловская Галина Ефимовна", role: "Директор филиала", deg: "доктор исторических наук, профессор", photo: "images/people/mgpu/Kozlovskaya-GE.webp" },
     campuses: [{ address: "г. Самара, ул. Стара Загора, д. 76", comment: "Филиал" }]
   }
 ];
@@ -1145,22 +1177,28 @@ const ICONS = {
   link:     '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l2.12-2.12a5 5 0 0 0-7.07-7.07L11 4.93"/><path d="M14 11a5 5 0 0 0-7.07 0L4.81 13.12a5 5 0 0 0 7.07 7.07L13 19.07"/></svg>'
 };
 
+function renderAvatar(person, color) {
+  const accent = getCssColor(color || 'var(--navy)');
+  const media = person.photo
+    ? `<img class="avatar avatar-media" src="${person.photo}" alt="${person.name}" loading="lazy" decoding="async">`
+    : `<div class="avatar-placeholder avatar-media">${AVATAR_SVG}</div>`;
+  return `<div class="avatar-shell" style="--avatar-accent:${accent}"><div class="avatar-frame">${media}</div></div>`;
+}
+
 function renderCard(person, color) {
   if (person.divider) {
     return `<div style="grid-column:1/-1;font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;padding:16px 0 4px;border-bottom:2px solid var(--warm);margin-bottom:-4px;margin-top:8px;">${person.divider}</div>`;
   }
   if (person.vacant) {
     return `<div class="card">
-      <div class="avatar-placeholder">${AVATAR_SVG}</div>
+      ${renderAvatar(person, color)}
       <div class="card-text">
         <div class="role" style="color:#c0392b;opacity:1">${person.name}</div>
         <div class="deg" style="color:#c0392b">${person.deg || ''}</div>
       </div>
     </div>`;
   }
-  const avatar = person.photo
-    ? `<img class="avatar" src="${person.photo}" alt="${person.name}">`
-    : `<div class="avatar-placeholder">${AVATAR_SVG}</div>`;
+  const avatar = renderAvatar(person, color);
   const hasContacts = person.room || person.phone || person.email || person.vk;
   const contactsHtml = hasContacts ? `<div class="card-contacts">
     ${person.room ? `<div class="card-contact-item">${ICONS.location}<span>${person.room}</span></div>` : ''}
@@ -1324,15 +1362,8 @@ function showInstituteDetail(idx) {
   }
 
   const d = item.director;
-  const dirCard = `<div class="card">
-    <div class="avatar-placeholder">${AVATAR_SVG}</div>
-    <div class="card-text">
-      <div class="role">${d.role}</div>
-      <div class="name" style="font-weight:700">${d.name}</div>
-      ${d.deg ? `<div class="deg">${d.deg}</div>` : ''}
-    </div>
-  </div>`;
-  const ssiaHtml = item.ssiaChair ? renderCard(item.ssiaChair, `var(${item.color})`) : '';
+  const dirCard = renderCard(d, getUniColor(item));
+  const ssiaHtml = item.ssiaChair ? renderCard(item.ssiaChair, getUniColor(item)) : '';
   const addressesHtml = (item.campuses || []).map(c => `
     <div class="uni-address-item">
       <span class="uni-addr-text">${c.address}</span>
