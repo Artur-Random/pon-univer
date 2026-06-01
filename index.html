@@ -162,30 +162,35 @@ body.dark-theme .btn-back{
 .card .deg{font-size:11.5px;font-weight:600;color:var(--tmid);line-height:1.4}
 
 /* ── Avatar shell / squircle ── */
+.avatar-button{
+  display:inline-flex;background:none;border:none;padding:0;margin:0;
+  cursor:zoom-in;flex-shrink:0;
+  -webkit-tap-highlight-color:transparent;
+}
 .avatar-shell{
   width:58px;height:58px;flex-shrink:0;
-  border-radius:22px;padding:3px;
-  background:rgba(255,255,255,.35);
-  border:1px solid rgba(255,255,255,.55);
-  box-shadow:0 10px 24px rgba(42,49,83,.12),inset 0 1px 0 rgba(255,255,255,.65);
+  border-radius:22px;padding:2px;
+  background:rgba(255,255,255,.26);
+  border:1px solid rgba(255,255,255,.38);
+  box-shadow:0 8px 20px rgba(42,49,83,.09),inset 0 1px 0 rgba(255,255,255,.50);
   backdrop-filter:blur(14px) saturate(150%);
   -webkit-backdrop-filter:blur(14px) saturate(150%);
 }
 body.dark-theme .avatar-shell{
-  background:rgba(255,255,255,.06);
-  border-color:rgba(255,255,255,.10);
-  box-shadow:0 12px 26px rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.08);
+  background:rgba(255,255,255,.05);
+  border-color:rgba(255,255,255,.08);
+  box-shadow:0 10px 22px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,255,255,.06);
 }
 .avatar-frame{
   width:100%;height:100%;
-  padding:2px;
+  padding:1.5px;
   background:var(--avatar-accent,var(--gold));
-  border-radius:17px;overflow:hidden;
+  border-radius:18px;overflow:hidden;
 }
 .avatar-media{
   width:100%;height:100%;
   display:block;object-fit:cover;object-position:center;
-  aspect-ratio:1/1;border-radius:13px;
+  aspect-ratio:1/1;border-radius:15px;
   -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 50 0 C 90 0 100 10 100 50 C 100 90 90 100 50 100 C 10 100 0 90 0 50 C 0 10 10 0 50 0 Z'/%3E%3C/svg%3E");
   mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 50 0 C 90 0 100 10 100 50 C 100 90 90 100 50 100 C 10 100 0 90 0 50 C 0 10 10 0 50 0 Z'/%3E%3C/svg%3E");
   -webkit-mask-size:100% 100%;mask-size:100% 100%;
@@ -231,7 +236,50 @@ body.dark-theme .card.hero{
 .card.staff-card--deputy{padding:13px 14px}
 @media(min-width:768px){
   .card.staff-card--deputy{grid-column:1/-1;max-width:620px;margin:0 auto;width:100%}
-}.card-contact-item a{color:var(--navy);text-decoration:none;font-weight:600;transition:color .2s}
+}
+/* ── Institute director / ssia-chair card variants ── */
+.card-badge{
+  display:inline-flex;width:fit-content;margin-bottom:6px;
+  padding:3px 8px;border-radius:999px;
+  font-size:8px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+}
+.card-badge--director{
+  color:var(--navy);
+  background:rgba(42,49,83,.08);
+  border:1px solid rgba(42,49,83,.12);
+}
+.card-badge--ssia{
+  color:var(--accent);
+  background:rgba(251,112,11,.10);
+  border:1px solid rgba(251,112,11,.20);
+}
+.card--director{
+  background:linear-gradient(160deg,rgba(255,255,255,.95) 0%,rgba(255,255,255,.80) 100%);
+  border-left:3px solid var(--navy);
+}
+.card--ssia-chair{
+  background:linear-gradient(160deg,rgba(255,255,255,.95) 0%,rgba(251,112,11,.05) 100%);
+  border-left:3px solid var(--accent);
+}
+body.dark-theme .card-badge--director{
+  color:rgba(180,195,235,.90);
+  background:rgba(180,195,235,.08);
+  border-color:rgba(180,195,235,.14);
+}
+body.dark-theme .card-badge--ssia{
+  color:var(--accent);
+  background:rgba(251,112,11,.12);
+  border-color:rgba(251,112,11,.22);
+}
+body.dark-theme .card--director{
+  background:linear-gradient(160deg,rgba(255,255,255,.07) 0%,rgba(255,255,255,.03) 100%);
+  border-left-color:rgba(180,195,235,.45);
+}
+body.dark-theme .card--ssia-chair{
+  background:linear-gradient(160deg,rgba(255,255,255,.07) 0%,rgba(251,112,11,.06) 100%);
+  border-left-color:rgba(251,112,11,.45);
+}
+.card-contact-item a{color:var(--navy);text-decoration:none;font-weight:600;transition:color .2s}
 .card-contact-item a:hover{color:var(--accent)}
 .card-schedule{background:var(--cream);border-left:3px solid var(--accent);padding:10px 12px;margin-top:10px;border-radius:0 4px 4px 0;font-size:12px}
 .schedule-note{color:var(--burgundy);font-weight:600;font-size:11px;margin-bottom:6px;display:block;text-transform:uppercase;letter-spacing:.05em}
@@ -505,6 +553,53 @@ body.modal-open{overflow:hidden}
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
 }
 .img-modal-close:hover{background:rgba(255,255,255,.26)}
+/* ── Person photo modal ── */
+body.person-photo-open{overflow:hidden}
+.person-photo-modal{
+  position:fixed;top:0;left:0;right:0;bottom:0;z-index:5000;
+  background:rgba(10,12,20,.80);
+  backdrop-filter:blur(18px) saturate(160%);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity .25s ease;
+}
+.person-photo-modal.active{opacity:1;pointer-events:auto}
+.person-photo-modal-inner{
+  display:flex;flex-direction:column;align-items:center;gap:16px;
+  position:relative;
+  transform:scale(.93);transition:transform .3s cubic-bezier(.4,0,.2,1);
+}
+.person-photo-modal.active .person-photo-modal-inner{transform:scale(1)}
+.person-photo-modal-img{
+  display:block;
+  width:min(512px, 88vw);height:min(512px, 70vh);
+  object-fit:cover;object-position:center;
+  border-radius:min(96px, 18.75%);
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 50 0 C 90 0 100 10 100 50 C 100 90 90 100 50 100 C 10 100 0 90 0 50 C 0 10 10 0 50 0 Z'/%3E%3C/svg%3E");
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 50 0 C 90 0 100 10 100 50 C 100 90 90 100 50 100 C 10 100 0 90 0 50 C 0 10 10 0 50 0 Z'/%3E%3C/svg%3E");
+  -webkit-mask-size:100% 100%;mask-size:100% 100%;
+  box-shadow:0 32px 80px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.08);
+}
+.person-photo-modal-meta{text-align:center;}
+.person-photo-modal-name{
+  color:#fff;font-size:15px;font-weight:700;
+  text-shadow:0 1px 6px rgba(0,0,0,.45);
+  margin-bottom:4px;
+}
+.person-photo-modal-role{
+  color:rgba(255,255,255,.65);font-size:12px;
+}
+.person-photo-modal-close{
+  position:absolute;top:-12px;right:-12px;
+  width:32px;height:32px;
+  background:rgba(255,255,255,.16);color:#fff;
+  border:none;border-radius:50%;font-size:20px;line-height:1;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  transition:background .2s;
+}
+.person-photo-modal-close:hover{background:rgba(255,255,255,.28)}
 /* ── Master card extras ── */
 .master-card-count{font-size:11px;color:var(--tmid);margin-top:4px}
 .soon-badge{
@@ -668,6 +763,18 @@ body.dark-theme .detail-source{border-top-color:rgba(255,255,255,.08)}
     <img id="img-modal-img" class="img-modal-img" src="" alt="">
   </div>
   <button id="img-modal-close" class="img-modal-close" type="button" aria-label="Закрыть">×</button>
+</div>
+
+<!-- Person photo modal -->
+<div id="person-photo-modal" class="person-photo-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Фото сотрудника">
+  <div class="person-photo-modal-inner">
+    <button id="person-photo-modal-close" class="person-photo-modal-close" type="button" aria-label="Закрыть">×</button>
+    <img id="person-photo-modal-img" class="person-photo-modal-img" src="" alt="">
+    <div class="person-photo-modal-meta">
+      <div id="person-photo-modal-name" class="person-photo-modal-name"></div>
+      <div id="person-photo-modal-role" class="person-photo-modal-role"></div>
+    </div>
+  </div>
 </div>
 
 <!-- Bottom Sheet Overlay -->
@@ -1182,10 +1289,16 @@ function renderAvatar(person, color) {
   const media = person.photo
     ? `<img class="avatar avatar-media" src="${person.photo}" alt="${person.name}" loading="lazy" decoding="async">`
     : `<div class="avatar-placeholder avatar-media">${AVATAR_SVG}</div>`;
-  return `<div class="avatar-shell" style="--avatar-accent:${accent}"><div class="avatar-frame">${media}</div></div>`;
+  const shell = `<div class="avatar-shell" style="--avatar-accent:${accent}"><div class="avatar-frame">${media}</div></div>`;
+  if (person.photo) {
+    const role = (person.role || '').replace(/"/g, '&quot;');
+    const name = (person.name || '').replace(/"/g, '&quot;');
+    return `<button class="avatar-button" type="button" aria-label="Открыть фото: ${name}" data-photo="${person.photo}" data-name="${name}" data-role="${role}">${shell}</button>`;
+  }
+  return shell;
 }
 
-function renderCard(person, color) {
+function renderCard(person, color, options = {}) {
   if (person.divider) {
     return `<div style="grid-column:1/-1;font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;padding:16px 0 4px;border-bottom:2px solid var(--warm);margin-bottom:-4px;margin-top:8px;">${person.divider}</div>`;
   }
@@ -1211,9 +1324,16 @@ function renderCard(person, color) {
     ${person.schedule.map(s => `<div class="schedule-line"><span>${s.label}</span> <strong>${s.time}</strong></div>`).join('')}
   </div>` : '';
   const deputyClass = person.featured === 'deputy' ? ' staff-card--deputy' : '';
-  return `<div class="card${person.hero ? ' hero' : ''}${deputyClass}">
+  const variantClass = options.variant === 'director' ? ' card--director' : options.variant === 'ssia-chair' ? ' card--ssia-chair' : '';
+  const badgeHtml = options.variant === 'director'
+    ? `<span class="card-badge card-badge--director">Директор</span>`
+    : options.variant === 'ssia-chair'
+    ? `<span class="card-badge card-badge--ssia">ССиА</span>`
+    : '';
+  return `<div class="card${person.hero ? ' hero' : ''}${deputyClass}${variantClass}">
     ${avatar}
     <div class="card-text">
+      ${badgeHtml}
       ${person.role ? `<div class="role">${person.role}</div>` : ''}
       <div class="name" ${person.role ? 'style="font-weight:700"' : ''}>${person.name}</div>
       ${person.deg ? `<div class="deg">${person.deg}</div>` : ''}
@@ -1362,8 +1482,8 @@ function showInstituteDetail(idx) {
   }
 
   const d = item.director;
-  const dirCard = renderCard(d, getUniColor(item));
-  const ssiaHtml = item.ssiaChair ? renderCard(item.ssiaChair, getUniColor(item)) : '';
+  const dirCard = renderCard(d, getUniColor(item), { variant: 'director' });
+  const ssiaHtml = item.ssiaChair ? renderCard(item.ssiaChair, getUniColor(item), { variant: 'ssia-chair' }) : '';
   const addressesHtml = (item.campuses || []).map(c => `
     <div class="uni-address-item">
       <span class="uni-addr-text">${c.address}</span>
@@ -1547,7 +1667,9 @@ if (sheetClose) {
 }
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
-    if (document.getElementById('img-modal').classList.contains('active')) closeImageModal();
+    const ppModal = document.getElementById('person-photo-modal');
+    if (ppModal && ppModal.classList.contains('active')) closePersonPhotoModal();
+    else if (document.getElementById('img-modal').classList.contains('active')) closeImageModal();
     else if (sheetOverlay && sheetOverlay.classList.contains('active')) closeSheet();
     else if (searchState !== 'closed') closeSearch();
   }
@@ -1583,6 +1705,47 @@ if (imgModal) {
 if (imgModalClose) {
   imgModalClose.addEventListener('click', closeImageModal);
 }
+
+// ── Person photo modal ──
+const personPhotoModal = document.getElementById('person-photo-modal');
+const personPhotoModalImg = document.getElementById('person-photo-modal-img');
+const personPhotoModalClose = document.getElementById('person-photo-modal-close');
+const personPhotoModalName = document.getElementById('person-photo-modal-name');
+const personPhotoModalRole = document.getElementById('person-photo-modal-role');
+
+function openPersonPhotoModal(src, name, role) {
+  if (!personPhotoModal || !personPhotoModalImg) return;
+  personPhotoModalImg.src = src;
+  personPhotoModalImg.alt = name || '';
+  personPhotoModalName.textContent = name || '';
+  personPhotoModalRole.textContent = role || '';
+  personPhotoModal.classList.add('active');
+  personPhotoModal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('person-photo-open');
+  if (personPhotoModalClose) personPhotoModalClose.focus();
+}
+
+function closePersonPhotoModal() {
+  if (!personPhotoModal) return;
+  personPhotoModal.classList.remove('active');
+  personPhotoModal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('person-photo-open');
+  setTimeout(() => { if (personPhotoModalImg) personPhotoModalImg.src = ''; }, 280);
+}
+
+if (personPhotoModal) {
+  personPhotoModal.addEventListener('click', e => {
+    if (e.target === personPhotoModal) closePersonPhotoModal();
+  });
+}
+if (personPhotoModalClose) {
+  personPhotoModalClose.addEventListener('click', closePersonPhotoModal);
+}
+
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.avatar-button');
+  if (btn) openPersonPhotoModal(btn.dataset.photo, btn.dataset.name, btn.dataset.role);
+});
 
 // ═══════════════════════════════════════════
 //  PLACEHOLDER SECTIONS
