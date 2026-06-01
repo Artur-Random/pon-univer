@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Справочник ИПКР">
 <link rel="apple-touch-icon" href="images/app.png">
-<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Inter:wght@400;500;600&family=Raleway:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Inter:wght@400;500;600&family=Raleway:wght@600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -682,6 +682,253 @@ body.dark-theme .detail-source{border-top-color:rgba(255,255,255,.08)}
 .sheet-content{font-size:15px;line-height:1.5}
 
 /* ── Motion accessibility ── */
+/* ══════════════════════════════════════════
+   HOME SECTION
+   ══════════════════════════════════════════ */
+/* Escape wrap padding so home bleeds edge-to-edge */
+#sec-home.active{
+  margin:-32px -14px 0;
+  padding-bottom:0;
+  max-width:none;
+  overflow:hidden;
+}
+/* ── Hero ── */
+.home-hero{
+  position:relative;overflow:hidden;
+  min-height:calc(100svh - 62px);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:80px 28px 60px;
+  background:linear-gradient(160deg,#0b0f1e 0%,#111b30 55%,#0d1726 100%);
+}
+.home-hero::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 72% 58% at 65% 25%,rgba(42,49,83,.60) 0%,transparent 72%),
+    radial-gradient(ellipse 40% 38% at 8% 72%,rgba(201,151,74,.09) 0%,transparent 60%),
+    radial-gradient(ellipse 30% 25% at 90% 85%,rgba(42,49,120,.15) 0%,transparent 55%);
+}
+body:not(.dark-theme) .home-hero{
+  background:linear-gradient(160deg,#141d36 0%,#1c2d52 55%,#131f38 100%);
+}
+.home-logo-row{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  margin-bottom:44px;position:relative;z-index:1;
+}
+.home-logo-chip{
+  display:inline-flex;align-items:center;justify-content:center;
+  border-radius:20px;padding:10px 16px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.13);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+}
+.home-logo-chip--pu img{height:42px;width:auto;object-fit:contain;}
+.home-logo-chip--ipkr img{
+  max-height:52px;max-width:190px;
+  object-fit:contain;
+}
+.home-hero-eyebrow{
+  font-family:var(--font-head);font-size:10.5px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:14px;opacity:.80;
+  position:relative;z-index:1;
+}
+.home-hero-title{
+  position:relative;z-index:1;
+  font-family:var(--font-head);
+  font-size:clamp(40px,9.5vw,100px);
+  line-height:.88;letter-spacing:-.03em;font-weight:800;
+  color:var(--cream);margin-bottom:22px;overflow:hidden;
+}
+.home-hero-title::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(110deg,transparent 0%,rgba(255,255,255,.68) 45%,transparent 65%);
+  transform:translateX(-130%);
+  animation:titleShine 9s ease-in-out 1.2s infinite;
+  mix-blend-mode:screen;pointer-events:none;
+}
+@keyframes titleShine{
+  0%,100%{transform:translateX(-130%)}
+  38%,62%{transform:translateX(130%)}
+}
+.home-hero-subtitle{
+  font-family:var(--font-head);
+  font-size:clamp(13px,2.4vw,19px);
+  color:rgba(215,225,248,.72);
+  font-weight:600;letter-spacing:.008em;
+  margin-bottom:12px;position:relative;z-index:1;max-width:600px;
+}
+.home-hero-lead{
+  font-size:clamp(14px,1.9vw,16px);
+  color:rgba(195,208,238,.55);
+  line-height:1.60;max-width:540px;margin-bottom:38px;
+  position:relative;z-index:1;
+}
+.home-hero-cta{display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:1;}
+.home-btn{
+  display:inline-flex;align-items:center;
+  padding:13px 26px;border:none;border-radius:14px;
+  font-family:var(--font-head);font-size:13px;font-weight:700;
+  cursor:pointer;transition:all .22s ease;white-space:nowrap;
+  text-decoration:none;letter-spacing:.01em;
+}
+.home-btn--primary{
+  background:var(--navy);color:var(--cream);
+  box-shadow:0 8px 24px rgba(42,49,83,.40);
+}
+.home-btn--primary:hover{background:#323d7a;transform:translateY(-2px);}
+.home-btn--ghost{
+  background:rgba(255,255,255,.09);color:rgba(225,232,255,.88);
+  border:1px solid rgba(255,255,255,.20);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+}
+.home-btn--ghost:hover{background:rgba(255,255,255,.15);}
+/* ── Project map ── */
+.home-menu{
+  padding:56px 28px 48px;
+  background:var(--cream);
+}
+body.dark-theme .home-menu{background:rgba(11,14,26,.92);}
+.home-section-heading{
+  font-family:var(--font-head);
+  font-size:clamp(19px,3.5vw,28px);font-weight:700;
+  color:var(--navy);margin-bottom:6px;
+}
+body.dark-theme .home-section-heading{color:var(--cream);}
+.home-section-sub{
+  font-size:13.5px;color:var(--tmid);margin-bottom:28px;line-height:1.5;
+}
+.home-menu-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:13px;
+}
+@media(min-width:600px){.home-menu-grid{grid-template-columns:repeat(4,1fr);}}
+.home-menu-card{
+  display:flex;flex-direction:column;gap:9px;
+  padding:18px 16px 20px;border-radius:18px;
+  background:rgba(255,255,255,.84);
+  border:1px solid rgba(42,49,83,.09);
+  box-shadow:0 2px 10px rgba(42,49,83,.06);
+  cursor:pointer;transition:all .22s ease;text-align:left;
+  font-family:inherit;outline:none;
+}
+.home-menu-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 30px rgba(42,49,83,.13);
+  border-color:var(--accent);
+}
+.home-menu-card:active{transform:translateY(-1px);}
+body.dark-theme .home-menu-card{
+  background:rgba(255,255,255,.055);
+  border-color:rgba(255,255,255,.10);
+}
+body.dark-theme .home-menu-card:hover{
+  background:rgba(255,255,255,.09);border-color:var(--accent);
+}
+.home-menu-badge{
+  display:inline-flex;width:fit-content;
+  padding:3px 9px;border-radius:999px;
+  font-size:8.5px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;
+  background:rgba(42,49,83,.07);color:var(--navy);
+  border:1px solid rgba(42,49,83,.10);
+}
+body.dark-theme .home-menu-badge{
+  background:rgba(255,255,255,.07);color:rgba(195,208,240,.80);
+  border-color:rgba(255,255,255,.11);
+}
+.home-menu-name{
+  font-family:var(--font-head);font-size:16px;font-weight:700;
+  color:var(--navy);
+}
+body.dark-theme .home-menu-name{color:var(--cream);}
+.home-menu-desc{font-size:12px;color:var(--tmid);line-height:1.5;}
+/* ── About block ── */
+.home-about{
+  padding:64px 28px 60px;
+  background:var(--warm);
+}
+body.dark-theme .home-about{background:rgba(9,12,22,.97);}
+.home-about-inner{
+  max-width:1060px;margin:0 auto;
+  display:grid;grid-template-columns:1fr;gap:36px;
+  align-items:start;
+}
+@media(min-width:768px){
+  .home-about-inner{grid-template-columns:1fr 340px;gap:52px;}
+}
+.home-about-quote{
+  font-size:clamp(15px,2.1vw,17.5px);
+  color:var(--navy);line-height:1.6;
+  border-left:3px solid var(--gold);
+  padding-left:18px;margin-bottom:26px;font-style:italic;
+}
+body.dark-theme .home-about-quote{color:rgba(218,228,252,.82);}
+.home-about-body{
+  font-size:14.5px;color:var(--tmid);line-height:1.76;
+}
+.home-about-body p{margin:0 0 15px;}
+.home-about-body p:last-child{margin-bottom:0;}
+.home-personal-note{
+  font-family:'Caveat',cursive;
+  font-size:23px;font-weight:600;
+  color:var(--navy);line-height:1.35;
+  display:block;margin:26px 0 4px;
+}
+body.dark-theme .home-personal-note{color:rgba(228,236,255,.88);}
+.home-signature{
+  display:flex;flex-direction:column;gap:5px;margin-top:18px;
+}
+.home-signature img{
+  height:50px;width:auto;object-fit:contain;object-position:left center;
+  max-width:200px;
+}
+.home-signature-name{
+  font-family:var(--font-head);font-size:13px;font-weight:700;
+  color:var(--navy);margin-top:4px;
+}
+body.dark-theme .home-signature-name{color:var(--cream);}
+.home-signature-role{font-size:12px;color:var(--tmid);line-height:1.45;}
+.home-author-col{
+  display:flex;flex-direction:column;align-items:center;
+  position:relative;
+}
+.home-author-col::before{
+  content:'';position:absolute;
+  width:260px;height:260px;top:8%;left:50%;
+  transform:translateX(-50%);border-radius:50%;
+  background:radial-gradient(circle,rgba(201,151,74,.16) 0%,transparent 70%);
+  pointer-events:none;
+}
+.home-author-img{
+  position:relative;
+  width:100%;max-height:520px;
+  object-fit:contain;object-position:center top;
+  filter:drop-shadow(0 16px 40px rgba(0,0,0,.20));
+}
+body.dark-theme .home-author-img{
+  filter:drop-shadow(0 20px 52px rgba(0,0,0,.48));
+}
+/* ── Disclaimer ── */
+.home-notice{
+  background:var(--cream);
+  padding:0 28px 56px;
+}
+body.dark-theme .home-notice{background:rgba(9,12,22,.97);}
+.home-notice-inner{
+  max-width:640px;margin:0 auto;
+  padding:16px 20px;border-radius:14px;
+  background:rgba(42,49,83,.05);
+  border:1px solid rgba(42,49,83,.09);
+  font-size:12.5px;color:var(--tmid);line-height:1.65;text-align:center;
+}
+body.dark-theme .home-notice-inner{
+  background:rgba(255,255,255,.04);
+  border-color:rgba(255,255,255,.08);
+}
+/* Nav: 5 buttons, tighter on very small screens */
+@media(max-width:400px){
+  .nav-btn{padding:10px 3px;margin:6px 2px;}
+}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{
     animation:none !important;
@@ -717,7 +964,8 @@ body.dark-theme .detail-source{border-top-color:rgba(255,255,255,.08)}
 
 <nav class="main-nav">
   <div class="nav-container">
-    <button class="nav-btn active" data-target="ipkr">ИПКР</button>
+    <button class="nav-btn active" data-target="home">Главная</button>
+    <button class="nav-btn" data-target="ipkr">ИПКР</button>
     <button class="nav-btn" data-target="uni">МГПУ</button>
     <button class="nav-btn" data-target="handbook">Справочник</button>
     <button class="nav-btn" data-target="contacts">Контакты</button>
@@ -725,7 +973,82 @@ body.dark-theme .detail-source{border-top-color:rgba(255,255,255,.08)}
 </nav>
 
 <div class="wrap">
-  <section id="sec-ipkr" class="main-section active">
+  <section id="sec-home" class="main-section active">
+    <!-- Hero -->
+    <div class="home-hero">
+      <div class="home-logo-row">
+        <div class="home-logo-chip home-logo-chip--pu">
+          <img id="home-pu-logo" src="images/pu.png" alt="Логотип Понятного Университета">
+        </div>
+        <div class="home-logo-chip home-logo-chip--ipkr">
+          <img src="images/logo-ipkr.webp" alt="Логотип Совета студентов и аспирантов ИПКР МГПУ">
+        </div>
+      </div>
+      <div class="home-hero-eyebrow">Студенческий навигатор · МГПУ</div>
+      <h2 class="home-hero-title">ПОНЯТНЫЙ<br>УНИВЕРСИТЕТ</h2>
+      <div class="home-hero-subtitle">Масштабный проект Совета студентов и аспирантов ИПКР МГПУ</div>
+      <div class="home-hero-lead">Права, обязанности, структура университета и полезные ответы — в одном месте.</div>
+      <div class="home-hero-cta">
+        <button class="home-btn home-btn--primary" onclick="document.getElementById('home-menu').scrollIntoView({behavior:'smooth'})">Открыть разделы</button>
+        <button class="home-btn home-btn--ghost" onclick="document.getElementById('home-about').scrollIntoView({behavior:'smooth'})">О проекте</button>
+      </div>
+    </div>
+    <!-- Project map -->
+    <div class="home-menu" id="home-menu">
+      <div class="home-section-heading">Карта проекта</div>
+      <div class="home-section-sub">Выбери раздел — найди нужное быстро</div>
+      <div class="home-menu-grid">
+        <button class="home-menu-card" onclick="switchSection('ipkr')">
+          <span class="home-menu-badge">Институт</span>
+          <span class="home-menu-name">ИПКР</span>
+          <span class="home-menu-desc">Руководство, департаменты, ССиА, сотрудники и полезные контакты института.</span>
+        </button>
+        <button class="home-menu-card" onclick="switchSection('uni')">
+          <span class="home-menu-badge">Университет</span>
+          <span class="home-menu-name">МГПУ</span>
+          <span class="home-menu-desc">Администрация университета, ССиА МГПУ, институты, директора и председатели советов.</span>
+        </button>
+        <button class="home-menu-card" onclick="switchSection('handbook')">
+          <span class="home-menu-badge">Правила</span>
+          <span class="home-menu-name">Справочник</span>
+          <span class="home-menu-desc">Права, обязанности, правила входа, взыскания, запреты и важные ситуации.</span>
+        </button>
+        <button class="home-menu-card" onclick="switchSection('contacts')">
+          <span class="home-menu-badge">Помощь</span>
+          <span class="home-menu-name">Контакты</span>
+          <span class="home-menu-desc">Куда обращаться, если нужен ответ, помощь или консультация.</span>
+        </button>
+      </div>
+    </div>
+    <!-- About -->
+    <div class="home-about" id="home-about">
+      <div class="home-about-inner">
+        <div class="home-about-text">
+          <div class="home-section-heading">О проекте</div>
+          <div class="home-about-quote">Официальные ресурсы отвечают на вопрос: «где это написано?». «Понятный Университет» помогает ответить на вопрос: «что мне сейчас делать?».</div>
+          <div class="home-about-body">
+            <p>Идея «Понятного Университета» появилась у меня в марте 2026 года, во время подготовки программы на выборах председателя Совета студентов и аспирантов МГПУ. Тогда я сформулировал простую мысль: студент не должен узнавать о своих правах и обязанностях случайно, слишком поздно или только после того, как столкнулся с проблемой. Важная информация должна быть рядом: понятной, короткой, проверяемой и написанной человеческим языком.</p>
+            <p>В мае 2026 года эта идея стала частью моей программы на выборах председателя Совета студентов и аспирантов ИПКР МГПУ. После избрания 20 мая она перестала быть только предвыборным пунктом и стала реальным проектом, который мы начали создавать для студентов института. Так появился «Понятный Университет» — студенческий навигатор по правам, обязанностям, структуре университета, правилам, контактам и ситуациям, с которыми студент сталкивается в повседневной жизни.</p>
+            <p>Этот проект не заменяет сайт МГПУ, сайт ИПКР, Личный кабинет студента или официальный Справочник студента МГПУ. Наоборот, без этих ресурсов он не имеет смысла: именно они остаются основными и официальными источниками информации. Наша задача другая — сделать путь к ним проще, быстрее и понятнее. Чтобы студент не терялся в системе, а понимал, куда идти, к кому обращаться и как действовать.</p>
+          </div>
+          <span class="home-personal-note">Важно, чтобы студент понимал систему, а не боялся её.</span>
+          <div class="home-signature">
+            <img id="home-author-signature" src="images/author/signature-dark.svg" alt="Подпись">
+            <div class="home-signature-name">Кирилл Толоконников</div>
+            <div class="home-signature-role">Председатель Совета студентов и аспирантов ИПКР МГПУ</div>
+          </div>
+        </div>
+        <div class="home-author-col">
+          <img id="home-author-portrait" class="home-author-img" src="images/author/author-portrait-light.webp" alt="Кирилл Толоконников" loading="lazy">
+        </div>
+      </div>
+    </div>
+    <!-- Disclaimer -->
+    <div class="home-notice">
+      <div class="home-notice-inner">«Понятный Университет» не заменяет официальные ресурсы МГПУ. Он помогает быстрее понять, где искать ответ и что делать дальше.</div>
+    </div>
+  </section>
+  <section id="sec-ipkr" class="main-section">
     <h2 class="section-title">Институт психологии и комплексной реабилитации</h2>
     <div id="ipkr-master" class="grid-layout"></div>
     <div id="ipkr-detail" style="display:none;"></div>
@@ -2060,6 +2383,16 @@ function applyTheme(isDark) {
   document.body.classList.toggle('dark-theme', isDark);
   themeIcon.textContent = isDark ? '☀️' : '🌙';
   document.getElementById('main-logo').src = isDark ? 'images/dark.png' : 'images/pu.png';
+  const homePuLogo = document.getElementById('home-pu-logo');
+  const homePortrait = document.getElementById('home-author-portrait');
+  const homeSignature = document.getElementById('home-author-signature');
+  if (homePuLogo) homePuLogo.src = isDark ? 'images/dark.png' : 'images/pu.png';
+  if (homePortrait) homePortrait.src = isDark
+    ? 'images/author/author-portrait-dark.webp'
+    : 'images/author/author-portrait-light.webp';
+  if (homeSignature) homeSignature.src = isDark
+    ? 'images/author/signature-light.svg'
+    : 'images/author/signature-dark.svg';
 }
 
 (function() {
@@ -2098,8 +2431,8 @@ window.addEventListener('popstate', (e) => {
 
 (function() {
   const saved = localStorage.getItem('activeTab');
-  const validTabs = ['ipkr', 'uni', 'handbook', 'contacts'];
-  if (saved && saved !== 'ipkr' && validTabs.includes(saved)) switchSection(saved);
+  const validTabs = ['home', 'ipkr', 'uni', 'handbook', 'contacts'];
+  if (saved && validTabs.includes(saved) && saved !== 'home') switchSection(saved);
 })();
 
 // ═══════════════════════════════════════════
