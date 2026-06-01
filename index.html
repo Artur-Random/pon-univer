@@ -195,7 +195,11 @@ body.dark-theme .card.hero{
 .card.hero .role{font-size:11px}
 .card.hero .name{font-size:16px;margin-bottom:6px}
 .card.hero .card-contacts{align-items:center}
-.card.hero .card-text{display:flex;flex-direction:column;align-items:center;width:100%}.card-contact-item a{color:var(--navy);text-decoration:none;font-weight:600;transition:color .2s}
+.card.hero .card-text{display:flex;flex-direction:column;align-items:center;width:100%}
+.card.staff-card--deputy{padding:13px 14px}
+@media(min-width:768px){
+  .card.staff-card--deputy{grid-column:1/-1;max-width:620px;margin:0 auto;width:100%}
+}.card-contact-item a{color:var(--navy);text-decoration:none;font-weight:600;transition:color .2s}
 .card-contact-item a:hover{color:var(--accent)}
 .card-schedule{background:var(--cream);border-left:3px solid var(--accent);padding:10px 12px;margin-top:10px;border-radius:0 4px 4px 0;font-size:12px}
 .schedule-note{color:var(--burgundy);font-weight:600;font-size:11px;margin-bottom:6px;display:block;text-transform:uppercase;letter-spacing:.05em}
@@ -816,7 +820,7 @@ const orgData = [
     staff: [
       { divider: 'Руководство ССиА' },
       { hero: true, name: 'Толоконников Кирилл Андреевич', role: 'Председатель', deg: 'студент 3 курса, Психология', photo: null, email: 'TolokonnikovKA944@mgpu.ru', vk: 'https://vk.ru/odessa__1794' },
-      { name: 'Транковская Анна Сергеевна', role: 'Зампредседателя', deg: 'студентка 3 курса, Логопедия', photo: null },
+      { name: 'Транковская Анна Сергеевна', role: 'Зампредседателя', deg: 'студентка 3 курса, Логопедия', photo: null, featured: 'deputy' },
       { divider: 'Руководители направлений' },
       { name: 'Крючков Георгий Александрович', role: 'Проектное направление', deg: 'студент 3 курса, ОРМ', photo: null },
       { name: 'Злобина Дарья Антоновна', role: 'Медианаправление', deg: 'студентка 3 курса, Логопедия', photo: null },
@@ -1168,7 +1172,8 @@ function renderCard(person, color) {
     ${person.scheduleNote ? `<span class="schedule-note">${ICONS.warning} ${person.scheduleNote}</span>` : ''}
     ${person.schedule.map(s => `<div class="schedule-line"><span>${s.label}</span> <strong>${s.time}</strong></div>`).join('')}
   </div>` : '';
-  return `<div class="card${person.hero ? ' hero' : ''}">
+  const deputyClass = person.featured === 'deputy' ? ' staff-card--deputy' : '';
+  return `<div class="card${person.hero ? ' hero' : ''}${deputyClass}">
     ${avatar}
     <div class="card-text">
       ${person.role ? `<div class="role">${person.role}</div>` : ''}
