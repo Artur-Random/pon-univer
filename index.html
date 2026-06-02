@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Справочник ИПКР">
 <link rel="apple-touch-icon" href="images/app.png">
-<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Inter:wght@400;500;600&family=Raleway:wght@600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Raleway:wght@600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{overflow-x:hidden;max-width:100%}
@@ -91,7 +91,7 @@ h1.t{
 }
 #search-input{
   width:100%;border:none;outline:none;font-size:18px;
-  font-family:'Tenor Sans',sans-serif;color:var(--tdark);background:transparent;
+  font-family:var(--font-main);color:var(--tdark);background:transparent;
 }
 #search-input::placeholder{color:var(--tmid)}
 #search-results{padding:6px 14px 18px;display:flex;flex-direction:column;gap:6px}
@@ -149,7 +149,7 @@ body.dark-theme .master-card.locked-glow{box-shadow:0 0 24px rgba(220,38,38,.4),
   background:rgba(255,255,255,0.6);
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
   border:none;border-bottom:1px solid rgba(0,0,0,0.05);
-  font-family:'Tenor Sans',sans-serif;transition:color .2s,background .2s;
+  font-family:var(--font-main);transition:color .2s,background .2s;
   position:sticky;top:120px;z-index:50;width:calc(100% + 28px);margin-left:-14px;
 }
 .btn-back:hover{color:var(--navy)}
@@ -1208,7 +1208,7 @@ body.dark-theme .russia-day-notice-title{color:rgba(248,250,255,.96);}
 <body>
 
 <header class="site-header">
-  <img src="images/pu.png" alt="Логотип" id="main-logo" class="site-logo">
+  <img src="images/pu.webp" alt="Логотип" id="main-logo" class="site-logo">
   <h1 class="t">ПОНЯТНЫЙ УНИВЕРСИТЕТ | МГПУ</h1>
   <button id="theme-btn" class="icon-btn" aria-label="Сменить тему"><span id="theme-icon" style="font-size:18px;line-height:1">🌙</span></button>
   <button id="search-btn" class="icon-btn" aria-label="Открыть поиск">
@@ -1257,7 +1257,7 @@ body.dark-theme .russia-day-notice-title{color:rgba(248,250,255,.96);}
     <!-- Hero -->
     <div class="home-hero">
       <div class="home-brand-strip">
-        <img id="home-pu-logo" class="home-brand-logo home-brand-logo--pu" src="images/pu.png" alt="Логотип Понятного Университета">
+        <img id="home-pu-logo" class="home-brand-logo home-brand-logo--pu" src="images/pu.webp" alt="Логотип Понятного Университета">
         <span class="home-brand-separator">×</span>
         <img class="home-brand-logo home-brand-logo--ipkr" src="images/logo-ipkr.webp" alt="Логотип ССиА ИПКР МГПУ">
       </div>
@@ -2737,11 +2737,11 @@ const themeIcon = document.getElementById('theme-icon');
 function applyTheme(isDark) {
   document.body.classList.toggle('dark-theme', isDark);
   themeIcon.textContent = isDark ? '☀️' : '🌙';
-  document.getElementById('main-logo').src = isDark ? 'images/dark.png' : 'images/pu.png';
+  document.getElementById('main-logo').src = isDark ? 'images/dark.png' : 'images/pu.webp';
   const homePuLogo = document.getElementById('home-pu-logo');
   const homePortrait = document.getElementById('home-author-portrait');
   const homeSignature = document.getElementById('home-author-signature');
-  if (homePuLogo) homePuLogo.src = isDark ? 'images/dark.png' : 'images/pu.png';
+  if (homePuLogo) homePuLogo.src = isDark ? 'images/dark.png' : 'images/pu.webp';
   if (homePortrait) homePortrait.src = isDark
     ? 'images/author/author-portrait-dark.webp'
     : 'images/author/author-portrait-light.webp';
