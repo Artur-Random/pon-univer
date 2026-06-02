@@ -714,45 +714,39 @@ body:not(.dark-theme) .home-hero::before{
     radial-gradient(ellipse 65% 55% at 70% 20%,rgba(42,49,83,.06) 0%,transparent 70%),
     radial-gradient(ellipse 40% 36% at 5% 75%,rgba(201,151,74,.07) 0%,transparent 60%);
 }
-/* ── Brand lockup ── */
-.home-brand-lockup{
-  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
-  margin-bottom:52px;position:relative;z-index:1;
+/* ── Brand strip ── */
+.home-brand-strip{
+  display:inline-flex;align-items:center;gap:14px;
+  width:fit-content;max-width:100%;
+  padding:10px 14px;border-radius:22px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(14px) saturate(150%);
+  -webkit-backdrop-filter:blur(14px) saturate(150%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10);
+  margin-bottom:42px;position:relative;z-index:1;
 }
-.home-brand-chip{
-  display:inline-flex;flex-direction:column;align-items:center;gap:6px;
-  padding:12px 18px 14px;border-radius:24px;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.14);
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  box-shadow:0 4px 20px rgba(0,0,0,.14),inset 0 1px 0 rgba(255,255,255,.12);
-}
-body:not(.dark-theme) .home-brand-chip{
-  background:rgba(255,255,255,.88);
+body:not(.dark-theme) .home-brand-strip{
+  background:rgba(255,255,255,.82);
   border-color:rgba(42,49,83,.10);
-  box-shadow:0 4px 16px rgba(42,49,83,.08),inset 0 1px 0 rgba(255,255,255,.95);
+  box-shadow:0 4px 16px rgba(42,49,83,.07),inset 0 1px 0 rgba(255,255,255,.90);
 }
-.home-brand-label{
-  font-family:var(--font-head);
-  font-size:8px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(255,255,255,.50);
+.home-brand-logo{
+  display:block;object-fit:contain;flex-shrink:0;
 }
-body:not(.dark-theme) .home-brand-label{color:rgba(42,49,83,.46);}
-.home-brand-chip--pu img{
-  height:clamp(34px,4.2vw,48px);width:auto;object-fit:contain;
+.home-brand-logo--pu{
+  height:34px;width:auto;
 }
-.home-brand-chip--ipkr img{
-  max-height:clamp(40px,5.5vw,62px);max-width:clamp(130px,18vw,230px);
-  height:auto;object-fit:contain;
+.home-brand-logo--ipkr{
+  height:38px;width:auto;max-width:150px;
 }
-.home-brand-divider{
-  width:1px;height:40px;align-self:center;flex-shrink:0;
-  background:rgba(255,255,255,.18);
+.home-brand-separator{
+  color:rgba(255,255,255,.38);font-size:16px;font-weight:600;flex-shrink:0;
 }
-body:not(.dark-theme) .home-brand-divider{background:rgba(42,49,83,.16);}
+body:not(.dark-theme) .home-brand-separator{color:rgba(42,49,83,.32);}
 @media(max-width:500px){
-  .home-brand-divider{display:none;}
-  .home-brand-lockup{gap:10px;}
+  .home-brand-logo--ipkr{max-width:130px;}
+  .home-brand-strip{gap:10px;}
 }
 /* ── Hero text ── */
 .home-hero-eyebrow{
@@ -767,22 +761,11 @@ body:not(.dark-theme) .home-hero-eyebrow{color:var(--accent);opacity:1;}
   font-family:var(--font-head);
   font-size:clamp(40px,9.5vw,100px);
   line-height:.88;letter-spacing:-.03em;font-weight:800;
-  color:#f4f6ff;
-  margin-bottom:22px;overflow:hidden;
+  color:#f7f8ff;
+  text-shadow:0 18px 42px rgba(0,0,0,.28);
+  margin-bottom:22px;
 }
-body:not(.dark-theme) .home-hero-title{color:var(--navy);}
-.home-hero-title::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(110deg,transparent 0%,rgba(255,255,255,.65) 45%,transparent 65%);
-  transform:translateX(-130%);
-  animation:titleShine 9s ease-in-out 1.2s infinite;
-  mix-blend-mode:screen;pointer-events:none;
-}
-body:not(.dark-theme) .home-hero-title::after{display:none;}
-@keyframes titleShine{
-  0%,100%{transform:translateX(-130%)}
-  38%,62%{transform:translateX(130%)}
-}
+body:not(.dark-theme) .home-hero-title{color:var(--navy);text-shadow:none;}
 .home-hero-subtitle{
   font-family:var(--font-head);
   font-size:clamp(13px,2.4vw,19px);
@@ -917,30 +900,41 @@ body.dark-theme .home-about-quote{color:rgba(218,228,252,.85);}
 body.dark-theme .home-about-body{color:rgba(200,212,238,.80);}
 .home-about-body p{margin:0 0 15px;}
 .home-about-body p:last-child{margin-bottom:0;}
+.home-letter{
+  font-family:'Caveat',cursive !important;
+  font-size:clamp(27px,2.7vw,36px);
+  line-height:1.22;font-weight:600;letter-spacing:.01em;
+  color:rgba(42,49,83,.86);
+}
+body.dark-theme .home-letter{color:rgba(244,247,255,.86);}
+.home-letter p{margin:0 0 18px;}
+.home-letter p:last-child{margin-bottom:0;}
 .home-personal-note{
   font-family:'Caveat',cursive !important;
-  font-size:clamp(30px,5vw,46px) !important;
-  font-weight:700;
-  color:var(--navy);line-height:1.20;
-  display:block;margin:28px 0 6px;
+  font-size:clamp(34px,4.2vw,52px) !important;
+  line-height:1.08;font-weight:700;
+  color:var(--navy);
+  display:block;margin-top:28px;margin-bottom:6px;
 }
 body.dark-theme .home-personal-note{color:rgba(232,238,255,.92);}
 .home-signature{
   display:flex;flex-direction:column;gap:6px;margin-top:22px;
 }
 .home-signature img{
-  width:clamp(170px,18vw,270px);height:auto;
-  object-fit:contain;object-position:left center;
-  max-width:100%;
+  width:clamp(220px,22vw,340px);height:auto;
+  object-fit:contain;object-position:left center;max-width:100%;
+}
+@media(max-width:600px){
+  .home-signature img{width:clamp(210px,58vw,300px);}
 }
 .home-signature-name{
   font-family:var(--font-head);font-size:14px;font-weight:700;
   color:var(--navy);margin-top:6px;
 }
-body.dark-theme .home-signature-name{color:#e8edf8;}
+body.dark-theme .home-signature-name{color:rgba(255,255,255,.92);}
 .home-signature-role{font-size:12.5px;line-height:1.45;}
 body:not(.dark-theme) .home-signature-role{color:rgba(42,49,83,.62);}
-body.dark-theme .home-signature-role{color:rgba(180,196,232,.65);}
+body.dark-theme .home-signature-role{color:rgba(255,255,255,.62);}
 /* ── Author column ── */
 .home-author-col{
   display:flex;flex-direction:column;align-items:center;
@@ -1036,16 +1030,10 @@ body.dark-theme .home-notice-inner{
   <section id="sec-home" class="main-section active">
     <!-- Hero -->
     <div class="home-hero">
-      <div class="home-brand-lockup">
-        <div class="home-brand-chip home-brand-chip--pu">
-          <span class="home-brand-label">Проект</span>
-          <img id="home-pu-logo" src="images/pu.png" alt="Логотип Понятного Университета">
-        </div>
-        <div class="home-brand-divider"></div>
-        <div class="home-brand-chip home-brand-chip--ipkr">
-          <span class="home-brand-label">Инициатор</span>
-          <img src="images/logo-ipkr.webp" alt="Логотип Совета студентов и аспирантов ИПКР МГПУ">
-        </div>
+      <div class="home-brand-strip">
+        <img id="home-pu-logo" class="home-brand-logo home-brand-logo--pu" src="images/pu.png" alt="Логотип Понятного Университета">
+        <span class="home-brand-separator">×</span>
+        <img class="home-brand-logo home-brand-logo--ipkr" src="images/logo-ipkr.webp" alt="Логотип ССиА ИПКР МГПУ">
       </div>
       <div class="home-hero-eyebrow">Студенческий навигатор · МГПУ</div>
       <h2 class="home-hero-title">ПОНЯТНЫЙ<br>УНИВЕРСИТЕТ</h2>
@@ -1090,9 +1078,11 @@ body.dark-theme .home-notice-inner{
           <div class="home-section-heading">О проекте</div>
           <div class="home-about-quote">Официальные ресурсы отвечают на вопрос: «где это написано?». «Понятный Университет» помогает ответить на вопрос: «что мне сейчас делать?».</div>
           <div class="home-about-body">
-            <p>Идея «Понятного Университета» появилась у меня в марте 2026 года, во время подготовки программы на выборах председателя Совета студентов и аспирантов МГПУ. Тогда я сформулировал простую мысль: студент не должен узнавать о своих правах и обязанностях случайно, слишком поздно или только после того, как столкнулся с проблемой. Важная информация должна быть рядом: понятной, короткой, проверяемой и написанной человеческим языком.</p>
-            <p>В мае 2026 года эта идея стала частью моей программы на выборах председателя Совета студентов и аспирантов ИПКР МГПУ. После избрания 20 мая она перестала быть только предвыборным пунктом и стала реальным проектом, который мы начали создавать для студентов института. Так появился «Понятный Университет» — студенческий навигатор по правам, обязанностям, структуре университета, правилам, контактам и ситуациям, с которыми студент сталкивается в повседневной жизни.</p>
-            <p>Этот проект не заменяет сайт МГПУ, сайт ИПКР, Личный кабинет студента или официальный Справочник студента МГПУ. Наоборот, без этих ресурсов он не имеет смысла: именно они остаются основными и официальными источниками информации. Наша задача другая — сделать путь к ним проще, быстрее и понятнее. Чтобы студент не терялся в системе, а понимал, куда идти, к кому обращаться и как действовать.</p>
+            <div class="home-letter">
+              <p>Идея «Понятного Университета» появилась у меня в марте 2026 года, во время подготовки программы на выборах председателя Совета студентов и аспирантов МГПУ. Тогда я сформулировал простую мысль: студент не должен узнавать о своих правах и обязанностях случайно, слишком поздно или только после того, как столкнулся с проблемой. Важная информация должна быть рядом: понятной, короткой, проверяемой и написанной человеческим языком.</p>
+              <p>В мае 2026 года эта идея стала частью моей программы на выборах председателя Совета студентов и аспирантов ИПКР МГПУ. После избрания 20 мая она перестала быть только предвыборным пунктом и стала реальным проектом, который мы начали создавать для студентов института. Так появился «Понятный Университет» — студенческий навигатор по правам, обязанностям, структуре университета, правилам, контактам и ситуациям, с которыми студент сталкивается в повседневной жизни.</p>
+              <p>Этот проект не заменяет сайт МГПУ, сайт ИПКР, Личный кабинет студента или официальный Справочник студента МГПУ. Наоборот, без этих ресурсов он не имеет смысла: именно они остаются основными и официальными источниками информации. Наша задача другая — сделать путь к ним проще, быстрее и понятнее. Чтобы студент не терялся в системе, а понимал, куда идти, к кому обращаться и как действовать.</p>
+            </div>
           </div>
           <span class="home-personal-note">Важно, чтобы студент понимал систему, а не боялся её.</span>
           <div class="home-signature">
@@ -2454,8 +2444,8 @@ function applyTheme(isDark) {
     ? 'images/author/author-portrait-dark.webp'
     : 'images/author/author-portrait-light.webp';
   if (homeSignature) homeSignature.src = isDark
-    ? 'images/author/signature-light.svg'
-    : 'images/author/signature-dark.svg';
+    ? 'images/author/signature-dark.svg'
+    : 'images/author/signature-light.svg';
 }
 
 (function() {
