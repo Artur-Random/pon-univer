@@ -1203,7 +1203,6 @@ body.dark-theme .russia-day-notice-title{color:rgba(248,250,255,.96);}
   .russia-day-marquee-track{animation:none;padding-left:16px;}
 }
 </style>
-<script src="https://api-maps.yandex.ru/2.1/?apikey=ecdebaf5-41e1-4637-9bc8-329ab1d63c93&lang=ru_RU" type="text/javascript"></script>
 </head>
 <body>
 
@@ -2487,8 +2486,8 @@ function switchSection(id) {
   } else {
     requestAnimationFrame(() => scrollToElementWithOffset(sec));
   }
-  if (id === 'contacts' && globalYMap) {
-    setTimeout(() => globalYMap.container.fitToViewport(), 50);
+  if (id === 'contacts') {
+    setTimeout(ensureContactsMap, 50);
   }
 }
 
@@ -2723,8 +2722,23 @@ function initYandexMap() {
   globalYMap.geoObjects.add(collection);
 }
 
-if (typeof ymaps !== 'undefined') {
-  ymaps.ready(initYandexMap);
+let yMapsApiPromise = null;
+function loadYandexMapsApi() {
+  if (yMapsApiPromise) return yMapsApiPromise;
+  yMapsApiPromise = new Promise(function(resolve, reject) {
+    var s = document.createElement('script');
+    s.src = 'https://api-maps.yandex.ru/2.1/?apikey=ecdebaf5-41e1-4637-9bc8-329ab1d63c93&lang=ru_RU';
+    s.onload = function() { ymaps.ready(resolve); };
+    s.onerror = reject;
+    document.head.appendChild(s);
+  });
+  return yMapsApiPromise;
+}
+function ensureContactsMap() {
+  loadYandexMapsApi().then(function() {
+    if (!globalYMap) initYandexMap();
+    else globalYMap.container.fitToViewport();
+  });
 }
 
 // ═══════════════════════════════════════════
