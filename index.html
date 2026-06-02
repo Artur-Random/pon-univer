@@ -748,6 +748,7 @@ body:not(.dark-theme) .home-hero::before{
   -webkit-backdrop-filter:blur(14px) saturate(150%);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.10);
   margin-bottom:42px;position:relative;z-index:1;
+  align-self:center;
 }
 body:not(.dark-theme) .home-brand-strip{
   background:rgba(255,255,255,.82);
@@ -770,11 +771,19 @@ body:not(.dark-theme) .home-brand-separator{color:rgba(42,49,83,.32);}
 @media(max-width:767px){
   .home-brand-strip{
     width:fit-content;max-width:100%;box-sizing:border-box;overflow:hidden;
-    padding:8px 10px;gap:8px;border-radius:18px;margin-bottom:34px;
+    padding:10px 14px;gap:12px;border-radius:18px;margin-bottom:34px;
   }
-  .home-brand-logo--pu{height:26px;}
-  .home-brand-logo--ipkr{height:30px;max-width:120px;}
-  .home-brand-separator{font-size:13px;}
+  .home-brand-logo--pu{height:34px;}
+  .home-brand-logo--ipkr{height:38px;max-width:155px;}
+  .home-brand-separator{font-size:16px;}
+}
+@media(max-width:360px){
+  .home-brand-logo--pu{height:30px;}
+  .home-brand-logo--ipkr{height:34px;max-width:135px;}
+}
+@media(min-width:768px){
+  .home-brand-logo--pu{height:38px;}
+  .home-brand-logo--ipkr{height:44px;max-width:190px;}
 }
 /* ── Hero text ── */
 .home-hero-eyebrow{
@@ -872,6 +881,23 @@ body.dark-theme .home-menu{background:rgba(11,14,26,.92);}
   color:var(--navy);margin-bottom:6px;
 }
 body.dark-theme .home-section-heading{color:#e8edf8;}
+.home-about-title{
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--font-head);
+  font-size:clamp(26px,4vw,40px);
+  line-height:1.1;font-weight:800;
+  color:var(--navy);margin-bottom:18px;
+}
+body.dark-theme .home-about-title{color:rgba(248,250,255,.96);}
+.home-about-title-icon{
+  width:30px;height:30px;
+  display:inline-flex;align-items:center;justify-content:center;
+  flex-shrink:0;border-radius:999px;
+  color:var(--accent);
+  background:rgba(251,112,11,.10);
+  border:1px solid rgba(251,112,11,.22);
+}
+.home-about-title-icon svg{width:18px;height:18px;}
 .home-section-sub{
   font-size:13.5px;color:var(--tmid);margin-bottom:28px;line-height:1.5;
 }
@@ -1106,8 +1132,8 @@ body.dark-theme .home-notice-inner{
       <div class="home-hero-subtitle">Масштабный проект Совета студентов и аспирантов ИПКР МГПУ</div>
       <div class="home-hero-lead">Права, обязанности, структура университета и полезные ответы — в одном месте.</div>
       <div class="home-hero-cta">
-        <button class="home-btn home-btn--primary" onclick="document.getElementById('home-menu').scrollIntoView({behavior:'smooth'})">Открыть разделы</button>
-        <button class="home-btn home-btn--ghost" onclick="document.getElementById('home-about').scrollIntoView({behavior:'smooth'})">О проекте</button>
+        <button class="home-btn home-btn--primary" onclick="scrollToElementWithOffset(document.getElementById('home-menu'))">Открыть разделы</button>
+        <button class="home-btn home-btn--ghost" onclick="scrollToElementWithOffset(document.getElementById('home-about'))">О проекте</button>
       </div>
     </div>
     <!-- Project map -->
@@ -1141,8 +1167,8 @@ body.dark-theme .home-notice-inner{
     <div class="home-about" id="home-about">
       <div class="home-about-inner">
         <div class="home-about-text">
-          <div class="home-section-heading">О проекте</div>
-          <div class="home-about-quote">Официальные ресурсы отвечают на вопрос: «где это написано?». «Понятный Университет» помогает ответить на вопрос: «что мне сейчас делать?».</div>
+          <h2 class="home-about-title"><span class="home-about-title-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 10.5v5.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 7.4h.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span><span>О проекте</span></h2>
+          <div class="home-about-quote"><span>Официальные ресурсы отвечают на вопрос: «где это написано?»</span><br><span>«Понятный Университет» помогает ответить на вопрос: «что мне сейчас делать?».</span></div>
           <div class="home-about-body">
             <div class="home-letter">
               <p>Идея «Понятного Университета» появилась у меня в марте 2026 года, во время подготовки программы на выборах председателя Совета студентов и аспирантов МГПУ. Тогда я сформулировал простую мысль: студент не должен узнавать о своих правах и обязанностях случайно, слишком поздно или только после того, как столкнулся с проблемой. Важная информация должна быть рядом: понятной, короткой, проверяемой и написанной человеческим языком.</p>
@@ -2238,6 +2264,21 @@ function showMaster(prefix) {
   if (detail) detail.style.display = 'none';
 }
 
+function getStickyTopOffset() {
+  const header = document.querySelector('.site-header');
+  const nav = document.querySelector('.main-nav');
+  let offset = 0;
+  if (header) offset += header.getBoundingClientRect().height || 0;
+  if (nav) offset += nav.getBoundingClientRect().height || 0;
+  return Math.ceil(offset + 10);
+}
+
+function scrollToElementWithOffset(target) {
+  if (!target) return;
+  const top = target.getBoundingClientRect().top + window.scrollY - getStickyTopOffset();
+  window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+}
+
 function switchSection(id) {
   localStorage.setItem('activeTab', id);
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -2249,7 +2290,11 @@ function switchSection(id) {
   showMaster('ipkr');
   showMaster('uni');
   showMaster('handbook');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (id === 'home') {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    requestAnimationFrame(() => scrollToElementWithOffset(sec));
+  }
   if (id === 'contacts' && globalYMap) {
     setTimeout(() => globalYMap.container.fitToViewport(), 50);
   }
