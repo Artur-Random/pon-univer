@@ -706,7 +706,7 @@ body.dark-theme .detail-source{border-top-color:rgba(255,255,255,.08)}
 }
 @media(max-width:767px){
   #sec-home.active{
-    margin:0;
+    margin:-32px 0 0;
     width:100%;
     max-width:100%;
     overflow:hidden;
@@ -840,8 +840,9 @@ body:not(.dark-theme) .home-btn--ghost:hover{background:rgba(42,49,83,.12);}
 @media(max-width:767px){
   .home-hero{
     width:100%;max-width:100%;
-    padding:48px 20px 56px;
+    padding:56px 20px 52px;
     min-height:auto;
+    justify-content:flex-start;
     box-sizing:border-box;
   }
   .home-hero-title{
@@ -984,7 +985,8 @@ body.dark-theme .home-personal-note{color:rgba(232,238,255,.92);}
   .home-signature img{width:clamp(190px,58vw,280px);}
   .home-author-col{margin-top:8px;align-items:center;overflow:hidden;}
   .home-author-img{
-    width:100%;max-width:360px;max-height:460px;
+    width:100%;max-width:min(330px,82vw);
+    max-height:clamp(280px,42vh,360px);
     object-fit:contain;object-position:center top;
     -webkit-mask-image:none;mask-image:none;
   }
