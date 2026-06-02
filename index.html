@@ -1082,6 +1082,48 @@ body.dark-theme .home-notice-inner{
     scroll-behavior:auto !important;
   }
 }
+/* ── Russia Day ── */
+.russia-day-marquee{display:none}
+body.russia-day .russia-day-marquee{
+  display:block;overflow:hidden;
+  height:34px;line-height:34px;
+  background:rgba(42,49,83,.92);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.10);
+  color:rgba(248,250,255,.94);
+  font-family:var(--font-main);font-size:13px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;
+}
+body:not(.dark-theme).russia-day .russia-day-marquee{
+  background:rgba(255,255,255,.86);
+  border-bottom:1px solid rgba(42,49,83,.12);
+  color:var(--navy);
+}
+.russia-day-marquee-track{
+  display:inline-flex;align-items:center;
+  gap:36px;min-width:max-content;
+  padding-left:100%;
+  animation:russiaDayMarquee 22s linear infinite;
+}
+.russia-day-marquee-track span::after{content:"•";margin-left:36px;opacity:.45;}
+@keyframes russiaDayMarquee{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+body.russia-day .home-hero::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;
+  height:3px;
+  background:linear-gradient(to right,#ffffff 0 33.333%,#1f4fa3 33.333% 66.666%,#d52b1e 66.666% 100%);
+  opacity:.82;pointer-events:none;
+}
+@media(max-width:767px){
+  body.russia-day .russia-day-marquee{height:30px;line-height:30px;font-size:12px;}
+  .russia-day-marquee-track{gap:28px;animation-duration:18s;}
+  .russia-day-marquee-track span::after{margin-left:28px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .russia-day-marquee-track{padding-left:16px;}
+}
 </style>
 <script src="https://api-maps.yandex.ru/2.1/?apikey=ecdebaf5-41e1-4637-9bc8-329ab1d63c93&lang=ru_RU" type="text/javascript"></script>
 </head>
@@ -1106,6 +1148,17 @@ body.dark-theme .home-notice-inner{
     <input type="text" id="search-input" placeholder="Поиск по сотрудникам и институтам..." autocomplete="off">
   </div>
   <div id="search-results"></div>
+</div>
+
+<div class="russia-day-marquee" aria-label="С Днём России!">
+  <div class="russia-day-marquee-track">
+    <span>С Днём России!</span>
+    <span>С Днём России!</span>
+    <span>С Днём России!</span>
+    <span>С Днём России!</span>
+    <span>С Днём России!</span>
+    <span>С Днём России!</span>
+  </div>
 </div>
 
 <nav class="main-nav">
@@ -1292,6 +1345,20 @@ body.dark-theme .home-notice-inner{
 </footer>
 
 <script>
+// ── Russia Day ──
+function isRussiaDayLocal() {
+  const d = new Date();
+  return d.getMonth() === 5 && d.getDate() === 12;
+}
+function shouldEnableRussiaDay() {
+  const p = new URLSearchParams(window.location.search);
+  const f = p.get('russiaDay');
+  if (f === '1') return true;
+  if (f === '0') return false;
+  return isRussiaDayLocal();
+}
+if (shouldEnableRussiaDay()) document.body.classList.add('russia-day');
+
 // ═══════════════════════════════════════════
 //  DATA
 // ═══════════════════════════════════════════
@@ -2267,8 +2334,12 @@ function showMaster(prefix) {
 function getStickyTopOffset() {
   const header = document.querySelector('.site-header');
   const nav = document.querySelector('.main-nav');
+  const marquee = document.querySelector('.russia-day-marquee');
   let offset = 0;
   if (header) offset += header.getBoundingClientRect().height || 0;
+  if (marquee && getComputedStyle(marquee).display !== 'none') {
+    offset += marquee.getBoundingClientRect().height || 0;
+  }
   if (nav) offset += nav.getBoundingClientRect().height || 0;
   return Math.ceil(offset + 10);
 }
