@@ -783,19 +783,23 @@ body:not(.dark-theme) .home-brand-separator{color:rgba(42,49,83,.32);}
 @media(max-width:767px){
   .home-brand-strip{
     width:fit-content;max-width:100%;box-sizing:border-box;overflow:hidden;
-    padding:10px 14px;gap:12px;border-radius:18px;margin-bottom:34px;
+    padding:12px 18px;gap:14px;border-radius:22px;margin-bottom:34px;
   }
+  .home-brand-logo--pu{height:40px;}
+  .home-brand-logo--ipkr{height:44px;max-width:180px;}
+  .home-brand-separator{font-size:18px;}
+}
+@media(max-width:360px){
+  .home-brand-strip{padding:10px 14px;gap:12px;}
   .home-brand-logo--pu{height:34px;}
   .home-brand-logo--ipkr{height:38px;max-width:155px;}
   .home-brand-separator{font-size:16px;}
 }
-@media(max-width:360px){
-  .home-brand-logo--pu{height:30px;}
-  .home-brand-logo--ipkr{height:34px;max-width:135px;}
-}
 @media(min-width:768px){
-  .home-brand-logo--pu{height:38px;}
-  .home-brand-logo--ipkr{height:44px;max-width:190px;}
+  .home-brand-strip{padding:13px 20px;gap:16px;}
+  .home-brand-logo--pu{height:44px;}
+  .home-brand-logo--ipkr{height:50px;max-width:215px;}
+  .home-brand-separator{font-size:20px;}
 }
 /* ── Hero text ── */
 .home-hero-eyebrow{
