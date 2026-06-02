@@ -826,14 +826,14 @@ body:not(.dark-theme) .home-hero-title{color:var(--navy);text-shadow:none;}
   font-weight:600;letter-spacing:.008em;
   margin-bottom:12px;position:relative;z-index:1;max-width:600px;
 }
-body:not(.dark-theme) .home-hero-subtitle{color:rgba(42,49,83,.78);}
+body:not(.dark-theme) .home-hero-subtitle{color:rgba(42,49,83,.82);}
 .home-hero-lead{
   font-size:clamp(14px,1.9vw,16px);
   color:rgba(195,208,238,.58);
   line-height:1.60;max-width:540px;margin-bottom:38px;
   position:relative;z-index:1;
 }
-body:not(.dark-theme) .home-hero-lead{color:rgba(42,49,83,.60);}
+body:not(.dark-theme) .home-hero-lead{color:rgba(42,49,83,.70);}
 /* ── Hero CTA ── */
 .home-hero-cta{display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:1;}
 .home-btn{
@@ -917,7 +917,7 @@ body.dark-theme .home-about-title{color:rgba(248,250,255,.96);}
 .home-section-sub{
   font-size:13.5px;color:var(--tmid);margin-bottom:28px;line-height:1.5;
 }
-body.dark-theme .home-section-sub{color:rgba(160,175,210,.75);}
+body.dark-theme .home-section-sub{color:rgba(160,175,210,.82);}
 .home-menu-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
@@ -968,7 +968,7 @@ body.dark-theme .home-menu-badge{
 }
 body.dark-theme .home-menu-name{color:#e8edf8;}
 .home-menu-desc{font-size:12px;color:var(--tmid);line-height:1.5;}
-body.dark-theme .home-menu-desc{color:rgba(160,175,210,.72);}
+body.dark-theme .home-menu-desc{color:rgba(160,175,210,.78);}
 /* ── About block ── */
 .home-about{
   padding:64px 28px 60px;
@@ -1001,7 +1001,7 @@ body.dark-theme .home-about-body{color:rgba(200,212,238,.80);}
   font-size:15px;line-height:1.72;font-weight:400;letter-spacing:0;
   color:rgba(42,49,83,.76);
 }
-body.dark-theme .home-letter{color:rgba(226,232,245,.72);}
+body.dark-theme .home-letter{color:rgba(226,232,245,.80);}
 body:not(.dark-theme) .home-letter{color:rgba(42,49,83,.76);}
 .home-letter p{margin:0 0 15px;}
 .home-letter p:last-child{margin-bottom:0;}
@@ -1041,8 +1041,8 @@ body.dark-theme .home-personal-note{color:rgba(232,238,255,.92);}
 }
 body.dark-theme .home-signature-name{color:rgba(255,255,255,.92);}
 .home-signature-role{font-size:12.5px;line-height:1.45;}
-body:not(.dark-theme) .home-signature-role{color:rgba(42,49,83,.62);}
-body.dark-theme .home-signature-role{color:rgba(255,255,255,.62);}
+body:not(.dark-theme) .home-signature-role{color:rgba(42,49,83,.72);}
+body.dark-theme .home-signature-role{color:rgba(255,255,255,.72);}
 /* ── Author column ── */
 .home-author-col{
   display:flex;flex-direction:column;align-items:center;
@@ -1080,12 +1080,12 @@ body.dark-theme .home-notice{background:rgba(9,12,22,.97);}
   padding:16px 20px;border-radius:14px;
   background:rgba(42,49,83,.05);
   border:1px solid rgba(42,49,83,.09);
-  font-size:12.5px;color:rgba(42,49,83,.62);line-height:1.65;text-align:center;
+  font-size:12.5px;color:rgba(42,49,83,.72);line-height:1.65;text-align:center;
 }
 body.dark-theme .home-notice-inner{
   background:rgba(255,255,255,.04);
   border-color:rgba(255,255,255,.08);
-  color:rgba(160,175,210,.70);
+  color:rgba(160,175,210,.78);
 }
 /* Nav: 5 buttons, tighter on very small screens — already flex:0 0 auto in mobile strip */
 @media(max-width:400px){
@@ -1202,6 +1202,21 @@ body.dark-theme .russia-day-notice-title{color:rgba(248,250,255,.96);}
 @media(prefers-reduced-motion:reduce){
   .russia-day-marquee-track{animation:none;padding-left:16px;}
 }
+/* ── Accessibility: text contrast improvements ─────────────────── */
+body.dark-theme .home-hero-subtitle{color:rgba(225,232,255,.82);}
+body.dark-theme .home-hero-lead{color:rgba(210,220,245,.76);}
+body:not(.dark-theme) .home-section-sub,
+body:not(.dark-theme) .home-menu-desc{color:rgba(42,49,83,.72);}
+body.dark-theme .master-card-sub,
+body.dark-theme .detail-subtitle,
+body.dark-theme .card .deg,
+body.dark-theme .note-item,
+body.dark-theme .contacts-item-label{color:rgba(200,210,235,.76);}
+body:not(.dark-theme) .master-card-sub,
+body:not(.dark-theme) .detail-subtitle,
+body:not(.dark-theme) .card .deg,
+body:not(.dark-theme) .note-item,
+body:not(.dark-theme) .contacts-item-label{color:rgba(42,49,83,.68);}
 </style>
 </head>
 <body>
@@ -1251,7 +1266,7 @@ body.dark-theme .russia-day-notice-title{color:rgba(248,250,255,.96);}
   </div>
 </nav>
 
-<div class="wrap">
+<main class="wrap" id="main-content">
   <section id="sec-home" class="main-section active">
     <!-- Hero -->
     <div class="home-hero">
@@ -1388,7 +1403,7 @@ body.dark-theme .russia-day-notice-title{color:rgba(248,250,255,.96);}
     <h2 class="section-title" style="margin-top:32px">Карта корпусов МГПУ</h2>
     <div id="global-map" style="width:100%;height:calc(100vh - 200px);border-radius:8px;overflow:hidden;margin-bottom:24px"></div>
   </section>
-</div>
+</main>
 
 <!-- Fullscreen image modal -->
 <div id="img-modal" class="img-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Просмотр инфографики">
