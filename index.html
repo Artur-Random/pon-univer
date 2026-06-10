@@ -1236,6 +1236,7 @@ body.dark-theme .sheet-text .sit-imp{background:rgba(251,112,11,.1)}
 .sheet-text .sit-contact{font-size:13.5px;background:rgba(42,49,83,.05);border-radius:8px;padding:10px 12px;margin-top:6px;line-height:1.65}
 body.dark-theme .sheet-text .sit-contact{background:rgba(255,255,255,.05)}
 .sheet-text a{word-break:break-all}
+body.dark-theme .sheet-text a{color:#7eb8ff}
 </style>
 </head>
 <body>
@@ -1853,6 +1854,7 @@ const universityData = [
 const handbookData = [
   {
     id: 'routing',
+    direct: true,
     title: 'Куда обратиться?',
     subtitle: 'Быстрый навигатор по студенческим ситуациям',
     color: '--accent',
@@ -2227,6 +2229,8 @@ function renderHandbookMaster() {
         showToast('Раздел скоро появится');
         if (navigator.vibrate) navigator.vibrate(20);
         setTimeout(() => card.classList.remove('locked-glow'), 400);
+      } else if (item.direct && item.cards && item.cards[0]) {
+        openSheet(item.cards[0].title, item.cards[0].text);
       } else {
         showHandbookDetail(parseInt(card.dataset.idx));
       }
