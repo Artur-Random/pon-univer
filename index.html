@@ -2251,9 +2251,13 @@ function hasUsefulDetails(text) {
 }
 
 function showHandbookDetail(idx) {
+  const item = handbookData[idx];
+  if (item && item.direct && item.cards && item.cards[0]) {
+    openSheet(item.cards[0].title, item.cards[0].text);
+    return;
+  }
   history.pushState({ page: 'detail', prefix: 'handbook' }, '', '#detail');
   currentDetailPrefix = 'handbook';
-  const item = handbookData[idx];
   const master = document.getElementById('handbook-master');
   const detail = document.getElementById('handbook-detail');
 
@@ -2741,6 +2745,8 @@ function doSearch(query) {
         const hItem = handbookData[r.handbookIdx];
         if (hItem && hItem.locked) {
           showToast('Раздел скоро появится');
+        } else if (hItem && hItem.direct && hItem.cards && hItem.cards[0]) {
+          openSheet(hItem.cards[0].title, hItem.cards[0].text);
         } else {
           showHandbookDetail(r.handbookIdx);
         }
