@@ -1475,6 +1475,11 @@ body.dark-theme .sheet-text a{color:#7eb8ff}
 <footer class="main-footer">
   <div class="footer-container">
     Сделано членами Совета студентов и аспирантов Института психологии и комплексной реабилитации ГАОУ ВО МГПУ &bull; v. 1.0 &bull; 2026
+    <div style="margin-top:8px;">
+      <a href="privacy.html#privacy" style="color:var(--warm);font-size:11px;text-decoration:none;opacity:0.7;">Политика конфиденциальности</a>
+      <span style="color:var(--warm);opacity:0.5;margin:0 6px;">&bull;</span>
+      <a href="privacy.html#cookies" style="color:var(--warm);font-size:11px;text-decoration:none;opacity:0.7;">Политика cookies</a>
+    </div>
   </div>
 </footer>
 
@@ -2960,6 +2965,30 @@ function addSwipeToDismiss(el) {
 addSwipeToDismiss(document.getElementById('ipkr-detail'));
 addSwipeToDismiss(document.getElementById('uni-detail'));
 addSwipeToDismiss(document.getElementById('handbook-detail'));
+</script>
+<!-- Cookie Banner -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:99999;background:#1a2340;border-top:2px solid #fb700b;padding:14px 20px;box-shadow:0 -4px 20px rgba(0,0,0,0.4);">
+  <div style="max-width:700px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+    <p style="margin:0;font-size:13px;color:#e2e8f0;line-height:1.5;flex:1;min-width:200px;">
+      Мы используем cookies для анализа посещаемости через Яндекс Метрику.
+      Продолжая использование сайта, вы соглашаетесь с
+      <a href="privacy.html#cookies" style="color:#fb700b;text-decoration:underline;">Политикой cookies</a>.
+    </p>
+    <button onclick="acceptCookies()" style="background:#fb700b;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0;">Принять</button>
+  </div>
+</div>
+<script>
+function acceptCookies() {
+  try { localStorage.setItem('cookies_accepted', '1'); } catch(e) {}
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+(function() {
+  var accepted = false;
+  try { accepted = localStorage.getItem('cookies_accepted') === '1'; } catch(e) {}
+  if (!accepted) {
+    document.getElementById('cookie-banner').style.display = 'block';
+  }
+})();
 </script>
 </body>
 </html>
