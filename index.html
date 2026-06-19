@@ -1250,6 +1250,12 @@ body.dark-theme .sheet-text .sit-imp{background:rgba(251,112,11,.1)}
 body.dark-theme .sheet-text .sit-contact{background:rgba(255,255,255,.05)}
 .sheet-text a{word-break:break-all}
 body.dark-theme .sheet-text a{color:#7eb8ff}
+.hb-internal-link{font-size:13px;font-weight:600;color:var(--accent);text-decoration:none;display:inline-block;margin-top:4px}
+.hb-internal-link:hover{text-decoration:underline}
+body.dark-theme .hb-internal-link{color:#fb9050}
+.hb-inline-gallery{display:flex;gap:12px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x;padding:6px 0 14px}
+.hb-gallery-img-btn{flex:0 0 min(82vw,360px);scroll-snap-align:start;border:0;padding:0;background:transparent;cursor:zoom-in;display:block}
+.hb-gallery-img-btn img{width:100%;height:auto;display:block;border-radius:18px;box-shadow:var(--luxury-shadow-soft)}
 </style>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
@@ -1935,7 +1941,7 @@ const handbookData = [
         alt: 'Инфографика о правах студента МГПУ',
         title: 'Твои права: учёба',
         summary: 'ИУП, элективы, перезачёт, особые условия',
-        text: '<p>У тебя есть право учиться не только по общей колее, но и с учётом своей ситуации.</p><ul><li><b>Индивидуальный учебный план.</b> ИУП могут оформить при ОВЗ, академической разнице после перевода или восстановления, выходе из академического отпуска, смене программы или формы обучения. ИУП помогает выстроить обучение по персональному графику, но его нужно выполнять: невыполнение без уважительной причины может стать основанием для отчисления.</li><li><b>Элективы.</b> Электив — это дисциплина по выбору, но после распределения она становится обязательной частью образовательной программы. Выбор проходит через Личный кабинет МГПУ.</li><li><b>Новый алгоритм элективов.</b> Нужно выбрать минимум 5 курсов и расставить приоритеты от 1 до 7, где 1 — самый желанный вариант. Скорость подачи заявки не влияет: все заявки внутри установленного периода имеют равный вес. Если на курс с одинаковым приоритетом претендует больше студентов, чем есть мест, система распределяет места случайно.</li><li><b>Перезачёт.</b> Дисциплины, модули, практики и результаты обучения из другого вуза или колледжа можно перезачесть по заявлению и документам об обучении.</li><li><b>Особые условия.</b> При ОВЗ, инвалидности или временном состоянии здоровья можно запросить особые условия обучения.</li></ul><p><b>Куда идти:</b> Департамент организации образовательного процесса, Личный кабинет МГПУ.</p><p class="detail-source">Источник: ФЗ-273, ПВРО МГПУ, порядки обучения по ИУП, порядки работы аттестационных комиссий, student.mgpu.ru «Элективы».</p>'
+        text: '<p>У тебя есть право учиться не только по общей колее, но и с учётом своей ситуации.</p><ul><li><b>Индивидуальный учебный план.</b> ИУП могут оформить при ОВЗ, академической разнице после перевода или восстановления, выходе из академического отпуска, смене программы или формы обучения. ИУП помогает выстроить обучение по персональному графику, но его нужно выполнять: невыполнение без уважительной причины может стать основанием для отчисления.</li><li><b>Элективы</b> — это обязательные дисциплины по выбору на один семестр. Выбор проходит через Личный кабинет МГПУ по системе приоритетов, а после распределения электив становится частью учебного плана семестра. <a href="#" class="hb-internal-link" data-open-handbook="electives-algorithm">Подробнее: алгоритм выбора элективов →</a></li><li><b>Новый алгоритм элективов.</b> Нужно выбрать минимум 5 курсов и расставить приоритеты от 1 до 7, где 1 — самый желанный вариант. Скорость подачи заявки не влияет: все заявки внутри установленного периода имеют равный вес. Если на курс с одинаковым приоритетом претендует больше студентов, чем есть мест, система распределяет места случайно.</li><li><b>Перезачёт.</b> Дисциплины, модули, практики и результаты обучения из другого вуза или колледжа можно перезачесть по заявлению и документам об обучении.</li><li><b>Особые условия.</b> При ОВЗ, инвалидности или временном состоянии здоровья можно запросить особые условия обучения.</li></ul><p><b>Куда идти:</b> Департамент организации образовательного процесса, Личный кабинет МГПУ.</p><p class="detail-source">Источник: ФЗ-273, ПВРО МГПУ, порядки обучения по ИУП, порядки работы аттестационных комиссий, student.mgpu.ru «Элективы».</p>'
       },
       {
         image: 'images/prava-2.png',
@@ -2027,6 +2033,20 @@ const handbookData = [
         title: 'Запреты: нельзя',
         summary: 'Курение, алкоголь, шум, азартные игры, поведение',
         text: '<p>Запреты — это не формальность. Их нарушение может привести к дисциплинарному взысканию, а в отдельных случаях — к обращению в правоохранительные органы.</p><ul><li><b>Курение.</b> Нельзя курить в помещениях и на территории университета. Это касается не только обычных сигарет, но и никотинсодержащей продукции: вейпов, электронных систем доставки никотина, жидкостей для вейпов с никотином и без него, а также кальянов.</li><li><b>Алкоголь и запрещённые вещества.</b> Нельзя проносить алкогольную и спиртосодержащую продукцию. Также запрещено проносить, употреблять, хранить и распространять наркотические и психотропные вещества.</li><li><b>Опасные предметы.</b> Нельзя приносить оружие, взрывчатые вещества, легковоспламеняющиеся жидкости и предметы, которые могут причинить вред или сорвать образовательный процесс.</li><li><b>Шум и срыв занятий.</b> Нельзя шуметь, срывать занятия и мешать работе преподавателей, сотрудников и других студентов.</li><li><b>Азартные игры.</b> Нельзя организовывать и участвовать в азартных играх на территории университета.</li><li><b>Поведение.</b> Запрещены грубость, оскорбления, физическая сила, нарушение пропускного режима, пожарной безопасности, самовольный вынос имущества и антиобщественное поведение.</li></ul><p>Нарушение может привести к замечанию, выговору или, в тяжёлых случаях, отчислению.</p><p class="detail-source">Источник: ПВРО МГПУ, ФЗ-15, ФЗ-244.</p>'
+      }
+    ]
+  },
+  {
+    id: 'electives-algorithm',
+    title: 'Алгоритм выбора элективов', subtitle: 'Как выбрать дисциплину по выбору через Личный кабинет', color: '--teal',
+    keywords: ['элективы', 'электив', 'дисциплины по выбору', 'выбор элективов', 'приоритеты', 'система приоритетов', 'личный кабинет', 'lk.mgpu.ru', 'распределение', 'учебный план', 'алгоритм выбора элективов'],
+    cards: [
+      {
+        image: 'images/electives/electiv-1.png',
+        alt: 'Алгоритм выбора элективов',
+        title: 'Алгоритм выбора элективов',
+        summary: 'Кратко о системе приоритетов и выборе дисциплин на семестр',
+        text: '<p><b>Элективы</b> — это обязательные дисциплины по выбору на один семестр. Студент выбирает доступные дисциплины через Личный кабинет МГПУ по системе приоритетов, а после распределения проходит назначенный электив как часть учебного плана семестра.</p><div class="detail-callout"><b>Главное:</b> выбор элективов проходит не по принципу одного варианта, а через приоритеты. Чем выше дисциплина в списке, тем больше она соответствует твоему предпочтению.</div><p>Ниже — пошаговая инфографика по выбору элективов.</p><p class="detail-source">Листайте карточки в сторону, чтобы посмотреть весь алгоритм.</p><div class="hb-inline-gallery" aria-label="Инфографика: алгоритм выбора элективов"><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-1.png"><img src="images/electives/electiv-1.png" alt="Алгоритм выбора элективов, карточка 1" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-2.png"><img src="images/electives/electiv-2.png" alt="Алгоритм выбора элективов, карточка 2" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-3.png"><img src="images/electives/electiv-3.png" alt="Алгоритм выбора элективов, карточка 3" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-4.png"><img src="images/electives/electiv-4.png" alt="Алгоритм выбора элективов, карточка 4" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-5.png"><img src="images/electives/electiv-5.png" alt="Алгоритм выбора элективов, карточка 5" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-6.png"><img src="images/electives/electiv-6.png" alt="Алгоритм выбора элективов, карточка 6" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-7.png"><img src="images/electives/electiv-7.png" alt="Алгоритм выбора элективов, карточка 7" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-8.png"><img src="images/electives/electiv-8.png" alt="Алгоритм выбора элективов, карточка 8" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-9.png"><img src="images/electives/electiv-9.png" alt="Алгоритм выбора элективов, карточка 9" loading="lazy" decoding="async"></button></div>'
       }
     ]
   }
@@ -2526,6 +2546,26 @@ if (personPhotoModalClose) {
 document.addEventListener('click', e => {
   const btn = e.target.closest('.avatar-button');
   if (btn) openPersonPhotoModal(btn.dataset.photo, btn.dataset.name, btn.dataset.role);
+});
+
+document.addEventListener('click', e => {
+  const galleryBtn = e.target.closest('.hb-gallery-img-btn');
+  if (galleryBtn) {
+    const src = galleryBtn.dataset.imgFull;
+    const img = galleryBtn.querySelector('img');
+    openImageModal(src, img ? img.alt : 'Инфографика');
+    return;
+  }
+  const hbLink = e.target.closest('[data-open-handbook]');
+  if (hbLink) {
+    e.preventDefault();
+    const targetId = hbLink.dataset.openHandbook;
+    const idx = handbookData.findIndex(h => h.id === targetId);
+    if (idx < 0) return;
+    closeSheet();
+    switchSection('handbook');
+    requestAnimationFrame(() => showHandbookDetail(idx));
+  }
 });
 
 // ═══════════════════════════════════════════
