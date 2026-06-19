@@ -1253,9 +1253,21 @@ body.dark-theme .sheet-text a{color:#7eb8ff}
 .hb-internal-link{font-size:13px;font-weight:600;color:var(--accent);text-decoration:none;display:inline-block;margin-top:4px}
 .hb-internal-link:hover{text-decoration:underline}
 body.dark-theme .hb-internal-link{color:#fb9050}
-.hb-inline-gallery{display:flex;gap:12px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x;padding:6px 0 14px}
-.hb-gallery-img-btn{flex:0 0 min(82vw,360px);scroll-snap-align:start;border:0;padding:0;background:transparent;cursor:zoom-in;display:block}
-.hb-gallery-img-btn img{width:100%;height:auto;display:block;border-radius:18px;box-shadow:var(--luxury-shadow-soft)}
+.sheet-text h3{font-family:var(--font-head);font-size:14px;font-weight:700;color:var(--navy);margin:18px 0 6px;text-transform:uppercase;letter-spacing:.05em}
+body.dark-theme .sheet-text h3{color:rgba(210,220,255,.92)}
+.hb-gallery-hint{font-size:12px;color:var(--tmid);margin:14px 0 8px}
+.hb-gallery-shell{position:relative;margin:8px 0 10px}
+.hb-inline-gallery{display:flex;gap:12px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x;padding:8px 2px 16px;scrollbar-width:thin}
+.hb-gallery-img-btn{flex:0 0 min(82vw,360px);scroll-snap-align:start;border:1px solid rgba(42,49,83,.12);padding:6px;background:rgba(255,255,255,.72);border-radius:22px;cursor:zoom-in;box-shadow:var(--luxury-shadow-soft)}
+.hb-gallery-img-btn img{width:100%;height:auto;display:block;border-radius:18px}
+.hb-gallery-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:34px;height:34px;border:0;border-radius:999px;background:rgba(42,49,83,.88);color:#fff;font-size:26px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--luxury-shadow-soft)}
+.hb-gallery-nav--prev{left:4px}
+.hb-gallery-nav--next{right:4px}
+.hb-gallery-counter{width:fit-content;margin:0 auto 4px;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;color:var(--tmid);background:rgba(42,49,83,.06)}
+body.dark-theme .hb-gallery-hint,body.dark-theme .hb-gallery-counter{color:rgba(220,230,250,.72)}
+body.dark-theme .hb-gallery-img-btn{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.10)}
+body.dark-theme .hb-gallery-nav{background:rgba(255,255,255,.18);color:#fff}
+@media(max-width:480px){.hb-gallery-nav{width:32px;height:32px;font-size:24px}.hb-gallery-img-btn{flex-basis:min(84vw,340px)}}
 </style>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
@@ -2046,7 +2058,7 @@ const handbookData = [
         alt: 'Алгоритм выбора элективов',
         title: 'Алгоритм выбора элективов',
         summary: 'Кратко о системе приоритетов и выборе дисциплин на семестр',
-        text: '<p><b>Элективы</b> — это обязательные дисциплины по выбору на один семестр. Студент выбирает доступные дисциплины через Личный кабинет МГПУ по системе приоритетов, а после распределения проходит назначенный электив как часть учебного плана семестра.</p><div class="detail-callout"><b>Главное:</b> выбор элективов проходит не по принципу одного варианта, а через приоритеты. Чем выше дисциплина в списке, тем больше она соответствует твоему предпочтению.</div><p>Ниже — пошаговая инфографика по выбору элективов.</p><p class="detail-source">Листайте карточки в сторону, чтобы посмотреть весь алгоритм.</p><div class="hb-inline-gallery" aria-label="Инфографика: алгоритм выбора элективов"><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-1.png"><img src="images/electives/electiv-1.png" alt="Алгоритм выбора элективов, карточка 1" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-2.png"><img src="images/electives/electiv-2.png" alt="Алгоритм выбора элективов, карточка 2" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-3.png"><img src="images/electives/electiv-3.png" alt="Алгоритм выбора элективов, карточка 3" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-4.png"><img src="images/electives/electiv-4.png" alt="Алгоритм выбора элективов, карточка 4" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-5.png"><img src="images/electives/electiv-5.png" alt="Алгоритм выбора элективов, карточка 5" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-6.png"><img src="images/electives/electiv-6.png" alt="Алгоритм выбора элективов, карточка 6" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-7.png"><img src="images/electives/electiv-7.png" alt="Алгоритм выбора элективов, карточка 7" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-8.png"><img src="images/electives/electiv-8.png" alt="Алгоритм выбора элективов, карточка 8" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-9.png"><img src="images/electives/electiv-9.png" alt="Алгоритм выбора элективов, карточка 9" loading="lazy" decoding="async"></button></div>'
+        text: '<p><b>Электив</b> — это учебная дисциплина, которую студент выбирает сам из предложенного списка. Это обязательная часть образовательной программы по ФЗ №273, но содержание дисциплины выбирает сам студент.</p><h3>Бакалавриат</h3><p>На бакалавриате электив состоит из модуля — трёх дисциплин. Модули проходят все студенты очной формы обучения с 1 по 3 курс по понедельникам.</p><ul><li><b>1 семестр:</b> студент только выбирает элективы.</li><li><b>2–5 семестры:</b> студент одновременно проходит текущий электив и выбирает следующий.</li><li><b>6 семестр:</b> студент только проходит выбранный электив.</li><li><b>С 7 семестра:</b> элективов нет.</li></ul><h3>Магистратура</h3><p>В магистратуре электив — это один онлайн-курс на платформе «Открытое образование» или в LMS МГПУ. Элективы проходят студенты всех форм обучения на 1 и 2 курсе.</p><ul><li><b>1 семестр:</b> элективов нет.</li><li><b>2–3 семестры:</b> проходит выбор и освоение электива.</li><li><b>4 семестр:</b> элективов нет.</li></ul><h3>Как выбрать</h3><p>Выбор проходит через Личный кабинет МГПУ: <a href="https://lk.mgpu.ru" target="_blank" rel="noopener">lk.mgpu.ru</a>, раздел «Обучение».</p><p>За 10 дней до старта записи в Личном кабинете появляется список всех доступных курсов. В это время можно спокойно изучить варианты и сравнить дисциплины.</p><ul><li><b>Бакалавры</b> расставляют приоритеты от 1 до 7. Нужно выбрать минимум 5 курсов.</li><li><b>Магистранты</b> выбирают один курс без приоритетов.</li></ul><div class="detail-callout"><b>Важно:</b> спешить не нужно. Время подачи заявки на результат не влияет: все заявки, отправленные в период записи, имеют одинаковый вес.</div><h3>Как работает распределение</h3><p>После закрытия периода записи система автоматически распределяет студентов по курсам с учётом приоритетов. Сначала зачисляются все студенты с приоритетом 1, затем с приоритетом 2 и так далее.</p><p>Если мест меньше, чем желающих с одним приоритетом, среди них проводится случайное распределение. Если студент не сделал выбор вообще, система зачислит его на курс, где останутся свободные места.</p><h3>Можно ли изменить выбор</h3><p>Изменить выбор можно в любой момент до закрытия периода записи. После закрытия периода электив становится обязательной частью образовательной программы, и поменять его уже не получится.</p><p><b>По вопросам выбора элективов:</b> <a href="mailto:SimonyanA@mgpu.ru">SimonyanA@mgpu.ru</a></p><p class="detail-source">Ниже — пошаговая инфографика по выбору элективов. Листайте карточки в сторону.</p><p class="hb-gallery-hint">Листайте карточки в сторону или используйте стрелки</p><div class="hb-gallery-shell"><button class="hb-gallery-nav hb-gallery-nav--prev" type="button" aria-label="Предыдущая карточка">‹</button><div class="hb-inline-gallery" aria-label="Инфографика: алгоритм выбора элективов"><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-1.png"><img src="images/electives/electiv-1.png" alt="Алгоритм выбора элективов, карточка 1" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-2.png"><img src="images/electives/electiv-2.png" alt="Алгоритм выбора элективов, карточка 2" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-3.png"><img src="images/electives/electiv-3.png" alt="Алгоритм выбора элективов, карточка 3" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-4.png"><img src="images/electives/electiv-4.png" alt="Алгоритм выбора элективов, карточка 4" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-5.png"><img src="images/electives/electiv-5.png" alt="Алгоритм выбора элективов, карточка 5" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-6.png"><img src="images/electives/electiv-6.png" alt="Алгоритм выбора элективов, карточка 6" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-7.png"><img src="images/electives/electiv-7.png" alt="Алгоритм выбора элективов, карточка 7" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-8.png"><img src="images/electives/electiv-8.png" alt="Алгоритм выбора элективов, карточка 8" loading="lazy" decoding="async"></button><button class="hb-gallery-img-btn" type="button" data-img-full="images/electives/electiv-9.png"><img src="images/electives/electiv-9.png" alt="Алгоритм выбора элективов, карточка 9" loading="lazy" decoding="async"></button></div><button class="hb-gallery-nav hb-gallery-nav--next" type="button" aria-label="Следующая карточка">›</button></div><div class="hb-gallery-counter" aria-live="polite">1 / 9</div>'
       }
     ]
   }
@@ -2567,6 +2579,31 @@ document.addEventListener('click', e => {
     requestAnimationFrame(() => showHandbookDetail(idx));
   }
 });
+
+document.addEventListener('click', e => {
+  const nav = e.target.closest('.hb-gallery-nav');
+  if (!nav) return;
+  const shell = nav.closest('.hb-gallery-shell');
+  const gallery = shell && shell.querySelector('.hb-inline-gallery');
+  if (!gallery) return;
+  const direction = nav.classList.contains('hb-gallery-nav--next') ? 1 : -1;
+  const step = (gallery.querySelector('.hb-gallery-img-btn') || {}).offsetWidth || gallery.clientWidth * 0.8;
+  gallery.scrollBy({ left: direction * (step + 12), behavior: 'smooth' });
+});
+
+document.addEventListener('scroll', e => {
+  const gallery = e.target;
+  if (!gallery.classList || !gallery.classList.contains('hb-inline-gallery')) return;
+  const shell = gallery.closest('.hb-gallery-shell');
+  if (!shell) return;
+  const counter = shell.nextElementSibling;
+  if (!counter || !counter.classList.contains('hb-gallery-counter')) return;
+  const btns = gallery.querySelectorAll('.hb-gallery-img-btn');
+  if (!btns.length) return;
+  const itemW = (btns[0].offsetWidth || 1) + 12;
+  const idx = Math.min(Math.round(gallery.scrollLeft / itemW), btns.length - 1);
+  counter.textContent = (idx + 1) + ' / ' + btns.length;
+}, true);
 
 // ═══════════════════════════════════════════
 //  PLACEHOLDER SECTIONS
