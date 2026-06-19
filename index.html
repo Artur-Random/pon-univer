@@ -390,6 +390,21 @@ body.dark-theme .card--ssia-chair{
 /* ── Footer ── */
 .main-footer{background:var(--navy);border-top:3px solid var(--accent);margin-top:auto;padding:20px 14px 80px;text-align:center;color:white}
 .footer-container{max-width:1500px;margin:0 auto;font-size:11px;color:var(--warm);line-height:1.4}
+.footer-info{display:flex;flex-direction:column;gap:6px;align-items:center}
+.footer-brand{font-size:13px;font-weight:600;display:flex;align-items:center;gap:10px;margin-bottom:2px}
+.footer-brand strong{color:#fff}
+.footer-brand span{color:var(--gold-soft);font-size:11px}
+.footer-line{font-size:11px;color:var(--warm);line-height:1.5;max-width:640px}
+.footer-legal{opacity:.72}
+.footer-links{margin-top:4px;display:flex;align-items:center;gap:8px}
+.footer-links a{color:var(--warm);font-size:11px;text-decoration:none;opacity:.7}
+.footer-links a:hover{opacity:1;text-decoration:underline}
+.footer-links span{color:var(--warm);opacity:.5}
+
+/* ── Pilot notice ── */
+.pilot-notice{display:flex;align-items:flex-start;gap:10px;background:rgba(251,112,11,.08);border:1px solid rgba(251,112,11,.25);border-radius:12px;padding:10px 14px;margin-bottom:20px;font-size:12px;line-height:1.5}
+.pilot-notice-badge{flex-shrink:0;background:var(--accent);color:#fff;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:6px;padding:2px 7px;margin-top:1px}
+.pilot-notice-text{color:var(--tmid)}
 
 /* ── University addresses ── */
 .uni-address-list{display:flex;flex-direction:column;gap:8px;margin:16px 0 8px}
@@ -451,6 +466,10 @@ body.dark-theme #search-input{color:var(--tdark)}
 body.dark-theme #search-btn{color:var(--accent)}
 body.dark-theme .main-footer{background:#0a0a0a}
 body.dark-theme .footer-container{color:#94a3b8}
+body.dark-theme .footer-line{color:#94a3b8}
+body.dark-theme .footer-links a{color:#94a3b8}
+body.dark-theme .pilot-notice{background:rgba(251,112,11,.12);border-color:rgba(251,112,11,.30)}
+body.dark-theme .pilot-notice-text{color:#94a3b8}
 body.dark-theme .detail-title{color:var(--tdark) !important}
 body.dark-theme .schedule-note{color:#ff6b6b}
 body.dark-theme .search-result-name{color:#e2e8f0}
@@ -1445,21 +1464,37 @@ body.dark-theme .hb-gallery-nav{background:rgba(255,255,255,.18);color:#fff}
   </section>
   <section id="sec-ipkr" class="main-section">
     <h2 class="section-title">Институт психологии и комплексной реабилитации</h2>
+    <div class="pilot-notice" role="note">
+      <span class="pilot-notice-badge">Пилотный режим</span>
+      <span class="pilot-notice-text">Сайт тестируется на базе ИПКР МГПУ. Информация обновляется по мере проверки источников и не заменяет официальные документы, приказы и ресурсы МГПУ. Контактные маршруты пока уточнены для студентов ИПКР.</span>
+    </div>
     <div id="ipkr-master" class="grid-layout"></div>
     <div id="ipkr-detail" style="display:none;"></div>
   </section>
   <section id="sec-uni" class="main-section">
     <h2 class="section-title">Московский городской педагогический университет</h2>
+    <div class="pilot-notice" role="note">
+      <span class="pilot-notice-badge">Пилотный режим</span>
+      <span class="pilot-notice-text">Сайт тестируется на базе ИПКР МГПУ. Информация обновляется по мере проверки источников и не заменяет официальные документы, приказы и ресурсы МГПУ. Контактные маршруты пока уточнены для студентов ИПКР.</span>
+    </div>
     <div id="uni-master" class="grid-layout"></div>
     <div id="uni-detail" style="display:none;"></div>
   </section>
   <section id="sec-handbook" class="main-section">
     <h2 class="section-title">Справочник студента</h2>
+    <div class="pilot-notice" role="note">
+      <span class="pilot-notice-badge">Пилотный режим</span>
+      <span class="pilot-notice-text">Сайт тестируется на базе ИПКР МГПУ. Информация обновляется по мере проверки источников и не заменяет официальные документы, приказы и ресурсы МГПУ. Контактные маршруты пока уточнены для студентов ИПКР.</span>
+    </div>
     <div id="handbook-master" class="grid-layout"></div>
     <div id="handbook-detail" style="display:none;"></div>
   </section>
   <section id="sec-contacts" class="main-section">
     <h2 class="section-title">Контакты ССиА ИПКР</h2>
+    <div class="pilot-notice" role="note">
+      <span class="pilot-notice-badge">Пилотный режим</span>
+      <span class="pilot-notice-text">Сайт тестируется на базе ИПКР МГПУ. Информация обновляется по мере проверки источников и не заменяет официальные документы, приказы и ресурсы МГПУ. Контактные маршруты пока уточнены для студентов ИПКР.</span>
+    </div>
     <div class="contacts-card">
       <div class="contacts-block-title">Совет студентов и аспирантов ИПКР</div>
       <div class="contacts-list">
@@ -1556,12 +1591,19 @@ body.dark-theme .hb-gallery-nav{background:rgba(255,255,255,.18);color:#fff}
 <div id="toast" class="toast"></div>
 
 <footer class="main-footer">
-  <div class="footer-container">
-    Сделано членами Совета студентов и аспирантов Института психологии и комплексной реабилитации ГАОУ ВО МГПУ &bull; v1.1 &bull; 2026
-    <div style="margin-top:8px;">
-      <a href="privacy.html#privacy" style="color:var(--warm);font-size:11px;text-decoration:none;opacity:0.7;">Политика конфиденциальности</a>
-      <span style="color:var(--warm);opacity:0.5;margin:0 6px;">&bull;</span>
-      <a href="privacy.html#cookies" style="color:var(--warm);font-size:11px;text-decoration:none;opacity:0.7;">Политика cookies</a>
+  <div class="footer-container footer-info">
+    <div class="footer-brand">
+      <strong>© 2026 Понятный Университет</strong>
+      <span>v1.1</span>
+    </div>
+    <div class="footer-line">Сайт создан и поддерживается командой ССиА ИПКР МГПУ на общественных началах.</div>
+    <div class="footer-line">Проект не преследует коммерческих целей, не имеет спонсорской поддержки и не собирает пожертвования.</div>
+    <div class="footer-line footer-legal">Информация на сайте носит справочный характер и не заменяет официальные документы, приказы и ресурсы МГПУ.</div>
+    <div class="footer-line footer-legal">Официальные материалы, документы, наименования и логотипы МГПУ принадлежат соответствующим правообладателям и используются в справочных целях.</div>
+    <div class="footer-links">
+      <a href="privacy.html#privacy">Политика конфиденциальности</a>
+      <span>&bull;</span>
+      <a href="privacy.html#cookies">Политика cookies</a>
     </div>
   </div>
 </footer>
