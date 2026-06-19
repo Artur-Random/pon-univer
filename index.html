@@ -1248,7 +1248,7 @@ body.dark-theme .sheet-text .sit-body{border-top-color:rgba(255,255,255,.07)}
 body.dark-theme .sheet-text .sit-imp{background:rgba(251,112,11,.1)}
 .sheet-text .sit-contact{font-size:13.5px;background:rgba(42,49,83,.05);border-radius:8px;padding:10px 12px;margin-top:6px;line-height:1.65}
 body.dark-theme .sheet-text .sit-contact{background:rgba(255,255,255,.05)}
-.sheet-text a{word-break:break-all}
+.sheet-text a{overflow-wrap:break-word;word-break:break-word}
 body.dark-theme .sheet-text a{color:#7eb8ff}
 .hb-internal-link{font-size:13px;font-weight:600;color:var(--accent);text-decoration:none;display:inline-block;margin-top:4px}
 .hb-internal-link:hover{text-decoration:underline}
@@ -1257,11 +1257,11 @@ body.dark-theme .hb-internal-link{color:#fb9050}
 body.dark-theme .sheet-text h3{color:rgba(210,220,255,.92)}
 .hb-gallery-hint{font-size:12px;color:var(--tmid);margin:14px 0 8px}
 .hb-gallery-shell{position:relative;margin:8px 0 10px}
-.hb-inline-gallery{display:flex;gap:12px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x;padding:8px 2px 16px;scrollbar-width:thin}
+.hb-inline-gallery{display:flex;gap:12px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x;padding:8px 2px 16px;scrollbar-width:thin}
 .hb-gallery-img-btn{flex:0 0 min(82vw,360px);scroll-snap-align:start;border:1px solid rgba(42,49,83,.12);padding:6px;background:rgba(255,255,255,.72);border-radius:22px;cursor:zoom-in;box-shadow:var(--luxury-shadow-soft)}
 .hb-gallery-img-btn img{width:100%;height:auto;display:block;border-radius:18px}
 .hb-gallery-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:34px;height:34px;border:0;border-radius:999px;background:rgba(42,49,83,.88);color:#fff;font-size:26px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--luxury-shadow-soft)}
-.hb-gallery-nav--prev{left:4px}
+.hb-gallery-nav--prev{left:4px;display:none}
 .hb-gallery-nav--next{right:4px}
 .hb-gallery-counter{width:fit-content;margin:0 auto 4px;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;color:var(--tmid);background:rgba(42,49,83,.06)}
 body.dark-theme .hb-gallery-hint,body.dark-theme .hb-gallery-counter{color:rgba(220,230,250,.72)}
@@ -2580,6 +2580,24 @@ document.addEventListener('click', e => {
   }
 });
 
+function syncGalleryNav(gallery) {
+  const shell = gallery.closest('.hb-gallery-shell');
+  if (!shell) return;
+  const prev = shell.querySelector('.hb-gallery-nav--prev');
+  const next = shell.querySelector('.hb-gallery-nav--next');
+  const atStart = gallery.scrollLeft < 4;
+  const atEnd = gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 4;
+  if (prev) prev.style.display = atStart ? 'none' : 'flex';
+  if (next) next.style.display = atEnd ? 'none' : 'flex';
+  const counter = shell.nextElementSibling;
+  if (!counter || !counter.classList.contains('hb-gallery-counter')) return;
+  const btns = gallery.querySelectorAll('.hb-gallery-img-btn');
+  if (!btns.length) return;
+  const itemW = (btns[0].offsetWidth || 1) + 12;
+  const idx = Math.min(Math.round(gallery.scrollLeft / itemW), btns.length - 1);
+  counter.textContent = (idx + 1) + ' / ' + btns.length;
+}
+
 document.addEventListener('click', e => {
   const nav = e.target.closest('.hb-gallery-nav');
   if (!nav) return;
@@ -2589,20 +2607,13 @@ document.addEventListener('click', e => {
   const direction = nav.classList.contains('hb-gallery-nav--next') ? 1 : -1;
   const step = (gallery.querySelector('.hb-gallery-img-btn') || {}).offsetWidth || gallery.clientWidth * 0.8;
   gallery.scrollBy({ left: direction * (step + 12), behavior: 'smooth' });
+  setTimeout(() => syncGalleryNav(gallery), 400);
 });
 
 document.addEventListener('scroll', e => {
   const gallery = e.target;
   if (!gallery.classList || !gallery.classList.contains('hb-inline-gallery')) return;
-  const shell = gallery.closest('.hb-gallery-shell');
-  if (!shell) return;
-  const counter = shell.nextElementSibling;
-  if (!counter || !counter.classList.contains('hb-gallery-counter')) return;
-  const btns = gallery.querySelectorAll('.hb-gallery-img-btn');
-  if (!btns.length) return;
-  const itemW = (btns[0].offsetWidth || 1) + 12;
-  const idx = Math.min(Math.round(gallery.scrollLeft / itemW), btns.length - 1);
-  counter.textContent = (idx + 1) + ' / ' + btns.length;
+  syncGalleryNav(gallery);
 }, true);
 
 // ═══════════════════════════════════════════
