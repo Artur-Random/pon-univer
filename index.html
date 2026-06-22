@@ -271,6 +271,13 @@ body.dark-theme .card.hero{
   .card.staff-card--ipkr-director .card-text{display:block}
   .card.staff-card--ipkr-director .card-schedule{margin-top:10px;width:100%}
 }
+/* ── Department head compact card ── */
+.card.staff-card--dept-head .role{font-size:9px;line-height:1.35}
+.card.staff-card--dept-head{min-height:152px;align-self:stretch}
+/* ── Hero card schedule block ── */
+.card.hero .card-schedule{width:100%;margin-top:14px;box-sizing:border-box}
+.card.hero .schedule-note{font-size:9.5px}
+.card.hero .schedule-line{font-size:11px}
 /* ── Institute director / ssia-chair card variants ── */
 .card-badge{
   display:inline-flex;width:fit-content;margin-bottom:6px;
@@ -1617,7 +1624,7 @@ const orgData = [
     ],
     staff: [
       { name: 'Ушакова Елена Викторовна', role: 'Директор ИПКР', deg: 'доцент, к. пс. н.', photo: 'images/people/mgpu/Ushakova-EV.webp',
-        featured: 'ipkr-director',
+        hero: true,
         email: 'Ushakova@mgpu.ru', phone: '+7 499 132 05 62', room: 'каб. 409',
         scheduleNote: 'Обязательная предварительная запись по телефону',
         schedule: [
@@ -1628,9 +1635,9 @@ const orgData = [
       { name: 'Челышева Юлия Вячеславовна', role: 'Замдиректора по учебной работе*', deg: 'доцент, к. пед. н.', photo: 'images/people/mgpu/Chelysheva-YV.webp', email: 'CherishevaUV@mgpu.ru', room: 'каб. 407' },
       { name: 'Журавлёва Жанна Игоревна', role: 'Замдиректора по воспитательной работе* · Координатор по работе с молодёжью', deg: 'доцент, к. псих. н.', photo: 'images/people/mgpu/Juravleva-JI.webp', email: 'JuravlevaJ@mgpu.ru', room: 'каб. 411' },
       { divider: 'Руководители департаментов' },
-      { name: 'Парамонова Галина Витальевна', role: 'Начальник деп. организации образовательного процесса*', deg: 'ст. преп.', photo: 'images/people/mgpu/Paramonova-GV.webp', email: 'ParamonovaG@mgpu.ru', room: 'каб. 406' },
-      { name: 'Яковлева Ирина Михайловна', role: 'Начальник деп. социально-психологических технологий', deg: 'проф., д. пед. н.', photo: 'images/people/mgpu/Yakovleva-IM.webp', email: 'YakovlevaIM@mgpu.ru', room: 'каб. 403' },
-      { name: 'Овчаренко Лариса Юрьевна', role: 'Начальник деп. клинических и психологических основ', deg: 'доцент, к. пс. н.', photo: 'images/people/mgpu/Ovcharenko-LY.webp', email: 'OvcharenkoLU@mgpu.ru', room: 'каб. 402' }
+      { name: 'Парамонова Галина Витальевна', role: 'Начальник департамента организации образовательного процесса*', deg: 'ст. преп.', photo: 'images/people/mgpu/Paramonova-GV.webp', email: 'ParamonovaG@mgpu.ru', room: 'каб. 406', featured: 'dept-head' },
+      { name: 'Яковлева Ирина Михайловна', role: 'Начальник департамента социально-психологических технологий', deg: 'проф., д. пед. н.', photo: 'images/people/mgpu/Yakovleva-IM.webp', email: 'YakovlevaIM@mgpu.ru', room: 'каб. 403', featured: 'dept-head' },
+      { name: 'Овчаренко Лариса Юрьевна', role: 'Начальник департамента клинических и психологических основ', deg: 'доцент, к. пс. н.', photo: 'images/people/mgpu/Ovcharenko-LY.webp', email: 'OvcharenkoLU@mgpu.ru', room: 'каб. 402', featured: 'dept-head' }
     ]
   },
   {
@@ -2270,13 +2277,14 @@ function renderCard(person, color, options = {}) {
   </div>` : '';
   const deputyClass = person.featured === 'deputy' ? ' staff-card--deputy' : '';
   const ipkrDirectorClass = person.featured === 'ipkr-director' ? ' staff-card--ipkr-director' : '';
+  const deptHeadClass = person.featured === 'dept-head' ? ' staff-card--dept-head' : '';
   const variantClass = options.variant === 'director' ? ' card--director' : options.variant === 'ssia-chair' ? ' card--ssia-chair' : '';
   const badgeHtml = options.variant === 'director'
     ? `<span class="card-badge card-badge--director">Директор</span>`
     : options.variant === 'ssia-chair'
     ? `<span class="card-badge card-badge--ssia">ССиА</span>`
     : '';
-  return `<div class="card${person.hero ? ' hero' : ''}${deputyClass}${ipkrDirectorClass}${variantClass}">
+  return `<div class="card${person.hero ? ' hero' : ''}${deputyClass}${ipkrDirectorClass}${deptHeadClass}${variantClass}">
     ${avatar}
     <div class="card-text">
       ${badgeHtml}
