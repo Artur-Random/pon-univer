@@ -2524,7 +2524,7 @@ function showHandbookDetail(idx) {
 
   const cardsHtml = (item.cards || []).map((c, cardIdx) => `
     <div class="hb-card" data-card="${cardIdx}">
-      <button class="hb-preview-btn" data-card="${cardIdx}" aria-label="Открыть инфографику: ${c.title || c.alt || item.title}">
+      ${c.image ? `<button class="hb-preview-btn" data-card="${cardIdx}" aria-label="Открыть инфографику: ${c.title || c.alt || item.title}">
         <img
           src="${c.image}"
           class="hb-preview-img"
@@ -2536,14 +2536,14 @@ function showHandbookDetail(idx) {
           <div class="image-fallback-title">Инфографика временно недоступна</div>
           <div class="image-fallback-sub">Проверьте подключение или обновите страницу</div>
         </div>
-      </button>
+      </button>` : ''}
       <div class="hb-card-body">
         <div class="hb-card-title">${c.title || item.title}</div>
         ${c.summary ? `<div class="hb-card-summary">${c.summary}</div>` : ''}
         ${c.applicability ? `<div class="hb-applicability">${c.applicability}</div>` : ''}
         <div class="hb-card-actions">
           ${hasUsefulDetails(c.text) ? `<button class="hb-btn hb-btn-primary" data-card="${cardIdx}">Подробнее</button>` : ''}
-          <button class="hb-btn hb-btn-secondary hb-open-img" data-card="${cardIdx}" data-src="${c.image}" data-alt="${c.alt || c.title || item.title}">Открыть карточку</button>
+          ${c.image ? `<button class="hb-btn hb-btn-secondary hb-open-img" data-card="${cardIdx}" data-src="${c.image}" data-alt="${c.alt || c.title || item.title}">Открыть карточку</button>` : ''}
         </div>
       </div>
     </div>
