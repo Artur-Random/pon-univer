@@ -1282,6 +1282,11 @@ body.dark-theme .sheet-text a{color:#7eb8ff}
 .hb-internal-link{font-size:13px;font-weight:600;color:var(--accent);text-decoration:none;display:inline-block;margin-top:4px}
 .hb-internal-link:hover{text-decoration:underline}
 body.dark-theme .hb-internal-link{color:#fb9050}
+.sheet-pdf-link{display:flex;align-items:center;padding:10px 14px;margin:6px 0;background:rgba(42,49,83,.06);border-radius:10px;text-decoration:none!important;color:var(--navy);font-weight:600;font-size:14px;border:1px solid rgba(42,49,83,.10)}
+.sheet-pdf-link::after{content:'PDF';font-size:10px;font-weight:700;color:#fff;background:var(--accent);padding:2px 6px;border-radius:4px;margin-left:auto;flex-shrink:0}
+.sheet-pdf-link:hover{background:rgba(42,49,83,.10)}
+body.dark-theme .sheet-pdf-link{background:rgba(255,255,255,.07);color:#e8eaf6;border-color:rgba(255,255,255,.12)}
+body.dark-theme .sheet-pdf-link:hover{background:rgba(255,255,255,.11)}
 .sheet-text h3{font-family:var(--font-head);font-size:14px;font-weight:700;color:var(--navy);margin:18px 0 6px;text-transform:uppercase;letter-spacing:.05em}
 body.dark-theme .sheet-text h3{color:rgba(210,220,255,.92)}
 .hb-gallery-hint{font-size:12px;color:var(--tmid);margin:14px 0 8px}
@@ -2157,6 +2162,14 @@ const handbookData = [
         summary: 'Перевод внутри МГПУ, из другого вуза и восстановление после отчисления',
         applicability: 'ВО · бакалавриат / специалитет / магистратура',
         text: '<h3>Перевод внутри МГПУ</h3><ul><li><b>Заявление.</b> Подаётся через Личный кабинет МГПУ.</li><li><b>Сроки.</b> Как правило, 20 августа — 15 сентября и 20 января — 15 февраля.</li><li><b>Условие.</b> Наличие вакантных мест. Перевод допускается с любой формы обучения на любую.</li><li><b>Академическая разница и индивидуальный учебный план.</b> При необходимости определяются аттестационной комиссией; индивидуальный учебный план формирует МФЦ.</li></ul><h3>Перевод из другого вуза</h3><ul><li><b>Когда возможен.</b> Не ранее прохождения первой промежуточной аттестации в исходной организации.</li><li><b>Документы.</b> Заявление и справка об обучении в МФЦ МГПУ; предварительно можно направить на mfc@mgpu.ru.</li><li><b>Академическая разница.</b> Рекомендуемый объём — не более 20 зачётных единиц. Как правило, ликвидируется в течение двух семестров.</li></ul><h3>Восстановление после отчисления</h3><ul><li><b>Срок.</b> В течение пяти лет с момента отчисления, не ранее окончания семестра отчисления.</li><li><b>Условие.</b> Наличие вакантного места. Лица, отчисленные как мера дисциплинарного взыскания, права на восстановление не имеют.</li><li><b>Документы.</b> Заявление через МФЦ; предварительно можно направить на mfc@mgpu.ru.</li><li><b>Академическая разница.</b> При необходимости определяется; формируется индивидуальный учебный план.</li></ul><h3>Студенческий билет</h3><ul><li>После издания приказа — в течение пяти рабочих дней.</li></ul><div class="detail-callout">Сроки подачи заявлений указаны как правило. Перед обращением проверь наличие вакантных мест и уточни маршрут в МФЦ или учебном подразделении.</div><p><a href="#" class="hb-internal-link" data-open-handbook="routing">Куда обратиться по переводу или восстановлению? (ИПКР) →</a></p><p class="detail-source">Источник: Порядок перевода, отчисления и восстановления по программам ВО, приказ №961общ от 11.09.2025.</p>'
+      },
+      {
+        image: null,
+        alt: '',
+        title: 'График учебного процесса',
+        summary: 'Сессии, практика, каникулы и ГИА для студентов ИПКР',
+        applicability: 'ИПКР · 2025/26 учебный год',
+        text: '<p>График учебного процесса показывает структуру учебного года: периоды занятий, экзаменационных сессий, практики, каникул и государственной итоговой аттестации.</p><div class="detail-callout">Не ориентируйся на даты другой группы: даже у студентов одной формы обучения графики могут отличаться.</div><h3>Выбери свою форму обучения</h3><p>Открой нужный документ и найди строку своей группы и курса.</p><a href="https://www.mgpu.ru/wp-content/uploads/2025/08/Grafik-uchebnogo-protsessa_ochnaya-forma-obucheniya.pdf" class="sheet-pdf-link" target="_blank" rel="noopener noreferrer">Очная форма обучения</a><a href="https://www.mgpu.ru/wp-content/uploads/2025/08/Grafik-uchebnogo-protsessa_ochno-zaochnaya-forma-obucheniya.pdf" class="sheet-pdf-link" target="_blank" rel="noopener noreferrer">Очно-заочная форма обучения</a><a href="https://www.mgpu.ru/wp-content/uploads/2025/08/Grafik-uchebnogo-protsessa_zaochnaya-forma-obucheniya.pdf" class="sheet-pdf-link" target="_blank" rel="noopener noreferrer">Заочная форма обучения</a><p class="detail-source">Графики составлены на 2025/26 учебный год. Для следующего учебного года ссылки и даты будут обновлены позже.</p>'
       }
     ]
   },
