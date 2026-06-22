@@ -22,6 +22,7 @@ html{overflow-x:hidden;max-width:100%}
   --font-main:'Inter',sans-serif;--font-head:'Raleway',sans-serif;
   --blue:#2f6fdd;--red:#b6403a;--brown:#8b5e3c;--purple:#6b3a8f;
   --green:#2e7d5b;--slate:#475569;--olive:#747a33;--endow:#b8860b;--gray:#6b7280;
+  --study-purple:#372c54;--finance-green:#276152;
   --gold:#c9974a;--gold-deep:#a8792e;--gold-soft:#ead7b0;
   --ivory:#f7f3ea;--paper:#fffaf0;
   --surface-glass:rgba(255,255,255,.72);--surface-paper:rgba(255,255,255,.86);
@@ -563,6 +564,8 @@ body.dark-theme .hb-card-title{color:#dde0f8}
   margin-bottom:14px;line-height:1.4;
 }
 body.dark-theme .hb-card-summary{color:rgba(185,195,225,.70)}
+.hb-applicability{display:inline-flex;width:fit-content;padding:3px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);background:rgba(42,49,83,.07);border:1px solid rgba(42,49,83,.12);margin-bottom:10px}
+body.dark-theme .hb-applicability{color:rgba(195,210,245,.80);background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.11)}
 .hb-card-actions{display:flex;gap:8px;flex-wrap:wrap;}
 .hb-btn{
   padding:10px 18px;border-radius:24px;
@@ -626,6 +629,38 @@ body.modal-open{overflow:hidden}
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
 }
 .img-modal-close:hover{background:rgba(255,255,255,.26)}
+/* ── Update modal ── */
+.update-modal{position:fixed;top:0;left:0;right:0;bottom:0;z-index:9000;background:rgba(10,14,30,.65);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.update-modal.active{opacity:1;pointer-events:auto}
+.update-modal-card{width:100%;max-height:90vh;overflow-y:auto;background:rgba(253,253,253,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:24px 24px 0 0;padding:20px 20px 44px;transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);box-shadow:0 -6px 32px rgba(0,0,0,.18);position:relative}
+body.dark-theme .update-modal-card{background:rgba(22,26,42,.97);border-top:1px solid rgba(255,255,255,.08)}
+.update-modal.active .update-modal-card{transform:translateY(0)}
+.update-modal-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border:none;border-radius:50%;background:rgba(42,49,83,.08);color:var(--navy);font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.update-modal-close:hover{background:rgba(42,49,83,.14)}
+body.dark-theme .update-modal-close{background:rgba(255,255,255,.08);color:#e2e8f0}
+.update-modal-badge{display:inline-block;background:var(--accent);color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:3px 9px;margin-bottom:10px}
+.update-modal-title{font-family:var(--font-head);font-size:20px;font-weight:700;color:var(--navy);margin:0 36px 6px 0;line-height:1.25}
+body.dark-theme .update-modal-title{color:#e8eaf6}
+.update-modal-sub{font-size:13px;color:var(--tmid);margin:0 0 14px;line-height:1.5}
+body.dark-theme .update-modal-sub{color:rgba(180,190,220,.75)}
+.update-modal-list{font-size:13px;line-height:1.6;color:var(--tmid);padding-left:18px;margin:0 0 20px}
+.update-modal-list li{margin-bottom:6px}
+.update-modal-list b{color:var(--navy);font-weight:700}
+body.dark-theme .update-modal-list{color:rgba(180,190,220,.80)}
+body.dark-theme .update-modal-list b{color:#dde0f8}
+.update-modal-actions{display:flex;gap:10px;flex-wrap:wrap}
+.update-modal-btn{flex:1;min-width:120px;border:none;border-radius:12px;padding:12px 16px;font-size:14px;font-weight:600;cursor:pointer;transition:opacity .15s,transform .1s;font-family:var(--font-main)}
+.update-modal-btn:active{transform:scale(.97)}
+.update-modal-btn--primary{background:var(--accent);color:#fff}
+.update-modal-btn--primary:hover{opacity:.9}
+.update-modal-btn--secondary{background:rgba(42,49,83,.08);color:var(--navy)}
+.update-modal-btn--secondary:hover{background:rgba(42,49,83,.14)}
+body.dark-theme .update-modal-btn--secondary{background:rgba(255,255,255,.1);color:#e2e8f0}
+@media(min-width:600px){
+  .update-modal{align-items:center;padding:20px}
+  .update-modal-card{max-width:480px;width:100%;border-radius:20px;transform:translateY(0) scale(.93);padding:28px 28px 32px}
+  .update-modal.active .update-modal-card{transform:scale(1)}
+}
 /* ── Person photo modal ── */
 body.person-photo-open{overflow:hidden}
 .person-photo-modal{
@@ -1505,6 +1540,26 @@ body.dark-theme .hb-gallery-nav{background:rgba(255,255,255,.18);color:#fff}
 
 
 
+<!-- Update v1.2 Modal -->
+<div id="update-modal" class="update-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="update-modal-title">
+  <div class="update-modal-card">
+    <button id="update-modal-close" class="update-modal-close" type="button" aria-label="Закрыть">×</button>
+    <div class="update-modal-badge">v1.2</div>
+    <h2 class="update-modal-title" id="update-modal-title">Понятный Университет обновился до v1.2</h2>
+    <p class="update-modal-sub">Добавили новые разделы Справочника и обновили состав ССиА ИПКР.</p>
+    <ul class="update-modal-list">
+      <li><b>Учебный процесс:</b> добавлены карточки «Учёба: БРС» и «Учёба: Сессия» с подробными текстовыми блоками о балльной системе, пересдачах и досрочной аттестации;</li>
+      <li><b>Финансы и поддержка:</b> добавлена карточка «Финансы: Бюджет» — условия, основания и порядок перевода с платного на бюджетное обучение;</li>
+      <li><b>Справочник:</b> обновлены карточки «Твои права: учёба», «паузы» и «защита», добавлены внутренние переходы между связанными разделами;</li>
+      <li><b>Состав ССиА ИПКР:</b> обновлены руководители отделов по итогам заседания Координационного совета от 18.06.2026.</li>
+    </ul>
+    <div class="update-modal-actions">
+      <button class="update-modal-btn update-modal-btn--primary" type="button" id="update-open-handbook">Открыть справочник</button>
+      <button class="update-modal-btn update-modal-btn--secondary" type="button" id="update-dismiss">Понятно</button>
+    </div>
+  </div>
+</div>
+
 <button id="fab-up" class="fab-up" aria-label="Наверх">
   <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
 </button>
@@ -1514,7 +1569,7 @@ body.dark-theme .hb-gallery-nav{background:rgba(255,255,255,.18);color:#fff}
   <div class="footer-container footer-info">
     <div class="footer-brand">
       <strong>© 2026 Понятный Университет</strong>
-      <span>v1.1</span>
+      <span>v1.2</span>
     </div>
     <div class="footer-line">Сайт создан и поддерживается командой ССиА ИПКР МГПУ на общественных началах.</div>
     <div class="footer-line">Проект не преследует коммерческих целей, не имеет спонсорской поддержки и не собирает пожертвования.</div>
@@ -1586,7 +1641,7 @@ const orgData = [
     staff: [
       { name: 'Парамонова Галина Витальевна', role: 'Начальник департамента', deg: 'ст. преп.', note: 'расписание, ликвидация акад. задолженностей, досрочная/продлённая сессия, общие вопросы образ. процесса — каб. 406', photo: 'images/people/mgpu/Paramonova-GV.webp' },
       { name: 'Вдовина Валентина Владимировна', role: '', deg: 'специалист по УМР · каб. 405', photo: null },
-      { name: 'Горожанкина Оксана Николаевна', role: 'Представительская площадка ИПКР', deg: 'специалист · каб. 202', photo: null },
+      { name: 'Горожанкина Оксана Николаевна', role: 'Представительская площадка ИПКР', deg: 'специалист · каб. 202–203', photo: null },
       { name: 'Гришина Лилия Игоревна', role: 'Материальная поддержка · социальная стипендия · рассрочка и скидка на обучение', deg: 'специалист · каб. 405', photo: null },
       { name: 'Кондратова Мария Александровна', role: '', deg: 'специалист', photo: null },
       { name: 'Лебедева Виктория Александровна', role: '', deg: 'специалист по УМР · каб. 405', photo: null },
@@ -1712,12 +1767,11 @@ const orgData = [
       { hero: true, name: 'Толоконников Кирилл Андреевич', role: 'Председатель', deg: 'студент 3 курса, Психология', photo: 'images/people/ssia/Tolokonnikov.webp', email: 'TolokonnikovKA944@mgpu.ru', vk: 'https://vk.ru/odessa__1794' },
       { name: 'Транковская Анна Сергеевна', role: 'Зампредседателя', deg: 'студентка 3 курса, Логопедия', photo: 'images/people/ssia/Trankovskaya.webp', featured: 'deputy' },
       { divider: 'Руководители направлений' },
-      { name: 'Крючков Георгий Александрович', role: 'Проектное направление', deg: 'студент 3 курса, ОРМ', photo: null },
-      { name: 'Злобина Дарья Антоновна', role: 'Медианаправление', deg: 'студентка 3 курса, Логопедия', photo: null },
+      { name: 'Коротун Григорий Владимирович', role: 'Руководитель медиаотдела · Референт ССиА ИПКР', deg: 'студент 1 курса, Логопедия', photo: null },
+      { name: 'Миронова Софья Андреевна', role: 'Руководитель проектного отдела', deg: 'студентка 1 курса, Психология', photo: null },
       { name: 'Транковская Анна Сергеевна', role: 'Аналитическое направление', deg: 'студентка 3 курса, Логопедия', photo: 'images/people/ssia/Trankovskaya.webp' },
       { divider: 'Организационный блок' },
-      { name: 'Костикова Александра Александровна', role: 'Ответственная за старост', deg: 'студентка 2 курса, ОРМ', photo: null },
-      { name: 'Коротун Григорий Владимирович', role: 'Референт', deg: 'студент 1 курса, Логопедия', photo: null }
+      { name: 'Костикова Александра Александровна', role: 'Ответственная за старост', deg: 'студентка 2 курса, ОРМ', photo: null }
     ]
   },
   {
@@ -1744,6 +1798,26 @@ const orgData = [
     ],
     staff: [
       { name: 'Тумакова Евгения Владимировна', role: 'Заместитель начальника учебного отдела МФЦ', deg: 'tumakovae@mgpu.ru<br>+7 (499) 132-74-69', photo: null }
+    ]
+  },
+  {
+    id: 'presentation-platform',
+    group: null,
+    title: 'Презентационная площадка',
+    subtitle: 'Современное оборудование · каб. 202–203',
+    color: 'var(--teal)',
+    notes: [
+      'Открыта 27 января 2025 года',
+      'Оборудование от 15+ российских производителей: ТИКО, СВЕТОЧ, МЕРСИБО, Х-МАСТЕР, ЛОГОМЕР 3',
+      'Мероприятия: семинары, мастер-классы по робототехнике и 3D-конструированию'
+    ],
+    sheet: {
+      label: 'Подробнее о площадке',
+      title: 'Презентационная площадка ИПКР',
+      text: '<p>Презентационная площадка современного образовательного и коррекционно-развивающего оборудования открылась в ИПКР МГПУ 27 января 2025 года. Проект реализован при поддержке Фонда целевого капитала МГПУ, Первичной профсоюзной организации и индустриальных партнёров.</p><h3>Что представлено</h3><p>Оборудование и разработки более чем 15 российских организаций: развивающие игры, конструкторы, робототехника, лабораторное оборудование, диагностические и коррекционно-развивающие материалы, цифровые решения. Среди брендов: ТИКО, СВЕТОЧ, МЕРСИБО, Х-МАСТЕР, ЛОГОМЕР 3.</p><h3>Три направления</h3><ul><li>Логопедический трек — умное зеркало ArtikMe, материалы Мерсибо, интерактивный стол логопеда.</li><li>Развивающий и образовательный трек — игры Воскобовича, конструкторы, мультстудия, робототехника.</li><li>Диагностический трек — материалы Стребелевой, психологические тесты и методики.</li></ul><h3>Мероприятия</h3><ul><li>Научно-практические семинары</li><li>Мастер-классы по робототехнике</li><li>Мастер-классы по 3D-конструированию «Фанкластик»</li></ul><h3>Для кого</h3><p>Площадка открыта для студентов, педагогов, слушателей курсов повышения квалификации, экспертов и партнёров института. Это база для практики, исследований и волонтёрских проектов.</p><div class="detail-callout">Площадка расположена в каб. 202–203. Ответственная: Горожанкина Оксана Николаевна (каб. 202).</div><p class="detail-source">Источник: новости МГПУ от 23.01.2025 и 29.01.2025 об открытии презентационной площадки ИПКР.</p>'
+    },
+    staff: [
+      { name: 'Горожанкина Оксана Николаевна', role: 'Ответственная за площадку', deg: 'специалист · каб. 202', photo: null }
     ]
   },
   {
@@ -1970,14 +2044,14 @@ const handbookData = [
         alt: 'Инфографика о правах студента МГПУ',
         title: 'Твои права: учёба',
         summary: 'ИУП, элективы, перезачёт, особые условия',
-        text: '<p>У тебя есть право учиться не только по общей колее, но и с учётом своей ситуации.</p><ul><li><b>Индивидуальный учебный план.</b> ИУП могут оформить при ОВЗ, академической разнице после перевода или восстановления, выходе из академического отпуска, смене программы или формы обучения. ИУП помогает выстроить обучение по персональному графику, но его нужно выполнять: невыполнение без уважительной причины может стать основанием для отчисления.</li><li><b>Элективы</b> — это обязательные дисциплины по выбору на один семестр. Выбор проходит через Личный кабинет МГПУ по системе приоритетов, а после распределения электив становится частью учебного плана семестра. <a href="#" class="hb-internal-link" data-open-handbook="electives-algorithm">Подробнее: алгоритм выбора элективов →</a></li><li><b>Новый алгоритм элективов.</b> Нужно выбрать минимум 5 курсов и расставить приоритеты от 1 до 7, где 1 — самый желанный вариант. Скорость подачи заявки не влияет: все заявки внутри установленного периода имеют равный вес. Если на курс с одинаковым приоритетом претендует больше студентов, чем есть мест, система распределяет места случайно.</li><li><b>Перезачёт.</b> Дисциплины, модули, практики и результаты обучения из другого вуза или колледжа можно перезачесть по заявлению и документам об обучении.</li><li><b>Особые условия.</b> При ОВЗ, инвалидности или временном состоянии здоровья можно запросить особые условия обучения.</li></ul><p><b>Куда идти:</b> Департамент организации образовательного процесса, Личный кабинет МГПУ.</p><p class="detail-source">Источник: ФЗ-273, ПВРО МГПУ, порядки обучения по ИУП, порядки работы аттестационных комиссий, student.mgpu.ru «Элективы».</p>'
+        text: '<p>У тебя есть право учиться не только по общей колее, но и с учётом своей ситуации.</p><ul><li><b>Индивидуальный учебный план.</b> Может понадобиться при переводе, восстановлении, академической разнице и в других предусмотренных случаях. Его нужно выполнять. <a href="#" class="hb-internal-link" data-open-handbook="study-process">Подробнее об ИУП и академической разнице →</a></li><li><b>Досрочная аттестация.</b> При уважительной причине можно сдать зачёты и экзамены раньше расписания. Заявление и подтверждающие документы подаются заранее, не позднее чем за месяц до начала (практика ИПКР).</li><li><b>Элективы</b> — дисциплины по выбору, обязательная часть программы. Выбор через Личный кабинет по системе приоритетов от 1 до 7, минимум 5 курсов. Скорость подачи заявки не влияет. При равных приоритетах — случайное распределение. После распределения электив становится частью учебного плана. <a href="#" class="hb-internal-link" data-open-handbook="electives-algorithm">Подробнее: алгоритм выбора элективов →</a></li><li><b>Перезачёт.</b> Дисциплины, модули, практики и результаты обучения из другого вуза или колледжа можно перезачесть по заявлению и документам об обучении.</li><li><b>Особые условия.</b> При ОВЗ, инвалидности или временном состоянии здоровья можно запросить особые условия обучения.</li></ul><p><b>Куда идти:</b> Департамент организации образовательного процесса, Личный кабинет МГПУ.</p><p class="detail-source">Источник: ФЗ-273, ПВРО МГПУ, порядки обучения по ИУП, порядки работы аттестационных комиссий, student.mgpu.ru «Элективы».</p><p><a href="#" class="hb-internal-link" data-open-handbook="study-process">Как работает БРС →</a></p>'
       },
       {
         image: 'images/prava-2.webp',
         alt: 'Инфографика о защите прав студента МГПУ',
         title: 'Твои права: паузы',
         summary: 'Каникулы, академический отпуск, перевод, бюджет, восстановление',
-        text: '<p>Учёба может идти не только непрерывно: у студента есть законные механизмы паузы, перевода и возвращения.</p><ul><li><b>Каникулы.</b> Устанавливаются календарным учебным графиком. Во время каникул дисциплинарное взыскание не применяется.</li><li><b>Академический отпуск.</b> Оформляется по медицинским показаниям, семейным обстоятельствам, военной службе или иным исключительным причинам. Обычно — до 12 месяцев, по медицинским основаниям или военной службе — до 2 лет. Количество академических отпусков не ограничено.</li><li><b>Декретный отпуск.</b> Отпуск по беременности и родам, а также отпуск по уходу за ребёнком до 3 лет оформляются через механизм академического отпуска. Место обучения сохраняется.</li><li><b>Перевод.</b> Возможен при наличии вакантных мест и при условии, что академическую разницу можно ликвидировать. Обычно заявления подают в периоды: 20 августа — 15 сентября или 20 января — 15 февраля.</li><li><b>Переход с платного на бюджет.</b> Возможен при отсутствии академической задолженности, дисциплинарных взысканий и долга по оплате. Нужны также основания: хорошая успеваемость, льготная категория или иные предусмотренные случаи.</li><li><b>Восстановление.</b> После отчисления можно восстановиться при наличии вакантных мест и соблюдении условий восстановления.</li></ul><p><b>Куда идти:</b> Департамент организации образовательного процесса.</p><p class="detail-source">Источник: ФЗ-273, ПВРО МГПУ, положение об академическом отпуске, положения о переводе, отчислении и восстановлении, положение о переходе с платного на бесплатное.</p>'
+        text: '<p>Учёба может идти не только непрерывно: у студента есть законные механизмы паузы, перевода и возвращения.</p><ul><li><b>Каникулы.</b> Устанавливаются календарным учебным графиком. Во время каникул дисциплинарное взыскание не применяется. <a href="#" class="hb-internal-link" data-open-handbook="study-process">Смотри свой график учебного процесса →</a></li><li><b>Академический отпуск.</b> Оформляется по медицинским показаниям, семейным обстоятельствам, военной службе или иным исключительным причинам. Обычно — до 12 месяцев, по медицинским основаниям или военной службе — до 2 лет. Количество академических отпусков не ограничено.</li><li><b>Декретный отпуск.</b> Отпуск по беременности и родам, а также отпуск по уходу за ребёнком до 3 лет оформляются через механизм академического отпуска. Место обучения сохраняется.</li><li><b>Перевод.</b> Возможен при наличии вакантных мест и при условии, что академическую разницу можно ликвидировать. Обычно заявления подают в периоды: 20 августа — 15 сентября или 20 января — 15 февраля.</li><li><b>Переход с платного на бюджет.</b> Возможен при отсутствии академической задолженности, дисциплинарных взысканий и долга по оплате. Нужны также основания: хорошая успеваемость, льготная категория или иные предусмотренные случаи.</li><li><b>Восстановление.</b> После отчисления можно восстановиться при наличии вакантных мест и соблюдении условий восстановления.</li></ul><p><b>Куда идти:</b> Департамент организации образовательного процесса.</p><p class="detail-source">Источник: ФЗ-273, ПВРО МГПУ, положение об академическом отпуске, положения о переводе, отчислении и восстановлении, положение о переходе с платного на бесплатное.</p>'
       },
       {
         image: 'images/prava-3.webp',
@@ -1991,7 +2065,7 @@ const handbookData = [
         alt: 'Инфографика о праве студента обращаться в ССиА',
         title: 'Твои права: защита',
         summary: 'Критерии оценок, обжалование, достоинство, ССиА',
-        text: '<p>Твои права не заканчиваются на посещении занятий. Ты имеешь право понимать, за что получил оценку, обжаловать решения и защищаться от нарушения достоинства.</p><ul><li><b>Критерии оценок.</b> Они должны быть открыты. Студент вправе получать полную и достоверную информацию о том, как оцениваются знания, умения, навыки и компетенции.</li><li><b>Обжалование.</b> Если решение вуза нарушает твои права, его можно обжаловать. Сначала стоит обратиться к директору института / руководителю Института. Если спор не решён, можно обращаться в комиссию по урегулированию споров.</li><li><b>Сроки.</b> Срок обращения в комиссию — 14 календарных дней со дня, когда ты узнал о нарушении. Комиссия рассматривает заявление в течение 7 рабочих дней.</li><li><b>Защита достоинства.</b> Насилие, дискриминация, буллинг, оскорбления и унижение достоинства недопустимы.</li><li><b>ССиА.</b> Через совет студенты могут участвовать в обсуждении локальных актов, поднимать проблемы, предлагать изменения, участвовать в комиссиях и помогать защищать права обучающихся.</li></ul><p><b>Куда идти:</b> преподаватель, Департамент организации образовательного процесса, Администрация института, комиссия по урегулированию споров, ССиА. При угрозе жизни и здоровью — в правоохранительные органы.</p><p class="detail-source">Источник: ФЗ-273, ПВРО МГПУ, положение о комиссии по урегулированию споров, положение о ССиА МГПУ.</p>'
+        text: '<p>Твои права не заканчиваются на посещении занятий. Ты имеешь право понимать, за что получил оценку, обжаловать решения и защищаться от нарушения достоинства.</p><ul><li><b>Критерии оценок.</b> Они должны быть открыты. Студент вправе получать полную и достоверную информацию о том, как оцениваются знания, умения, навыки и компетенции. <a href="#" class="hb-internal-link" data-open-handbook="study-process">Как работает БРС →</a></li><li><b>Обжалование.</b> Если решение вуза нарушает твои права, его можно обжаловать. Сначала стоит обратиться к директору института / руководителю Института. Если спор не решён, можно обращаться в комиссию по урегулированию споров.</li><li><b>Сроки.</b> Срок обращения в комиссию — 14 календарных дней со дня, когда ты узнал о нарушении. Комиссия рассматривает заявление в течение 7 рабочих дней.</li><li><b>Защита достоинства.</b> Насилие, дискриминация, буллинг, оскорбления и унижение достоинства недопустимы.</li><li><b>ССиА.</b> Через совет студенты могут участвовать в обсуждении локальных актов, поднимать проблемы, предлагать изменения, участвовать в комиссиях и помогать защищать права обучающихся.</li></ul><p><b>Куда идти:</b> преподаватель, Департамент организации образовательного процесса, Администрация института, комиссия по урегулированию споров, ССиА. При угрозе жизни и здоровью — в правоохранительные органы.</p><p class="detail-source">Источник: ФЗ-273, ПВРО МГПУ, положение о комиссии по урегулированию споров, положение о ССиА МГПУ.</p>'
       },
       {
         image: 'images/cardmos.webp',
@@ -2041,6 +2115,48 @@ const handbookData = [
         title: 'Связь: почта',
         summary: 'Главный канал связи, единый логин и доступ к сервисам',
         text: '<p><b>Корпоративная почта — главный канал связи.</b> Корпоративная почта <b>@mgpu.ru</b> — это не формальность. Именно сюда приходят официальные письма от Университета и Института, уведомления из личного кабинета и сообщения по заявкам в студенческих сервисах. Это единственный официальный канал переписки с преподавателями, сотрудниками и администрацией.</p><div class="detail-callout"><b>Важно:</b> проверяй корпоративную почту регулярно и включи уведомления. Важные письма не дублируются в соцсети и мессенджеры. На всякий случай заглядывай и в папку «Спам».</div><ul><li><b>Адрес почты.</b> Адрес имеет вид <b>ФамилияИОxxx@mgpu.ru</b>, где <b>xxx</b> — три цифры, которые система добавляет автоматически, чтобы не было совпадений у однофамильцев.</li><li><b>Один логин для всех сервисов.</b> Адрес корпоративной почты и пароль — это одновременно твоя учётная запись во всех системах МГПУ: Личный кабинет (<a href="https://lk.mgpu.ru" target="_blank" rel="noopener">lk.mgpu.ru</a>), Антиплагиат, учебные порталы и другие университетские сервисы. Через почту также открывается облако на 10 ГБ.</li><li><b>Как войти в почту.</b> Зайди на <a href="https://lk.mgpu.ru" target="_blank" rel="noopener">lk.mgpu.ru</a>, раздел «Обучение» / «Корпоративная почта». Сервис — VK WorkMail.</li><li><b>Нет доступа или забыл пароль.</b> Перейди на <a href="https://account.mgpu.ru" target="_blank" rel="noopener">account.mgpu.ru</a> и нажми «Зарегистрироваться или восстановить пароль». Заполни форму: ФИО, дата рождения, телефон, личная почта — и следуй инструкциям. Если не получается, обратись в Департамент организации образовательного процесса, чтобы сверить данные.</li><li><b>Как писать преподавателям и сотрудникам.</b> Настрой подпись в почте: она будет добавляться к каждому письму автоматически.<br><br><i>С уважением,<br>Иван Иванов,<br>студент группы ИИ-111</i></li><li><b>Добавить почту в приложение.</b> Открой приложение «Почта Mail» или «VK Почта», перейди в «Аккаунт», нажми «+» / «Войти в другую почту», введи адрес <b>@mgpu.ru</b> и пароль.</li></ul><p><b>Скачать приложения:</b><br>VK Почта (iOS) — <a href="https://apps.apple.com/ru/app/id1563419339" target="_blank" rel="noopener">App Store</a><br>VK Почта (Android) — <a href="https://play.google.com/store/apps/details?id=com.vk.mail" target="_blank" rel="noopener">Google Play</a><br>Почта Mail (iOS) — <a href="https://apps.apple.com/ru/app/id511310430" target="_blank" rel="noopener">App Store</a><br>Почта Mail (Android) — <a href="https://play.google.com/store/apps/details?id=ru.mail.mailapp" target="_blank" rel="noopener">Google Play</a><br>Облако Mail (iOS) — <a href="https://apps.apple.com/ru/app/id696551382" target="_blank" rel="noopener">App Store</a><br>Облако Mail (Android) — <a href="https://play.google.com/store/apps/details?id=ru.mail.cloud" target="_blank" rel="noopener">Google Play</a></p><p class="detail-source">Основано на информации МГПУ о корпоративной почте, личном кабинете и сервисе VK WorkMail.</p>'
+      }
+    ]
+  },
+  {
+    id: 'study-process',
+    title: 'Учебный процесс',
+    subtitle: 'БРС, сессия и пересдачи',
+    color: '--study-purple',
+    keywords: ['брс', 'баллы', 'зачёт', 'сессия', 'пересдача', 'задолженность', 'досрочная аттестация', 'комиссия', 'резервный день', 'критерии оценок'],
+    cards: [
+      {
+        image: 'images/brs.webp',
+        alt: 'Инфографика: учёба, балльно-рейтинговая система',
+        title: 'Учёба: БРС',
+        summary: 'Как работает 100-балльная система и что нужно для зачёта',
+        applicability: 'ВО · бакалавриат / специалитет / магистратура',
+        text: '<p>В течение семестра ты набираешь баллы за работу по дисциплине: участие в занятиях, задания, контрольные работы и другие виды активности, которые определяет преподаватель.</p><p>Полные критерии, виды работ и сроки преподаватель обязан объяснить на первом занятии.</p><p>Для зачёта по дисциплине нужно набрать не менее 51 балла из 100. Меньше 51 — зачёт не ставится.</p><div class="detail-callout">Если не понимаешь, за что начисляются баллы или почему балл не учли — сначала обратись к преподавателю.</div><p><a href="#" class="hb-internal-link" data-open-handbook="routing">Не понимаю баллы или не согласен с оценкой → Куда обратиться? (ИПКР)</a></p><p class="detail-source">Источник: Положение о промежуточной аттестации №545общ, изменения №762общ, student.mgpu.ru.</p>'
+      },
+      {
+        image: 'images/sessia.webp',
+        alt: 'Инфографика: учёба, сессия и пересдачи',
+        title: 'Учёба: Сессия',
+        summary: 'Пропуск, резервный день, пересдачи и комиссия',
+        applicability: 'ВО',
+        text: '<h3>Если пропустил аттестацию</h3><ul><li>Уважительная причина — сообщи в Департамент организации образовательного процесса.</li><li>Подтверждающий документ — в течение 3 дней.</li><li>Предусмотрен резервный день для аттестации.</li></ul><h3>Если появилась задолженность</h3><ul><li>Допускаются две повторные аттестации.</li><li>Первая — как правило, в следующем семестре.</li><li>Вторая — с участием комиссии.</li><li>На ликвидацию задолженности отводится не более одного календарного года.</li></ul><div class="detail-callout">За пересдачу не может взиматься плата.</div><h3>Досрочная аттестация</h3><ul><li>Возможна при уважительной причине.</li><li>Заявление и подтверждающие документы — заранее, не позднее чем за месяц до начала (практика ИПКР).</li><li>Куда обращаться: Департамент организации образовательного процесса.</li></ul><p><a href="#" class="hb-internal-link" data-open-handbook="routing">Не сдал зачёт или экзамен → Куда обратиться? (ИПКР)</a></p><p><a href="#" class="hb-internal-link" data-open-handbook="study-process">Как работает БРС →</a></p><p class="detail-source">Источник: Положение о промежуточной аттестации №545общ, изменения №762общ. Срок подачи заявления на досрочную аттестацию — практика ИПКР, нормативный источник уточняется.</p>'
+      }
+    ]
+  },
+  {
+    id: 'finance-support',
+    title: 'Финансы и поддержка',
+    subtitle: 'Перевод с платного на бюджет',
+    color: '--finance-green',
+    keywords: ['бюджет', 'перевод на бюджет', 'платное', 'задолженность по оплате', 'комиссия', 'вакантные места', 'стипендия', 'финансы', 'поддержка'],
+    cards: [
+      {
+        image: 'images/budget.webp',
+        alt: 'Инфографика: финансы, перевод на бюджет',
+        title: 'Финансы: Бюджет',
+        summary: 'Условия, основания и порядок перевода с платного на бюджетное обучение',
+        applicability: 'ВО и СПО · кроме Самарского филиала',
+        text: '<h3>Три обязательных условия</h3><ul><li>Нет академической задолженности.</li><li>Нет задолженности по оплате обучения.</li><li>Нет дисциплинарного взыскания.</li></ul><h3>Основания для перевода</h3><ul><li>Успеваемость без оценок «удовлетворительно».</li><li>Социальные основания.</li><li>Утрата родителя во время обучения.</li><li>Особый порядок для участников СВО.</li></ul><h3>Как проходит рассмотрение</h3><ol><li>Проверка вакантных бюджетных мест.</li><li>Заявление через сервис perevod.mgpu.ru.</li><li>Рассмотрение документов в образовательном подразделении.</li><li>Решение комиссии.</li><li>Приказ о переводе.</li></ol><h3>Когда вступает в силу</h3><ul><li>1 апреля или 1 октября.</li><li>Государственная академическая стипендия начисляется с первого числа месяца перевода.</li></ul><div class="detail-callout">Перевод на бюджет не гарантирован: решение принимает комиссия при наличии вакантных мест.</div><p><a href="#" class="hb-internal-link" data-open-handbook="routing">Куда обратиться по переводу на бюджет? (ИПКР) →</a></p><p class="detail-source">Источник: Порядок перевода с платного на бесплатное обучение №531общ от 18.06.2026.</p>'
       }
     ]
   },
@@ -2211,6 +2327,9 @@ function showIPKRDetail(idx) {
   const linksHtml = section.links ? `<div class="action-hub">
     ${section.links.map(l => `<a href="${l.url}" ${l.url.startsWith('http') ? 'target="_blank"' : ''} class="pill-btn" style="background:${l.color || 'var(--navy)'}">${l.label}</a>`).join('')}
   </div>` : '';
+  const sheetButtonHtml = section.sheet
+    ? `<button class="pill-btn" id="ipkr-sheet-btn" type="button" style="background:${section.color}">${section.sheet.label}</button>`
+    : '';
 
   detail.innerHTML = `
     <button class="btn-back" id="ipkr-back-btn">← Назад</button>
@@ -2220,12 +2339,17 @@ function showIPKRDetail(idx) {
     </div>
     ${mottoHtml}
     ${linksHtml}
+    ${sheetButtonHtml ? `<div class="action-hub">${sheetButtonHtml}</div>` : ''}
     ${notesHtml ? `<div class="section-notes" style="margin-bottom:12px">${notesHtml}</div>` : ''}
     <div class="grid-layout">${cardsHtml}</div>
     ${footnotesHtml}
   `;
 
   document.getElementById('ipkr-back-btn').addEventListener('click', () => history.back());
+  const sheetButton = document.getElementById('ipkr-sheet-btn');
+  if (sheetButton && section.sheet) {
+    sheetButton.addEventListener('click', () => openSheet(section.sheet.title, section.sheet.text));
+  }
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -2406,6 +2530,7 @@ function showHandbookDetail(idx) {
       <div class="hb-card-body">
         <div class="hb-card-title">${c.title || item.title}</div>
         ${c.summary ? `<div class="hb-card-summary">${c.summary}</div>` : ''}
+        ${c.applicability ? `<div class="hb-applicability">${c.applicability}</div>` : ''}
         <div class="hb-card-actions">
           ${hasUsefulDetails(c.text) ? `<button class="hb-btn hb-btn-primary" data-card="${cardIdx}">Подробнее</button>` : ''}
           <button class="hb-btn hb-btn-secondary hb-open-img" data-card="${cardIdx}" data-src="${c.image}" data-alt="${c.alt || c.title || item.title}">Открыть карточку</button>
@@ -3123,6 +3248,41 @@ addSwipeToDismiss(document.getElementById('handbook-detail'));
   </div>
 </div>
 <script>
+/* ── Update v1.2 notice ── */
+(function(){
+  var DISMISS_KEY = 'pu_update_1_2_dismissed';
+  var updateStart = new Date('2026-06-21T15:00:00+03:00').getTime();
+  var updateEnd   = new Date('2026-06-22T18:00:00+03:00').getTime();
+  var params      = new URLSearchParams(location.search);
+  var forceShow   = params.get('update') === '1';
+  var forceHide   = params.get('update') === '0';
+  var now         = Date.now();
+  var inPeriod    = now >= updateStart && now <= updateEnd;
+  var dismissed   = false;
+  try { dismissed = sessionStorage.getItem(DISMISS_KEY) === '1'; } catch(e){}
+  if (forceHide || (!forceShow && !inPeriod) || dismissed) return;
+  var modal = document.getElementById('update-modal');
+  if (!modal) return;
+  requestAnimationFrame(function(){
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+  });
+  function dismiss() {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    try { sessionStorage.setItem(DISMISS_KEY,'1'); } catch(e){}
+  }
+  document.getElementById('update-modal-close').addEventListener('click', dismiss);
+  document.getElementById('update-dismiss').addEventListener('click', dismiss);
+  modal.addEventListener('click', function(e){ if (e.target === modal) dismiss(); });
+  document.getElementById('update-open-handbook').addEventListener('click', function(){
+    dismiss();
+    if (typeof switchSection === 'function') switchSection('handbook');
+  });
+})();
+
 function acceptCookies() {
   try { localStorage.setItem('cookies_accepted', '1'); } catch(e) {}
   document.getElementById('cookie-banner').style.display = 'none';
