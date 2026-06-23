@@ -1396,7 +1396,7 @@ body.dark-theme .hb-gallery-nav{background:rgba(255,255,255,.18);color:#fff}
       <div class="home-brand-strip">
         <img id="home-pu-logo" class="home-brand-logo home-brand-logo--pu" src="images/pu.webp" alt="Логотип Понятного Университета">
         <span class="home-brand-separator">×</span>
-        <img class="home-brand-logo home-brand-logo--ipkr" src="images/logo-ipkr.webp" alt="Логотип ССиА ИПКР МГПУ">
+        <img id="home-ipkr-logo" class="home-brand-logo home-brand-logo--ipkr" src="images/logo-ipkr-for-light.webp" alt="Логотип ССиА ИПКР МГПУ">
       </div>
       <div class="home-hero-eyebrow">Студенческий навигатор · МГПУ</div>
       <h2 class="home-hero-title">ПОНЯТНЫЙ<br>УНИВЕРСИТЕТ</h2>
@@ -3191,6 +3191,8 @@ function applyTheme(isDark) {
   if (homeSignature) homeSignature.src = isDark
     ? 'images/author/signature-dark.svg'
     : 'images/author/signature-light.svg';
+  const homeIpkrLogo = document.getElementById('home-ipkr-logo');
+  if (homeIpkrLogo) homeIpkrLogo.src = isDark ? 'images/logo-ipkr.webp' : 'images/logo-ipkr-for-light.webp';
 }
 
 (function() {
