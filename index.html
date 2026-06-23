@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ПОНЯТНЫЙ УНИВЕРСИТЕТ | МГПУ</title>
 <meta name="description" content="Понятный Университет — удобный цифровой навигатор для студентов МГПУ. Вся информация об учёбе, стипендиях и студенческой жизни в одном месте.">
+<link rel="sitemap" type="application/xml" href="./sitemap.xml">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -2897,6 +2898,9 @@ function scrollToElementWithOffset(target) {
 
 function switchSection(id) {
   localStorage.setItem('activeTab', id);
+  const _idToHash = { 'uni': 'mgpu' };
+  const _hashId = _idToHash[id] || id;
+  history.replaceState(null, '', id === 'home' ? location.pathname + location.search : '#' + _hashId);
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.main-section').forEach(s => s.classList.remove('active'));
   const btn = document.querySelector('[data-target="' + id + '"]');
@@ -3223,9 +3227,18 @@ window.addEventListener('popstate', (e) => {
 // ═══════════════════════════════════════════
 
 (function() {
-  const saved = localStorage.getItem('activeTab');
+  const hashToId = { 'mgpu': 'uni', 'ipkr': 'ipkr', 'handbook': 'handbook', 'contacts': 'contacts' };
   const validTabs = ['home', 'ipkr', 'uni', 'handbook', 'contacts'];
-  if (saved && validTabs.includes(saved) && saved !== 'home') switchSection(saved);
+  const hash = location.hash.slice(1);
+  const fromHash = hashToId[hash] || (validTabs.includes(hash) ? hash : null);
+  const saved = localStorage.getItem('activeTab');
+  const target = fromHash || (saved && validTabs.includes(saved) && saved !== 'home' ? saved : null);
+  if (target) switchSection(target);
+  window.addEventListener('popstate', function() {
+    const h = location.hash.slice(1);
+    const id = hashToId[h] || (validTabs.includes(h) ? h : 'home');
+    switchSection(id);
+  });
 })();
 
 // ═══════════════════════════════════════════
