@@ -1396,7 +1396,7 @@ body.dark-theme .hb-gallery-nav{background:rgba(255,255,255,.18);color:#fff}
       <div class="home-brand-strip">
         <img id="home-pu-logo" class="home-brand-logo home-brand-logo--pu" src="images/pu.webp" alt="Логотип Понятного Университета">
         <span class="home-brand-separator">×</span>
-        <img id="home-ipkr-logo" class="home-brand-logo home-brand-logo--ipkr" src="images/logo-ipkr-for-light.webp" alt="Логотип ССиА ИПКР МГПУ">
+        <img id="home-ipkr-logo" class="home-brand-logo home-brand-logo--ipkr" src="images/logo-ipkr-for-light.webp" alt="Логотип ССиА ИПКР МГПУ" width="40" height="40" loading="lazy">
       </div>
       <div class="home-hero-eyebrow">Студенческий навигатор · МГПУ</div>
       <h2 class="home-hero-title">ПОНЯТНЫЙ<br>УНИВЕРСИТЕТ</h2>
@@ -1551,13 +1551,13 @@ body.dark-theme .hb-gallery-nav{background:rgba(255,255,255,.18);color:#fff}
   <div class="img-modal-inner">
     <img id="img-modal-img" class="img-modal-img" src="" alt="">
   </div>
-  <button id="img-modal-close" class="img-modal-close" type="button" aria-label="Закрыть">×</button>
+  <button id="img-modal-close" class="img-modal-close" type="button" aria-label="Закрыть" tabindex="-1">×</button>
 </div>
 
 <!-- Person photo modal -->
 <div id="person-photo-modal" class="person-photo-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Фото сотрудника">
   <div class="person-photo-modal-inner">
-    <button id="person-photo-modal-close" class="person-photo-modal-close" type="button" aria-label="Закрыть">×</button>
+    <button id="person-photo-modal-close" class="person-photo-modal-close" type="button" aria-label="Закрыть" tabindex="-1">×</button>
     <img id="person-photo-modal-img" class="person-photo-modal-img" src="" alt="">
     <div class="person-photo-modal-meta">
       <div id="person-photo-modal-name" class="person-photo-modal-name"></div>
@@ -2701,7 +2701,7 @@ function openImageModal(src, alt) {
   imgModal.classList.add('active');
   imgModal.setAttribute('aria-hidden', 'false');
   document.body.classList.add('modal-open');
-  if (imgModalClose) imgModalClose.focus();
+  if (imgModalClose) { imgModalClose.removeAttribute('tabindex'); imgModalClose.focus(); }
 }
 
 function closeImageModal() {
@@ -2709,6 +2709,7 @@ function closeImageModal() {
   imgModal.classList.remove('active');
   imgModal.setAttribute('aria-hidden', 'true');
   document.body.classList.remove('modal-open');
+  if (imgModalClose) imgModalClose.setAttribute('tabindex', '-1');
   setTimeout(() => { if (imgModalImg) imgModalImg.src = ''; }, 300);
 }
 
@@ -2737,7 +2738,7 @@ function openPersonPhotoModal(src, name, role) {
   personPhotoModal.classList.add('active');
   personPhotoModal.setAttribute('aria-hidden', 'false');
   document.body.classList.add('person-photo-open');
-  if (personPhotoModalClose) personPhotoModalClose.focus();
+  if (personPhotoModalClose) { personPhotoModalClose.removeAttribute('tabindex'); personPhotoModalClose.focus(); }
 }
 
 function closePersonPhotoModal() {
@@ -2745,6 +2746,7 @@ function closePersonPhotoModal() {
   personPhotoModal.classList.remove('active');
   personPhotoModal.setAttribute('aria-hidden', 'true');
   document.body.classList.remove('person-photo-open');
+  if (personPhotoModalClose) personPhotoModalClose.setAttribute('tabindex', '-1');
   setTimeout(() => { if (personPhotoModalImg) personPhotoModalImg.src = ''; }, 280);
 }
 
