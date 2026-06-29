@@ -1343,108 +1343,121 @@ body.dark-theme .hb-gallery-nav{background:rgba(255,255,255,.18);color:#fff}
 <!-- /Yandex.Metrika counter -->
 
 <!-- ══════════════════════════════════════════════
-     PREVIEW: Apple MacBook Neo design overrides
-     Применяется поверх основных стилей.
-     index.html НЕ затронут.
+     PREVIEW OVERRIDES — index.html не затронут
      ══════════════════════════════════════════════ -->
 <style>
-/* ── Светлая тема: фон страницы ── */
+/* 1. Фон страницы */
 body {
-  background:
-    radial-gradient(circle at 18% 0%, rgba(251,112,11,.05), transparent 30%),
-    radial-gradient(circle at 90% 8%, rgba(42,49,83,.06), transparent 36%),
-    #f5f5f7 !important;
+  background: #f5f5f7 !important;
 }
 
-/* ── Светлая тема: карточки ── */
-.master-card,
+/* 6. Плавная смена темы */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 2. Карточки — светлая тема */
 .card,
+.master-card,
 .contacts-card,
 .hb-card {
   background: #ffffff !important;
-  border-radius: 28px !important;
+  border-radius: 18px !important;
   box-shadow: none !important;
+  border: 1px solid rgba(42,49,83,0.08) !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
-  border: 1px solid rgba(0,0,0,.06) !important;
 }
-.master-card { padding: 28px !important; }
-.card        { padding: 28px !important; }
-.contacts-card { padding: 28px !important; }
 
-/* ── Светлая тема: типографика заголовков ── */
+/* hover — убрать тень, оставить только transform */
+.master-card:hover, .card:hover {
+  box-shadow: none !important;
+  transform: scale(1.01);
+}
+
+/* 4. Мобильные касания */
+.card, .master-card {
+  transition: transform 0.15s ease, background 0.2s !important;
+}
+.card:active, .master-card:active {
+  transform: scale(0.97) !important;
+  box-shadow: none !important;
+}
+button:active, .btn:active, a.btn:active {
+  transform: scale(0.95);
+  transition: transform 0.12s ease;
+}
+
+/* 3. Типографика заголовков */
+h2, h3,
 .master-card-title,
 .section-title,
 .detail-title,
-.hb-card-title {
-  font-weight: 600 !important;
-  line-height: 1.17 !important;
-  letter-spacing: -0.36px !important;
-}
+.hb-card-title,
 .home-hero-title,
 h1.t {
+  letter-spacing: -0.3px !important;
   font-weight: 600 !important;
-  line-height: 1.17 !important;
-  letter-spacing: -0.6px !important;
+  line-height: 1.2 !important;
 }
 
-/* ── Светлая тема: второстепенный текст ── */
+/* 8. Второстепенный текст — светлая тема */
 .master-card-sub,
 .card .role,
 .card .deg,
 .card-contact-item,
-.hb-card-applicability,
-.hb-applicability {
+.hb-applicability,
+.hb-card-applicability {
   color: #707070 !important;
+  opacity: 1 !important;
 }
 
-/* ── Светлая тема: убрать видимые разделители секций ── */
-hr, .divider, .section-divider {
-  border: none !important;
-  background: none !important;
+/* 5. Scroll reveal */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
-/* ── Тёмная тема: фон страницы ── */
+/* 7. Тёмная тема — карточки */
 body.dark-theme {
-  background:
-    radial-gradient(circle at 18% 0%, rgba(251,112,11,.08), transparent 32%),
-    radial-gradient(circle at 90% 8%, rgba(74,85,140,.15), transparent 38%),
-    #121212 !important;
+  background: #121212 !important;
 }
-
-/* ── Тёмная тема: карточки ── */
-body.dark-theme .master-card,
 body.dark-theme .card,
+body.dark-theme .master-card,
 body.dark-theme .contacts-card,
 body.dark-theme .hb-card {
   background: #1d1d1f !important;
-  border-radius: 28px !important;
   border: 1px solid #333336 !important;
   box-shadow: none !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
+body.dark-theme .master-card:hover,
+body.dark-theme .card:hover {
+  box-shadow: none !important;
+}
 
-/* ── Тёмная тема: второстепенный текст ── */
+/* 8. Второстепенный текст — тёмная тема */
 body.dark-theme .master-card-sub,
 body.dark-theme .card .role,
 body.dark-theme .card .deg,
 body.dark-theme .card-contact-item,
-body.dark-theme .hb-card-applicability,
-body.dark-theme .hb-applicability {
+body.dark-theme .hb-applicability,
+body.dark-theme .hb-card-applicability {
   color: #86868b !important;
-}
-
-/* ── Ховер: без тени (стиль Apple не использует elevation) ── */
-.master-card:hover,
-.card:hover {
-  box-shadow: none !important;
-  transform: none !important;
-}
-body.dark-theme .master-card:hover,
-body.dark-theme .card:hover {
-  box-shadow: none !important;
-  transform: none !important;
+  opacity: 1 !important;
 }
 </style>
 </head>
@@ -3476,6 +3489,26 @@ function acceptCookies() {
     document.getElementById('cookie-banner').style.display = 'block';
   }
 })();
+</script>
+
+<!-- 5. Scroll reveal — PREVIEW only -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, index) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, index * 60);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.card, .master-card')
+  .forEach(el => {
+    el.classList.add('scroll-reveal');
+    observer.observe(el);
+  });
 </script>
 </body>
 </html>
