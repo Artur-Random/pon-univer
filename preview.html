@@ -1459,6 +1459,57 @@ body.dark-theme .hb-card-applicability {
   color: #86868b !important;
   opacity: 1 !important;
 }
+
+/* ── Лампа ── */
+.lamp-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.lamp-shade {
+  fill: currentColor;
+  opacity: 0.85;
+  transition: fill 0.3s ease, filter 0.3s ease;
+}
+body:not(.dark-theme) .lamp-shade {
+  fill: #fb700b;
+  filter: drop-shadow(0 0 5px rgba(251,112,11,0.7));
+}
+body.dark-theme .lamp-shade {
+  fill: #707070;
+  filter: none;
+}
+@keyframes cord-pull {
+  0%   { transform: translateY(0px); }
+  25%  { transform: translateY(7px); }
+  55%  { transform: translateY(-3px); }
+  75%  { transform: translateY(2px); }
+  90%  { transform: translateY(-1px); }
+  100% { transform: translateY(0px); }
+}
+@keyframes lamp-swing {
+  0%   { transform: rotate(0deg); }
+  20%  { transform: rotate(-5deg); }
+  50%  { transform: rotate(4deg); }
+  75%  { transform: rotate(-2deg); }
+  100% { transform: rotate(0deg); }
+}
+.lamp-cord {
+  transform-origin: 14px 20px;
+}
+.lamp-cord.pulling {
+  animation: cord-pull 0.45s cubic-bezier(0.36,0.07,0.19,0.97) forwards;
+}
+.lamp-svg {
+  transform-origin: 14px 2px;
+}
+.lamp-svg.swinging {
+  animation: lamp-swing 0.5s ease-in-out forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lamp-cord.pulling, .lamp-svg.swinging { animation: none; }
+}
 </style>
 </head>
 <body>
@@ -1466,7 +1517,17 @@ body.dark-theme .hb-card-applicability {
 <header class="site-header">
   <img src="images/pu.webp" alt="Логотип" id="main-logo" class="site-logo">
   <h1 class="t">ПОНЯТНЫЙ УНИВЕРСИТЕТ | МГПУ</h1>
-  <button id="theme-btn" class="icon-btn" aria-label="Сменить тему"><span id="theme-icon" style="font-size:18px;line-height:1">🌙</span></button>
+  <button id="theme-btn" class="icon-btn" aria-label="Сменить тему">
+    <span id="theme-icon" style="display:none"></span>
+    <span class="lamp-wrap" aria-hidden="true">
+      <svg class="lamp-svg" width="28" height="44" viewBox="0 0 28 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="lamp-shade" d="M4 14 L14 2 L24 14 Z"/>
+        <rect x="12" y="14" width="4" height="6" fill="currentColor" opacity="0.6"/>
+        <line class="lamp-cord" x1="14" y1="20" x2="14" y2="34" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="14" cy="35" r="2" fill="currentColor" opacity="0.7"/>
+      </svg>
+    </span>
+  </button>
   <button id="search-btn" class="icon-btn" aria-label="Открыть поиск">
     <svg id="icon-search" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -3323,6 +3384,20 @@ function applyTheme(isDark) {
 })();
 
 themeBtn.addEventListener('click', () => {
+  const cord = document.querySelector('.lamp-cord');
+  const svg  = document.querySelector('.lamp-svg');
+  if (cord) {
+    cord.classList.remove('pulling');
+    void cord.offsetWidth;
+    cord.classList.add('pulling');
+    cord.addEventListener('animationend', () => cord.classList.remove('pulling'), { once: true });
+  }
+  if (svg) {
+    svg.classList.remove('swinging');
+    void svg.offsetWidth;
+    svg.classList.add('swinging');
+    svg.addEventListener('animationend', () => svg.classList.remove('swinging'), { once: true });
+  }
   const isDark = !document.body.classList.contains('dark-theme');
   applyTheme(isDark);
   localStorage.setItem('theme', isDark ? 'dark' : 'light');
