@@ -1511,34 +1511,36 @@ body.dark-theme .lamp-shade {
   .lamp-cord.pulling, .lamp-svg.swinging { animation: none; }
 }
 
-/* ── Лампочка Эдисона ── */
-.edison-lamp {
-  position: relative;
+/* ── Лампочка Эдисона (PNG) ── */
+.edison-lamp-wrap {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  cursor: default;
+  position: relative;
   z-index: 100;
 }
-.edison-bulb { transition: filter 0.4s ease; }
 
-body:not(.dark-theme) .bulb-glass  { fill: #f5e6c8; opacity: 0.3; }
-body:not(.dark-theme) .bulb-outline{ stroke: #c8b08a; }
-body:not(.dark-theme) .filament    { stroke: #c8a060; opacity: 0.5; }
-body:not(.dark-theme) .edison-bulb { filter: none; }
+.edison-bulb-img {
+  transition: filter 0.4s ease, opacity 0.4s ease;
+  object-fit: contain;
+  display: block;
+}
 
-body.dark-theme .bulb-glass  { fill: #ffcc44; opacity: 0.25; }
-body.dark-theme .bulb-outline{ stroke: #ffaa22; }
-body.dark-theme .filament    { stroke: #fb700b; opacity: 1; }
-body.dark-theme .edison-bulb {
-  filter: drop-shadow(0 0 6px rgba(251,112,11,0.8))
-          drop-shadow(0 0 14px rgba(251,112,11,0.4));
+body:not(.dark-theme) .edison-bulb-img {
+  filter: none;
+  opacity: 0.9;
+}
+
+body.dark-theme .edison-bulb-img {
+  filter: drop-shadow(0 0 8px rgba(251,112,11,0.7))
+          drop-shadow(0 0 20px rgba(251,112,11,0.3));
+  opacity: 1;
 }
 
 /* ── Верёвка-сонетка ── */
 .sonette-wrap {
   position: fixed;
-  right: 56px;
+  right: 58px;
   top: 0;
   display: flex;
   flex-direction: column;
@@ -1546,37 +1548,49 @@ body.dark-theme .edison-bulb {
   z-index: 49;
   pointer-events: none;
 }
+
 .sonette-cord {
-  width: 2px;
-  height: 140px;
-  background: repeating-linear-gradient(
+  width: 1.5px;
+  height: 130px;
+  background: linear-gradient(
     to bottom,
-    #c8b08a 0px, #c8b08a 4px,
-    #a89070 4px, #a89070 8px
+    transparent 0px,
+    #b09050 8px,
+    #c8a050 40%,
+    #b09050 100%
   );
-  opacity: 0.85;
+  opacity: 0.8;
 }
+
 .sonette-knob {
   pointer-events: all;
   cursor: pointer;
-  transition: transform 0.15s ease;
-  margin-top: 2px;
+  background: none;
+  border: none;
+  padding: 4px;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
-.sonette-knob:active { transform: translateY(6px); }
+
+.sonette-knob:active { transform: translateY(5px); }
 
 @keyframes cord-pull {
-  0%   { transform: translateY(0px); }
-  20%  { transform: translateY(10px); }
-  45%  { transform: translateY(-4px); }
-  65%  { transform: translateY(3px); }
-  80%  { transform: translateY(-1px); }
-  100% { transform: translateY(0px); }
+  0%   { transform: translateY(0px) scaleY(1); }
+  20%  { transform: translateY(10px) scaleY(1.04); }
+  45%  { transform: translateY(-3px) scaleY(0.98); }
+  65%  { transform: translateY(3px) scaleY(1.01); }
+  82%  { transform: translateY(-1px); }
+  100% { transform: translateY(0px) scaleY(1); }
 }
 @keyframes cord-sway {
   0%   { transform: rotate(0deg); }
-  25%  { transform: rotate(-3deg); }
-  60%  { transform: rotate(2.5deg); }
-  80%  { transform: rotate(-1deg); }
+  20%  { transform: rotate(-4deg); }
+  50%  { transform: rotate(3deg); }
+  75%  { transform: rotate(-1.5deg); }
   100% { transform: rotate(0deg); }
 }
 .sonette-wrap.pulling .sonette-knob {
@@ -1589,9 +1603,10 @@ body.dark-theme .edison-bulb {
 @media (prefers-reduced-motion: reduce) {
   .sonette-wrap.pulling .sonette-knob,
   .sonette-wrap.pulling .sonette-cord { animation: none; }
+  .edison-bulb-img { transition: none; }
 }
 
-header { position: relative; z-index: 50; }
+header, .site-header, nav { position: relative; z-index: 50; }
 </style>
 </head>
 <body>
@@ -1602,16 +1617,16 @@ header { position: relative; z-index: 50; }
   <button id="theme-btn" class="icon-btn" aria-label="Сменить тему" style="display:none">
     <span id="theme-icon" style="display:none"></span>
   </button>
-  <div class="edison-lamp" id="edison-lamp">
-    <svg class="edison-bulb" width="36" height="48" viewBox="0 0 36 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="13" y="36" width="10" height="3" rx="1" fill="#8a7a5a"/>
-      <rect x="14" y="39" width="8" height="3" rx="1" fill="#7a6a4a"/>
-      <rect x="15" y="42" width="6" height="2" rx="1" fill="#6a5a3a"/>
-      <ellipse cx="18" cy="22" rx="14" ry="16" fill="#f5e6c8" opacity="0.15" class="bulb-glass"/>
-      <ellipse cx="18" cy="22" rx="14" ry="16" fill="none" stroke="#c8b08a" stroke-width="1.2" class="bulb-outline"/>
-      <path d="M14 28 Q15 22 18 20 Q21 22 22 28" stroke="#fb700b" stroke-width="1.2" fill="none" opacity="0.8" class="filament"/>
-      <ellipse cx="13" cy="16" rx="3" ry="4" fill="white" opacity="0.15" class="bulb-glare"/>
-    </svg>
+  <div class="edison-lamp-wrap">
+    <img
+      class="edison-bulb-img"
+      id="edison-bulb-img"
+      src="images/bulb-off.png"
+      alt="Лампочка"
+      width="36"
+      height="50"
+      draggable="false"
+    />
   </div>
   <button id="search-btn" class="icon-btn" aria-label="Открыть поиск">
     <svg id="icon-search" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -1623,15 +1638,25 @@ header { position: relative; z-index: 50; }
   </button>
 </header>
 
-<div class="sonette-wrap">
+<div class="sonette-wrap" id="sonette-wrap">
   <div class="sonette-cord"></div>
-  <div class="sonette-knob" id="sonette-knob" role="button" aria-label="Сменить тему" tabindex="0">
-    <svg width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="7" cy="13" rx="6" ry="7" fill="#c8b08a"/>
-      <ellipse cx="7" cy="11" rx="4" ry="3" fill="#d4bc96" opacity="0.6"/>
-      <path d="M5 6 Q7 2 9 6" stroke="#8a7a5a" stroke-width="1.5" fill="none"/>
+  <button
+    class="sonette-knob"
+    id="sonette-knob"
+    aria-label="Сменить тему"
+    type="button"
+  >
+    <svg width="12" height="18" viewBox="0 0 12 18"
+         fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="6" cy="12" rx="5" ry="6"
+               fill="#c8a050"/>
+      <ellipse cx="6" cy="10.5" rx="3.5" ry="2.5"
+               fill="#d4b46a" opacity="0.5"/>
+      <path d="M4 6 Q6 2 8 6"
+            stroke="#a08040" stroke-width="1.2"
+            fill="none" stroke-linecap="round"/>
     </svg>
-  </div>
+  </button>
 </div>
 
 <div id="search-bar-container">
@@ -3471,6 +3496,8 @@ function applyTheme(isDark) {
     : 'images/author/signature-light.svg';
   const homeIpkrLogo = document.getElementById('home-ipkr-logo');
   if (homeIpkrLogo) homeIpkrLogo.src = isDark ? 'images/logo-ipkr.webp' : 'images/logo-ipkr-for-light.webp';
+  const bulbImg = document.getElementById('edison-bulb-img');
+  if (bulbImg) bulbImg.src = isDark ? 'images/bulb-on.png' : 'images/bulb-off.png';
 }
 
 (function() {
