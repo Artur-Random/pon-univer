@@ -1673,6 +1673,31 @@ const orgData = [
     ]
   },
   {
+    id: 'student-council',
+    group: 'Студенческое самоуправление',
+    badge: 'САМОУПРАВЛЕНИЕ',
+    title: 'Совет студентов и аспирантов',
+    subtitle: 'ССиА ИПКР',
+    color: 'var(--accent)',
+    motto: 'Если хочешь что-то изменить, измени сам!',
+    links: [
+      { label: 'ВКонтакте', url: 'https://vk.ru/ssia_ipkr', color: '#2787F5' },
+      { label: 'Telegram', url: 'https://t.me/ipik_mi', color: '#2AABEE' },
+      { label: 'Почта', url: 'mailto:info@ssia-ipkr.ru', color: 'var(--navy)' }
+    ],
+    staff: [
+      { divider: 'Руководство ССиА' },
+      { hero: true, name: 'Толоконников Кирилл Андреевич', role: 'Председатель', deg: 'студент 3 курса, Психология', photo: 'images/people/ssia/Tolokonnikov.webp', email: 'TolokonnikovKA944@mgpu.ru', vk: 'https://vk.ru/odessa__1794' },
+      { name: 'Транковская Анна Сергеевна', role: 'Зампредседателя', deg: 'студентка 3 курса, Логопедия', photo: 'images/people/ssia/Trankovskaya.webp', featured: 'deputy' },
+      { divider: 'Руководители направлений' },
+      { name: 'Коротун Григорий Владимирович', role: 'Руководитель медиаотдела · Референт ССиА ИПКР', deg: 'студент 1 курса, Логопедия', photo: null },
+      { name: 'Миронова Софья Андреевна', role: 'Руководитель проектного отдела', deg: 'студентка 1 курса, Психология', photo: null },
+      { name: 'Транковская Анна Сергеевна', role: 'Руководитель аналитического отдела', deg: 'студентка 3 курса, Логопедия', photo: 'images/people/ssia/Trankovskaya.webp' },
+      { divider: 'Организационный блок' },
+      { name: 'Костикова Александра Александровна', role: 'Ответственная за старост', deg: 'студентка 2 курса, ОРМ', photo: null }
+    ]
+  },
+  {
     id: 'ipkr-functional-contacts',
     group: 'Функциональные контакты',
     title: 'Функциональные контакты ИПКР',
@@ -1830,32 +1855,8 @@ const orgData = [
     ]
   },
   {
-    id: 'student-council',
-    group: 'Коллегиальные и обеспечивающие структуры',
-    title: 'Совет студентов и аспирантов',
-    subtitle: 'ССиА ИПКР',
-    color: 'var(--accent)',
-    motto: 'Если хочешь что-то изменить, измени сам!',
-    links: [
-      { label: 'ВКонтакте', url: 'https://vk.ru/ssia_ipkr', color: '#2787F5' },
-      { label: 'Telegram', url: 'https://t.me/ipik_mi', color: '#2AABEE' },
-      { label: 'Почта', url: 'mailto:info@ssia-ipkr.ru', color: 'var(--navy)' }
-    ],
-    staff: [
-      { divider: 'Руководство ССиА' },
-      { hero: true, name: 'Толоконников Кирилл Андреевич', role: 'Председатель', deg: 'студент 3 курса, Психология', photo: 'images/people/ssia/Tolokonnikov.webp', email: 'TolokonnikovKA944@mgpu.ru', vk: 'https://vk.ru/odessa__1794' },
-      { name: 'Транковская Анна Сергеевна', role: 'Зампредседателя', deg: 'студентка 3 курса, Логопедия', photo: 'images/people/ssia/Trankovskaya.webp', featured: 'deputy' },
-      { divider: 'Руководители направлений' },
-      { name: 'Коротун Григорий Владимирович', role: 'Руководитель медиаотдела · Референт ССиА ИПКР', deg: 'студент 1 курса, Логопедия', photo: null },
-      { name: 'Миронова Софья Андреевна', role: 'Руководитель проектного отдела', deg: 'студентка 1 курса, Психология', photo: null },
-      { name: 'Транковская Анна Сергеевна', role: 'Руководитель аналитического отдела', deg: 'студентка 3 курса, Логопедия', photo: 'images/people/ssia/Trankovskaya.webp' },
-      { divider: 'Организационный блок' },
-      { name: 'Костикова Александра Александровна', role: 'Ответственная за старост', deg: 'студентка 2 курса, ОРМ', photo: null }
-    ]
-  },
-  {
     id: 'mfc',
-    group: null,
+    group: 'Коллегиальные и обеспечивающие структуры',
     title: 'МФЦ · каб. 210',
     subtitle: 'Многофункциональный студенческий центр',
     color: 'var(--olive)',
@@ -2394,6 +2395,7 @@ function renderIPKRMaster() {
     }
     const staffCount = section.staff.filter(p => !p.vacant && !p.divider && !p.hidden).length;
     html += `<div class="master-card" data-idx="${idx}">
+      ${section.badge ? `<div class="luxury-badge">${section.badge}</div>` : ''}
       <div class="master-card-title">${section.title}</div>
       ${section.subtitle ? `<div class="master-card-sub">${section.subtitle}</div>` : ''}
       ${section.id !== 'student-council' ? `<div class="master-card-count">${staffCount} чел.</div>` : ''}
