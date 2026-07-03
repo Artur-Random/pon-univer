@@ -1697,6 +1697,7 @@ const orgData = [
     title: 'Социально-психологический',
     subtitle: 'Департамент социально-психологических технологий и коррекционно-развивающих методик · каб. 403',
     color: 'var(--green)',
+    fullListUrl: 'https://www.mgpu.ru/obrazovanie/institutes/ipkr/departments/departament-sotsialno-psihologicheskih-tehnologij-i-korrektsionno-razvivayushhih-metodik/',
     footnotes: ['* Замдиректора по учебной / воспитательной работе — неофициальное название; официальная должность: доцент.'],
     staff: [
       { divider: 'Руководство' },
@@ -1759,6 +1760,7 @@ const orgData = [
     title: 'Клинико-психологический',
     subtitle: 'Департамент клинических, психологических и педагогических основ развития личности · каб. 402',
     color: '#6b3a8f',
+    fullListUrl: 'https://www.mgpu.ru/obrazovanie/institutes/ipkr/departments/departament-klinicheskih-psihologicheskih-i-pedagogicheskih-osnov-razvitiya-lichnosti/',
     staff: [
       { divider: 'Руководство' },
       { name: 'Овчаренко Лариса Юрьевна', role: 'Начальник департамента', deg: 'доц., к. пс. н.', photo: 'images/people/mgpu/Ovcharenko-LY.webp' },
@@ -2389,6 +2391,11 @@ function showIPKRDetail(idx) {
   const sheetButtonHtml = section.sheet
     ? `<button class="pill-btn" id="ipkr-sheet-btn" type="button" style="background:${section.color}">${section.sheet.label}</button>`
     : '';
+  const fullListHtml = section.fullListUrl
+    ? `<div style="text-align:center;margin-top:16px">
+        <a href="${section.fullListUrl}" target="_blank" rel="noopener" style="font-size:13px;color:${section.color};text-decoration:underline;text-underline-offset:2px">Полный список преподавателей департамента (сайт МГПУ)</a>
+      </div>`
+    : '';
 
   detail.innerHTML = `
     <button class="btn-back" id="ipkr-back-btn">← Назад</button>
@@ -2401,6 +2408,7 @@ function showIPKRDetail(idx) {
     ${sheetButtonHtml ? `<div class="action-hub">${sheetButtonHtml}</div>` : ''}
     ${notesHtml ? `<div class="section-notes" style="margin-bottom:12px">${notesHtml}</div>` : ''}
     <div class="grid-layout">${cardsHtml}</div>
+    ${fullListHtml}
     ${footnotesHtml}
   `;
 
