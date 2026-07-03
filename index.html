@@ -1673,7 +1673,41 @@ const orgData = [
     ]
   },
   {
+    id: 'ipkr-functional-contacts',
+    group: 'Функциональные контакты',
+    title: 'Функциональные контакты ИПКР',
+    subtitle: 'Кто отвечает за конкретные вопросы в департаментах',
+    color: 'var(--teal)',
+    fullListLinks: [
+      { label: 'Полный список ППС ДСПТиКРМ (сайт МГПУ)', url: 'https://www.mgpu.ru/obrazovanie/institutes/ipkr/departments/departament-sotsialno-psihologicheskih-tehnologij-i-korrektsionno-razvivayushhih-metodik/' },
+      { label: 'Полный список ППС ДКППОРЛ (сайт МГПУ)', url: 'https://www.mgpu.ru/obrazovanie/institutes/ipkr/departments/departament-klinicheskih-psihologicheskih-i-pedagogicheskih-osnov-razvitiya-lichnosti/' }
+    ],
+    footnotes: [
+      'ДООПиРМ — Департамент организации образовательного процесса и работы с молодёжью (деканат)',
+      'ДСПТиКРМ — Департамент социально-психологических технологий и коррекционно-развивающих методик',
+      'ДКППОРЛ — Департамент клинических, психологических и педагогических основ развития личности'
+    ],
+    staff: [
+      { name: 'Вдовина Валентина Владимировна', role: '', deg: 'специалист по УМР · каб. 405 · ДООПиРМ', photo: null },
+      { name: 'Горожанкина Оксана Николаевна', role: 'Представительская площадка ИПКР', deg: 'специалист · каб. 202–203 · ДООПиРМ', photo: null },
+      { name: 'Гришина Лилия Игоревна', role: 'Материальная поддержка · социальная стипендия · рассрочка и скидка на обучение', deg: 'специалист · каб. 405 · ДООПиРМ', photo: null },
+      { name: 'Кондратова Мария Александровна', role: '', deg: 'специалист · каб. 406 · ДООПиРМ', photo: null },
+      { name: 'Лебедева Виктория Александровна', role: '', deg: 'специалист по УМР · каб. 405 · ДООПиРМ', photo: null },
+      { name: 'Попова Ольга Владимировна', role: 'Практика студентов', deg: 'специалист · каб. 507 · ДООПиРМ', photo: null },
+      { name: 'Салькова Анна Алексеевна', role: 'Вопросы образовательного процесса', deg: 'специалист, ассистент · каб. 406 · ДООПиРМ', photo: null },
+      { name: 'Соколова Ольга Андреевна', role: '', deg: 'специалист по УМР · каб. 405 · ДООПиРМ', photo: null },
+      { name: 'Григоренко Наталья Юрьевна', role: 'ДПО', deg: 'доц., к. пед. н. · каб. 411 · ДСПТиКРМ', photo: null },
+      { name: 'Мануйлова Виктория Викторовна', role: 'Аспирантура', deg: 'проф., д. пед. н. · каб. 412 · ДСПТиКРМ', photo: 'images/people/mgpu/Manujlova.webp' },
+      { name: 'Миронова Ангелина Валерьевна', role: 'Центр науки и инноваций ИПКР', deg: 'ст. преп. · каб. 410 · ДСПТиКРМ', photo: null },
+      { name: 'Новикова Диана Эдуардовна', role: 'Координатор по организационным вопросам · Telegram и сайт ИПКР', deg: 'ст. преп. · ДСПТиКРМ', photo: 'images/people/mgpu/Novikova.webp' },
+      { name: 'Павлова Анна Сергеевна', role: 'Профбюро', deg: 'доц., к. пс. н. · каб. 503 · ДСПТиКРМ', photo: null },
+      { name: 'Рыкова Елена Алексеевна', role: 'Ответственная за конкурсы в институте', deg: 'ст. преп. · ДСПТиКРМ', photo: null },
+      { name: 'Баранова Екатерина Михайловна', role: 'Академическая мобильность · студенты-иностранцы · международные конкурсы', deg: 'доц., к. пед. н. · каб. 410 · ДКППОРЛ', photo: null }
+    ]
+  },
+  {
     id: 'dept-admin',
+    hidden: true,
     group: 'Департаменты',
     title: 'Административный',
     subtitle: 'Департамент организации образовательного процесса и работы с молодёжью · каб. 405–406',
@@ -1693,6 +1727,7 @@ const orgData = [
   },
   {
     id: 'dept-social',
+    hidden: true,
     group: null,
     title: 'Социально-психологический',
     subtitle: 'Департамент социально-психологических технологий и коррекционно-развивающих методик · каб. 403',
@@ -1756,6 +1791,7 @@ const orgData = [
   },
   {
     id: 'dept-clinical',
+    hidden: true,
     group: null,
     title: 'Клинико-психологический',
     subtitle: 'Департамент клинических, психологических и педагогических основ развития личности · каб. 402',
@@ -2351,6 +2387,7 @@ function renderIPKRMaster() {
   let html = '';
 
   orgData.forEach((section, idx) => {
+    if (section.hidden) return;
     if (section.group !== null && section.group !== lastGroup) {
       html += `<div class="master-group-label">${section.group}</div>`;
       lastGroup = section.group;
@@ -2395,7 +2432,11 @@ function showIPKRDetail(idx) {
     ? `<div style="text-align:center;margin-top:16px">
         <a href="${section.fullListUrl}" target="_blank" rel="noopener" style="font-size:13px;color:${section.color};text-decoration:underline;text-underline-offset:2px">Полный список преподавателей департамента (сайт МГПУ)</a>
       </div>`
-    : '';
+    : (section.fullListLinks
+      ? `<div style="text-align:center;margin-top:16px;display:flex;flex-direction:column;gap:6px">
+          ${section.fullListLinks.map(l => `<a href="${l.url}" target="_blank" rel="noopener" style="font-size:13px;color:${section.color};text-decoration:underline;text-underline-offset:2px">${l.label}</a>`).join('')}
+        </div>`
+      : '');
 
   detail.innerHTML = `
     <button class="btn-back" id="ipkr-back-btn">← Назад</button>
@@ -3010,6 +3051,7 @@ function doSearch(query) {
 
   // IPKR staff
   orgData.forEach((section, sIdx) => {
+    if (section.hidden) return;
     section.staff.forEach(person => {
       if (person.divider || person.vacant || person.hidden || !person.name) return;
       if (person.name.toLowerCase().includes(q)) {
