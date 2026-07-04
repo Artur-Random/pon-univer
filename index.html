@@ -1438,22 +1438,22 @@ body.dark-theme .hb-gallery-nav{background:rgba(255,255,255,.18);color:#fff}
       <div class="home-section-heading">Карта проекта</div>
       <div class="home-section-sub">Выбери раздел — найди нужное быстро</div>
       <div class="home-menu-grid">
-        <button class="home-menu-card" onclick="switchSection('ipkr')">
+        <button class="home-menu-card" onclick="switchSection('ipkr')" aria-label="Раздел ИПКР. Институт. Администрация, три департамента, ССиА, МФЦ и Центр работы с молодёжью">
           <span class="home-menu-badge">Институт</span>
           <span class="home-menu-name">ИПКР</span>
           <span class="home-menu-desc">Администрация, три департамента, ССиА, МФЦ и Центр работы с молодёжью.</span>
         </button>
-        <button class="home-menu-card" onclick="switchSection('uni')">
+        <button class="home-menu-card" onclick="switchSection('uni')" aria-label="Раздел МГПУ. Университет. Администрация, ССиА и справочник по всем институтам МГПУ">
           <span class="home-menu-badge">Университет</span>
           <span class="home-menu-name">МГПУ</span>
           <span class="home-menu-desc">Администрация, ССиА и справочник по всем институтам МГПУ.</span>
         </button>
-        <button class="home-menu-card" onclick="switchSection('handbook')">
+        <button class="home-menu-card" onclick="switchSection('handbook')" aria-label="Раздел Справочник. Гайд. Куда обратиться, права, обязанности, пропускной режим и дисциплина">
           <span class="home-menu-badge">Гайд</span>
           <span class="home-menu-name">Справочник</span>
           <span class="home-menu-desc">Куда обратиться, права, обязанности, пропускной режим и дисциплина.</span>
         </button>
-        <button class="home-menu-card" onclick="switchSection('contacts')">
+        <button class="home-menu-card" onclick="switchSection('contacts')" aria-label="Раздел Контакты. Помощь. Контакты ССиА ИПКР и интерактивная карта корпусов МГПУ">
           <span class="home-menu-badge">Помощь</span>
           <span class="home-menu-name">Контакты</span>
           <span class="home-menu-desc">Контакты ССиА ИПКР и интерактивная карта корпусов МГПУ.</span>
@@ -1566,13 +1566,13 @@ body.dark-theme .hb-gallery-nav{background:rgba(255,255,255,.18);color:#fff}
   <div class="img-modal-inner">
     <img id="img-modal-img" class="img-modal-img" src="" alt="">
   </div>
-  <button id="img-modal-close" class="img-modal-close" type="button" aria-label="Закрыть" tabindex="-1">×</button>
+  <button id="img-modal-close" class="img-modal-close" type="button" aria-label="Закрыть просмотр изображения" tabindex="-1">×</button>
 </div>
 
 <!-- Person photo modal -->
 <div id="person-photo-modal" class="person-photo-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Фото сотрудника">
   <div class="person-photo-modal-inner">
-    <button id="person-photo-modal-close" class="person-photo-modal-close" type="button" aria-label="Закрыть" tabindex="-1">×</button>
+    <button id="person-photo-modal-close" class="person-photo-modal-close" type="button" aria-label="Закрыть фото сотрудника" tabindex="-1">×</button>
     <img id="person-photo-modal-img" class="person-photo-modal-img" src="" alt="">
     <div class="person-photo-modal-meta">
       <div id="person-photo-modal-name" class="person-photo-modal-name"></div>
@@ -1596,7 +1596,7 @@ body.dark-theme .hb-gallery-nav{background:rgba(255,255,255,.18);color:#fff}
 <!-- Update v1.2 Modal -->
 <div id="update-modal" class="update-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="update-modal-title">
   <div class="update-modal-card">
-    <button id="update-modal-close" class="update-modal-close" type="button" aria-label="Закрыть">×</button>
+    <button id="update-modal-close" class="update-modal-close" type="button" aria-label="Закрыть окно обновления">×</button>
     <div class="update-modal-badge">v1.2</div>
     <h2 class="update-modal-title" id="update-modal-title">Понятный Университет обновился до v1.2</h2>
     <p class="update-modal-sub">Добавили новые разделы Справочника и обновили состав ССиА ИПКР.</p>
@@ -3394,8 +3394,7 @@ addSwipeToDismiss(document.getElementById('handbook-detail'));
   <div style="max-width:700px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
     <p style="margin:0;font-size:13px;color:#e2e8f0;line-height:1.5;flex:1;min-width:200px;">
       Мы используем cookies для анализа посещаемости через Яндекс Метрику.
-      Продолжая использование сайта, вы соглашаетесь с
-      <a href="privacy.html#cookies" style="color:#fb700b;text-decoration:underline;">Политикой cookies</a>.
+      Продолжая использование сайта, вы соглашаетесь с Политикой cookies (см. ссылку в футере сайта).
     </p>
     <button onclick="acceptCookies()" style="background:#fb700b;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0;">Принять</button>
   </div>
