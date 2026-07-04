@@ -3065,17 +3065,20 @@ function syncGalleryNav(gallery) {
   if (!shell) return;
   const prev = shell.querySelector('.hb-gallery-nav--prev');
   const next = shell.querySelector('.hb-gallery-nav--next');
+  // Reads first (avoid forced reflow from interleaving with writes below)
   const atStart = gallery.scrollLeft < 4;
   const atEnd = gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 4;
+  const counter = shell.nextElementSibling;
+  const hasCounter = counter && counter.classList.contains('hb-gallery-counter');
+  const btns = hasCounter ? gallery.querySelectorAll('.hb-gallery-img-btn') : null;
+  const itemW = (btns && btns.length) ? (btns[0].offsetWidth || 1) + 12 : 0;
+  const idx = (btns && btns.length) ? Math.min(Math.round(gallery.scrollLeft / itemW), btns.length - 1) : 0;
+  // Writes after
   if (prev) prev.style.display = atStart ? 'none' : 'flex';
   if (next) next.style.display = atEnd ? 'none' : 'flex';
-  const counter = shell.nextElementSibling;
-  if (!counter || !counter.classList.contains('hb-gallery-counter')) return;
-  const btns = gallery.querySelectorAll('.hb-gallery-img-btn');
-  if (!btns.length) return;
-  const itemW = (btns[0].offsetWidth || 1) + 12;
-  const idx = Math.min(Math.round(gallery.scrollLeft / itemW), btns.length - 1);
-  counter.textContent = (idx + 1) + ' / ' + btns.length;
+  if (hasCounter && btns && btns.length) {
+    counter.textContent = (idx + 1) + ' / ' + btns.length;
+  }
 }
 
 document.addEventListener('click', e => {
@@ -3124,9 +3127,11 @@ function showMaster(prefix) {
 }
 
 function updateStickyVars() {
-  const header = document.querySelector('.site-header');
-  const h = header ? Math.ceil(header.getBoundingClientRect().height) : 62;
-  document.documentElement.style.setProperty('--site-header-height', h + 'px');
+  requestAnimationFrame(() => {
+    const header = document.querySelector('.site-header');
+    const h = header ? Math.ceil(header.getBoundingClientRect().height) : 62;
+    document.documentElement.style.setProperty('--site-header-height', h + 'px');
+  });
 }
 updateStickyVars();
 window.addEventListener('resize', updateStickyVars);
