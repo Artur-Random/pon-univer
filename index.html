@@ -134,7 +134,7 @@ h1.t{
 }
 .search-result-item:hover{background:rgba(255,255,255,.92)}
 .search-result-name{font-size:13px;font-weight:600;color:var(--navy)}
-.search-result-sub{font-size:11px;color:var(--tmid);margin-top:2px}
+.search-result-sub{font-size:12px;color:var(--tmid);margin-top:2px}
 .search-no-results{font-size:13px;color:var(--tmid);padding:8px 0;text-align:center}
 
 /* ── Section titles ── */
@@ -164,10 +164,10 @@ body.dark-theme .master-card:active,body.dark-theme .card:active{background:rgba
 .master-card.locked-glow{box-shadow:0 0 24px rgba(220,38,38,.6),inset 0 1px 1px rgba(255,255,255,.6) !important;border-color:rgba(220,38,38,.5) !important;transform:scale(0.97) !important}
 body.dark-theme .master-card.locked-glow{box-shadow:0 0 24px rgba(220,38,38,.4),inset 0 1px 1px rgba(255,255,255,.05) !important;border-color:rgba(220,38,38,.3) !important}
 .master-card-title{font-size:15px;font-weight:600;color:var(--navy);line-height:1.3;margin-bottom:4px}
-.master-card-sub{font-size:11px;font-weight:600;color:var(--tmid);line-height:1.4;text-transform:uppercase;letter-spacing:.05em}
-.master-card-count{font-size:10px;font-weight:700;color:var(--accent);margin-top:10px;text-transform:uppercase;letter-spacing:.05em}
+.master-card-sub{font-size:12px;font-weight:600;color:var(--tmid);line-height:1.4;text-transform:uppercase;letter-spacing:.05em}
+.master-card-count{font-size:12px;font-weight:700;color:var(--accent);margin-top:10px;text-transform:uppercase;letter-spacing:.05em}
 .master-group-label{
-  grid-column:1/-1;font-size:9px;font-weight:700;color:var(--accent);
+  grid-column:1/-1;font-size:12px;font-weight:700;color:var(--accent);
   letter-spacing:.12em;text-transform:uppercase;padding:16px 0 2px;
 }
 
@@ -188,14 +188,14 @@ body.dark-theme .btn-back{
 }
 .detail-header{margin-bottom:20px}
 .detail-title{font-size:20px;font-weight:700;color:var(--navy);margin-bottom:4px;line-height:1.3}
-.detail-subtitle{font-size:11px;font-weight:600;color:var(--tmid);line-height:1.4;text-transform:uppercase;letter-spacing:.05em}
+.detail-subtitle{font-size:12px;font-weight:600;color:var(--tmid);line-height:1.4;text-transform:uppercase;letter-spacing:.05em}
 
 /* ── Staff card ── */
 .card{background:var(--surface-paper);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:16px;padding:11px 13px;box-shadow:var(--shadow-layered),inset 0 1px 0 rgba(255,255,255,.75);border:1px solid var(--hairline);border-top:4px solid transparent;transition:transform .15s ease,box-shadow .2s,background .2s;display:flex;gap:12px;align-items:flex-start}
 .card-text{flex:1;min-width:0}
-.card .role{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin-bottom:4px;line-height:1.4}
+.card .role{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin-bottom:4px;line-height:1.4}
 .card .name{font-size:13px;font-weight:600;line-height:1.3;color:var(--navy);margin-bottom:2px}
-.card .deg{font-size:11.5px;font-weight:600;color:var(--tmid);line-height:1.4}
+.card .deg{font-size:12px;font-weight:600;color:var(--tmid);line-height:1.4}
 
 /* ── Avatar shell / squircle ── */
 .avatar-button{
@@ -239,7 +239,7 @@ body.dark-theme .avatar-placeholder.avatar-media{background:rgba(40,48,70,.85)}
 
 /* ── Card contacts & schedule ── */
 .card-contacts{display:flex;flex-direction:column;gap:4px;margin-top:10px;font-size:13px;color:var(--tmid);border-top:1px dashed var(--warm);padding-top:10px}
-.contact-stub{display:inline-flex;align-items:center;font-size:11px;color:var(--tmid);opacity:.6;padding:4px 0;cursor:default;user-select:none}
+.contact-stub{display:inline-flex;align-items:center;font-size:12px;color:var(--tmid);opacity:.6;padding:4px 0;cursor:default;user-select:none}
 .contact-stub::before{content:'✉';margin-right:4px;font-size:13px}
 .card-contact-item{display:flex;align-items:center;gap:6px}
 .card a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
@@ -265,7 +265,7 @@ body.dark-theme .card.hero{
 .card.hero .avatar-shell{width:82px;height:82px;margin-bottom:6px;border-radius:28px}
 .card.hero .avatar-frame{border-radius:23px}
 .card.hero .avatar-media{border-radius:19px}
-.card.hero .role{font-size:11px}
+.card.hero .role{font-size:12px}
 .card.hero .name{font-size:16px;margin-bottom:6px}
 .card.hero .card-contacts{align-items:center}
 .card.hero .card-text{display:flex;flex-direction:column;align-items:center;width:100%}
@@ -299,17 +299,17 @@ body.dark-theme .card.hero{
   .card.staff-card--ipkr-director .card-schedule{margin-top:10px;width:100%}
 }
 /* ── Department head compact card ── */
-.card.staff-card--dept-head .role{font-size:9px;line-height:1.35}
+.card.staff-card--dept-head .role{font-size:12px;line-height:1.35}
 .card.staff-card--dept-head{min-height:152px;align-self:stretch}
 /* ── Hero card schedule block ── */
 .card.hero .card-schedule{width:100%;margin-top:14px;box-sizing:border-box}
-.card.hero .schedule-note{font-size:9.5px}
-.card.hero .schedule-line{font-size:11px}
+.card.hero .schedule-note{font-size:12px}
+.card.hero .schedule-line{font-size:12px}
 /* ── Institute director / ssia-chair card variants ── */
 .card-badge{
   display:inline-flex;width:fit-content;margin-bottom:6px;
   padding:3px 8px;border-radius:999px;
-  font-size:8px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
 }
 .card-badge--director{
   color:var(--navy);
@@ -350,14 +350,14 @@ body.dark-theme .card--ssia-chair{
 .card-contact-item a{color:var(--navy);text-decoration:none;font-weight:600;transition:color .2s}
 .card-contact-item a:hover{color:var(--accent)}
 .card-schedule{background:var(--cream);border-left:3px solid var(--accent);padding:10px 12px;margin-top:10px;border-radius:0 4px 4px 0;font-size:12px}
-.schedule-note{color:var(--burgundy);font-weight:600;font-size:11px;margin-bottom:6px;display:block;text-transform:uppercase;letter-spacing:.05em}
+.schedule-note{color:var(--burgundy);font-weight:600;font-size:12px;margin-bottom:6px;display:block;text-transform:uppercase;letter-spacing:.05em}
 .schedule-line{display:flex;justify-content:space-between;margin-top:4px;color:var(--tmid);border-bottom:1px solid rgba(0,0,0,.05);padding-bottom:2px}
 .schedule-line:last-child{border-bottom:none;padding-bottom:0}
 .schedule-line strong{color:var(--tdark)}
 
 /* ── Section notes ── */
 .section-notes{padding:4px 0 8px;display:flex;flex-direction:column;gap:5px}
-.note-item{font-size:11px;color:var(--tmid)}
+.note-item{font-size:12px;color:var(--tmid)}
 
 /* ── ССиА links block ── */
 
@@ -425,28 +425,28 @@ body.dark-theme .card--ssia-chair{
 
 /* ── Footer ── */
 .main-footer{background:var(--navy);border-top:3px solid var(--accent);margin-top:auto;padding:20px 14px 80px;text-align:center;color:white}
-.footer-container{max-width:1500px;margin:0 auto;font-size:11px;color:var(--warm);line-height:1.4}
+.footer-container{max-width:1500px;margin:0 auto;font-size:12px;color:var(--warm);line-height:1.4}
 .footer-info{display:flex;flex-direction:column;gap:6px;align-items:center}
 .footer-brand{font-size:13px;font-weight:600;display:flex;align-items:center;gap:10px;margin-bottom:2px}
 .footer-brand strong{color:#fff}
-.footer-brand span{color:var(--gold-soft);font-size:11px}
-.footer-line{font-size:11px;color:var(--warm);line-height:1.5;max-width:640px}
+.footer-brand span{color:var(--gold-soft);font-size:12px}
+.footer-line{font-size:12px;color:var(--warm);line-height:1.5;max-width:640px}
 .footer-legal{opacity:.78}
 .footer-links{margin-top:4px;display:flex;align-items:center;gap:8px}
-.footer-links a{color:var(--warm);font-size:11px;text-decoration:none;opacity:.7}
+.footer-links a{color:var(--warm);font-size:12px;text-decoration:none;opacity:.7}
 .footer-links a:hover{opacity:1;text-decoration:underline}
 .footer-links span{color:var(--warm);opacity:.5}
 
 /* ── Pilot notice ── */
 .pilot-notice{display:flex;align-items:flex-start;gap:10px;background:rgba(251,112,11,.08);border:1px solid rgba(251,112,11,.25);border-radius:12px;padding:10px 14px;margin-bottom:20px;font-size:12px;line-height:1.5}
-.pilot-notice-badge{flex-shrink:0;background:var(--accent);color:#fff;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:6px;padding:2px 7px;margin-top:1px}
+.pilot-notice-badge{flex-shrink:0;background:var(--accent);color:#fff;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:6px;padding:2px 7px;margin-top:1px}
 .pilot-notice-text{color:var(--tmid)}
 
 /* ── University addresses ── */
 .uni-address-list{display:flex;flex-direction:column;gap:8px;margin:16px 0 8px}
 .uni-address-item{display:flex;flex-direction:column;gap:2px}
 .uni-addr-text{font-size:13px;font-weight:600;color:var(--tdark)}
-.uni-addr-comment{font-size:11px;font-weight:600;color:var(--tmid);text-transform:uppercase;letter-spacing:.05em}
+.uni-addr-comment{font-size:12px;font-weight:600;color:var(--tmid);text-transform:uppercase;letter-spacing:.05em}
 .uni-email{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--navy);text-decoration:none;font-weight:600;padding-top:12px;border-top:1px solid var(--warm);transition:color .2s}
 .uni-email:hover{color:var(--accent)}
 
@@ -455,7 +455,7 @@ body.dark-theme .card--ssia-chair{
 /* ── Contacts section ── */
 .contacts-card{background:rgba(255,255,255,0.65);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:12px;box-shadow:0 4px 16px rgba(42,49,83,.06),inset 0 1px 1px rgba(255,255,255,0.9);border:1px solid rgba(255,255,255,0.4);padding:20px 4px;max-width:600px}
 @media(min-width:768px){.contacts-card{max-width:780px;margin-left:auto;margin-right:auto}}
-.contacts-block-title{font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;padding:0 16px 12px;border-bottom:2px solid var(--warm);margin-bottom:4px}
+.contacts-block-title{font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;padding:0 16px 12px;border-bottom:2px solid var(--warm);margin-bottom:4px}
 .contacts-list{display:flex;flex-direction:column}
 .contacts-item{display:flex;align-items:center;gap:16px;padding:14px 16px;border-bottom:1px solid var(--warm);text-decoration:none;color:inherit;transition:background .15s}
 .contacts-item:last-child{border-bottom:none}
@@ -463,7 +463,7 @@ a.contacts-item:hover{background:rgba(251,112,11,.05)}
 a.contacts-item:active{background:rgba(251,112,11,.1);transform:scale(0.99)}
 .contacts-icon{width:20px;height:20px;flex-shrink:0;color:var(--accent)}
 .contacts-item-text{flex:1;min-width:0}
-.contacts-item-label{display:block;font-size:10px;font-weight:700;color:var(--tmid);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+.contacts-item-label{display:block;font-size:12px;font-weight:700;color:var(--tmid);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
 .contacts-item-value{display:block;font-size:14px;font-weight:600;color:var(--navy);word-break:break-all;line-height:1.3}
 a.contacts-item:hover .contacts-item-value{color:var(--accent)}
 
@@ -562,7 +562,7 @@ body.dark-theme .card-contact-item svg,body.dark-theme .schedule-note svg{color:
 .luxury-badge{
   display:inline-flex;width:fit-content;margin-bottom:8px;
   padding:4px 8px;border-radius:999px;
-  font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
   color:var(--gold-deep);background:rgba(201,151,74,.12);border:1px solid rgba(201,151,74,.24);
 }
 body.dark-theme .luxury-badge{
@@ -610,9 +610,9 @@ body.dark-theme .hb-card-title{color:#dde0f8}
   margin-bottom:14px;line-height:1.4;
 }
 body.dark-theme .hb-card-summary{color:rgba(185,195,225,.70)}
-.hb-applicability{display:inline-flex;width:fit-content;padding:3px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);background:rgba(42,49,83,.07);border:1px solid rgba(42,49,83,.12);margin-bottom:10px}
+.hb-applicability{display:inline-flex;width:fit-content;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);background:rgba(42,49,83,.07);border:1px solid rgba(42,49,83,.12);margin-bottom:10px}
 body.dark-theme .hb-applicability{color:rgba(195,210,245,.80);background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.11)}
-.hb-card-note{font-size:11.5px;font-weight:600;color:var(--accent);background:rgba(251,112,11,.08);border-radius:8px;padding:6px 10px;margin-bottom:10px;line-height:1.4}
+.hb-card-note{font-size:12px;font-weight:600;color:var(--accent);background:rgba(251,112,11,.08);border-radius:8px;padding:6px 10px;margin-bottom:10px;line-height:1.4}
 body.dark-theme .hb-card-note{background:rgba(251,112,11,.12)}
 .hb-card-actions{display:flex;gap:8px;flex-wrap:wrap;}
 .hb-btn{
@@ -686,7 +686,7 @@ body.dark-theme .update-modal-card{background:rgba(22,26,42,.97);border-top:1px 
 .update-modal-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border:none;border-radius:50%;background:rgba(42,49,83,.08);color:var(--navy);font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
 .update-modal-close:hover{background:rgba(42,49,83,.14)}
 body.dark-theme .update-modal-close{background:rgba(255,255,255,.08);color:#e2e8f0}
-.update-modal-badge{display:inline-block;background:var(--accent);color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:3px 9px;margin-bottom:10px}
+.update-modal-badge{display:inline-block;background:var(--accent);color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:3px 9px;margin-bottom:10px}
 .update-modal-title{font-family:var(--font-head);font-size:20px;font-weight:700;color:var(--navy);margin:0 36px 6px 0;line-height:1.25}
 body.dark-theme .update-modal-title{color:#e8eaf6}
 .update-modal-sub{font-size:13px;color:var(--tmid);margin:0 0 14px;line-height:1.5}
@@ -758,10 +758,10 @@ body.person-photo-open{overflow:hidden}
 }
 .person-photo-modal-close:hover{background:rgba(255,255,255,.28)}
 /* ── Master card extras ── */
-.master-card-count{font-size:11px;color:var(--tmid);margin-top:4px}
+.master-card-count{font-size:12px;color:var(--tmid);margin-top:4px}
 .soon-badge{
   display:inline-flex;width:fit-content;margin-bottom:8px;
-  padding:4px 8px;border-radius:999px;font-size:9px;font-weight:800;
+  padding:4px 8px;border-radius:999px;font-size:12px;font-weight:800;
   letter-spacing:.1em;text-transform:uppercase;
   color:#b91c1c;background:rgba(220,38,38,.10);border:1px solid rgba(220,38,38,.20);
 }
@@ -916,7 +916,7 @@ body:not(.dark-theme) .home-brand-separator{color:rgba(42,49,83,.32);}
 }
 /* ── Hero text ── */
 .home-hero-eyebrow{
-  font-family:var(--font-head);font-size:10.5px;font-weight:700;
+  font-family:var(--font-head);font-size:12px;font-weight:700;
   letter-spacing:.20em;text-transform:uppercase;
   color:var(--gold);margin-bottom:14px;opacity:.82;
   position:relative;z-index:1;
@@ -1071,7 +1071,7 @@ body.dark-theme .home-menu-card:hover{
 .home-menu-badge{
   display:inline-flex;width:fit-content;
   padding:3px 9px;border-radius:999px;
-  font-size:8.5px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;
+  font-size:12px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;
   background:rgba(42,49,83,.07);color:var(--navy);
   border:1px solid rgba(42,49,83,.10);
 }
@@ -1310,7 +1310,7 @@ body.dark-theme .sheet-text details{border-color:rgba(255,255,255,.09);backgroun
 body.dark-theme .sheet-text summary{color:rgba(210,220,255,.92)}
 .sheet-text summary::before{content:'▸';position:absolute;left:14px;top:50%;transform:translateY(-50%);transition:transform .2s ease;font-size:11px;color:var(--accent);line-height:1}
 .sheet-text details[open]>summary::before{transform:translateY(-50%) rotate(90deg)}
-.sheet-text .sit-cat{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 7px;border-radius:20px;background:rgba(251,112,11,.12);color:var(--accent);margin-right:7px;vertical-align:middle;line-height:1.6}
+.sheet-text .sit-cat{display:inline-block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 7px;border-radius:20px;background:rgba(251,112,11,.12);color:var(--accent);margin-right:7px;vertical-align:middle;line-height:1.6}
 .sheet-text .sit-body{padding:6px 14px 14px;border-top:1px solid rgba(42,49,83,.08)}
 body.dark-theme .sheet-text .sit-body{border-top-color:rgba(255,255,255,.07)}
 .sheet-text .sit-sec{margin-bottom:10px}
@@ -1325,7 +1325,7 @@ body.dark-theme .sheet-text a{color:#7eb8ff}
 .hb-internal-link:hover{text-decoration:underline}
 body.dark-theme .hb-internal-link{color:#fb9050}
 .sheet-pdf-link{display:flex;align-items:center;padding:10px 14px;margin:6px 0;background:rgba(42,49,83,.06);border-radius:10px;text-decoration:none!important;color:var(--navy);font-weight:600;font-size:14px;border:1px solid rgba(42,49,83,.10)}
-.sheet-pdf-link::after{content:'PDF';font-size:10px;font-weight:700;color:#fff;background:var(--accent);padding:2px 6px;border-radius:4px;margin-left:auto;flex-shrink:0}
+.sheet-pdf-link::after{content:'PDF';font-size:12px;font-weight:700;color:#fff;background:var(--accent);padding:2px 6px;border-radius:4px;margin-left:auto;flex-shrink:0}
 .sheet-pdf-link:hover{background:rgba(42,49,83,.10)}
 body.dark-theme .sheet-pdf-link{background:rgba(255,255,255,.07);color:#e8eaf6;border-color:rgba(255,255,255,.12)}
 body.dark-theme .sheet-pdf-link:hover{background:rgba(255,255,255,.11)}
@@ -1339,7 +1339,7 @@ body.dark-theme .sheet-text h3{color:rgba(210,220,255,.92)}
 .hb-gallery-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:34px;height:34px;border:0;border-radius:999px;background:rgba(42,49,83,.88);color:#fff;font-size:26px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--luxury-shadow-soft)}
 .hb-gallery-nav--prev{left:4px;display:none}
 .hb-gallery-nav--next{right:4px}
-.hb-gallery-counter{width:fit-content;margin:0 auto 4px;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;color:var(--tmid);background:rgba(42,49,83,.06)}
+.hb-gallery-counter{width:fit-content;margin:0 auto 4px;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;color:var(--tmid);background:rgba(42,49,83,.06)}
 body.dark-theme .hb-gallery-hint,body.dark-theme .hb-gallery-counter{color:rgba(220,230,250,.72)}
 body.dark-theme .hb-gallery-img-btn{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.10)}
 body.dark-theme .hb-gallery-nav{background:rgba(255,255,255,.18);color:#fff}
@@ -2128,7 +2128,7 @@ const handbookData = [
         alt: 'Навигатор по студенческим ситуациям: расписание, справки, стипендии, практика, конфликт, помощь',
         title: 'Куда обратиться?',
         summary: 'Учёба, документы, стипендии, практика, поддержка и обращения',
-        text: '<p>Найди свою ситуацию и узнай, куда обращаться, что подготовить и что важно знать.</p><details><summary><span class="sit-cat">Учёба</span>Расписание</summary><div class="sit-body"><div class="sit-sec"><b>Куда обращаться</b><div class="sit-contact">Парамонова Галина Витальевна<br>Деп. организации образовательного процесса* · каб. 406<br><a href="mailto:ParamonovaG@mgpu.ru">ParamonovaG@mgpu.ru</a></div></div><div class="sit-sec"><b>Что подготовить</b><p>Группу, дату, дисциплину, описание вопроса; скриншот расписания при необходимости.</p></div><div class="sit-imp">По вопросам расписания пишите коротко и конкретно.</div></div></details><details><summary><span class="sit-cat">Финансы</span>Стипендии, выплаты и материальная помощь</summary><div class="sit-body"><div class="sit-sec"><b>Куда обращаться</b><div class="sit-contact">Гришина Лилия Игоревна · каб. 405<br><a href="mailto:dokukinali688@mgpu.ru">dokukinali688@mgpu.ru</a></div></div><div class="sit-sec"><b>Вопросы</b><p>Социальная стипендия, материальная поддержка, выплаты, рассрочка, скидка на обучение.</p></div><div class="sit-sec"><b>Что подготовить</b><p>ФИО, группу, вид выплаты или поддержки, краткое описание, документы-основания при наличии.</p></div></div></details><details><summary><span class="sit-cat">Документы</span>Справки и документы</summary><div class="sit-body"><div class="sit-sec"><b>Куда сначала</b><p>Личный кабинет → Заказ справки. В ЛК можно заказать: справку о подтверждении обучения, справку об академической успеваемости, справку-вызов.</p></div><div class="sit-sec"><b>Куда обращаться</b><div class="sit-contact">МФЦ ИПКР · каб. 210<br>Тумакова Евгения Владимировна<br><a href="mailto:tumakovae@mgpu.ru">tumakovae@mgpu.ru</a><br><a href="tel:+74991327469">+7 (499) 132-74-69</a><br><br>МФЦ МГПУ (общий): <a href="mailto:mfc@mgpu.ru">mfc@mgpu.ru</a> · 8 (495) 951-67-07</div></div><div class="sit-sec"><b>Что подготовить</b><p>ФИО, группу, вид справки, способ получения; описание проблемы, если справка не формируется.</p></div><div class="sit-imp">Сначала проверьте, можно ли заказать нужную справку через Личный кабинет.</div></div></details><details><summary><span class="sit-cat">Документы</span>Социальная карта студента</summary><div class="sit-body"><div class="sit-sec"><b>Как оформить</b><p>Граждане РФ — через mos.ru.<br>Иностранные граждане и лица без гражданства — лично в центр «Мои документы».</p></div><div class="sit-sec"><b>Кому доступна</b><p>Студентам и аспирантам очной формы обучения.</p></div><div class="sit-sec"><b>Если ошибка в данных</b><div class="sit-contact">МФЦ ИПКР · каб. 210<br>Тумакова Евгения Владимировна<br><a href="mailto:tumakovae@mgpu.ru">tumakovae@mgpu.ru</a><br><a href="tel:+74991327469">+7 (499) 132-74-69</a></div></div><div class="sit-imp">Студенты очно-заочной и заочной формы обучения оформить социальную карту не могут.</div></div></details><details><summary><span class="sit-cat">Учёба</span>Академическая задолженность и пересдачи</summary><div class="sit-body"><div class="sit-sec"><b>Куда обращаться</b><div class="sit-contact">Парамонова Галина Витальевна<br>Деп. организации образовательного процесса* · каб. 406<br><a href="mailto:ParamonovaG@mgpu.ru">ParamonovaG@mgpu.ru</a></div></div><div class="sit-sec"><b>По конкретной дисциплине</b><p>Сначала уточните у преподавателя.</p></div><div class="sit-sec"><b>Что подготовить</b><p>ФИО, группу, дисциплину, преподавателя, семестр, описание задолженности.</p></div><div class="sit-imp">За пересдачу не может взиматься плата.</div></div></details><details><summary><span class="sit-cat">Учёба</span>Досрочная сессия</summary><div class="sit-body"><div class="sit-sec"><b>Куда обращаться</b><div class="sit-contact">Парамонова Галина Витальевна<br>Деп. организации образовательного процесса* · каб. 406<br><a href="mailto:ParamonovaG@mgpu.ru">ParamonovaG@mgpu.ru</a></div></div><div class="sit-sec"><b>Что подготовить</b><p>ФИО, группу, причину обращения, предполагаемые сроки, подтверждающие документы при наличии.</p></div><div class="sit-imp">Уточняйте порядок и сроки заранее, а не в последний момент.</div></div></details><details><summary><span class="sit-cat">Учёба</span>Практика</summary><div class="sit-body"><div class="sit-sec"><b>Куда обращаться</b><div class="sit-contact">Попова Ольга Владимировна · каб. 507<br><a href="mailto:popovaov@mgpu.ru">popovaov@mgpu.ru</a></div></div><div class="sit-sec"><b>Вопросы</b><p>Документы по практике, организационные вопросы практики.</p></div><div class="sit-sec"><b>Что подготовить</b><p>ФИО, группу, вид и сроки практики, базу практики, конкретный вопрос.</p></div><div class="sit-imp">Сразу указывайте курс, группу и вид практики — это ускорит ответ.</div></div></details><details><summary><span class="sit-cat">Учёба</span>Перевод, отчисление, академический отпуск</summary><div class="sit-body"><div class="sit-sec"><b>Куда сначала</b><p>Личный кабинет → Заявления. В ЛК есть: переводы, отчисление, академический отпуск, выход из академического отпуска, индивидуальный учебный план, последипломные каникулы, смена ФИО.</p></div><div class="sit-sec"><b>За консультацией</b><div class="sit-contact">Салькова Анна Алексеевна<br>Деп. организации образовательного процесса* · каб. 406<br><a href="mailto:salkovaaa@mgpu.ru">salkovaaa@mgpu.ru</a></div></div><div class="sit-sec"><b>Что подготовить</b><p>ФИО, группу, тип заявления, основание, документы-основания при наличии.</p></div><div class="sit-imp">По восстановлению маршрут лучше уточнять отдельно в департаменте.</div></div></details><details><summary><span class="sit-cat">Учёба</span>Академическая мобильность</summary><div class="sit-body"><div class="sit-sec"><b>Куда обращаться</b><div class="sit-contact">Баранова Екатерина Михайловна · каб. 410<br><a href="mailto:baranov-244@mgpu.ru">baranov-244@mgpu.ru</a></div></div><div class="sit-sec"><b>Вопросы</b><p>Академическая мобильность, студенты-иностранцы, международные конкурсы.<br>Личный кабинет → Заявка на программу мобильности.</p></div><div class="sit-sec"><b>Что может понадобиться</b><p>Заявление на имя ректора, подпись директора, согласие на обработку данных, сведения о программе, примерные расходы, мотивационное письмо, документы об успеваемости, паспорт или загранпаспорт.</p></div></div></details><details><summary><span class="sit-cat">Поддержка</span>Конфликтная ситуация</summary><div class="sit-body"><div class="sit-sec"><b>Куда обращаться</b><p>Маршрут зависит от сути ситуации:</p><ol><li>Преподаватель</li><li>Руководитель образовательной программы</li><li>Начальник департамента</li><li>Заместитель директора по учебной работе*</li><li>Директор института</li></ol></div><div class="sit-sec"><b>Роль ССиА ИПКР</b><p>ССиА ИПКР не заменяет официальное рассмотрение, но может помочь сориентироваться, сформулировать обращение и запросить информацию, если ситуация затрагивает права студентов.</p></div><div class="sit-sec"><b>Что подготовить</b><p>Факты, даты, переписку, документы, спокойное и конкретное описание ситуации.</p></div></div></details><details><summary><span class="sit-cat">Поддержка</span>Психологическая помощь</summary><div class="sit-body"><div class="sit-sec"><b>Куда обращаться</b><div class="sit-contact">Линия психологической поддержки МГПУ<br><a href="mailto:help@mgpu.ru">help@mgpu.ru</a></div></div><div class="sit-sec"><b>Что написать</b><p>Кратко опишите причину обращения, укажите удобные дни и время, оставьте способ связи.</p></div><div class="sit-imp">Помощь оказывается бесплатно и конфиденциально.</div></div></details><details><summary><span class="sit-cat">ССиА</span>Чат старост ИПКР</summary><div class="sit-body"><div class="sit-sec"><b>Куда обращаться</b><div class="sit-contact">Председатель ССиА ИПКР — Толоконников Кирилл Андреевич<br><a href="mailto:TolokonnikovKA944@mgpu.ru">TolokonnikovKA944@mgpu.ru</a><br><a href="https://vk.ru/odessa__1794" target="_blank" rel="noopener">ВКонтакте</a></div></div><div class="sit-sec"><b>Кому доступно</b><p>Только старостам и заместителям старост учебных групп ИПКР.</p></div><div class="sit-sec"><b>Что написать</b><p>ФИО, группу, роль в группе (староста или заместитель старосты).</p></div><div class="sit-imp">Ссылка на чат передаётся только после подтверждения данных.</div></div></details><details><summary><span class="sit-cat">Ресурсы</span>Библиотека, читательский билет и доступ к фондам</summary><div class="sit-body"><div class="sit-sec"><b>Куда обращаться</b><div class="sit-contact">Ревенко Ольга Николаевна<br>Отделение обслуживания Фундаментальной библиотеки МГПУ в ИПКР<br>ул. Панферова, д. 8, к. 2<br><a href="mailto:revenkoon@mgpu.ru">revenkoon@mgpu.ru</a><br><a href="tel:+74991344523">+7 (499) 134-45-23</a></div></div><div class="sit-sec"><b>Что подготовить</b><p>ФИО, группу, вопрос по книге / читательскому билету / доступу к электронной библиотеке / задолженности / выдаче литературы.</p></div><div class="sit-sec"><b>Для оформления читательского билета</b><p>Паспорт или другой документ, удостоверяющий личность; матовая фотография 3×4.</p></div><div class="sit-imp">Читательский билет даёт доступ к электронной и обычной библиотекам. Если твой читательский билет в хорошем состоянии и не утерян — обновление не требуется.</div></div></details><details><summary><span class="sit-cat">ССиА</span>Моей темы нет в списке</summary><div class="sit-body"><div class="sit-sec"><b>Куда обращаться</b><div class="sit-contact">ССиА ИПКР<br><a href="mailto:info@ssia-ipkr.ru">info@ssia-ipkr.ru</a><br><a href="https://t.me/ipik_mi" target="_blank" rel="noopener">Telegram</a></div></div><div class="sit-sec"><p>Если твоей темы нет в списке, напиши в ССиА ИПКР. Мы поможем понять, какой отдел занимается вопросом, и подскажем, как лучше сформулировать обращение.</p></div></div></details><p style="font-size:11px;color:var(--tmid);line-height:1.6;margin-top:16px">* Замдиректора по учебной / воспитательной работе — неофициальное название; официальная должность: доцент.<br>* Департамент организации образовательного процесса и работы с молодёжью — в студенческой среде часто называется «деканат».</p>'
+        text: '<p>Найди свою ситуацию и узнай, куда обращаться, что подготовить и что важно знать.</p><details><summary><span class="sit-cat">Учёба</span>Расписание</summary><div class="sit-body"><div class="sit-sec"><b>Куда обращаться</b><div class="sit-contact">Парамонова Галина Витальевна<br>Деп. организации образовательного процесса* · каб. 406<br><a href="mailto:ParamonovaG@mgpu.ru">ParamonovaG@mgpu.ru</a></div></div><div class="sit-sec"><b>Что подготовить</b><p>Группу, дату, дисциплину, описание вопроса; скриншот расписания при необходимости.</p></div><div class="sit-imp">По вопросам расписания пишите коротко и конкретно.</div></div></details><details><summary><span class="sit-cat">Финансы</span>Стипендии, выплаты и материальная помощь</summary><div class="sit-body"><div class="sit-sec"><b>Куда обращаться</b><div class="sit-contact">Гришина Лилия Игоревна · каб. 405<br><a href="mailto:dokukinali688@mgpu.ru">dokukinali688@mgpu.ru</a></div></div><div class="sit-sec"><b>Вопросы</b><p>Социальная стипендия, материальная поддержка, выплаты, рассрочка, скидка на обучение.</p></div><div class="sit-sec"><b>Что подготовить</b><p>ФИО, группу, вид выплаты или поддержки, краткое описание, документы-основания при наличии.</p></div></div></details><details><summary><span class="sit-cat">Документы</span>Справки и документы</summary><div class="sit-body"><div class="sit-sec"><b>Куда сначала</b><p>Личный кабинет → Заказ справки. В ЛК можно заказать: справку о подтверждении обучения, справку об академической успеваемости, справку-вызов.</p></div><div class="sit-sec"><b>Куда обращаться</b><div class="sit-contact">МФЦ ИПКР · каб. 210<br>Тумакова Евгения Владимировна<br><a href="mailto:tumakovae@mgpu.ru">tumakovae@mgpu.ru</a><br><a href="tel:+74991327469">+7 (499) 132-74-69</a><br><br>МФЦ МГПУ (общий): <a href="mailto:mfc@mgpu.ru">mfc@mgpu.ru</a> · 8 (495) 951-67-07</div></div><div class="sit-sec"><b>Что подготовить</b><p>ФИО, группу, вид справки, способ получения; описание проблемы, если справка не формируется.</p></div><div class="sit-imp">Сначала проверьте, можно ли заказать нужную справку через Личный кабинет.</div></div></details><details><summary><span class="sit-cat">Документы</span>Социальная карта студента</summary><div class="sit-body"><div class="sit-sec"><b>Как оформить</b><p>Граждане РФ — через mos.ru.<br>Иностранные граждане и лица без гражданства — лично в центр «Мои документы».</p></div><div class="sit-sec"><b>Кому доступна</b><p>Студентам и аспирантам очной формы обучения.</p></div><div class="sit-sec"><b>Если ошибка в данных</b><div class="sit-contact">МФЦ ИПКР · каб. 210<br>Тумакова Евгения Владимировна<br><a href="mailto:tumakovae@mgpu.ru">tumakovae@mgpu.ru</a><br><a href="tel:+74991327469">+7 (499) 132-74-69</a></div></div><div class="sit-imp">Студенты очно-заочной и заочной формы обучения оформить социальную карту не могут.</div></div></details><details><summary><span class="sit-cat">Учёба</span>Академическая задолженность и пересдачи</summary><div class="sit-body"><div class="sit-sec"><b>Куда обращаться</b><div class="sit-contact">Парамонова Галина Витальевна<br>Деп. организации образовательного процесса* · каб. 406<br><a href="mailto:ParamonovaG@mgpu.ru">ParamonovaG@mgpu.ru</a></div></div><div class="sit-sec"><b>По конкретной дисциплине</b><p>Сначала уточните у преподавателя.</p></div><div class="sit-sec"><b>Что подготовить</b><p>ФИО, группу, дисциплину, преподавателя, семестр, описание задолженности.</p></div><div class="sit-imp">За пересдачу не может взиматься плата.</div></div></details><details><summary><span class="sit-cat">Учёба</span>Досрочная сессия</summary><div class="sit-body"><div class="sit-sec"><b>Куда обращаться</b><div class="sit-contact">Парамонова Галина Витальевна<br>Деп. организации образовательного процесса* · каб. 406<br><a href="mailto:ParamonovaG@mgpu.ru">ParamonovaG@mgpu.ru</a></div></div><div class="sit-sec"><b>Что подготовить</b><p>ФИО, группу, причину обращения, предполагаемые сроки, подтверждающие документы при наличии.</p></div><div class="sit-imp">Уточняйте порядок и сроки заранее, а не в последний момент.</div></div></details><details><summary><span class="sit-cat">Учёба</span>Практика</summary><div class="sit-body"><div class="sit-sec"><b>Куда обращаться</b><div class="sit-contact">Попова Ольга Владимировна · каб. 507<br><a href="mailto:popovaov@mgpu.ru">popovaov@mgpu.ru</a></div></div><div class="sit-sec"><b>Вопросы</b><p>Документы по практике, организационные вопросы практики.</p></div><div class="sit-sec"><b>Что подготовить</b><p>ФИО, группу, вид и сроки практики, базу практики, конкретный вопрос.</p></div><div class="sit-imp">Сразу указывайте курс, группу и вид практики — это ускорит ответ.</div></div></details><details><summary><span class="sit-cat">Учёба</span>Перевод, отчисление, академический отпуск</summary><div class="sit-body"><div class="sit-sec"><b>Куда сначала</b><p>Личный кабинет → Заявления. В ЛК есть: переводы, отчисление, академический отпуск, выход из академического отпуска, индивидуальный учебный план, последипломные каникулы, смена ФИО.</p></div><div class="sit-sec"><b>За консультацией</b><div class="sit-contact">Салькова Анна Алексеевна<br>Деп. организации образовательного процесса* · каб. 406<br><a href="mailto:salkovaaa@mgpu.ru">salkovaaa@mgpu.ru</a></div></div><div class="sit-sec"><b>Что подготовить</b><p>ФИО, группу, тип заявления, основание, документы-основания при наличии.</p></div><div class="sit-imp">По восстановлению маршрут лучше уточнять отдельно в департаменте.</div></div></details><details><summary><span class="sit-cat">Учёба</span>Академическая мобильность</summary><div class="sit-body"><div class="sit-sec"><b>Куда обращаться</b><div class="sit-contact">Баранова Екатерина Михайловна · каб. 410<br><a href="mailto:baranov-244@mgpu.ru">baranov-244@mgpu.ru</a></div></div><div class="sit-sec"><b>Вопросы</b><p>Академическая мобильность, студенты-иностранцы, международные конкурсы.<br>Личный кабинет → Заявка на программу мобильности.</p></div><div class="sit-sec"><b>Что может понадобиться</b><p>Заявление на имя ректора, подпись директора, согласие на обработку данных, сведения о программе, примерные расходы, мотивационное письмо, документы об успеваемости, паспорт или загранпаспорт.</p></div></div></details><details><summary><span class="sit-cat">Поддержка</span>Конфликтная ситуация</summary><div class="sit-body"><div class="sit-sec"><b>Куда обращаться</b><p>Маршрут зависит от сути ситуации:</p><ol><li>Преподаватель</li><li>Руководитель образовательной программы</li><li>Начальник департамента</li><li>Заместитель директора по учебной работе*</li><li>Директор института</li></ol></div><div class="sit-sec"><b>Роль ССиА ИПКР</b><p>ССиА ИПКР не заменяет официальное рассмотрение, но может помочь сориентироваться, сформулировать обращение и запросить информацию, если ситуация затрагивает права студентов.</p></div><div class="sit-sec"><b>Что подготовить</b><p>Факты, даты, переписку, документы, спокойное и конкретное описание ситуации.</p></div></div></details><details><summary><span class="sit-cat">Поддержка</span>Психологическая помощь</summary><div class="sit-body"><div class="sit-sec"><b>Куда обращаться</b><div class="sit-contact">Линия психологической поддержки МГПУ<br><a href="mailto:help@mgpu.ru">help@mgpu.ru</a></div></div><div class="sit-sec"><b>Что написать</b><p>Кратко опишите причину обращения, укажите удобные дни и время, оставьте способ связи.</p></div><div class="sit-imp">Помощь оказывается бесплатно и конфиденциально.</div></div></details><details><summary><span class="sit-cat">ССиА</span>Чат старост ИПКР</summary><div class="sit-body"><div class="sit-sec"><b>Куда обращаться</b><div class="sit-contact">Председатель ССиА ИПКР — Толоконников Кирилл Андреевич<br><a href="mailto:TolokonnikovKA944@mgpu.ru">TolokonnikovKA944@mgpu.ru</a><br><a href="https://vk.ru/odessa__1794" target="_blank" rel="noopener">ВКонтакте</a></div></div><div class="sit-sec"><b>Кому доступно</b><p>Только старостам и заместителям старост учебных групп ИПКР.</p></div><div class="sit-sec"><b>Что написать</b><p>ФИО, группу, роль в группе (староста или заместитель старосты).</p></div><div class="sit-imp">Ссылка на чат передаётся только после подтверждения данных.</div></div></details><details><summary><span class="sit-cat">Ресурсы</span>Библиотека, читательский билет и доступ к фондам</summary><div class="sit-body"><div class="sit-sec"><b>Куда обращаться</b><div class="sit-contact">Ревенко Ольга Николаевна<br>Отделение обслуживания Фундаментальной библиотеки МГПУ в ИПКР<br>ул. Панферова, д. 8, к. 2<br><a href="mailto:revenkoon@mgpu.ru">revenkoon@mgpu.ru</a><br><a href="tel:+74991344523">+7 (499) 134-45-23</a></div></div><div class="sit-sec"><b>Что подготовить</b><p>ФИО, группу, вопрос по книге / читательскому билету / доступу к электронной библиотеке / задолженности / выдаче литературы.</p></div><div class="sit-sec"><b>Для оформления читательского билета</b><p>Паспорт или другой документ, удостоверяющий личность; матовая фотография 3×4.</p></div><div class="sit-imp">Читательский билет даёт доступ к электронной и обычной библиотекам. Если твой читательский билет в хорошем состоянии и не утерян — обновление не требуется.</div></div></details><details><summary><span class="sit-cat">ССиА</span>Моей темы нет в списке</summary><div class="sit-body"><div class="sit-sec"><b>Куда обращаться</b><div class="sit-contact">ССиА ИПКР<br><a href="mailto:info@ssia-ipkr.ru">info@ssia-ipkr.ru</a><br><a href="https://t.me/ipik_mi" target="_blank" rel="noopener">Telegram</a></div></div><div class="sit-sec"><p>Если твоей темы нет в списке, напиши в ССиА ИПКР. Мы поможем понять, какой отдел занимается вопросом, и подскажем, как лучше сформулировать обращение.</p></div></div></details><p style="font-size:12px;color:var(--tmid);line-height:1.6;margin-top:16px">* Замдиректора по учебной / воспитательной работе — неофициальное название; официальная должность: доцент.<br>* Департамент организации образовательного процесса и работы с молодёжью — в студенческой среде часто называется «деканат».</p>'
 
       }
     ]
@@ -2370,7 +2370,7 @@ function renderAvatar(person, color) {
 
 function renderCard(person, color, options = {}) {
   if (person.divider) {
-    return `<div style="grid-column:1/-1;font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;padding:16px 0 4px;border-bottom:2px solid var(--warm);margin-bottom:-4px;margin-top:8px;">${person.divider}</div>`;
+    return `<div style="grid-column:1/-1;font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;padding:16px 0 4px;border-bottom:2px solid var(--warm);margin-bottom:-4px;margin-top:8px;">${person.divider}</div>`;
   }
   if (person.vacant) {
     return `<div class="card">
@@ -2459,7 +2459,7 @@ function showIPKRDetail(idx) {
   const notesHtml = (section.notes || []).map(n => `<div class="note-item">${n}</div>`).join('');
   const cardsHtml = section.staff.filter(p => !p.hidden).map(p => renderCard(p, section.color)).join('');
   const footnotesHtml = (section.footnotes && section.footnotes.length)
-    ? `<div style="font-size:11px;color:var(--tmid);padding:8px 16px;line-height:1.6;margin-top:4px">${section.footnotes.join('<br>')}</div>`
+    ? `<div style="font-size:12px;color:var(--tmid);padding:8px 16px;line-height:1.6;margin-top:4px">${section.footnotes.join('<br>')}</div>`
     : '';
   const mottoHtml = section.motto ? `<div class="ssia-motto">«${section.motto}»</div>` : '';
   const linksHtml = section.links ? `<div class="action-hub">
