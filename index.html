@@ -1494,7 +1494,7 @@ body.dark-theme .a11y-btn:hover{background:rgba(255,255,255,.12)}
   </button>
 </header>
 
-<div id="a11y-panel" class="a11y-panel" aria-hidden="true">
+<div id="a11y-panel" class="a11y-panel" aria-hidden="true" inert>
   <div class="a11y-panel-row">
     <div class="a11y-group">
       <span class="a11y-group-label" id="a11y-fontsize-label">Размер шрифта</span>
@@ -1765,11 +1765,11 @@ body.dark-theme .a11y-btn:hover{background:rgba(255,255,255,.12)}
 </div>
 
 <!-- Bottom Sheet Overlay -->
-<div id="sheet-overlay" class="sheet-overlay" aria-hidden="true">
+<div id="sheet-overlay" class="sheet-overlay" aria-hidden="true" inert>
   <div class="bottom-sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
     <div class="sheet-handle"></div>
     <button id="sheet-close" class="sheet-close" type="button" aria-label="Закрыть подробное описание">×</button>
-    <h3 id="sheet-title" class="sheet-title"></h3>
+    <h3 id="sheet-title" class="sheet-title" aria-hidden="true"></h3>
     <div id="sheet-content" class="sheet-content"></div>
   </div>
 </div>
@@ -1777,7 +1777,7 @@ body.dark-theme .a11y-btn:hover{background:rgba(255,255,255,.12)}
 
 
 <!-- Update v1.3 Modal -->
-<div id="update-modal" class="update-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="update-modal-title">
+<div id="update-modal" class="update-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="update-modal-title" inert>
   <div class="update-modal-card">
     <button id="update-modal-close" class="update-modal-close" type="button" aria-label="Закрыть окно обновления">×</button>
     <div class="update-modal-badge">v1.3</div>
@@ -2927,8 +2927,12 @@ function stripHtml(value) {
 
 function openSheet(title, text) {
   if (!sheetOverlay || !sheetContent) return;
-  if (sheetTitleEl) sheetTitleEl.textContent = title || 'Подробнее';
+  if (sheetTitleEl) {
+    sheetTitleEl.textContent = title || 'Подробнее';
+    sheetTitleEl.removeAttribute('aria-hidden');
+  }
   sheetContent.innerHTML = `<div class="sheet-text">${formatSheetText(text)}</div>`;
+  sheetOverlay.removeAttribute('inert');
   sheetOverlay.classList.add('active');
   sheetOverlay.setAttribute('aria-hidden', 'false');
   document.body.classList.add('sheet-open');
@@ -2939,6 +2943,8 @@ function closeSheet() {
   if (!sheetOverlay) return;
   sheetOverlay.classList.remove('active');
   sheetOverlay.setAttribute('aria-hidden', 'true');
+  sheetOverlay.setAttribute('inert', '');
+  if (sheetTitleEl) sheetTitleEl.setAttribute('aria-hidden', 'true');
   document.body.classList.remove('sheet-open');
 }
 
@@ -3604,6 +3610,8 @@ if (a11yPanelBtn && a11yPanel) {
     const isOpen = a11yPanel.classList.toggle('open');
     a11yPanel.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
     a11yPanelBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    if (isOpen) a11yPanel.removeAttribute('inert');
+    else a11yPanel.setAttribute('inert', '');
   });
 }
 
@@ -3674,6 +3682,7 @@ document.getElementById('a11y-close')?.addEventListener('click', () => {
   if (!a11yPanel) return;
   a11yPanel.classList.remove('open');
   a11yPanel.setAttribute('aria-hidden', 'true');
+  a11yPanel.setAttribute('inert', '');
   if (a11yPanelBtn) a11yPanelBtn.setAttribute('aria-expanded', 'false');
 });
 
@@ -3806,6 +3815,7 @@ addSwipeToDismiss(document.getElementById('handbook-detail'));
   if (forceHide || (!forceShow && !inPeriod) || dismissed) return;
   var modal = document.getElementById('update-modal');
   if (!modal) return;
+  modal.removeAttribute('inert');
   requestAnimationFrame(function(){
     modal.classList.add('active');
     modal.setAttribute('aria-hidden','false');
@@ -3814,6 +3824,7 @@ addSwipeToDismiss(document.getElementById('handbook-detail'));
   function dismiss() {
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden','true');
+    modal.setAttribute('inert','');
     document.body.classList.remove('modal-open');
     try { sessionStorage.setItem(DISMISS_KEY,'1'); } catch(e){}
   }
