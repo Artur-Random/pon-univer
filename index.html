@@ -1345,27 +1345,116 @@ body.dark-theme .hb-gallery-img-btn{background:rgba(255,255,255,.06);border-colo
 body.dark-theme .hb-gallery-nav{background:rgba(255,255,255,.18);color:#fff}
 @media(max-width:480px){.hb-gallery-nav{width:32px;height:32px;font-size:24px}.hb-gallery-img-btn{flex-basis:min(84vw,340px)}}
 
-/* ── Accessibility mode (low vision) ── */
-body.a11y-mode{zoom:1.2;background:#ffffff}
-body.a11y-mode.dark-theme{background:#0a0a0a}
-body.a11y-mode,body.a11y-mode *{animation:none !important;transition:none !important}
-body.a11y-mode .home-hero::before{display:none}
-body.a11y-mode .master-card,
-body.a11y-mode .card,
-body.a11y-mode .contacts-card,
-body.a11y-mode .hb-card{
-  background:#ffffff;backdrop-filter:none;-webkit-backdrop-filter:none;
+/* ── Accessibility panel: font scale ── */
+:root{--a11y-font-scale:1}
+html{font-size:calc(100% * var(--a11y-font-scale));zoom:var(--a11y-font-scale)}
+
+/* ── Accessibility panel: line-height / letter-spacing / font-family ── */
+html[data-a11y-line-height="medium"] body,html[data-a11y-line-height="medium"] body *{line-height:2 !important}
+html[data-a11y-line-height="large"] body,html[data-a11y-line-height="large"] body *{line-height:2.5 !important}
+html[data-a11y-letter-spacing="increased"] body,html[data-a11y-letter-spacing="increased"] body *{letter-spacing:2px !important}
+html[data-a11y-letter-spacing="wide"] body,html[data-a11y-letter-spacing="wide"] body *{letter-spacing:4px !important}
+html[data-a11y-font-family="serif"] body,html[data-a11y-font-family="serif"] body *{font-family:'Times New Roman',serif !important}
+
+/* ── Accessibility panel: images ── */
+html[data-a11y-images="grayscale"] img{filter:grayscale(100%)}
+.a11y-img-alt-caption{display:block;font-size:13px;font-style:italic;color:var(--tmid);padding:6px 10px;border:1px dashed var(--hairline);border-radius:8px;background:rgba(0,0,0,.03);margin:4px 0}
+body.dark-theme .a11y-img-alt-caption{background:rgba(255,255,255,.04)}
+
+/* ── Accessibility panel: color schemes ── */
+html[data-a11y-scheme="black-on-white"] body{--navy:#000000;--tmid:#000000;--tdark:#000000;--cream:#FFFFFF;--a11y-bg:#FFFFFF;--a11y-fg:#000000}
+html[data-a11y-scheme="white-on-black"] body{--navy:#FFFFFF;--tmid:#FFFFFF;--tdark:#FFFFFF;--cream:#000000;--a11y-bg:#000000;--a11y-fg:#FFFFFF}
+html[data-a11y-scheme="navy-on-blue"] body{--navy:#063462;--tmid:#063462;--tdark:#063462;--cream:#9DD1FF;--a11y-bg:#9DD1FF;--a11y-fg:#063462}
+html[data-a11y-scheme="gray-on-beige"] body{--navy:#4D4B43;--tmid:#4D4B43;--tdark:#4D4B43;--cream:#F7F3D6;--a11y-bg:#F7F3D6;--a11y-fg:#4D4B43}
+html[data-a11y-scheme="green-on-brown"] body{--navy:#A9E44D;--tmid:#A9E44D;--tdark:#A9E44D;--cream:#3B2716;--a11y-bg:#3B2716;--a11y-fg:#A9E44D}
+
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) body,
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .site-header,
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .main-nav,
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .main-footer,
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .master-card,
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .card,
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .contacts-card,
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .hb-card,
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .bottom-sheet,
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .home-hero,
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .home-menu-card,
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .a11y-panel,
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) #search-bar-container{
+  background:var(--a11y-bg) !important;
+  background-image:none !important;
+  color:var(--a11y-fg) !important;
+  border-color:var(--a11y-fg) !important;
+  box-shadow:none !important;
 }
-body.a11y-mode.dark-theme .master-card,
-body.a11y-mode.dark-theme .card,
-body.a11y-mode.dark-theme .contacts-card,
-body.a11y-mode.dark-theme .hb-card{
-  background:#14151f;backdrop-filter:none;-webkit-backdrop-filter:none;
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) body *{
+  color:inherit;
+  border-color:inherit;
+  text-shadow:none;
 }
-body.a11y-mode .icon-btn{width:44px;height:44px}
-body.a11y-mode .nav-btn{min-height:44px}
-body.a11y-mode .hb-btn{min-height:44px;min-width:44px}
-#accessibility-btn[aria-pressed="true"]{background:var(--warm);color:var(--accent)}
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .icon-btn,
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .nav-btn,
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .hb-btn,
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .a11y-btn{
+  background:var(--a11y-fg) !important;
+  color:var(--a11y-bg) !important;
+  border-color:var(--a11y-fg) !important;
+}
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .a11y-btn.active,
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .a11y-btn[aria-pressed="true"]{
+  outline:3px solid var(--a11y-bg);
+  outline-offset:-5px;
+}
+
+/* ── Accessibility panel: layout ── */
+.a11y-panel{
+  max-height:0;overflow:hidden;background:var(--cream);border-bottom:2px solid var(--accent);
+}
+.a11y-panel.open{max-height:640px;overflow-y:auto}
+.a11y-panel-row{display:flex;flex-wrap:wrap;align-items:flex-start;gap:18px;padding:14px 16px}
+.a11y-panel-advanced{display:flex;flex-wrap:wrap;gap:18px;padding:14px 16px;border-top:1px solid var(--hairline)}
+.a11y-panel-actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;padding:10px 16px 16px;border-top:1px solid var(--hairline)}
+.a11y-group{display:flex;flex-direction:column;gap:6px;min-width:0}
+.a11y-group-label{font-size:12px;font-weight:700;color:var(--tmid);text-transform:uppercase;letter-spacing:.05em}
+.a11y-group-controls{display:flex;flex-wrap:wrap;gap:6px}
+
+.a11y-btn{
+  border:1px solid var(--hairline);background:var(--surface-paper);color:var(--navy);
+  border-radius:8px;cursor:pointer;font-family:var(--font-main);font-weight:600;
+  display:flex;align-items:center;justify-content:center;
+}
+.a11y-btn--step{width:38px;height:38px;font-size:15px}
+.a11y-btn--round{width:38px;height:38px;font-size:16px;border-radius:999px}
+.a11y-btn--gear{width:38px;height:38px;font-size:18px;border-radius:999px;margin-left:auto}
+.a11y-btn--text{padding:8px 14px;font-size:13px;white-space:nowrap}
+.a11y-btn:hover{background:var(--warm)}
+.a11y-btn.active,.a11y-btn[aria-pressed="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.a11y-btn:disabled{opacity:.4;cursor:default}
+.a11y-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.a11y-swatch{
+  width:38px;height:38px;border-radius:8px;font-weight:800;font-size:15px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;border:2px solid transparent;
+}
+.a11y-swatch[data-scheme="default"]{background:#ffffff;color:var(--navy);border-color:var(--hairline)}
+.a11y-swatch[data-scheme="black-on-white"]{background:#FFFFFF;color:#000000;border-color:#000000}
+.a11y-swatch[data-scheme="white-on-black"]{background:#000000;color:#FFFFFF;border-color:#FFFFFF}
+.a11y-swatch[data-scheme="navy-on-blue"]{background:#9DD1FF;color:#063462;border-color:#063462}
+.a11y-swatch[data-scheme="gray-on-beige"]{background:#F7F3D6;color:#4D4B43;border-color:#4D4B43}
+.a11y-swatch[data-scheme="green-on-brown"]{background:#3B2716;color:#A9E44D;border-color:#A9E44D}
+.a11y-swatch.active{outline:3px solid var(--accent);outline-offset:2px}
+.a11y-swatch:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+body.dark-theme .a11y-panel{background:#161926;border-bottom-color:var(--accent)}
+body.dark-theme .a11y-group-label{color:#94a3b8}
+body.dark-theme .a11y-btn{background:rgba(255,255,255,.06);color:#e2e8f0;border-color:rgba(255,255,255,.1)}
+body.dark-theme .a11y-btn:hover{background:rgba(255,255,255,.12)}
+
+@media(max-width:480px){
+  .a11y-panel-row,.a11y-panel-advanced{flex-direction:column;gap:12px}
+  .a11y-swatch,.a11y-btn--step,.a11y-btn--round{width:36px;height:36px}
+  .a11y-btn--gear{align-self:flex-end;margin-left:0}
+}
 </style>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
@@ -1387,7 +1476,16 @@ body.a11y-mode .hb-btn{min-height:44px;min-width:44px}
   <img src="images/pu.webp" alt="Логотип" id="main-logo" class="site-logo">
   <h1 class="t">ПОНЯТНЫЙ УНИВЕРСИТЕТ | МГПУ</h1>
   <button id="theme-btn" class="icon-btn" aria-label="Сменить тему"><span id="theme-icon" style="font-size:18px;line-height:1">🌙</span></button>
-  <button id="accessibility-btn" class="icon-btn" aria-label="Режим для слабовидящих" aria-pressed="false"><span style="font-size:18px;line-height:1" aria-hidden="true">🔍</span></button>
+  <button id="accessibility-btn" class="icon-btn" aria-label="Открыть настройки для слабовидящих" aria-expanded="false" aria-controls="a11y-panel">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M2 12c2.5-4 6-6 10-6s7.5 2 10 6c-2.5 4-6 6-10 6s-7.5-2-10-6z"/>
+      <path d="M17 9.5a2.5 2.5 0 0 1-.3 4.8" stroke-width="1.6"/>
+      <circle cx="15.5" cy="12" r="1.8" fill="currentColor" stroke="none"/>
+      <circle cx="16.2" cy="11.3" r="0.5" fill="white" stroke="none"/>
+      <path d="M6 9.5l2 2M6.5 11l2 2M7 12.5l2 2M7.5 14l2 2" stroke-width="1.3" opacity="0.6"/>
+      <line x1="3" y1="5" x2="21" y2="19" stroke-width="2.4"/>
+    </svg>
+  </button>
   <button id="search-btn" class="icon-btn" aria-label="Открыть поиск">
     <svg id="icon-search" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -1397,6 +1495,76 @@ body.a11y-mode .hb-btn{min-height:44px;min-width:44px}
     </svg>
   </button>
 </header>
+
+<div id="a11y-panel" class="a11y-panel" aria-hidden="true">
+  <div class="a11y-panel-row">
+    <div class="a11y-group">
+      <span class="a11y-group-label" id="a11y-fontsize-label">Размер шрифта</span>
+      <div class="a11y-group-controls" role="group" aria-labelledby="a11y-fontsize-label">
+        <button type="button" class="a11y-btn a11y-btn--step" id="a11y-font-dec" aria-label="Уменьшить размер шрифта">A−</button>
+        <button type="button" class="a11y-btn a11y-btn--step" id="a11y-font-inc" aria-label="Увеличить размер шрифта">A+</button>
+      </div>
+    </div>
+    <div class="a11y-group">
+      <span class="a11y-group-label" id="a11y-scheme-label">Цвета сайта</span>
+      <div class="a11y-group-controls a11y-swatches" role="group" aria-labelledby="a11y-scheme-label">
+        <button type="button" class="a11y-swatch" data-scheme="default" aria-label="Схема: обычные цвета сайта">A</button>
+        <button type="button" class="a11y-swatch" data-scheme="black-on-white" aria-label="Схема: чёрным по белому">A</button>
+        <button type="button" class="a11y-swatch" data-scheme="white-on-black" aria-label="Схема: белым по чёрному">A</button>
+        <button type="button" class="a11y-swatch" data-scheme="navy-on-blue" aria-label="Схема: тёмно-синим по голубому">A</button>
+        <button type="button" class="a11y-swatch" data-scheme="gray-on-beige" aria-label="Схема: серым по бежевому">A</button>
+        <button type="button" class="a11y-swatch" data-scheme="green-on-brown" aria-label="Схема: зелёным по коричневому">A</button>
+      </div>
+    </div>
+    <div class="a11y-group">
+      <span class="a11y-group-label" id="a11y-images-label">Изображения</span>
+      <div class="a11y-group-controls" role="group" aria-labelledby="a11y-images-label">
+        <button type="button" class="a11y-btn a11y-btn--round" data-images="show" aria-label="Показывать изображения">🖼</button>
+        <button type="button" class="a11y-btn a11y-btn--round" data-images="hide" aria-label="Скрыть изображения">🚫</button>
+        <button type="button" class="a11y-btn a11y-btn--round" data-images="grayscale" aria-label="Чёрно-белые изображения">◑</button>
+      </div>
+    </div>
+    <button type="button" id="a11y-settings-toggle" class="a11y-btn a11y-btn--gear" aria-label="Дополнительные настройки" aria-expanded="false" aria-controls="a11y-panel-advanced">⚙</button>
+  </div>
+  <div id="a11y-panel-advanced" class="a11y-panel-advanced" hidden>
+    <div class="a11y-group">
+      <span class="a11y-group-label" id="a11y-lh-label">Межстрочный интервал</span>
+      <div class="a11y-group-controls" role="group" aria-labelledby="a11y-lh-label">
+        <button type="button" class="a11y-btn a11y-btn--text" data-line-height="standard" aria-label="Межстрочный интервал: стандартный">Стандартный</button>
+        <button type="button" class="a11y-btn a11y-btn--text" data-line-height="medium" aria-label="Межстрочный интервал: средний">Средний</button>
+        <button type="button" class="a11y-btn a11y-btn--text" data-line-height="large" aria-label="Межстрочный интервал: большой">Большой</button>
+      </div>
+    </div>
+    <div class="a11y-group">
+      <span class="a11y-group-label" id="a11y-ls-label">Межбуквенный интервал</span>
+      <div class="a11y-group-controls" role="group" aria-labelledby="a11y-ls-label">
+        <button type="button" class="a11y-btn a11y-btn--text" data-letter-spacing="normal" aria-label="Межбуквенный интервал: обычный">Обычный</button>
+        <button type="button" class="a11y-btn a11y-btn--text" data-letter-spacing="increased" aria-label="Межбуквенный интервал: увеличенный">Увеличенный</button>
+        <button type="button" class="a11y-btn a11y-btn--text" data-letter-spacing="wide" aria-label="Межбуквенный интервал: сильно увеличенный">Сильно увеличенный</button>
+      </div>
+    </div>
+    <div class="a11y-group">
+      <span class="a11y-group-label" id="a11y-ff-label">Гарнитура</span>
+      <div class="a11y-group-controls" role="group" aria-labelledby="a11y-ff-label">
+        <button type="button" class="a11y-btn a11y-btn--text" data-font-family="sans" aria-label="Гарнитура: без засечек">Без засечек</button>
+        <button type="button" class="a11y-btn a11y-btn--text" data-font-family="serif" aria-label="Гарнитура: с засечками">С засечками</button>
+      </div>
+    </div>
+  </div>
+  <div class="a11y-panel-actions">
+    <button type="button" id="a11y-reset" class="a11y-btn a11y-btn--text" aria-label="Сбросить настройки для слабовидящих по умолчанию">Настройки по умолчанию</button>
+    <button type="button" id="a11y-close" class="a11y-btn a11y-btn--round" aria-label="Закрыть панель для слабовидящих">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M2 12c2.5-4 6-6 10-6s7.5 2 10 6c-2.5 4-6 6-10 6s-7.5-2-10-6z"/>
+        <path d="M17 9.5a2.5 2.5 0 0 1-.3 4.8" stroke-width="1.6"/>
+        <circle cx="15.5" cy="12" r="1.8" fill="currentColor" stroke="none"/>
+        <circle cx="16.2" cy="11.3" r="0.5" fill="white" stroke="none"/>
+        <path d="M6 9.5l2 2M6.5 11l2 2M7 12.5l2 2M7.5 14l2 2" stroke-width="1.3" opacity="0.6"/>
+        <line x1="3" y1="5" x2="21" y2="19" stroke-width="2.4"/>
+      </svg>
+    </button>
+  </div>
+</div>
 
 <div id="search-bar-container">
   <div class="search-bar-inner">
@@ -2374,7 +2542,15 @@ const ICONS = {
   phone:    '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3.1 5.18 2 2 0 0 1 5.11 3h3a2 2 0 0 1 2 1.72c.12.9.32 1.77.59 2.61a2 2 0 0 1-.45 2.11L9 10.69a16 16 0 0 0 4.31 4.31l1.25-1.25a2 2 0 0 1 2.11-.45c.84.27 1.71.47 2.61.59A2 2 0 0 1 22 16.92z"/></svg>',
   location: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="2.5"/></svg>',
   warning:  '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 4.1 2.6 18a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 4.1a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>',
-  link:     '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l2.12-2.12a5 5 0 0 0-7.07-7.07L11 4.93"/><path d="M14 11a5 5 0 0 0-7.07 0L4.81 13.12a5 5 0 0 0 7.07 7.07L13 19.07"/></svg>'
+  link:     '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l2.12-2.12a5 5 0 0 0-7.07-7.07L11 4.93"/><path d="M14 11a5 5 0 0 0-7.07 0L4.81 13.12a5 5 0 0 0 7.07 7.07L13 19.07"/></svg>',
+  a11y: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M2 12c2.5-4 6-6 10-6s7.5 2 10 6c-2.5 4-6 6-10 6s-7.5-2-10-6z"/>
+  <path d="M17 9.5a2.5 2.5 0 0 1-.3 4.8" stroke-width="1.6"/>
+  <circle cx="15.5" cy="12" r="1.8" fill="currentColor" stroke="none"/>
+  <circle cx="16.2" cy="11.3" r="0.5" fill="white" stroke="none"/>
+  <path d="M6 9.5l2 2M6.5 11l2 2M7 12.5l2 2M7.5 14l2 2" stroke-width="1.3" opacity="0.6"/>
+  <line x1="3" y1="5" x2="21" y2="19" stroke-width="2.4"/>
+</svg>`
 };
 
 function renderAvatar(person, color) {
@@ -3322,28 +3498,218 @@ themeBtn.addEventListener('click', () => {
 });
 
 // ═══════════════════════════════════════════
-//  ACCESSIBILITY MODE (LOW VISION)
+//  ACCESSIBILITY PANEL (BVI-STYLE)
 // ═══════════════════════════════════════════
 
-const a11yBtn = document.getElementById('accessibility-btn');
+const A11Y_DEFAULTS = {
+  fontScale: 1,
+  colorScheme: 'default',
+  images: 'show',
+  lineHeight: 'standard',
+  letterSpacing: 'normal',
+  fontFamily: 'sans'
+};
+const A11Y_FONT_SCALES = [1, 1.15, 1.3];
 
-function applyA11yMode(isOn) {
-  document.body.classList.toggle('a11y-mode', isOn);
-  if (a11yBtn) a11yBtn.setAttribute('aria-pressed', isOn ? 'true' : 'false');
+let a11ySettings = Object.assign({}, A11Y_DEFAULTS);
+
+function loadA11ySettings() {
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem('a11ySettings') || '{}'); } catch (e) {}
+  a11ySettings = Object.assign({}, A11Y_DEFAULTS, saved);
 }
 
-(function() {
-  const saved = localStorage.getItem('a11yMode');
-  applyA11yMode(saved === '1');
-})();
+function saveA11ySettings() {
+  try { localStorage.setItem('a11ySettings', JSON.stringify(a11ySettings)); } catch (e) {}
+}
 
-if (a11yBtn) {
-  a11yBtn.addEventListener('click', () => {
-    const isOn = !document.body.classList.contains('a11y-mode');
-    applyA11yMode(isOn);
-    localStorage.setItem('a11yMode', isOn ? '1' : '0');
+function applyImageMode(img) {
+  if (a11ySettings.images === 'hide') {
+    if (!img.dataset.a11yCaptioned) {
+      const cap = document.createElement('span');
+      cap.className = 'a11y-img-alt-caption';
+      cap.textContent = img.alt || 'Изображение';
+      img.insertAdjacentElement('afterend', cap);
+      img.dataset.a11yCaptioned = '1';
+    }
+    img.style.display = 'none';
+  } else {
+    img.style.display = '';
+    if (img.dataset.a11yCaptioned) {
+      const cap = img.nextElementSibling;
+      if (cap && cap.classList.contains('a11y-img-alt-caption')) cap.remove();
+      delete img.dataset.a11yCaptioned;
+    }
+  }
+}
+
+function applyImagesToAll() {
+  document.querySelectorAll('img').forEach(applyImageMode);
+}
+
+let a11yImgObserverStarted = false;
+function ensureA11yImgObserver() {
+  if (a11yImgObserverStarted) return;
+  a11yImgObserverStarted = true;
+  const observer = new MutationObserver(mutations => {
+    if (a11ySettings.images === 'show') return;
+    mutations.forEach(m => {
+      m.addedNodes.forEach(node => {
+        if (node.nodeType !== 1) return;
+        if (node.tagName === 'IMG') applyImageMode(node);
+        if (node.querySelectorAll) node.querySelectorAll('img').forEach(applyImageMode);
+      });
+    });
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+}
+
+function syncA11yPanelUI() {
+  document.querySelectorAll('.a11y-swatch').forEach(btn => {
+    const on = btn.dataset.scheme === a11ySettings.colorScheme;
+    btn.classList.toggle('active', on);
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+  document.querySelectorAll('[data-images]').forEach(btn => {
+    const on = btn.dataset.images === a11ySettings.images;
+    btn.classList.toggle('active', on);
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+  document.querySelectorAll('[data-line-height]').forEach(btn => {
+    const on = btn.dataset.lineHeight === a11ySettings.lineHeight;
+    btn.classList.toggle('active', on);
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+  document.querySelectorAll('[data-letter-spacing]').forEach(btn => {
+    const on = btn.dataset.letterSpacing === a11ySettings.letterSpacing;
+    btn.classList.toggle('active', on);
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+  document.querySelectorAll('[data-font-family]').forEach(btn => {
+    const on = btn.dataset.fontFamily === a11ySettings.fontFamily;
+    btn.classList.toggle('active', on);
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+  const fontDec = document.getElementById('a11y-font-dec');
+  const fontInc = document.getElementById('a11y-font-inc');
+  const idx = A11Y_FONT_SCALES.indexOf(a11ySettings.fontScale);
+  if (fontDec) fontDec.disabled = idx <= 0;
+  if (fontInc) fontInc.disabled = idx >= A11Y_FONT_SCALES.length - 1;
+}
+
+function applyA11ySettings() {
+  const html = document.documentElement;
+  html.style.setProperty('--a11y-font-scale', a11ySettings.fontScale);
+  html.setAttribute('data-a11y-scheme', a11ySettings.colorScheme);
+  html.setAttribute('data-a11y-images', a11ySettings.images);
+  html.setAttribute('data-a11y-line-height', a11ySettings.lineHeight);
+  html.setAttribute('data-a11y-letter-spacing', a11ySettings.letterSpacing);
+  html.setAttribute('data-a11y-font-family', a11ySettings.fontFamily);
+  applyImagesToAll();
+  ensureA11yImgObserver();
+  syncA11yPanelUI();
+}
+
+loadA11ySettings();
+applyA11ySettings();
+
+const a11yPanelBtn = document.getElementById('accessibility-btn');
+const a11yPanel = document.getElementById('a11y-panel');
+const a11ySettingsToggle = document.getElementById('a11y-settings-toggle');
+const a11yPanelAdvanced = document.getElementById('a11y-panel-advanced');
+
+if (a11yPanelBtn && a11yPanel) {
+  a11yPanelBtn.addEventListener('click', () => {
+    const isOpen = a11yPanel.classList.toggle('open');
+    a11yPanel.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+    a11yPanelBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   });
 }
+
+document.getElementById('a11y-font-dec')?.addEventListener('click', () => {
+  const idx = A11Y_FONT_SCALES.indexOf(a11ySettings.fontScale);
+  if (idx > 0) {
+    a11ySettings.fontScale = A11Y_FONT_SCALES[idx - 1];
+    applyA11ySettings();
+    saveA11ySettings();
+  }
+});
+document.getElementById('a11y-font-inc')?.addEventListener('click', () => {
+  const idx = A11Y_FONT_SCALES.indexOf(a11ySettings.fontScale);
+  if (idx < A11Y_FONT_SCALES.length - 1) {
+    a11ySettings.fontScale = A11Y_FONT_SCALES[idx + 1];
+    applyA11ySettings();
+    saveA11ySettings();
+  }
+});
+
+document.querySelectorAll('.a11y-swatch').forEach(btn => {
+  btn.addEventListener('click', () => {
+    a11ySettings.colorScheme = btn.dataset.scheme;
+    applyA11ySettings();
+    saveA11ySettings();
+  });
+});
+
+document.querySelectorAll('[data-images]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    a11ySettings.images = btn.dataset.images;
+    applyA11ySettings();
+    saveA11ySettings();
+  });
+});
+
+document.querySelectorAll('[data-line-height]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    a11ySettings.lineHeight = btn.dataset.lineHeight;
+    applyA11ySettings();
+    saveA11ySettings();
+  });
+});
+
+document.querySelectorAll('[data-letter-spacing]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    a11ySettings.letterSpacing = btn.dataset.letterSpacing;
+    applyA11ySettings();
+    saveA11ySettings();
+  });
+});
+
+document.querySelectorAll('[data-font-family]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    a11ySettings.fontFamily = btn.dataset.fontFamily;
+    applyA11ySettings();
+    saveA11ySettings();
+  });
+});
+
+if (a11ySettingsToggle && a11yPanelAdvanced) {
+  a11ySettingsToggle.addEventListener('click', () => {
+    const isOpen = a11yPanelAdvanced.hidden;
+    a11yPanelAdvanced.hidden = !isOpen;
+    a11ySettingsToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+}
+
+document.getElementById('a11y-reset')?.addEventListener('click', () => {
+  a11ySettings = Object.assign({}, A11Y_DEFAULTS);
+  applyA11ySettings();
+  try { localStorage.removeItem('a11ySettings'); } catch (e) {}
+});
+
+document.getElementById('a11y-close')?.addEventListener('click', () => {
+  if (!a11yPanel) return;
+  a11yPanel.classList.remove('open');
+  a11yPanel.setAttribute('aria-hidden', 'true');
+  if (a11yPanelBtn) a11yPanelBtn.setAttribute('aria-expanded', 'false');
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && a11yPanelAdvanced && !a11yPanelAdvanced.hidden) {
+    a11yPanelAdvanced.hidden = true;
+    if (a11ySettingsToggle) a11ySettingsToggle.setAttribute('aria-expanded', 'false');
+  }
+});
 
 // ═══════════════════════════════════════════
 //  HISTORY API (BACK NAVIGATION)
