@@ -1375,7 +1375,7 @@ body.dark-theme .hb-gallery-nav{background:rgba(255,255,255,.18);color:#fff}
 
 <div id="search-bar-container">
   <div class="search-bar-inner">
-    <input type="text" id="search-input" placeholder="Поиск по сотрудникам и институтам..." autocomplete="off">
+    <input type="text" id="search-input" aria-label="Поиск по сотрудникам и институтам" placeholder="Поиск по сотрудникам и институтам..." autocomplete="off">
   </div>
   <div id="search-results"></div>
 </div>
@@ -1585,7 +1585,8 @@ body.dark-theme .hb-gallery-nav{background:rgba(255,255,255,.18);color:#fff}
 <div id="sheet-overlay" class="sheet-overlay" aria-hidden="true">
   <div class="bottom-sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
     <div class="sheet-handle"></div>
-    <button id="sheet-close" class="sheet-close" type="button" aria-label="Закрыть">×</button>
+    <button id="sheet-close" class="sheet-close" type="button" aria-label="Закрыть подробное описание">×</button>
+    <h3 id="sheet-title" class="sheet-title"></h3>
     <div id="sheet-content" class="sheet-content"></div>
   </div>
 </div>
@@ -2717,6 +2718,7 @@ function showHandbookDetail(idx) {
 const sheetOverlay = document.getElementById('sheet-overlay');
 const sheetContent = document.getElementById('sheet-content');
 const sheetClose = document.getElementById('sheet-close');
+const sheetTitleEl = document.getElementById('sheet-title');
 
 function formatSheetText(text) {
   const value = String(text || '').trim();
@@ -2731,10 +2733,8 @@ function stripHtml(value) {
 
 function openSheet(title, text) {
   if (!sheetOverlay || !sheetContent) return;
-  sheetContent.innerHTML = `
-    <h3 id="sheet-title" class="sheet-title">${title || 'Подробнее'}</h3>
-    <div class="sheet-text">${formatSheetText(text)}</div>
-  `;
+  if (sheetTitleEl) sheetTitleEl.textContent = title || 'Подробнее';
+  sheetContent.innerHTML = `<div class="sheet-text">${formatSheetText(text)}</div>`;
   sheetOverlay.classList.add('active');
   sheetOverlay.setAttribute('aria-hidden', 'false');
   document.body.classList.add('sheet-open');
