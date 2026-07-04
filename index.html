@@ -99,6 +99,12 @@ h1.t{
   justify-content:center;flex-shrink:0;width:38px;height:38px;
 }
 .icon-btn:hover{background:var(--warm);color:var(--accent)}
+.icon-btn#accessibility-btn{color:#8A8A8A}
+.icon-btn#accessibility-btn:hover,
+.icon-btn#accessibility-btn:focus-visible{color:var(--navy)}
+body.dark-theme .icon-btn#accessibility-btn{color:#94a3b8}
+body.dark-theme .icon-btn#accessibility-btn:hover,
+body.dark-theme .icon-btn#accessibility-btn:focus-visible{color:var(--accent)}
 
 /* ── Search bar ── */
 #search-bar-container{
@@ -1477,14 +1483,7 @@ body.dark-theme .a11y-btn:hover{background:rgba(255,255,255,.12)}
   <h1 class="t">ПОНЯТНЫЙ УНИВЕРСИТЕТ | МГПУ</h1>
   <button id="theme-btn" class="icon-btn" aria-label="Сменить тему"><span id="theme-icon" style="font-size:18px;line-height:1">🌙</span></button>
   <button id="accessibility-btn" class="icon-btn" aria-label="Открыть настройки для слабовидящих" aria-expanded="false" aria-controls="a11y-panel">
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M2 12c2.5-4 6-6 10-6s7.5 2 10 6c-2.5 4-6 6-10 6s-7.5-2-10-6z"/>
-      <path d="M17 9.5a2.5 2.5 0 0 1-.3 4.8" stroke-width="1.6"/>
-      <circle cx="15.5" cy="12" r="1.8" fill="currentColor" stroke="none"/>
-      <circle cx="16.2" cy="11.3" r="0.5" fill="white" stroke="none"/>
-      <path d="M6 9.5l2 2M6.5 11l2 2M7 12.5l2 2M7.5 14l2 2" stroke-width="1.3" opacity="0.6"/>
-      <line x1="3" y1="5" x2="21" y2="19" stroke-width="2.4"/>
-    </svg>
+    <svg viewBox="0 0 640 512" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223 149.5c48.6-44.3 123-50.8 179.3-11.7c60.8 42.4 78.9 123.2 44.2 186.9L408 294.5c8.4-19.3 10.6-41.4 4.8-63.3c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3c0 10.2-2.4 19.8-6.6 28.3L223 149.5zm223.1 298L83.1 161.5c-11 14.4-20.5 28.7-28.4 42.2l339 265.7c18.7-5.5 36.2-13 52.6-21.8zM34.5 268.3c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c3.1 0 6.1-.1 9.2-.2L33.1 247.8c-1.8 6.8-1.3 14 1.4 20.5z"/></svg>
   </button>
   <button id="search-btn" class="icon-btn" aria-label="Открыть поиск">
     <svg id="icon-search" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1554,14 +1553,7 @@ body.dark-theme .a11y-btn:hover{background:rgba(255,255,255,.12)}
   <div class="a11y-panel-actions">
     <button type="button" id="a11y-reset" class="a11y-btn a11y-btn--text" aria-label="Сбросить настройки для слабовидящих по умолчанию">Настройки по умолчанию</button>
     <button type="button" id="a11y-close" class="a11y-btn a11y-btn--round" aria-label="Закрыть панель для слабовидящих">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M2 12c2.5-4 6-6 10-6s7.5 2 10 6c-2.5 4-6 6-10 6s-7.5-2-10-6z"/>
-        <path d="M17 9.5a2.5 2.5 0 0 1-.3 4.8" stroke-width="1.6"/>
-        <circle cx="15.5" cy="12" r="1.8" fill="currentColor" stroke="none"/>
-        <circle cx="16.2" cy="11.3" r="0.5" fill="white" stroke="none"/>
-        <path d="M6 9.5l2 2M6.5 11l2 2M7 12.5l2 2M7.5 14l2 2" stroke-width="1.3" opacity="0.6"/>
-        <line x1="3" y1="5" x2="21" y2="19" stroke-width="2.4"/>
-      </svg>
+      <svg viewBox="0 0 640 512" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223 149.5c48.6-44.3 123-50.8 179.3-11.7c60.8 42.4 78.9 123.2 44.2 186.9L408 294.5c8.4-19.3 10.6-41.4 4.8-63.3c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3c0 10.2-2.4 19.8-6.6 28.3L223 149.5zm223.1 298L83.1 161.5c-11 14.4-20.5 28.7-28.4 42.2l339 265.7c18.7-5.5 36.2-13 52.6-21.8zM34.5 268.3c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c3.1 0 6.1-.1 9.2-.2L33.1 247.8c-1.8 6.8-1.3 14 1.4 20.5z"/></svg>
     </button>
   </div>
 </div>
@@ -2543,14 +2535,7 @@ const ICONS = {
   location: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="2.5"/></svg>',
   warning:  '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 4.1 2.6 18a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 4.1a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>',
   link:     '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l2.12-2.12a5 5 0 0 0-7.07-7.07L11 4.93"/><path d="M14 11a5 5 0 0 0-7.07 0L4.81 13.12a5 5 0 0 0 7.07 7.07L13 19.07"/></svg>',
-  a11y: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-  <path d="M2 12c2.5-4 6-6 10-6s7.5 2 10 6c-2.5 4-6 6-10 6s-7.5-2-10-6z"/>
-  <path d="M17 9.5a2.5 2.5 0 0 1-.3 4.8" stroke-width="1.6"/>
-  <circle cx="15.5" cy="12" r="1.8" fill="currentColor" stroke="none"/>
-  <circle cx="16.2" cy="11.3" r="0.5" fill="white" stroke="none"/>
-  <path d="M6 9.5l2 2M6.5 11l2 2M7 12.5l2 2M7.5 14l2 2" stroke-width="1.3" opacity="0.6"/>
-  <line x1="3" y1="5" x2="21" y2="19" stroke-width="2.4"/>
-</svg>`
+  a11y: `<svg viewBox="0 0 640 512" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223 149.5c48.6-44.3 123-50.8 179.3-11.7c60.8 42.4 78.9 123.2 44.2 186.9L408 294.5c8.4-19.3 10.6-41.4 4.8-63.3c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3c0 10.2-2.4 19.8-6.6 28.3L223 149.5zm223.1 298L83.1 161.5c-11 14.4-20.5 28.7-28.4 42.2l339 265.7c18.7-5.5 36.2-13 52.6-21.8zM34.5 268.3c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c3.1 0 6.1-.1 9.2-.2L33.1 247.8c-1.8 6.8-1.3 14 1.4 20.5z"/></svg>`
 };
 
 function renderAvatar(person, color) {
