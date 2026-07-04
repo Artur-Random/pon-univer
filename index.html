@@ -117,6 +117,7 @@ h1.t{
   border:1px solid rgba(255,255,255,.72);
   box-shadow:var(--luxury-shadow-soft);
 }
+.search-bar-inner:focus-within{outline:2px solid var(--accent);outline-offset:2px}
 #search-input{
   width:100%;border:none;outline:none;font-size:18px;
   font-family:var(--font-main);color:var(--tdark);background:transparent;
@@ -1058,6 +1059,7 @@ body.dark-theme .home-section-sub{color:rgba(160,175,210,.82);}
   box-shadow:0 12px 30px rgba(42,49,83,.13);
   border-color:var(--accent);
 }
+.home-menu-card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .home-menu-card:active{transform:translateY(-1px);}
 body.dark-theme .home-menu-card{
   background:rgba(255,255,255,.055);
@@ -1523,7 +1525,7 @@ body.dark-theme .hb-gallery-nav{background:rgba(255,255,255,.18);color:#fff}
     <div class="contacts-card">
       <div class="contacts-block-title">Совет студентов и аспирантов ИПКР</div>
       <div class="contacts-list">
-        <div class="contacts-item" data-copy="119261, г. Москва, ул. Панфёрова, д. 8, корп. 2">
+        <div class="contacts-item" data-copy="119261, г. Москва, ул. Панфёрова, д. 8, корп. 2" role="button" tabindex="0" aria-label="Скопировать адрес: 119261, г. Москва, ул. Панфёрова, д. 8, корп. 2">
           <svg class="contacts-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
           <div class="contacts-item-text">
             <span class="contacts-item-label">Адрес</span>
@@ -2330,6 +2332,16 @@ function animateFadeIn(el) {
   el.classList.add('animate-fade-in');
 }
 
+function bindActivate(el, handler) {
+  el.addEventListener('click', handler);
+  el.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handler(e);
+    }
+  });
+}
+
 let currentDetailPrefix = null;
 
 const AVATAR_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" style="width:70%;height:70%;opacity:0.6" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>';
@@ -2420,7 +2432,7 @@ function renderIPKRMaster() {
       lastGroup = section.group;
     }
     const staffCount = section.staff.filter(p => !p.vacant && !p.divider && !p.hidden).length;
-    html += `<div class="master-card" data-idx="${idx}">
+    html += `<div class="master-card" data-idx="${idx}" role="button" tabindex="0">
       ${section.badge ? `<div class="luxury-badge">${section.badge}</div>` : ''}
       <div class="master-card-title">${section.title}</div>
       ${section.subtitle ? `<div class="master-card-sub">${section.subtitle}</div>` : ''}
@@ -2430,7 +2442,7 @@ function renderIPKRMaster() {
 
   master.innerHTML = html;
   master.querySelectorAll('.master-card').forEach(card => {
-    card.addEventListener('click', () => showIPKRDetail(parseInt(card.dataset.idx)));
+    bindActivate(card, () => showIPKRDetail(parseInt(card.dataset.idx)));
   });
 }
 
@@ -2526,7 +2538,7 @@ function renderUniMaster() {
           : '');
     const badge = getUniBadge(item);
     return `
-      <div class="master-card" data-idx="${idx}" style="border-top-color:${getUniColor(item)}">
+      <div class="master-card" data-idx="${idx}" style="border-top-color:${getUniColor(item)}" role="button" tabindex="0">
         ${badge ? `<div class="luxury-badge">${badge}</div>` : ''}
         <div class="master-card-title">${item.title}</div>
         <div class="master-card-sub">${subtitle}</div>
@@ -2536,7 +2548,7 @@ function renderUniMaster() {
   }).join('');
 
   master.querySelectorAll('.master-card').forEach(card => {
-    card.addEventListener('click', () => showInstituteDetail(parseInt(card.dataset.idx)));
+    bindActivate(card, () => showInstituteDetail(parseInt(card.dataset.idx)));
   });
 }
 
@@ -2596,7 +2608,7 @@ function showInstituteDetail(idx) {
 function renderHandbookMaster() {
   const master = document.getElementById('handbook-master');
   master.innerHTML = handbookData.map((item, idx) => `
-    <div class="master-card" data-idx="${idx}" style="border-top-color:${getCssColor(item.color)}">
+    <div class="master-card" data-idx="${idx}" style="border-top-color:${getCssColor(item.color)}" role="button" tabindex="0">
       ${item.locked ? `<div class="soon-badge">${item.badge || 'СКОРО'}</div>` : ''}
       <div class="master-card-title">${item.title}</div>
       <div class="master-card-sub">${item.subtitle}</div>
@@ -2605,7 +2617,7 @@ function renderHandbookMaster() {
   `).join('');
 
   master.querySelectorAll('.master-card').forEach(card => {
-    card.addEventListener('click', () => {
+    bindActivate(card, () => {
       const item = handbookData[parseInt(card.dataset.idx)];
       if (item.locked) {
         card.classList.add('locked-glow');
@@ -3170,14 +3182,14 @@ function doSearch(query) {
   }
 
   searchResultsEl.innerHTML = _searchResults.map((r, i) => `
-    <div class="search-result-item" data-ridx="${i}" style="border-left-color:${r.color}">
+    <div class="search-result-item" data-ridx="${i}" style="border-left-color:${r.color}" role="button" tabindex="0">
       <div class="search-result-name">${highlightMatch(r.label, query)}</div>
       <div class="search-result-sub">${r.sub}</div>
     </div>
   `).join('');
 
   searchResultsEl.querySelectorAll('.search-result-item').forEach(el => {
-    el.addEventListener('click', () => {
+    bindActivate(el, () => {
       const r = _searchResults[parseInt(el.dataset.ridx)];
       closeSearch();
       if (r.type === 'ipkr') {
@@ -3360,7 +3372,7 @@ function showToast(msg) {
 }
 
 document.querySelectorAll('[data-copy]').forEach(el => {
-  el.addEventListener('click', () => {
+  bindActivate(el, () => {
     navigator.clipboard.writeText(el.dataset.copy).catch(() => {});
     if (navigator.vibrate) navigator.vibrate(15);
     showToast('Скопировано');
@@ -3429,6 +3441,9 @@ addSwipeToDismiss(document.getElementById('handbook-detail'));
   document.getElementById('update-modal-close').addEventListener('click', dismiss);
   document.getElementById('update-dismiss').addEventListener('click', dismiss);
   modal.addEventListener('click', function(e){ if (e.target === modal) dismiss(); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && modal.classList.contains('active')) dismiss();
+  });
   document.getElementById('update-open-handbook').addEventListener('click', function(){
     dismiss();
     if (typeof switchSection === 'function') switchSection('handbook');
