@@ -1776,20 +1776,20 @@ body.dark-theme .a11y-btn:hover{background:rgba(255,255,255,.12)}
 
 
 
-<!-- Update v1.2 Modal -->
+<!-- Update v1.3 Modal -->
 <div id="update-modal" class="update-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="update-modal-title">
   <div class="update-modal-card">
     <button id="update-modal-close" class="update-modal-close" type="button" aria-label="Закрыть окно обновления">×</button>
-    <div class="update-modal-badge">v1.2</div>
-    <h2 class="update-modal-title" id="update-modal-title">Понятный Университет обновился до v1.2</h2>
-    <p class="update-modal-sub">Добавили новые разделы Справочника и обновили состав ССиА ИПКР.</p>
+    <div class="update-modal-badge">v1.3</div>
+    <h2 class="update-modal-title" id="update-modal-title">Понятный Университет обновился до v1.3</h2>
+    <p class="update-modal-sub">Главное обновление — доступность сайта для всех студентов.</p>
     <ul class="update-modal-list">
-      <li><b>Учебный процесс:</b> добавлены карточки «Учёба: БРС» и «Учёба: Сессия» с подробными текстовыми блоками о балльной системе, пересдачах и досрочной аттестации;</li>
-      <li><b>Финансы и поддержка:</b> добавлена карточка «Финансы: Бюджет» — условия, основания и порядок перевода с платного на бюджетное обучение;</li>
-      <li><b>Справочник:</b> обновлены карточки «Твои права: учёба», «паузы» и «защита», добавлены внутренние переходы между связанными разделами;</li>
-      <li><b>Презентационная площадка ИПКР:</b> добавлен раздел с описанием площадки современного образовательного оборудования (каб. 202–203);</li>
-      <li><b>Состав ССиА ИПКР:</b> обновлены руководители отделов по итогам заседания Координационного совета от 18.06.2026.</li>
-      <li><b>Перевод и восстановление:</b> добавлен текстовый гайд о переводе внутри МГПУ, переводе из другого вуза и восстановлении после отчисления — с конкретными сроками, условиями и маршрутами.</li>
+      <li><b>Версия для слабовидящих:</b> новая панель настроек — пять контрастных цветовых схем, увеличение шрифта, отключение или обесцвечивание изображений, настройка межстрочного и межбуквенного интервала, выбор гарнитуры;</li>
+      <li><b>Клавиатурная навигация:</b> весь сайт теперь полностью управляется с клавиатуры — карточки разделов, результаты поиска, кнопки копирования контактов;</li>
+      <li><b>Альтернативный текст:</b> обновлены описания всех инфографик справочника и фотографий сотрудников для программ чтения с экрана;</li>
+      <li><b>Перевод и восстановление (СПО):</b> добавлена отдельная карточка с правилами для студентов ИСПО им. К.Д. Ушинского — сроки и условия отличаются от программ высшего образования;</li>
+      <li><b>Учёба: БРС и Сессия:</b> уточнена применимость — правила актуальны и для ВО, и для СПО;</li>
+      <li><b>Визуальные улучшения:</b> доработан контраст текста и теней карточек по всему сайту.</li>
     </ul>
     <div class="update-modal-actions">
       <button class="update-modal-btn update-modal-btn--primary" type="button" id="update-open-handbook">Открыть справочник</button>
@@ -1807,7 +1807,7 @@ body.dark-theme .a11y-btn:hover{background:rgba(255,255,255,.12)}
   <div class="footer-container footer-info">
     <div class="footer-brand">
       <strong>© 2026 Понятный Университет</strong>
-      <span>v1.2</span>
+      <span>v1.3</span>
     </div>
     <div class="footer-line">Сайт создан и поддерживается командой ССиА ИПКР МГПУ на общественных началах.</div>
     <div class="footer-line">Проект не преследует коммерческих целей, не имеет спонсорской поддержки и не собирает пожертвования.</div>
@@ -3791,11 +3791,11 @@ addSwipeToDismiss(document.getElementById('handbook-detail'));
   </div>
 </div>
 <script>
-/* ── Update v1.2 notice ── */
+/* ── Update v1.3 notice ── */
 (function(){
-  var DISMISS_KEY = 'pu_update_1_2_dismissed';
-  var updateStart = new Date('2026-06-21T15:00:00+03:00').getTime();
-  var updateEnd   = new Date('2026-06-22T20:00:00+03:00').getTime();
+  var DISMISS_KEY = 'pu_update_1_3_dismissed';
+  var updateStart = new Date('2026-07-04T17:00:00+03:00').getTime();
+  var updateEnd   = new Date('2026-07-06T20:00:00+03:00').getTime();
   var params      = new URLSearchParams(location.search);
   var forceShow   = params.get('update') === '1';
   var forceHide   = params.get('update') === '0';
