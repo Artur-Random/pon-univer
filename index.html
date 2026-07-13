@@ -1776,20 +1776,15 @@ body.dark-theme .a11y-btn:hover{background:rgba(255,255,255,.12)}
 
 
 
-<!-- Update v1.3 Modal -->
+<!-- Update v1.4 Modal -->
 <div id="update-modal" class="update-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="update-modal-title" inert>
   <div class="update-modal-card">
     <button id="update-modal-close" class="update-modal-close" type="button" aria-label="Закрыть окно обновления">×</button>
-    <div class="update-modal-badge">v1.3</div>
-    <h2 class="update-modal-title" id="update-modal-title">Понятный Университет обновился до v1.3</h2>
-    <p class="update-modal-sub">Главное обновление — доступность сайта для всех студентов.</p>
+    <div class="update-modal-badge">v1.4</div>
+    <h2 class="update-modal-title" id="update-modal-title">Понятный Университет обновился до v1.4</h2>
+    <p class="update-modal-sub">Добавили инструкцию по оплате обучения в Справочник.</p>
     <ul class="update-modal-list">
-      <li><b>Версия для слабовидящих:</b> новая панель настроек — пять контрастных цветовых схем, увеличение шрифта, отключение или обесцвечивание изображений, настройка межстрочного и межбуквенного интервала, выбор гарнитуры;</li>
-      <li><b>Клавиатурная навигация:</b> весь сайт теперь полностью управляется с клавиатуры — карточки разделов, результаты поиска, кнопки копирования контактов;</li>
-      <li><b>Альтернативный текст:</b> обновлены описания всех инфографик справочника и фотографий сотрудников для программ чтения с экрана;</li>
-      <li><b>Перевод и восстановление (СПО):</b> добавлена отдельная карточка с правилами для студентов ИСПО им. К.Д. Ушинского — сроки и условия отличаются от программ высшего образования;</li>
-      <li><b>Учёба: БРС и Сессия:</b> уточнена применимость — правила актуальны и для ВО, и для СПО;</li>
-      <li><b>Визуальные улучшения:</b> доработан контраст текста и теней карточек по всему сайту.</li>
+      <li><b>Оплата обучения:</b> в разделе «Справочник», подраздел «Финансы, оплата», появилась подробная инструкция: сроки, способы оплаты, рассрочка, образовательный кредит, материнский капитал, возврат средств, а также пошаговая инфографика из 8 карточек.</li>
     </ul>
     <div class="update-modal-actions">
       <button class="update-modal-btn update-modal-btn--primary" type="button" id="update-open-handbook">Открыть справочник</button>
@@ -1807,7 +1802,7 @@ body.dark-theme .a11y-btn:hover{background:rgba(255,255,255,.12)}
   <div class="footer-container footer-info">
     <div class="footer-brand">
       <strong>© 2026 Понятный Университет</strong>
-      <span>v1.3</span>
+      <span>v1.4</span>
     </div>
     <div class="footer-line">Сайт создан и поддерживается командой ССиА ИПКР МГПУ на общественных началах.</div>
     <div class="footer-line">Проект не преследует коммерческих целей, не имеет спонсорской поддержки и не собирает пожертвования.</div>
@@ -3852,11 +3847,11 @@ addSwipeToDismiss(document.getElementById('handbook-detail'));
   </div>
 </div>
 <script>
-/* ── Update v1.3 notice ── */
+/* ── Update v1.4 notice ── */
 (function(){
-  var DISMISS_KEY = 'pu_update_1_3_dismissed';
-  var updateStart = new Date('2026-07-04T17:00:00+03:00').getTime();
-  var updateEnd   = new Date('2026-07-06T20:00:00+03:00').getTime();
+  var DISMISS_KEY = 'pu_update_1_4_dismissed';
+  var updateStart = new Date('2026-07-13T17:00:00+03:00').getTime();
+  var updateEnd   = new Date('2026-07-15T20:00:00+03:00').getTime();
   var params      = new URLSearchParams(location.search);
   var forceShow   = params.get('update') === '1';
   var forceHide   = params.get('update') === '0';
