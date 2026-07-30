@@ -96,8 +96,9 @@ h1.t{
 .icon-btn{
   background:none;border:none;cursor:pointer;padding:7px;color:var(--navy);
   border-radius:4px;transition:background .2s,color .2s;display:flex;align-items:center;
-  justify-content:center;flex-shrink:0;width:38px;height:38px;
+  justify-content:center;flex-shrink:0;width:44px;height:44px;
 }
+@media(max-width:480px){.icon-btn{width:38px;height:38px}}
 .icon-btn:hover{background:var(--warm);color:var(--accent)}
 .icon-btn#accessibility-btn{color:#8A8A8A}
 .icon-btn#accessibility-btn:hover,
@@ -165,9 +166,11 @@ body.dark-theme .icon-btn#accessibility-btn:focus-visible{color:var(--accent)}
   transition:box-shadow .2s,transform .15s,background .2s;
 }
 .master-card:hover,.card:hover{box-shadow:0 6px 16px rgba(42,49,83,.08);transform:scale(1.01)}
-.master-card:active,.card:active{transform:scale(0.97);box-shadow:0 2px 4px rgba(0,0,0,.04);background:rgba(255,255,255,0.85)}
+.master-card:active,.card:active{transform:scale(0.96);box-shadow:0 2px 4px rgba(0,0,0,.04);background:rgba(255,255,255,0.85)}
+button.master-card,button.search-result-item{width:100%;font:inherit;text-align:left;-webkit-appearance:none;appearance:none}
+button.search-result-item{border:none;border-left:3px solid var(--gold)}
 body.dark-theme .master-card:active,body.dark-theme .card:active{background:rgba(255,255,255,0.05)}
-.master-card.locked-glow{box-shadow:0 0 24px rgba(220,38,38,.6),inset 0 1px 1px rgba(255,255,255,.6) !important;border-color:rgba(220,38,38,.5) !important;transform:scale(0.97) !important}
+.master-card.locked-glow{box-shadow:0 0 24px rgba(220,38,38,.6),inset 0 1px 1px rgba(255,255,255,.6) !important;border-color:rgba(220,38,38,.5) !important;transform:scale(0.96) !important}
 body.dark-theme .master-card.locked-glow{box-shadow:0 0 24px rgba(220,38,38,.4),inset 0 1px 1px rgba(255,255,255,.05) !important;border-color:rgba(220,38,38,.3) !important}
 .master-card-title{font-size:15px;font-weight:600;color:var(--navy);line-height:1.3;margin-bottom:4px}
 .master-card-sub{font-size:12px;font-weight:600;color:var(--tmid);line-height:1.4;text-transform:uppercase;letter-spacing:.05em}
@@ -253,7 +256,7 @@ body.dark-theme .avatar-placeholder.avatar-media{background:rgba(40,48,70,.85)}
 body.dark-theme .ssia-motto{color:var(--tdark);border-color:rgba(255,255,255,.08)}
 .action-hub{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:24px}
 .pill-btn{display:inline-flex;align-items:center;padding:10px 20px;border-radius:20px;font-size:12px;font-weight:700;color:white !important;text-decoration:none;text-transform:uppercase;letter-spacing:.05em;transition:transform .15s,opacity .15s}
-.pill-btn:active{transform:scale(0.95)}
+.pill-btn:active{transform:scale(0.96)}
 .card.hero{
   grid-column:1/-1;max-width:620px;margin:0 auto;width:100%;
   flex-direction:column;align-items:center;text-align:center;padding:30px 18px;
@@ -378,7 +381,7 @@ body.dark-theme .card--ssia-chair{
   overflow:hidden;
 }
 .nav-container{max-width:1500px;margin:0 auto;display:flex}
-.nav-btn{flex:1;padding:10px 6px;border:none;border-radius:12px;background:transparent;font-weight:600;font-size:clamp(11px,3.4vw,14px);color:var(--tmid);cursor:pointer;transition:all .3s ease;white-space:nowrap;overflow:hidden;font-family:var(--font-head);text-align:center;margin:6px 3px}
+.nav-btn{flex:1;padding:10px 6px;border:none;border-radius:12px;background:transparent;font-weight:600;font-size:clamp(11px,3.4vw,14px);color:var(--tmid);cursor:pointer;transition:background .3s ease,color .3s ease,box-shadow .3s ease,border-radius .3s ease;white-space:nowrap;overflow:hidden;font-family:var(--font-head);text-align:center;margin:6px 3px}
 @media(max-width:767px){
   .nav-container{
     overflow-x:auto;overflow-y:hidden;
@@ -469,8 +472,10 @@ body.dark-theme .card--ssia-chair{
 .contacts-list{display:flex;flex-direction:column}
 .contacts-item{display:flex;align-items:center;gap:16px;padding:14px 16px;border-bottom:1px solid var(--warm);text-decoration:none;color:inherit;transition:background .15s}
 .contacts-item:last-child{border-bottom:none}
+button.contacts-item{width:100%;background:none;border:none;border-bottom:1px solid var(--warm);font:inherit;text-align:left;cursor:pointer}
+button.contacts-item:last-child{border-bottom:none}
 a.contacts-item:hover{background:rgba(251,112,11,.05)}
-a.contacts-item:active{background:rgba(251,112,11,.1);transform:scale(0.99)}
+a.contacts-item:active{background:rgba(251,112,11,.1);transform:scale(0.96)}
 .contacts-icon{width:20px;height:20px;flex-shrink:0;color:var(--accent)}
 .contacts-item-text{flex:1;min-width:0}
 .contacts-item-label{display:block;font-size:12px;font-weight:700;color:var(--tmid);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
@@ -630,7 +635,7 @@ body.dark-theme .hb-card-note{background:rgba(251,112,11,.12)}
   font-size:13px;font-weight:700;cursor:pointer;border:none;
   transition:transform .12s,opacity .15s;line-height:1;
 }
-.hb-btn:active{transform:scale(0.95)}
+.hb-btn:active{transform:scale(0.96)}
 .hb-btn-primary{
   background:var(--navy);color:#fff;
   box-shadow:0 2px 10px rgba(42,49,83,.22);
@@ -791,6 +796,7 @@ body.sheet-open{overflow:hidden}
   box-shadow:0 -4px 24px rgba(0,0,0,.1);
 }
 body.dark-theme .bottom-sheet{background:rgba(24,24,24,.95);border-top:1px solid rgba(255,255,255,.08);color:var(--tdark)}
+@media(min-width:600px){.bottom-sheet{max-width:640px;margin-inline:auto}}
 .sheet-overlay.active .bottom-sheet{transform:translateY(0)}
 .sheet-handle{width:36px;height:5px;background:var(--tmid);opacity:.3;border-radius:3px;margin:0 auto 20px}
 .sheet-close{
@@ -963,7 +969,7 @@ body:not(.dark-theme) .home-hero-lead{color:rgba(42,49,83,.70);}
   display:inline-flex;align-items:center;
   padding:13px 26px;border:none;border-radius:14px;
   font-family:var(--font-head);font-size:13px;font-weight:700;
-  cursor:pointer;transition:all .22s ease;white-space:nowrap;
+  cursor:pointer;transition:background .22s ease,transform .22s ease;white-space:nowrap;
   text-decoration:none;letter-spacing:.01em;
 }
 .home-btn--primary{
@@ -1061,7 +1067,7 @@ body.dark-theme .home-section-sub{color:rgba(160,175,210,.82);}
   background:rgba(255,255,255,.84);
   border:1px solid rgba(42,49,83,.09);
   box-shadow:0 2px 10px rgba(42,49,83,.06);
-  cursor:pointer;transition:all .22s ease;text-align:left;
+  cursor:pointer;transition:background .22s ease,transform .22s ease,box-shadow .22s ease,border-color .22s ease;text-align:left;
   font-family:inherit;outline:none;
 }
 .home-menu-card:hover{
@@ -1427,7 +1433,7 @@ html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .a11y-btn[aria-pressed=
 .a11y-panel-actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;padding:10px 16px 16px;border-top:1px solid var(--hairline)}
 .a11y-group{display:flex;flex-direction:column;gap:6px;min-width:0}
 .a11y-group-label{font-size:12px;font-weight:700;color:var(--tmid);text-transform:uppercase;letter-spacing:.05em}
-.a11y-group-controls{display:flex;flex-wrap:wrap;gap:6px}
+.a11y-group-controls{display:flex;flex-wrap:wrap;gap:12px}
 
 .a11y-btn{
   border:1px solid var(--hairline);background:var(--surface-paper);color:var(--navy);
@@ -1553,7 +1559,7 @@ body.dark-theme .a11y-btn:hover{background:rgba(255,255,255,.12)}
     </div>
   </div>
   <div class="a11y-panel-actions">
-    <button type="button" id="a11y-reset" class="a11y-btn a11y-btn--text" aria-label="Сбросить настройки для слабовидящих по умолчанию">Настройки по умолчанию</button>
+    <button type="button" id="a11y-reset" class="a11y-btn a11y-btn--text" aria-label="Сбросить настройки по умолчанию">Настройки по умолчанию</button>
     <button type="button" id="a11y-close" class="a11y-btn a11y-btn--round" aria-label="Закрыть панель для слабовидящих">
       <svg viewBox="0 0 640 512" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223 149.5c48.6-44.3 123-50.8 179.3-11.7c60.8 42.4 78.9 123.2 44.2 186.9L408 294.5c8.4-19.3 10.6-41.4 4.8-63.3c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3c0 10.2-2.4 19.8-6.6 28.3L223 149.5zm223.1 298L83.1 161.5c-11 14.4-20.5 28.7-28.4 42.2l339 265.7c18.7-5.5 36.2-13 52.6-21.8zM34.5 268.3c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c3.1 0 6.1-.1 9.2-.2L33.1 247.8c-1.8 6.8-1.3 14 1.4 20.5z"/></svg>
     </button>
@@ -1710,13 +1716,13 @@ body.dark-theme .a11y-btn:hover{background:rgba(255,255,255,.12)}
     <div class="contacts-card">
       <div class="contacts-block-title">Совет студентов и аспирантов ИПКР</div>
       <div class="contacts-list">
-        <div class="contacts-item" data-copy="119261, г. Москва, ул. Панфёрова, д. 8, корп. 2" role="button" tabindex="0" aria-label="Скопировать адрес: 119261, г. Москва, ул. Панфёрова, д. 8, корп. 2">
+        <button type="button" class="contacts-item" data-copy="119261, г. Москва, ул. Панфёрова, д. 8, корп. 2" aria-label="Скопировать адрес: 119261, г. Москва, ул. Панфёрова, д. 8, корп. 2">
           <svg class="contacts-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
           <div class="contacts-item-text">
             <span class="contacts-item-label">Адрес</span>
             <span class="contacts-item-value">119261, г. Москва, ул. Панфёрова, <span style="white-space:nowrap">д. 8, корп. 2</span></span>
           </div>
-        </div>
+        </button>
         <a class="contacts-item" href="mailto:info@ssia-ipkr.ru">
           <svg class="contacts-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
           <div class="contacts-item-text">
@@ -1749,17 +1755,17 @@ body.dark-theme .a11y-btn:hover{background:rgba(255,255,255,.12)}
 </main>
 
 <!-- Fullscreen image modal -->
-<div id="img-modal" class="img-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Просмотр инфографики">
+<div id="img-modal" class="img-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Просмотр инфографики" inert>
   <div class="img-modal-inner">
     <img id="img-modal-img" class="img-modal-img" src="" alt="">
   </div>
-  <button id="img-modal-close" class="img-modal-close" type="button" aria-label="Закрыть просмотр изображения" tabindex="-1">×</button>
+  <button id="img-modal-close" class="img-modal-close" type="button" aria-label="Закрыть просмотр изображения">×</button>
 </div>
 
 <!-- Person photo modal -->
-<div id="person-photo-modal" class="person-photo-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Фото сотрудника">
+<div id="person-photo-modal" class="person-photo-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Фото сотрудника" inert>
   <div class="person-photo-modal-inner">
-    <button id="person-photo-modal-close" class="person-photo-modal-close" type="button" aria-label="Закрыть фото сотрудника" tabindex="-1">×</button>
+    <button id="person-photo-modal-close" class="person-photo-modal-close" type="button" aria-label="Закрыть фото сотрудника">×</button>
     <img id="person-photo-modal-img" class="person-photo-modal-img" src="" alt="">
     <div class="person-photo-modal-meta">
       <div id="person-photo-modal-name" class="person-photo-modal-name"></div>
@@ -2554,16 +2560,6 @@ function animateFadeIn(el) {
   el.classList.add('animate-fade-in');
 }
 
-function bindActivate(el, handler) {
-  el.addEventListener('click', handler);
-  el.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      handler(e);
-    }
-  });
-}
-
 let currentDetailPrefix = null;
 
 const AVATAR_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" style="width:70%;height:70%;opacity:0.6" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>';
@@ -2655,17 +2651,17 @@ function renderIPKRMaster() {
       lastGroup = section.group;
     }
     const staffCount = section.staff.filter(p => !p.vacant && !p.divider && !p.hidden).length;
-    html += `<div class="master-card" data-idx="${idx}" role="button" tabindex="0">
+    html += `<button type="button" class="master-card" data-idx="${idx}">
       ${section.badge ? `<div class="luxury-badge">${section.badge}</div>` : ''}
       <div class="master-card-title">${section.title}</div>
       ${section.subtitle ? `<div class="master-card-sub">${section.subtitle}</div>` : ''}
       ${section.id !== 'student-council' ? `<div class="master-card-count">${staffCount} чел.</div>` : ''}
-    </div>`;
+    </button>`;
   });
 
   master.innerHTML = html;
   master.querySelectorAll('.master-card').forEach(card => {
-    bindActivate(card, () => showIPKRDetail(parseInt(card.dataset.idx)));
+    card.addEventListener('click', () => showIPKRDetail(parseInt(card.dataset.idx)));
   });
 }
 
@@ -2761,17 +2757,17 @@ function renderUniMaster() {
           : '');
     const badge = getUniBadge(item);
     return `
-      <div class="master-card" data-idx="${idx}" style="border-top-color:${getUniColor(item)}" role="button" tabindex="0">
+      <button type="button" class="master-card" data-idx="${idx}" style="border-top-color:${getUniColor(item)}">
         ${badge ? `<div class="luxury-badge">${badge}</div>` : ''}
         <div class="master-card-title">${item.title}</div>
         <div class="master-card-sub">${subtitle}</div>
         ${countHtml}
-      </div>
+      </button>
     `;
   }).join('');
 
   master.querySelectorAll('.master-card').forEach(card => {
-    bindActivate(card, () => showInstituteDetail(parseInt(card.dataset.idx)));
+    card.addEventListener('click', () => showInstituteDetail(parseInt(card.dataset.idx)));
   });
 }
 
@@ -2831,16 +2827,16 @@ function showInstituteDetail(idx) {
 function renderHandbookMaster() {
   const master = document.getElementById('handbook-master');
   master.innerHTML = handbookData.map((item, idx) => `
-    <div class="master-card" data-idx="${idx}" style="border-top-color:${getCssColor(item.color)}" role="button" tabindex="0">
+    <button type="button" class="master-card" data-idx="${idx}" style="border-top-color:${getCssColor(item.color)}">
       ${item.locked ? `<div class="soon-badge">${item.badge || 'СКОРО'}</div>` : ''}
       <div class="master-card-title">${item.title}</div>
       <div class="master-card-sub">${item.subtitle}</div>
       ${''/* card count removed */}
-    </div>
+    </button>
   `).join('');
 
   master.querySelectorAll('.master-card').forEach(card => {
-    bindActivate(card, () => {
+    card.addEventListener('click', () => {
       const item = handbookData[parseInt(card.dataset.idx)];
       if (item.locked) {
         card.classList.add('locked-glow');
@@ -3015,18 +3011,19 @@ function openImageModal(src, alt) {
   if (!imgModal || !imgModalImg) return;
   imgModalImg.src = src;
   imgModalImg.alt = alt || '';
+  imgModal.removeAttribute('inert');
   imgModal.classList.add('active');
   imgModal.setAttribute('aria-hidden', 'false');
   document.body.classList.add('modal-open');
-  if (imgModalClose) { imgModalClose.removeAttribute('tabindex'); imgModalClose.focus(); }
+  if (imgModalClose) imgModalClose.focus();
 }
 
 function closeImageModal() {
   if (!imgModal) return;
   imgModal.classList.remove('active');
   imgModal.setAttribute('aria-hidden', 'true');
+  imgModal.setAttribute('inert', '');
   document.body.classList.remove('modal-open');
-  if (imgModalClose) imgModalClose.setAttribute('tabindex', '-1');
   setTimeout(() => { if (imgModalImg) imgModalImg.src = ''; }, 300);
 }
 
@@ -3052,18 +3049,19 @@ function openPersonPhotoModal(src, name, role) {
   personPhotoModalImg.alt = name || '';
   personPhotoModalName.textContent = name || '';
   personPhotoModalRole.textContent = role || '';
+  personPhotoModal.removeAttribute('inert');
   personPhotoModal.classList.add('active');
   personPhotoModal.setAttribute('aria-hidden', 'false');
   document.body.classList.add('person-photo-open');
-  if (personPhotoModalClose) { personPhotoModalClose.removeAttribute('tabindex'); personPhotoModalClose.focus(); }
+  if (personPhotoModalClose) personPhotoModalClose.focus();
 }
 
 function closePersonPhotoModal() {
   if (!personPhotoModal) return;
   personPhotoModal.classList.remove('active');
   personPhotoModal.setAttribute('aria-hidden', 'true');
+  personPhotoModal.setAttribute('inert', '');
   document.body.classList.remove('person-photo-open');
-  if (personPhotoModalClose) personPhotoModalClose.setAttribute('tabindex', '-1');
   setTimeout(() => { if (personPhotoModalImg) personPhotoModalImg.src = ''; }, 280);
 }
 
@@ -3411,19 +3409,19 @@ function doSearch(query) {
   }).slice(0, 12);
 
   if (_searchResults.length === 0) {
-    searchResultsEl.innerHTML = '<div class="search-no-results">Ничего не найдено</div>';
+    searchResultsEl.innerHTML = '<div class="search-no-results">Ничего не найдено. Попробуйте другой запрос или фамилию</div>';
     return;
   }
 
   searchResultsEl.innerHTML = _searchResults.map((r, i) => `
-    <div class="search-result-item" data-ridx="${i}" style="border-left-color:${r.color}" role="button" tabindex="0">
+    <button type="button" class="search-result-item" data-ridx="${i}" style="border-left-color:${r.color}">
       <div class="search-result-name">${highlightMatch(r.label, query)}</div>
       <div class="search-result-sub">${r.sub}</div>
-    </div>
+    </button>
   `).join('');
 
   searchResultsEl.querySelectorAll('.search-result-item').forEach(el => {
-    bindActivate(el, () => {
+    el.addEventListener('click', () => {
       const r = _searchResults[parseInt(el.dataset.ridx)];
       closeSearch();
       if (r.type === 'ipkr') {
@@ -3806,7 +3804,7 @@ function showToast(msg) {
 }
 
 document.querySelectorAll('[data-copy]').forEach(el => {
-  bindActivate(el, () => {
+  el.addEventListener('click', () => {
     navigator.clipboard.writeText(el.dataset.copy).catch(() => {});
     if (navigator.vibrate) navigator.vibrate(15);
     showToast('Скопировано');
