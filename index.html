@@ -1303,7 +1303,8 @@ body.dark-theme .russia-day-notice-title{color:rgba(248,250,255,.96);}
   .russia-day-marquee-track{animation:none;padding-left:16px;}
 }
 /* ── Tech notice marquee ── */
-.tech-notice-marquee{
+.tech-notice-marquee{display:none}
+body.tech-notice-active .tech-notice-marquee{
   display:block;overflow:hidden;
   height:34px;line-height:34px;
   background:rgba(122,15,24,.95);
@@ -1325,7 +1326,7 @@ body.dark-theme .russia-day-notice-title{color:rgba(248,250,255,.96);}
   to{transform:translateX(-50%)}
 }
 @media(max-width:767px){
-  .tech-notice-marquee{height:30px;line-height:30px;font-size:12px;}
+  body.tech-notice-active .tech-notice-marquee{height:30px;line-height:30px;font-size:12px;}
   .tech-notice-marquee-track{gap:24px;animation-duration:13s;}
   .tech-notice-marquee-track span::after{margin-left:24px;}
 }
@@ -1915,6 +1916,22 @@ function shouldEnableRussiaDay() {
   return isRussiaDayLocal();
 }
 if (shouldEnableRussiaDay()) document.body.classList.add('russia-day');
+
+// ── Tech notice window ──
+function isTechNoticeWindow() {
+  var start = new Date('2026-09-02T12:10:00+03:00').getTime();
+  var end   = new Date('2026-09-05T12:00:00+03:00').getTime();
+  var now   = Date.now();
+  return now >= start && now <= end;
+}
+function shouldEnableTechNotice() {
+  var p = new URLSearchParams(window.location.search);
+  var f = p.get('techNotice');
+  if (f === '1') return true;
+  if (f === '0') return false;
+  return isTechNoticeWindow();
+}
+if (shouldEnableTechNotice()) document.body.classList.add('tech-notice-active');
 
 // ═══════════════════════════════════════════
 //  DATA
@@ -4082,6 +4099,7 @@ addSwipeToDismiss(document.getElementById('handbook-detail'));
 
 /* ── Tech notice modal ── */
 (function(){
+  if (!shouldEnableTechNotice()) return;
   var DISMISS_KEY = 'pu_tech_notice_dismissed';
   var dismissed = false;
   try { dismissed = sessionStorage.getItem(DISMISS_KEY) === '1'; } catch(e){}
