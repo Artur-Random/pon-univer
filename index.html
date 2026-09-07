@@ -472,8 +472,112 @@ body.dark-theme .card--ssia-chair{
 .uni-address-item{display:flex;flex-direction:column;gap:2px}
 .uni-addr-text{font-size:13px;font-weight:600;color:var(--tdark)}
 .uni-addr-comment{font-size:12px;font-weight:600;color:var(--tmid);text-transform:uppercase;letter-spacing:.05em}
-.uni-email{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--navy);text-decoration:none;font-weight:600;padding-top:12px;border-top:1px solid var(--warm);transition:color .2s}
-.uni-email:hover{color:var(--accent)}
+
+/* ══════════════════════════════════════════════════════
+   University unit cards (v2.0) — isolated from .master-card,
+   used only inside #sec-uni. Do not reuse for ИПКР/Справочник.
+   ══════════════════════════════════════════════════════ */
+.uni-master-card{display:flex;flex-direction:column;gap:8px}
+.uni-master-card__top{display:flex;align-items:center;gap:12px}
+.uni-master-card__logo{
+  width:64px;height:64px;flex-shrink:0;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.65);
+  box-shadow:0 0 0 2px var(--uni-accent,var(--navy)) inset,0 2px 8px rgba(42,49,83,.10);
+}
+body.dark-theme .uni-master-card__logo{background:rgba(255,255,255,.94)}
+/* border-radius живёт на img/fallback, а не на overflow:hidden родителе — так надёжнее
+   рендерится сильное уменьшение больших исходников в некоторых браузерных движках */
+.uni-master-card__logo img,.uni-detail-logo img{
+  width:100%;height:100%;object-fit:cover;object-position:center;display:block;
+  border-radius:50%;transform:scale(var(--uni-logo-scale,1.12));
+}
+.uni-logo-fallback{
+  width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:2px;line-height:1.1;
+  font-family:var(--font-head);font-weight:700;font-size:12.5px;letter-spacing:.01em;
+  color:var(--uni-accent,var(--navy));background:rgba(255,255,255,.55);
+}
+body.dark-theme .uni-logo-fallback{background:rgba(255,255,255,.08)}
+.uni-master-card__identity{min-width:0;flex:1}
+.uni-master-card__title{font-family:var(--font-head);font-size:15px;font-weight:700;color:var(--navy);line-height:1.3}
+body.dark-theme .uni-master-card__title{color:var(--tdark)}
+.uni-master-card__short{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--uni-accent,var(--navy));margin-top:2px}
+.uni-master-card__director{font-size:12.5px;color:var(--tmid);line-height:1.4}
+.uni-master-card__director span{font-weight:600;opacity:.72;margin-right:4px}
+.uni-master-card__meta{font-size:11px;font-weight:700;color:var(--uni-accent,var(--navy));text-transform:uppercase;letter-spacing:.05em}
+.uni-master-card:focus-visible{outline:3px solid var(--uni-accent,var(--accent));outline-offset:2px}
+@media(hover:hover){
+  .uni-master-card:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(42,49,83,.12)}
+}
+@media(max-width:600px){
+  .uni-master-card__logo{width:58px;height:58px}
+}
+
+/* Archived / reorganized unit card */
+.uni-master-card--archived{
+  cursor:default;border-top-color:rgba(107,114,128,.55) !important;
+  filter:saturate(.7);opacity:.94;
+}
+.uni-master-card--archived:hover{transform:none;box-shadow:var(--shadow-layered),inset 0 1px 0 rgba(255,255,255,.85)}
+.uni-archived-badge{
+  display:inline-flex;width:fit-content;padding:4px 9px;border-radius:999px;
+  font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+  color:#7a5b0a;background:rgba(180,140,20,.14);border:1px solid rgba(180,140,20,.30);
+}
+body.dark-theme .uni-archived-badge{color:#e6c869;background:rgba(226,194,102,.12);border-color:rgba(226,194,102,.26)}
+.uni-master-card--archived .uni-master-card__title{font-size:14.5px;color:var(--tmid)}
+.uni-archived-note{font-size:12.5px;color:var(--tmid);line-height:1.5}
+.uni-archived-btn{
+  align-self:flex-start;margin-top:2px;padding:6px 14px;border-radius:20px;
+  border:1px solid rgba(42,49,83,.14);background:rgba(42,49,83,.06);color:var(--navy);
+  font-family:var(--font-main);font-size:11px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.04em;cursor:pointer;transition:background .15s;
+}
+.uni-archived-btn:hover{background:rgba(42,49,83,.12)}
+body.dark-theme .uni-archived-btn{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);color:rgba(210,220,245,.85)}
+body.dark-theme .uni-archived-btn:hover{background:rgba(255,255,255,.10)}
+
+/* Detail page identity header */
+.uni-detail-hero{
+  display:flex;align-items:center;gap:16px;padding:16px;margin-bottom:20px;
+  border-radius:18px;background:var(--surface-glass);
+  backdrop-filter:saturate(150%) blur(18px);-webkit-backdrop-filter:saturate(150%) blur(18px);
+  border:1px solid var(--hairline);
+}
+.uni-detail-logo{
+  width:96px;height:96px;flex-shrink:0;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.65);
+  box-shadow:0 0 0 3px var(--uni-accent,var(--navy)) inset,0 4px 16px rgba(42,49,83,.12);
+}
+body.dark-theme .uni-detail-logo{background:rgba(255,255,255,.94)}
+.uni-detail-logo .uni-logo-fallback{font-size:19px}
+.uni-detail-heading{min-width:0;flex:1}
+.uni-detail-kicker{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--uni-accent,var(--accent));margin-bottom:2px}
+.uni-detail-title{font-family:var(--font-head);font-size:20px;font-weight:700;color:var(--navy);line-height:1.3;margin:0}
+body.dark-theme .uni-detail-title{color:var(--tdark)}
+.uni-detail-subtitle{font-size:12px;font-weight:600;color:var(--tmid);text-transform:uppercase;letter-spacing:.05em;margin-top:4px}
+@media(max-width:600px){
+  .uni-detail-hero{gap:12px;padding:14px}
+  .uni-detail-logo{width:76px;height:76px}
+  .uni-detail-title{font-size:18px}
+}
+
+.uni-detail-people{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-bottom:16px}
+
+.uni-detail-contact{
+  display:flex;align-items:center;gap:10px;padding:12px 14px;margin-bottom:16px;
+  border-radius:12px;background:var(--surface-paper);border:1px solid var(--hairline);
+}
+.uni-detail-contact svg{flex-shrink:0;color:var(--uni-accent,var(--navy))}
+.uni-detail-contact-label{display:block;font-size:11px;font-weight:700;color:var(--tmid);text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px}
+.uni-detail-contact a{color:var(--navy);text-decoration:none;font-weight:600;font-size:13.5px}
+.uni-detail-contact a:hover{color:var(--accent)}
+body.dark-theme .uni-detail-contact a{color:var(--tdark)}
+
+.uni-detail-section{margin-top:4px}
+.uni-detail-section-title{font-size:12px;font-weight:700;color:var(--tmid);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
 
 /* ── Map section ── */
 
@@ -549,7 +653,6 @@ body.dark-theme .detail-title{color:var(--tdark) !important}
 body.dark-theme .schedule-note{color:#ff6b6b}
 body.dark-theme .search-result-name{color:#e2e8f0}
 body.dark-theme .search-result-sub{color:#94a3b8}
-body.dark-theme .uni-email{color:var(--tdark)}
 
 body.dark-theme #search-bar-container{background:rgba(8,10,18,.78)}
 body.dark-theme .search-bar-inner,
@@ -1468,6 +1571,8 @@ html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .bottom-sheet,
 html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .home-hero,
 html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .home-menu-card,
 html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .a11y-panel,
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .uni-detail-hero,
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .uni-detail-contact,
 html[data-a11y-scheme]:not([data-a11y-scheme="default"]) #search-bar-container{
   background:var(--a11y-bg) !important;
   background-image:none !important;
@@ -1775,10 +1880,6 @@ body.dark-theme .a11y-btn:hover{background:rgba(255,255,255,.12)}
     <div class="pilot-notice" role="note">
       <span class="pilot-notice-badge">Пилотный режим</span>
       <span class="pilot-notice-text">Сайт тестируется на базе ИПКР МГПУ. Информация обновляется по мере проверки источников и не заменяет официальные документы, приказы и ресурсы МГПУ. Контактные маршруты пока уточнены для студентов ИПКР.</span>
-    </div>
-    <div class="pilot-notice" role="note" id="ieup-liquidation-notice">
-      <span class="pilot-notice-badge">Важно</span>
-      <span class="pilot-notice-text">Институт экономики, управления и права (ИЭУиП) ликвидирован с 01.09.2026 (приказ №225общ от 26.03.2026, вносит изменения в приказ №520общ от 28.04.2025). Часть функций передана в Департамент экономики, управления и права ИГН и в новый Гуманитарно-правовой колледж МГПУ.</span>
     </div>
     <div id="uni-master" class="grid-layout"></div>
     <div id="uni-detail" style="display:none;"></div>
@@ -2357,16 +2458,20 @@ const universityData = [
     ]
   },
   {
+    id: 'ipkr', shortName: 'ИПКР',
     title: "Институт психологии и комплексной реабилитации (ИПКР)",
     color: "--accent",
+    logo: "images/inst/ИПКР.webp",
     email: "ipkr@mgpu.ru",
     director: { name: "Ушакова Елена Викторовна", role: "Директор института", deg: "канд. психол. наук, доцент", photo: "images/people/mgpu/Ushakova-EV.webp" },
     ssiaChair: { name: "Толоконников Кирилл Андреевич", role: "Председатель ССиА ИПКР", photo: "images/people/ssia/Tolokonnikov.webp" },
     campuses: [{ address: "ул. Панфёрова, д. 8, корп. 2", comment: "Основной корпус", coords: [55.680620, 37.542419] }]
   },
   {
+    id: 'ign', shortName: 'ИГН',
     title: "Институт гуманитарных наук (ИГН)",
     color: "--blue",
+    logo: "images/inst/ИГН.webp",
     email: "ign.info@mgpu.ru",
     director: { name: "Кириллов Виктор Васильевич", role: "Директор института", deg: "канд. ист. наук, профессор", photo: "images/people/mgpu/Kirillov-VV.webp" },
     ssiaChair: { name: "Джавахадзе Эмилия Виталиевна", role: "Председатель ССиА ИГН", photo: "images/people/ssia/Dzhavakhadze.webp" },
@@ -2376,8 +2481,10 @@ const universityData = [
     ]
   },
   {
+    id: 'iiya', shortName: 'ИИЯ',
     title: "Институт иностранных языков (ИИЯ)",
     color: "--teal",
+    logo: "images/inst/ИИЯ.webp",
     email: "iiya.info@mgpu.ru",
     director: { name: "Тарева Елена Генриховна", role: "Директор института", deg: "д-р пед. наук, профессор", photo: "images/people/mgpu/Tareva-EG.webp" },
     ssiaChair: { name: "Талдонова Арина Александровна", role: "Председатель ССиА ИИЯ", photo: "images/people/ssia/Taldonova.webp" },
@@ -2387,8 +2494,10 @@ const universityData = [
     ]
   },
   {
+    id: 'iki', shortName: 'ИКИ',
     title: "Институт культуры и искусств (ИКИ)",
     color: "--red",
+    logo: "images/inst/ИКИ.webp",
     email: "iki.info@mgpu.ru",
     director: { name: "Левина Ирина Дмитриевна", role: "Директор института", deg: "канд. пед. наук, доцент", photo: "images/people/mgpu/Levina-ID.webp" },
     ssiaChair: { name: "Носиков Илья Александрович", role: "Председатель ССиА ИКИ", photo: "images/people/ssia/Nosikov.webp" },
@@ -2398,16 +2507,20 @@ const universityData = [
     ]
   },
   {
+    id: 'ippo', shortName: 'ИППО',
     title: "Институт педагогики и психологии образования (ИППО)",
     color: "--brown",
+    logo: "images/inst/ИППО.webp",
     email: "ippo.info@mgpu.ru",
     director: { name: "Савенков Александр Ильич", role: "Директор института", deg: "академик РАО, д-р пед. наук, д-р психол. наук, профессор", photo: "images/people/mgpu/Savenkov-AI.webp" },
     ssiaChair: { name: "Пимнева Ангелина Алексеевна", role: "Председатель ССиА ИППО", photo: "images/people/ssia/Pimneva.webp" },
     campuses: [{ address: "Столярный пер., д. 16, стр. 1", comment: "Основной корпус", coords: [55.764131, 37.566198] }]
   },
   {
+    id: 'gpk', shortName: 'ГПК',
     title: "Гуманитарно-правовой колледж МГПУ",
     color: "--purple",
+    logo: null,
     email: "EfremovaTD@mgpu.ru",
     director: { name: "Ефремова Татьяна Дмитриевна", role: "Директор колледжа", deg: "", photo: null },
     campuses: [
@@ -2416,20 +2529,24 @@ const universityData = [
     ]
   },
   {
+    id: 'iest', shortName: 'ИЕСТ',
     title: "Институт естествознания и спортивных технологий (ИЕСТ)",
     color: "--green",
+    logo: "images/inst/ИЕСТ.webp",
     email: "iest@mgpu.ru",
     director: { name: "Страдзе Александр Эдуардович", role: "Директор института", deg: "д-р социол. наук, профессор", photo: "images/people/mgpu/Stradze-AE.webp" },
     ssiaChair: { name: "Саньков Даниил Дмитриевич", role: "Председатель ССиА ИЕСТ", photo: "images/people/ssia/Sankov.webp" },
     campuses: [
       { address: "ул. Чечулина, д. 1", comment: "Корпус 1", coords: [55.779793, 37.820600] },
       { address: "ул. Чечулина, д. 3, корп. 1", comment: "Основной корпус / Администрация", coords: [55.780243, 37.823888] },
-      { address: "Большая Академическая ул., д. 77А, стр. 1", comment: "Корпус ИЕСТ", coords: [55.844511, 37.551771] }
+      { address: "Большая Академическая ул., д. 77А, стр. 1", comment: "Корпус 2", coords: [55.844511, 37.551771] }
     ]
   },
   {
+    id: 'ico', shortName: 'ИЦО',
     title: "Институт цифрового образования (ИЦО)",
     color: "--slate",
+    logo: "images/inst/ИЦО.webp",
     email: "ide@mgpu.ru",
     director: { name: "Абрамов Владимир Иванович", role: "Директор института", deg: "канд. экон. наук", photo: "images/people/mgpu/Abramov-VI.webp" },
     ssiaChair: { name: "Комиссарова Карина Арсеньевна", role: "Председатель ССиА ИЦО", photo: "images/people/ssia/Komissarova.webp" },
@@ -2438,8 +2555,10 @@ const universityData = [
     ]
   },
   {
+    id: 'ispo', shortName: 'ИСПО',
     title: "Институт среднего профессионального образования им. К.Д. Ушинского (ИСПО)",
     color: "--olive",
+    logo: "images/inst/ИСПО.webp",
     email: "ispo.info@mgpu.ru",
     director: { name: "Ерёмин Сергей Владимирович", role: "Директор института", deg: "канд. пед. наук", photo: "images/people/mgpu/Eremin-SV.webp" },
     ssiaChair: { name: "Кузин Алексей Михайлович", role: "Председатель ССиА ИСПО", photo: "images/people/ssia/Kuzin-AM.webp" },
@@ -2454,9 +2573,11 @@ const universityData = [
     ]
   },
   {
+    id: 'dop', shortName: 'ДОП',
     title: "Дирекция образовательных программ (ДОП)",
     subtitle: "Особый статус: подготовка только магистров",
     color: "--endow",
+    logo: null,
     email: "dep.info@mgpu.ru",
     director: { name: "Никитина Евгения Сергеевна", role: "Директор дирекции", deg: "", photo: "images/people/mgpu/Nikitina-ES.webp" },
     campuses: [
@@ -2465,8 +2586,10 @@ const universityData = [
     ]
   },
   {
+    id: 'samara', shortName: 'Самара',
     title: "Самарский филиал МГПУ",
     color: "--gray",
+    logo: null,
     email: "samara@mgpu.ru",
     director: { name: "Козловская Галина Ефимовна", role: "Директор филиала", deg: "д-р ист. наук, профессор", photo: "images/people/mgpu/Kozlovskaya-GE.webp" },
     campuses: [
@@ -2476,17 +2599,26 @@ const universityData = [
   }
 ];
 
-// Служебные информационные плашки, не привязанные к конкретной институт-карточке
-// (например, про ликвидацию структурного подразделения) — но всё равно findable
-// через doSearch() по keywords.
-const noticesData = [
+// Реорганизованные/ликвидированные подразделения — «архивная память» в сетке
+// раздела «МГПУ». Не действующие институты: без director/ssiaChair/campuses,
+// без полноценной detail-страницы, не участвуют в карте и в подсчёте
+// подразделений. Участвуют в поиске и открывают краткую справку через openSheet().
+const archivedUniversityUnits = [
   {
-    id: 'ieup-liquidation',
-    section: 'uni',
-    anchorId: 'ieup-liquidation-notice',
-    label: 'ИЭУиП ликвидирован',
-    sub: 'Раздел «МГПУ» · с 01.09.2026',
-    keywords: ['иэуип', 'экономики управления и права', 'экономики, управления и права', 'абрамов', 'новокузнецкая', 'ликвидация', 'ликвидирован', 'ликвидирован институт']
+    id: 'ieup-archived',
+    badge: 'РЕОРГАНИЗОВАН',
+    title: 'Институт экономики, управления и права (ИЭУиП)',
+    note: 'С 1 сентября 2026 года Институт ликвидирован согласно Приказу №225общ от 26.03.2026',
+    keywords: ['иэуип', 'институт экономики управления и права', 'экономика', 'управление', 'право', 'абрамов', 'новокузнецкая', 'реорганизация', 'ликвидация', 'ликвидирован'],
+    sheet: {
+      title: 'ИЭУиП: что изменилось?',
+      html: `<ol>
+        <li>Институт экономики, управления и права прекратил существование как самостоятельный институт с 1 сентября 2026 года согласно Приказу №225общ от 26.03.2026.</li>
+        <li>Направление экономики, управления и права продолжило работу в составе Института гуманитарных наук в форме Департамента экономики, управления и права ИГН.</li>
+        <li>Гуманитарно-правовой колледж МГПУ не является новым подразделением. Он существовал ранее и входил в состав ИЭУиП. После изменения структуры Университета колледж вышел из состава ликвидированного института и продолжил работу как самостоятельное структурное подразделение МГПУ.</li>
+        <li>Актуальную информацию о руководстве, контактах и корпусах необходимо смотреть в действующих карточках Института гуманитарных наук и Гуманитарно-правового колледжа МГПУ.</li>
+      </ol>`
+    }
   }
 ];
 
@@ -3035,8 +3167,7 @@ function getCssColor(color) {
 }
 
 function getUniColor(item) {
-  if (!item.color) return 'var(--navy)';
-  return item.color.startsWith('var(') ? item.color : `var(${item.color})`;
+  return getCssColor(item && item.color ? item.color : 'var(--navy)');
 }
 
 function getUniBadge(item) {
@@ -3046,31 +3177,98 @@ function getUniBadge(item) {
   return 'СОСТАВ';
 }
 
+// Убирает конечную аббревиатуру в скобках из заголовка для превью/detail-заголовка,
+// не трогая исходные данные title (используются в поиске, карте и т.д.).
+function stripTrailingAbbr(title) {
+  return (title || '').replace(/\s*\([^()]*\)\s*$/, '').trim();
+}
+
+// Корректное склонение "N корпус/корпуса/корпусов".
+function formatCampusCount(count) {
+  const mod10 = count % 10;
+  const mod100 = count % 100;
+  let word;
+  if (mod100 >= 11 && mod100 <= 14) word = 'корпусов';
+  else if (mod10 === 1) word = 'корпус';
+  else if (mod10 >= 2 && mod10 <= 4) word = 'корпуса';
+  else word = 'корпусов';
+  return `${count} ${word}`;
+}
+
+function handleUniLogoError(img, label) {
+  const fallback = document.createElement('div');
+  fallback.className = 'uni-logo-fallback';
+  fallback.textContent = label || '';
+  img.replaceWith(fallback);
+}
+
+// Рендерит круглый логотип подразделения (или типографический fallback с shortName),
+// context: 'master' (превью-карточка, lazy) | 'detail' (детальная страница).
+function renderUniLogo(item, context) {
+  const label = item.shortName || '';
+  if (item.logo) {
+    const lazyAttrs = context === 'master' ? 'loading="lazy" decoding="async" ' : '';
+    const scaleAttr = item.logoScale ? ` style="--uni-logo-scale:${item.logoScale}"` : '';
+    const escapedLabel = label.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    return `<img class="uni-logo-img" src="${item.logo}" alt="Логотип ${label || item.title}" ${lazyAttrs}${scaleAttr} onerror="handleUniLogoError(this,'${escapedLabel}')">`;
+  }
+  return `<div class="uni-logo-fallback">${label}</div>`;
+}
+
 function renderUniMaster() {
   const master = document.getElementById('uni-master');
-  master.innerHTML = universityData.map((item, idx) => {
+  const unitsHtml = universityData.map((item, idx) => {
     const isPeople = item.kind === 'people';
-    const subtitle = isPeople
-      ? (item.subtitle || '')
-      : (item.director ? item.director.name : (item.subtitle || ''));
-    const countHtml = isPeople
-      ? `<div class="master-card-count">${item.label || 'Состав'}</div>`
-      : (item.campuses && item.campuses.length > 1
-          ? `<div class="master-card-count">${item.campuses.length} корп.</div>`
-          : '');
-    const badge = getUniBadge(item);
+    if (isPeople) {
+      const badge = getUniBadge(item);
+      return `
+        <button type="button" class="master-card uni-master-card--people" data-idx="${idx}" style="border-top-color:${getUniColor(item)}" aria-label="Открыть страницу: ${item.title}">
+          ${badge ? `<div class="luxury-badge">${badge}</div>` : ''}
+          <div class="master-card-title">${item.title}</div>
+          <div class="master-card-sub">${item.subtitle || ''}</div>
+          <div class="master-card-count">${item.label || 'Состав'}</div>
+        </button>
+      `;
+    }
+    const hasCampuses = item.campuses && item.campuses.length > 0;
+    const metaText = item.subtitle || (hasCampuses ? formatCampusCount(item.campuses.length) : '');
+    const directorHtml = item.director
+      ? `<div class="uni-master-card__director"><span>Директор</span>${item.director.name}</div>`
+      : '';
     return `
-      <button type="button" class="master-card" data-idx="${idx}" style="border-top-color:${getUniColor(item)}">
-        ${badge ? `<div class="luxury-badge">${badge}</div>` : ''}
-        <div class="master-card-title">${item.title}</div>
-        <div class="master-card-sub">${subtitle}</div>
-        ${countHtml}
+      <button type="button" class="master-card uni-master-card" data-idx="${idx}" style="--uni-accent:${getUniColor(item)}" aria-label="Открыть страницу: ${item.title}">
+        <div class="uni-master-card__top">
+          <div class="uni-master-card__logo">${renderUniLogo(item, 'master')}</div>
+          <div class="uni-master-card__identity">
+            <div class="uni-master-card__title">${stripTrailingAbbr(item.title)}</div>
+            ${item.shortName ? `<div class="uni-master-card__short">${item.shortName}</div>` : ''}
+          </div>
+        </div>
+        ${directorHtml}
+        ${metaText ? `<div class="uni-master-card__meta">${metaText}</div>` : ''}
       </button>
     `;
   }).join('');
 
-  master.querySelectorAll('.master-card').forEach(card => {
+  const archivedHtml = archivedUniversityUnits.map(unit => `
+    <div class="master-card uni-master-card uni-master-card--archived">
+      <div class="uni-archived-badge">${unit.badge}</div>
+      <div class="uni-master-card__title">${unit.title}</div>
+      <div class="uni-archived-note">${unit.note}</div>
+      <button type="button" class="uni-archived-btn" data-archived-sheet="${unit.id}">Что изменилось?</button>
+    </div>
+  `).join('');
+
+  master.innerHTML = unitsHtml + archivedHtml;
+
+  master.querySelectorAll('.master-card[data-idx]').forEach(card => {
     card.addEventListener('click', () => showInstituteDetail(parseInt(card.dataset.idx)));
+  });
+  master.querySelectorAll('.uni-archived-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const unit = archivedUniversityUnits.find(u => u.id === btn.dataset.archivedSheet);
+      if (unit) openSheet(unit.sheet.title, unit.sheet.html);
+    });
   });
 }
 
@@ -3099,24 +3297,46 @@ function showInstituteDetail(idx) {
     return;
   }
 
-  const d = item.director;
-  const dirCard = renderCard(d, getUniColor(item), { variant: 'director' });
+  const heroHtml = `
+    <div class="uni-detail-hero" style="--uni-accent:${getUniColor(item)}">
+      <div class="uni-detail-logo">${renderUniLogo(item, 'detail')}</div>
+      <div class="uni-detail-heading">
+        ${item.shortName ? `<div class="uni-detail-kicker">${item.shortName}</div>` : ''}
+        <h2 class="uni-detail-title">${stripTrailingAbbr(item.title)}</h2>
+        ${item.subtitle ? `<div class="uni-detail-subtitle">${item.subtitle}</div>` : ''}
+      </div>
+    </div>
+  `;
+
+  const dirCard = item.director ? renderCard(item.director, getUniColor(item), { variant: 'director' }) : '';
   const ssiaHtml = item.ssiaChair ? renderCard(item.ssiaChair, getUniColor(item), { variant: 'ssia-chair' }) : '';
+  const peopleHtml = (dirCard || ssiaHtml) ? `<div class="uni-detail-people">${dirCard}${ssiaHtml}</div>` : '';
+
+  const contactHtml = item.email ? `
+    <div class="uni-detail-contact">
+      ${ICONS.mail}
+      <div><span class="uni-detail-contact-label">Почта подразделения</span><a href="mailto:${item.email}">${item.email}</a></div>
+    </div>
+  ` : '';
+
   const addressesHtml = (item.campuses || []).map(c => `
     <div class="uni-address-item">
-      <span class="uni-addr-text">${c.address}</span>
-      <span class="uni-addr-comment">${c.comment}</span>
+      <span class="uni-addr-text">${c.comment}</span>
+      <span class="uni-addr-comment">${c.address}</span>
     </div>`).join('');
+  const campusesHtml = (item.campuses && item.campuses.length) ? `
+    <section class="uni-detail-section">
+      <div class="uni-detail-section-title">Корпуса</div>
+      <div class="uni-address-list">${addressesHtml}</div>
+    </section>
+  ` : '';
 
   detail.innerHTML = `
     <button class="btn-back" id="uni-back-btn">← Назад</button>
-    <div class="detail-header">
-      <div class="detail-title">${item.title}</div>
-      ${item.subtitle ? `<div class="detail-subtitle">${item.subtitle}</div>` : ''}
-    </div>
-    <div class="grid-layout" style="margin-bottom:16px">${dirCard}${ssiaHtml}</div>
-    <div class="uni-address-list">${addressesHtml}</div>
-    ${item.email ? `<a class="uni-email" href="mailto:${item.email}">✉ ${item.email}</a>` : ''}
+    ${heroHtml}
+    ${peopleHtml}
+    ${contactHtml}
+    ${campusesHtml}
   `;
 
   document.getElementById('uni-back-btn').addEventListener('click', () => history.back());
@@ -3706,7 +3926,10 @@ function doSearch(query) {
     } else {
       const titleMatch = uni.title.toLowerCase().includes(q);
       const dirMatch = uni.director && uni.director.name.toLowerCase().includes(q);
-      if (titleMatch || dirMatch) {
+      const shortMatch = uni.shortName && uni.shortName.toLowerCase().includes(q);
+      const subMatch = uni.subtitle && uni.subtitle.toLowerCase().includes(q);
+      const emailMatch = uni.email && uni.email.toLowerCase().includes(q);
+      if (titleMatch || dirMatch || shortMatch || subMatch || emailMatch) {
         raw.push({
           type: 'uni', uniIdx: uIdx,
           label: uni.title,
@@ -3737,17 +3960,17 @@ function doSearch(query) {
     });
   }
 
-  // Service notices (e.g. liquidated institutes) — searchable by keywords
-  if (typeof noticesData !== 'undefined') {
-    noticesData.forEach(notice => {
-      const haystack = [notice.label, ...(notice.keywords || [])].filter(Boolean).join(' ').toLowerCase();
+  // Archived / reorganized units — searchable, no live detail page
+  if (typeof archivedUniversityUnits !== 'undefined') {
+    archivedUniversityUnits.forEach(unit => {
+      const haystack = [unit.title, unit.note, ...(unit.keywords || [])].filter(Boolean).join(' ').toLowerCase();
       if (haystack.includes(q)) {
         raw.push({
-          type: 'notice',
-          noticeId: notice.id,
-          label: notice.label,
-          sub: notice.sub || '',
-          color: 'var(--accent)'
+          type: 'archived-unit',
+          archivedId: unit.id,
+          label: unit.title,
+          sub: unit.badge,
+          color: 'var(--gray)'
         });
       }
     });
@@ -3794,9 +4017,10 @@ function doSearch(query) {
         } else {
           showHandbookDetail(r.handbookIdx);
         }
-      } else if (r.type === 'notice') {
-        const notice = noticesData.find(n => n.id === r.noticeId);
-        if (notice) switchSection(notice.section);
+      } else if (r.type === 'archived-unit') {
+        switchSection('uni');
+        const unit = archivedUniversityUnits.find(u => u.id === r.archivedId);
+        if (unit) openSheet(unit.sheet.title, unit.sheet.html);
       }
     });
   });
