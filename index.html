@@ -251,6 +251,18 @@ body.dark-theme .avatar-placeholder.avatar-media{background:rgba(40,48,70,.85)}
 .contact-stub{display:inline-flex;align-items:center;font-size:12px;color:var(--tmid);opacity:.6;padding:4px 0;cursor:default;user-select:none}
 .contact-stub::before{content:'✉';margin-right:4px;font-size:13px}
 .card-contact-item{display:flex;align-items:center;gap:6px}
+.card-directions-btn{
+  display:inline-flex;align-items:center;gap:4px;margin-top:10px;
+  padding:6px 14px;border-radius:20px;border:1px solid rgba(42,49,83,.11);
+  background:rgba(42,49,83,.07);color:var(--navy);
+  font-family:var(--font-main);font-size:11px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.04em;cursor:pointer;
+  transition:background .15s,transform .12s;
+}
+.card-directions-btn:hover{background:rgba(42,49,83,.14)}
+.card-directions-btn:active{transform:scale(0.96)}
+body.dark-theme .card-directions-btn{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.10);color:rgba(185,198,240,.80)}
+body.dark-theme .card-directions-btn:hover{background:rgba(255,255,255,.09)}
 .card a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
 .ssia-motto{font-size:14px;font-style:italic;color:var(--navy);text-align:center;margin:0 0 20px;padding:12px 14px;border-top:1px solid rgba(0,0,0,.06);border-bottom:1px solid rgba(0,0,0,.06);font-weight:600}
 body.dark-theme .ssia-motto{color:var(--tdark);border-color:rgba(255,255,255,.08)}
@@ -2056,22 +2068,49 @@ const orgData = [
       'ДКППОРЛ — Департамент клинических, психологических и педагогических основ развития личности'
     ],
     staff: [
-      { name: 'Вдовина Валентина Владимировна', role: '', deg: 'специалист по УМР · каб. 405 · ДООПиРМ', photo: null },
-      { name: 'Горожанкина Оксана Николаевна', role: 'Представительская площадка ИПКР', deg: 'специалист · каб. 202–203 · ДООПиРМ', photo: null },
-      { name: 'Гришина Лилия Игоревна', role: 'Материальная поддержка · социальная стипендия · рассрочка и скидка на обучение', deg: 'специалист · каб. 405 · ДООПиРМ', photo: null },
-      { name: 'Кондратова Мария Александровна', role: '', deg: 'специалист · каб. 406 · ДООПиРМ', photo: null },
-      { name: 'Лебедева Виктория Александровна', role: '', deg: 'специалист по УМР · каб. 405 · ДООПиРМ', photo: null },
-      { name: 'Попова Ольга Владимировна', role: 'Практика студентов', deg: 'специалист · каб. 507 · ДООПиРМ', photo: null },
-      { name: 'Салькова Анна Алексеевна', role: 'Вопросы образовательного процесса', deg: 'специалист, ассистент · каб. 406 · ДООПиРМ', photo: null },
-      { name: 'Соколова Ольга Андреевна', role: '', deg: 'специалист по УМР · каб. 405 · ДООПиРМ', photo: null },
-      { name: 'Григоренко Наталья Юрьевна', role: 'ДПО', deg: 'доц., к. пед. н. · каб. 411 · ДСПТиКРМ', photo: null },
-      { name: 'Миронова Ангелина Валерьевна', role: 'Центр науки и инноваций ИПКР · координатор СНО МГПУ', deg: 'ст. преп. · каб. 410 · ДСПТиКРМ', photo: null },
-      { name: 'Новикова Диана Эдуардовна', role: 'Координатор по организационным вопросам · Telegram и сайт ИПКР', deg: 'ст. преп. · ДСПТиКРМ', photo: 'images/people/mgpu/Novikova.webp' },
-      { name: 'Павлова Анна Сергеевна', role: 'Профбюро', deg: 'доц., к. пс. н. · каб. 503 · ДСПТиКРМ', photo: null },
-      { name: 'Рыкова Елена Алексеевна', role: 'Ответственная за конкурсы в институте', deg: 'ст. преп. · ДСПТиКРМ', photo: null },
-      { name: 'Баранова Екатерина Михайловна', role: 'Международная деятельность ИПКР', deg: 'доц., к. пед. н. · каб. 410 · ДКППОРЛ', photo: null },
-      { name: 'Хорошавина Екатерина Владимировна', role: 'Аспирантура', deg: 'ст. преп., к. пед. н. · ДСПТиКРМ', photo: null },
-      { name: 'Черешнева Виктория Евгеньевна', role: 'Ответственный секретарь приёмной комиссии ИПКР', deg: 'доц., к. пед. н. · ДСПТиКРМ', photo: null }
+      { name: 'Титова Оксана Владимировна', role: 'Сопровождение мероприятий для преподавателей', deg: 'доц., к. пед. н.', phone: '+7 (499) 134-50-05', email: 'titovaov@mgpu.ru', room: 'каб. 410', photo: null },
+      { name: 'Миронова Ангелина Валерьевна', role: 'Сопровождение мероприятий для студентов', deg: 'ст. преп.', phone: '+7 (499) 134-50-05', email: 'mironovaav@mgpu.ru', room: 'каб. 410', photo: null },
+      { name: 'Лебедева Виктория Александровна', role: 'Сопровождение деятельности Департамента социально-психологических технологий и коррекционно-развивающих методик', deg: 'специалист', phone: '+7 (499) 134-50-05', email: 'lebedevav@mgpu.ru', room: 'каб. 405', photo: null,
+        keywords: ['практика'],
+        directions: ['Координация практики студентов', 'Формирование перечня баз практики', 'Сопровождение договоров по практике', 'Организация конференций по практике', 'Сопровождение отчётной документации по практике']
+      },
+      { name: 'Кондратова Мария Александровна', role: 'Сопровождение деятельности Департамента клинических, психологических и педагогических основ развития личности', deg: 'специалист', phone: '+7 (499) 134-50-05', email: 'kondratovama@mgpu.ru', room: 'каб. 405', photo: null,
+        keywords: ['практика'],
+        directions: ['Координация практики студентов', 'Формирование перечня баз практики', 'Сопровождение договоров по практике', 'Организация конференций по практике', 'Сопровождение отчётной документации по практике']
+      },
+      { name: 'Хорошавина Екатерина Владимировна', role: 'Сопровождение аспирантуры', deg: 'доц., к. пед. н.', phone: '+7 (499) 134-50-05', email: 'khoroshavinaev@mgpu.ru', room: 'каб. 410', photo: null },
+      { name: 'Баранова Екатерина Михайловна', role: 'Координация международной деятельности студентов', deg: 'доц., к. пед. н.', phone: '+7 (499) 134-50-05', email: 'baranov-244@mgpu.ru', room: 'каб. 410', photo: null },
+      { name: 'Львова Светлана Владимировна', role: 'Ответственный за организацию добровольчества и грантовой деятельности студентов', deg: 'доц., к. пс. н.', phone: '+7 (499) 134-50-05', email: 'lvovasv@mgpu.ru', room: 'каб. 411', photo: null, keywords: ['гранты'] },
+      { name: 'Пыченкова Анастасия Александровна', role: 'Ответственный по профориентации и трудоустройству обучающихся', deg: 'ассистент', phone: '+7 (499) 134-50-05', email: 'pychenkovaaa@mgpu.ru', room: 'каб. 411', photo: null, keywords: ['трудоустройство'] },
+      { name: 'Мануйлова Виктория Викторовна', role: 'Координатор по науке и инновациям', deg: 'проф., д. пед. н.', phone: '+7 (499) 132-05-62', email: 'manuilovavv@mgpu.ru', room: 'каб. 412', photo: 'images/people/mgpu/Manujlova.webp',
+        keywords: ['наука'],
+        directions: ['Координация научной и исследовательской деятельности студентов', 'Сопровождение международной научно-исследовательской деятельности студентов', 'Организация научно-практических мероприятий', 'Сопровождение публикационной активности студентов', 'Сопровождение молодых педагогов и учёных', 'Координация обучения в аспирантуре']
+      },
+      { name: 'Новикова Диана Эдуардовна', role: 'Координатор по общим вопросам и медиапланированию', deg: 'ст. преп.', phone: '+7 (499) 134-05-62', email: 'novikovade@mgpu.ru', room: 'каб. 409', photo: 'images/people/mgpu/Novikova.webp',
+        directions: ['Консультации по общим вопросам', 'Работа с обращениями', 'Продвижение института в медийном пространстве']
+      },
+      { name: 'Журавлёва Жанна Игоревна', role: 'Координатор по вопросам организации работы с молодёжью · координатор линии психологической поддержки МГПУ', deg: 'доц., к. пс. н.', phone: '+7 (499) 132-05-62', email: 'JuravlevaJ@mgpu.ru', room: 'каб. 411', photo: 'images/people/mgpu/Juravleva-JI.webp',
+        directions: ['Студенческие активности и инициативы', 'Внеучебная деятельность', 'Мероприятия для студентов', 'Наставничество и кураторство', 'Перевод студентов на бюджетную основу обучения', 'Материальная помощь и поддержка', 'Сопровождение обучающихся с инвалидностью и других льготных категорий студентов']
+      },
+      { name: 'Гришина Лилия Игоревна', role: 'Департамент организации образовательного процесса и работы с молодёжью', deg: 'специалист', phone: '+7 (499) 134-50-05', email: 'dokukinali688@mgpu.ru', room: 'каб. 405', photo: null,
+        directions: ['Академическая стипендия', 'Социальная стипендия', 'Снижение стоимости платных образовательных услуг и предоставление рассрочки по их оплате', 'Обучение на внебюджетной основе', 'Перевод студентов на бюджетную основу обучения', 'Сопровождение по вопросам ликвидации академических задолженностей и обучения по индивидуальному плану']
+      },
+      { name: 'Горожанкина Оксана Николаевна', role: 'Департамент организации образовательного процесса и работы с молодёжью', deg: 'специалист', phone: '+7 (499) 134-50-05', email: 'lynnikon508@mgpu.ru', room: 'каб. 202', photo: null,
+        directions: ['Координация деятельности презентационной площадки', 'Организация практических занятий на презентационной площадке', 'Продвижение проектной деятельности среди студентов, преподавателей и образовательных организаций']
+      },
+      { name: 'Парамонова Галина Витальевна', role: 'Начальник Департамента организации образовательного процесса и работы с молодёжью', deg: 'ст. преп.', phone: '+7 (499) 134-50-05', email: 'paramonovag@mgpu.ru', room: 'каб. 406', photo: 'images/people/mgpu/Paramonova-GV.webp',
+        directions: ['Расписание занятий', 'Расписание зачётно-экзаменационной сессии', 'Расписание элективных курсов', 'Распределение аудиторий', 'Сопровождение индивидуальных планов обучения', 'Аттестация', 'Перевод на образовательные программы', 'Отчисление', 'Академический отпуск']
+      },
+      { name: 'Овчаренко Лариса Юрьевна', role: 'Начальник Департамента клинических, психологических и педагогических основ развития личности', deg: 'доц., к. пс. н.', phone: '+7 (499) 134-50-05', email: 'ovcharenkolu@mgpu.ru', room: 'каб. 402', photo: 'images/people/mgpu/Ovcharenko-LY.webp',
+        directions: ['Сопровождение образовательных программ', 'Сопровождение студентов']
+      },
+      { name: 'Ушакова Елена Викторовна', role: 'Директор Института психологии и комплексной реабилитации', deg: 'доц., к. пс. н.', phone: '+7 (499) 132-05-62', email: 'ushakova@mgpu.ru', room: 'каб. 408', photo: 'images/people/mgpu/Ushakova-EV.webp' },
+      { name: 'Яковлева Ирина Михайловна', role: 'Начальник Департамента социально-психологических технологий и коррекционно-развивающих методик', deg: 'проф., д. пед. н.', phone: '+7 (499) 134-50-05', email: 'yakovlevaim@mgpu.ru', room: 'каб. 403', photo: 'images/people/mgpu/Yakovleva-IM.webp',
+        directions: ['Сопровождение образовательных программ', 'Сопровождение студентов']
+      },
+      { name: 'Ушаков Константин Валериевич', role: 'Начальник отдела развития ресурсного обеспечения образовательного процесса', deg: '', phone: '+7 (499) 134-55-42', email: 'ushakovkv@mgpu.ru', room: 'каб. 101а', photo: null,
+        directions: ['Организация пространства института', 'Осуществление технической поддержки', 'Материально-техническое обеспечение здания института']
+      }
     ]
   },
   {
@@ -2089,7 +2128,7 @@ const orgData = [
       { name: 'Гришина Лилия Игоревна', role: 'Материальная поддержка · социальная стипендия · рассрочка и скидка на обучение', deg: 'специалист · каб. 405', photo: null },
       { name: 'Кондратова Мария Александровна', role: '', deg: 'специалист · каб. 406', photo: null },
       { name: 'Лебедева Виктория Александровна', role: '', deg: 'специалист по УМР · каб. 405', photo: null },
-      { name: 'Попова Ольга Владимировна', role: 'Практика студентов', deg: 'специалист · каб. 507', photo: null },
+      { name: 'Попова Ольга Владимировна', role: 'специалист Департамента организации образовательного процесса и работы с молодёжью', deg: 'специалист · каб. 507', photo: null },
       { name: 'Салькова Анна Алексеевна', role: 'Вопросы образовательного процесса', deg: 'специалист, ассистент · каб. 406', photo: null },
       { name: 'Соколова Ольга Андреевна', role: '', deg: 'специалист по УМР · каб. 405', photo: null }
     ]
@@ -2872,6 +2911,9 @@ function renderCard(person, color, options = {}) {
     ${person.scheduleNote ? `<span class="schedule-note">${ICONS.warning} ${person.scheduleNote}</span>` : ''}
     ${person.schedule.map(s => `<div class="schedule-line"><span>${s.label}</span> <strong>${s.time}</strong></div>`).join('')}
   </div>` : '';
+  const directionsHtml = (person.directions && person.directions.length)
+    ? `<button type="button" class="card-directions-btn" data-directions-for="${person.name}">Направления работы</button>`
+    : '';
   const deputyClass = person.featured === 'deputy' ? ' staff-card--deputy' : '';
   const ipkrDirectorClass = person.featured === 'ipkr-director' ? ' staff-card--ipkr-director' : '';
   const deptHeadClass = person.featured === 'dept-head' ? ' staff-card--dept-head' : '';
@@ -2891,6 +2933,7 @@ function renderCard(person, color, options = {}) {
       ${person.note ? `<div class="deg" style="margin-top:3px">${person.note}</div>` : ''}
       ${contactsHtml}
       ${scheduleHtml}
+      ${directionsHtml}
     </div>
   </div>`;
 }
@@ -3340,6 +3383,21 @@ document.addEventListener('click', e => {
 });
 
 document.addEventListener('click', e => {
+  const btn = e.target.closest('.card-directions-btn');
+  if (!btn) return;
+  const name = btn.dataset.directionsFor;
+  let person = null;
+  for (const section of orgData) {
+    if (!section.staff) continue;
+    person = section.staff.find(p => p.name === name && p.directions && p.directions.length);
+    if (person) break;
+  }
+  if (!person) return;
+  const html = '<ul>' + person.directions.map(d => `<li>${d}</li>`).join('') + '</ul>';
+  openSheet(person.name, html);
+});
+
+document.addEventListener('click', e => {
   const galleryBtn = e.target.closest('.hb-gallery-img-btn');
   if (galleryBtn) {
     const src = galleryBtn.dataset.imgFull;
@@ -3601,7 +3659,11 @@ function doSearch(query) {
     if (section.hidden) return;
     section.staff.forEach(person => {
       if (person.divider || person.vacant || person.hidden || !person.name) return;
-      if (person.name.toLowerCase().includes(q)) {
+      const haystack = [
+        person.name, person.role, person.email, person.room,
+        ...(person.directions || []), ...(person.keywords || [])
+      ].filter(Boolean).join(' ').toLowerCase();
+      if (haystack.includes(q)) {
         raw.push({
           type: 'ipkr', sectionIdx: sIdx,
           label: person.name,
