@@ -1302,57 +1302,65 @@ body.dark-theme .russia-day-notice-title{color:rgba(248,250,255,.96);}
 @media(prefers-reduced-motion:reduce){
   .russia-day-marquee-track{animation:none;padding-left:16px;}
 }
-/* ── Tech notice marquee ── */
-.tech-notice-marquee{display:none}
-body.tech-notice-active .tech-notice-marquee{
+/* ── Site notices: unified banner system (technical / seasonal / …) ── */
+.site-notice-marquee{display:none}
+body.site-notice-marquee-active .site-notice-marquee{
   display:block;overflow:hidden;
   height:34px;line-height:34px;
-  background:rgba(122,15,24,.95);
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
   border-bottom:1px solid rgba(255,255,255,.15);
   color:#fff;
   font-family:var(--font-main);font-size:13px;font-weight:700;
   letter-spacing:.03em;white-space:nowrap;
 }
-.tech-notice-marquee-track{
+body.site-notice-theme-technical .site-notice-marquee{background:rgba(122,15,24,.95)}
+body.site-notice-theme-seasonal .site-notice-marquee{background:rgba(251,112,11,.95)}
+.site-notice-marquee-track{
   display:inline-flex;align-items:center;
   gap:40px;min-width:max-content;
   padding-left:100%;
-  animation:techNoticeMarquee 18s linear infinite;
+  animation:siteNoticeMarquee 18s linear infinite;
 }
-.tech-notice-marquee-track span::after{content:"•";margin-left:40px;opacity:.55;}
-@keyframes techNoticeMarquee{
+.site-notice-marquee-track span::after{content:"•";margin-left:40px;opacity:.55;}
+@keyframes siteNoticeMarquee{
   from{transform:translateX(0)}
   to{transform:translateX(-50%)}
 }
 @media(max-width:767px){
-  body.tech-notice-active .tech-notice-marquee{height:30px;line-height:30px;font-size:12px;}
-  .tech-notice-marquee-track{gap:24px;animation-duration:13s;}
-  .tech-notice-marquee-track span::after{margin-left:24px;}
+  body.site-notice-marquee-active .site-notice-marquee{height:30px;line-height:30px;font-size:12px;}
+  .site-notice-marquee-track{gap:24px;animation-duration:13s;}
+  .site-notice-marquee-track span::after{margin-left:24px;}
 }
 @media(prefers-reduced-motion:reduce){
-  .tech-notice-marquee-track{animation:none;padding-left:16px;}
+  .site-notice-marquee-track{animation:none;padding-left:16px;}
 }
-/* ── Tech notice modal (reuses .update-modal structure) ── */
-.tech-notice-modal-card{
-  background:linear-gradient(165deg,#8a1220,#5c0c16);
-  color:#fff;
+/* Modal (reuses .update-modal structure) */
+.site-notice-modal--technical .site-notice-modal-card{
+  background:linear-gradient(165deg,#8a1220,#5c0c16);color:#fff;
 }
-body.dark-theme .tech-notice-modal-card{
+body.dark-theme .site-notice-modal--technical .site-notice-modal-card{
   background:linear-gradient(165deg,#8a1220,#5c0c16);
   border-top:1px solid rgba(255,255,255,.12);
 }
-.tech-notice-modal-close{background:rgba(255,255,255,.16);color:#fff}
-.tech-notice-modal-close:hover{background:rgba(255,255,255,.26)}
-body.dark-theme .tech-notice-modal-close{background:rgba(255,255,255,.16);color:#fff}
-.tech-notice-modal-badge{background:rgba(255,255,255,.22);color:#fff}
-.tech-notice-modal-title{color:#fff}
-body.dark-theme .tech-notice-modal-title{color:#fff}
-.tech-notice-modal-sub{color:rgba(255,255,255,.92);margin:0 0 12px}
-body.dark-theme .tech-notice-modal-sub{color:rgba(255,255,255,.92)}
-.tech-notice-modal-sign{color:#fff;font-weight:700;margin:14px 0 20px}
-.tech-notice-modal-btn{background:#fff;color:#7a0f18;font-weight:700}
-.tech-notice-modal-btn:hover{opacity:.9}
+.site-notice-modal--seasonal .site-notice-modal-card{
+  background:linear-gradient(165deg,var(--accent),#c95f17);color:#fff;
+}
+body.dark-theme .site-notice-modal--seasonal .site-notice-modal-card{
+  background:linear-gradient(165deg,var(--accent),#c95f17);
+  border-top:1px solid rgba(255,255,255,.12);
+}
+.site-notice-modal-close{background:rgba(255,255,255,.16);color:#fff}
+.site-notice-modal-close:hover{background:rgba(255,255,255,.26)}
+body.dark-theme .site-notice-modal-close{background:rgba(255,255,255,.16);color:#fff}
+.site-notice-modal-badge{background:rgba(255,255,255,.22);color:#fff}
+.site-notice-modal-title{color:#fff}
+body.dark-theme .site-notice-modal-title{color:#fff}
+.site-notice-modal-body p{margin:0 0 12px;font-size:13px;line-height:1.5;color:rgba(255,255,255,.92)}
+.site-notice-modal-sign{color:#fff;font-weight:700;margin:14px 0 20px}
+.site-notice-modal-btn{background:#fff;font-weight:700}
+.site-notice-modal--technical .site-notice-modal-btn{color:#7a0f18}
+.site-notice-modal--seasonal .site-notice-modal-btn{color:var(--accent)}
+.site-notice-modal-btn:hover{opacity:.9}
 /* ── Accessibility: text contrast improvements ─────────────────── */
 body.dark-theme .home-hero-subtitle{color:rgba(225,232,255,.82);}
 body.dark-theme .home-hero-lead{color:rgba(210,220,245,.76);}
@@ -1625,12 +1633,12 @@ body.dark-theme .a11y-btn:hover{background:rgba(255,255,255,.12)}
   <div id="search-results"></div>
 </div>
 
-<div class="tech-notice-marquee" aria-label="Уведомление о технических работах">
-  <div class="tech-notice-marquee-track">
-    <span>⚠️ ВНИМАНИЕ! На сайте ведутся технические работы, вся информация обновляется ⚠️</span>
-    <span>⚠️ ВНИМАНИЕ! На сайте ведутся технические работы, вся информация обновляется ⚠️</span>
-    <span>⚠️ ВНИМАНИЕ! На сайте ведутся технические работы, вся информация обновляется ⚠️</span>
-    <span>⚠️ ВНИМАНИЕ! На сайте ведутся технические работы, вся информация обновляется ⚠️</span>
+<div class="site-notice-marquee" aria-label="Уведомление">
+  <div class="site-notice-marquee-track">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
 </div>
 
@@ -1864,17 +1872,16 @@ body.dark-theme .a11y-btn:hover{background:rgba(255,255,255,.12)}
   </div>
 </div>
 
-<!-- Tech notice Modal -->
-<div id="tech-notice-modal" class="update-modal tech-notice-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="tech-notice-modal-title" inert>
-  <div class="update-modal-card tech-notice-modal-card">
-    <button id="tech-notice-modal-close" class="update-modal-close tech-notice-modal-close" type="button" aria-label="Закрыть уведомление">×</button>
-    <div class="update-modal-badge tech-notice-modal-badge">‼️ ВНИМАНИЕ ‼️</div>
-    <h2 class="update-modal-title tech-notice-modal-title" id="tech-notice-modal-title">Привет, Студент!</h2>
-    <p class="update-modal-sub tech-notice-modal-sub">Сейчас на сайте ведутся серьёзные технические работы, некоторая информация устарела, но мы стараемся обновить её как можно скорее! 🫶<br>Рекомендуем проверять информацию через официальные ресурсы Московского городского!</p>
-    <p class="update-modal-sub tech-notice-modal-sub">Приносим свои извинения за временные трудности 🙏</p>
-    <p class="tech-notice-modal-sign">Твой Совет 💙</p>
+<!-- Site notice Modal (unified: technical / seasonal) -->
+<div id="site-notice-modal" class="update-modal site-notice-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="site-notice-modal-title" inert>
+  <div class="update-modal-card site-notice-modal-card">
+    <button id="site-notice-modal-close" class="update-modal-close site-notice-modal-close" type="button" aria-label="Закрыть уведомление">×</button>
+    <div class="update-modal-badge site-notice-modal-badge" id="site-notice-modal-badge"></div>
+    <h2 class="update-modal-title site-notice-modal-title" id="site-notice-modal-title"></h2>
+    <div class="site-notice-modal-body" id="site-notice-modal-body"></div>
+    <p class="site-notice-modal-sign" id="site-notice-modal-sign"></p>
     <div class="update-modal-actions">
-      <button class="update-modal-btn tech-notice-modal-btn" type="button" id="tech-notice-dismiss">OK</button>
+      <button class="update-modal-btn site-notice-modal-btn" type="button" id="site-notice-dismiss">OK</button>
     </div>
   </div>
 </div>
@@ -1917,21 +1924,56 @@ function shouldEnableRussiaDay() {
 }
 if (shouldEnableRussiaDay()) document.body.classList.add('russia-day');
 
-// ── Tech notice window ──
-function isTechNoticeWindow() {
-  var start = new Date('2026-09-02T12:10:00+03:00').getTime();
-  var end   = new Date('2026-09-12T12:00:00+03:00').getTime();
-  var now   = Date.now();
-  return now >= start && now <= end;
-}
-function shouldEnableTechNotice() {
+// ── Site notices: unified banner system ──
+// Each entry: id, theme ('technical'|'seasonal'), start/end (ISO, half-open window
+// now>=start && now<end), marquee text, and an optional modal (popup shown once
+// per session). Array order = priority when several notices are active at once:
+// the first active notice sets the marquee colour, and the first active notice
+// that HAS a modal is the one that gets shown as a popup.
+var SITE_NOTICES = [
+  {
+    id: 'technical-2026-09',
+    theme: 'technical',
+    start: '2026-09-02T12:10:00+03:00',
+    end:   '2026-09-12T12:00:00+03:00',
+    marquee: '⚠️ ВНИМАНИЕ! На сайте ведутся технические работы, вся информация обновляется ⚠️',
+    modal: {
+      badge: '‼️ ВНИМАНИЕ ‼️',
+      title: 'Привет, Студент!',
+      html: '<p>Сейчас на сайте ведутся серьёзные технические работы, некоторая информация устарела, но мы стараемся обновить её как можно скорее! 🫶<br>Рекомендуем проверять информацию через официальные ресурсы Московского городского!</p><p>Приносим свои извинения за временные трудности 🙏</p>',
+      sign: 'Твой Совет 💙',
+      btn: 'OK'
+    }
+  },
+  {
+    id: 'seasonal-2026-09-back-to-school',
+    theme: 'seasonal',
+    start: '2026-09-02T12:00:00+03:00',
+    end:   '2026-09-15T12:00:00+03:00',
+    marquee: '🎓 Поздравляем с началом нового учебного года! 🎓',
+    modal: null
+  }
+];
+function getActiveSiteNotices() {
   var p = new URLSearchParams(window.location.search);
-  var f = p.get('techNotice');
-  if (f === '1') return true;
-  if (f === '0') return false;
-  return isTechNoticeWindow();
+  var forced = p.get('siteNotice');
+  if (forced === '0') return [];
+  if (forced) {
+    var byId = SITE_NOTICES.filter(function(n){ return n.id === forced; });
+    if (byId.length) return byId;
+  }
+  var now = Date.now();
+  return SITE_NOTICES.filter(function(n){
+    var s = new Date(n.start).getTime();
+    var e = new Date(n.end).getTime();
+    return now >= s && now < e;
+  });
 }
-if (shouldEnableTechNotice()) document.body.classList.add('tech-notice-active');
+var activeSiteNotices = getActiveSiteNotices();
+if (activeSiteNotices.length) {
+  document.body.classList.add('site-notice-marquee-active');
+  document.body.classList.add('site-notice-theme-' + activeSiteNotices[0].theme);
+}
 
 // ═══════════════════════════════════════════
 //  DATA
@@ -3413,7 +3455,7 @@ window.addEventListener('resize', handleNavAutoHide);
 function getStickyTopOffset() {
   const header = document.querySelector('.site-header');
   const nav = document.querySelector('.main-nav');
-  const marquees = document.querySelectorAll('.russia-day-marquee, .tech-notice-marquee');
+  const marquees = document.querySelectorAll('.russia-day-marquee, .site-notice-marquee');
   let offset = 0;
   if (header) offset += header.getBoundingClientRect().height || 0;
   marquees.forEach(marquee => {
@@ -4097,15 +4139,37 @@ addSwipeToDismiss(document.getElementById('handbook-detail'));
   });
 })();
 
-/* ── Tech notice modal ── */
+/* ── Site notices: render marquee text + optional modal ── */
 (function(){
-  if (!shouldEnableTechNotice()) return;
-  var DISMISS_KEY = 'pu_tech_notice_dismissed';
+  var notices = window.activeSiteNotices || [];
+  if (!notices.length) return;
+
+  var marqueeText = notices.map(function(n){ return n.marquee; }).join('   •   ');
+  document.querySelectorAll('.site-notice-marquee-track span').forEach(function(span){
+    span.textContent = marqueeText;
+  });
+
+  var modalNotice = null;
+  for (var i = 0; i < notices.length; i++) {
+    if (notices[i].modal) { modalNotice = notices[i]; break; }
+  }
+  if (!modalNotice) return;
+
+  var DISMISS_KEY = 'pu_site_notice_dismissed_' + modalNotice.id;
   var dismissed = false;
   try { dismissed = sessionStorage.getItem(DISMISS_KEY) === '1'; } catch(e){}
   if (dismissed) return;
-  var modal = document.getElementById('tech-notice-modal');
+
+  var modal = document.getElementById('site-notice-modal');
   if (!modal) return;
+
+  document.getElementById('site-notice-modal-badge').textContent = modalNotice.modal.badge;
+  document.getElementById('site-notice-modal-title').textContent = modalNotice.modal.title;
+  document.getElementById('site-notice-modal-body').innerHTML = modalNotice.modal.html;
+  document.getElementById('site-notice-modal-sign').textContent = modalNotice.modal.sign;
+  document.getElementById('site-notice-dismiss').textContent = modalNotice.modal.btn;
+  modal.classList.add('site-notice-modal--' + modalNotice.theme);
+
   modal.removeAttribute('inert');
   requestAnimationFrame(function(){
     modal.classList.add('active');
@@ -4119,8 +4183,8 @@ addSwipeToDismiss(document.getElementById('handbook-detail'));
     document.body.classList.remove('modal-open');
     try { sessionStorage.setItem(DISMISS_KEY,'1'); } catch(e){}
   }
-  document.getElementById('tech-notice-modal-close').addEventListener('click', dismiss);
-  document.getElementById('tech-notice-dismiss').addEventListener('click', dismiss);
+  document.getElementById('site-notice-modal-close').addEventListener('click', dismiss);
+  document.getElementById('site-notice-dismiss').addEventListener('click', dismiss);
   modal.addEventListener('click', function(e){ if (e.target === modal) dismiss(); });
   document.addEventListener('keydown', function(e){
     if (e.key === 'Escape' && modal.classList.contains('active')) dismiss();
