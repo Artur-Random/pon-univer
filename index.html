@@ -489,7 +489,7 @@ body.dark-theme .uni-master-card__logo{background:rgba(255,255,255,.94)}
 /* border-radius живёт на img/fallback, а не на overflow:hidden родителе — так надёжнее
    рендерится сильное уменьшение больших исходников в некоторых браузерных движках */
 .uni-master-card__logo img,.uni-detail-logo img{
-  width:100%;height:100%;object-fit:cover;object-position:center;display:block;
+  width:100%;height:100%;object-fit:cover;object-position:var(--uni-logo-position,center);display:block;
   border-radius:50%;transform:scale(var(--uni-logo-scale,1.12));
 }
 .uni-logo-fallback{
@@ -2589,7 +2589,7 @@ const universityData = [
     id: 'samara', shortName: 'Самара',
     title: "Самарский филиал МГПУ",
     color: "--gray",
-    logo: null,
+    logo: "images/inst/Самара.webp", logoScale: 1.7, logoPosition: "65% 85%",
     email: "samara@mgpu.ru",
     director: { name: "Козловская Галина Ефимовна", role: "Директор филиала", deg: "д-р ист. наук, профессор", photo: "images/people/mgpu/Kozlovskaya-GE.webp" },
     campuses: [
@@ -3208,9 +3208,12 @@ function renderUniLogo(item, context) {
   const label = item.shortName || '';
   if (item.logo) {
     const lazyAttrs = context === 'master' ? 'loading="lazy" decoding="async" ' : '';
-    const scaleAttr = item.logoScale ? ` style="--uni-logo-scale:${item.logoScale}"` : '';
+    const styleParts = [];
+    if (item.logoScale) styleParts.push(`--uni-logo-scale:${item.logoScale}`);
+    if (item.logoPosition) styleParts.push(`--uni-logo-position:${item.logoPosition}`);
+    const styleAttr = styleParts.length ? ` style="${styleParts.join(';')}"` : '';
     const escapedLabel = label.replace(/'/g, "\\'").replace(/"/g, '&quot;');
-    return `<img class="uni-logo-img" src="${item.logo}" alt="Логотип ${label || item.title}" ${lazyAttrs}${scaleAttr} onerror="handleUniLogoError(this,'${escapedLabel}')">`;
+    return `<img class="uni-logo-img" src="${item.logo}" alt="Логотип ${label || item.title}" ${lazyAttrs}${styleAttr} onerror="handleUniLogoError(this,'${escapedLabel}')">`;
   }
   return `<div class="uni-logo-fallback">${label}</div>`;
 }
