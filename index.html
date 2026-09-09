@@ -521,11 +521,12 @@ body.dark-theme .uni-master-card__title{color:var(--tdark)}
 }
 .uni-master-card--archived:hover{transform:none;box-shadow:var(--shadow-layered),inset 0 1px 0 rgba(255,255,255,.85)}
 .uni-archived-badge{
-  display:inline-flex;width:fit-content;padding:4px 9px;border-radius:999px;
+  display:inline-flex;width:fit-content;margin-bottom:4px;padding:4px 9px;border-radius:999px;
   font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
   color:#7a5b0a;background:rgba(180,140,20,.14);border:1px solid rgba(180,140,20,.30);
 }
 body.dark-theme .uni-archived-badge{color:#e6c869;background:rgba(226,194,102,.12);border-color:rgba(226,194,102,.26)}
+.uni-master-card__logo--archived img{filter:grayscale(1) contrast(.92)}
 .uni-master-card--archived .uni-master-card__title{font-size:14.5px;color:var(--tmid)}
 .uni-archived-note{font-size:12.5px;color:var(--tmid);line-height:1.5}
 .uni-archived-btn{
@@ -2589,7 +2590,7 @@ const universityData = [
     id: 'samara', shortName: 'Самара',
     title: "Самарский филиал МГПУ",
     color: "--gray",
-    logo: "images/inst/Самара.webp", logoScale: 1.7, logoPosition: "65% 85%",
+    logo: "images/inst/Самара.webp", logoScale: 1.15, logoPosition: "62% 78%",
     email: "samara@mgpu.ru",
     director: { name: "Козловская Галина Ефимовна", role: "Директор филиала", deg: "д-р ист. наук, профессор", photo: "images/people/mgpu/Kozlovskaya-GE.webp" },
     campuses: [
@@ -2608,6 +2609,8 @@ const archivedUniversityUnits = [
     id: 'ieup-archived',
     badge: 'РЕОРГАНИЗОВАН',
     title: 'Институт экономики, управления и права (ИЭУиП)',
+    shortName: 'ИЭУиП',
+    logo: 'images/inst/ИЭУиП.webp',
     note: 'С 1 сентября 2026 года Институт ликвидирован согласно Приказу №225общ от 26.03.2026',
     keywords: ['иэуип', 'институт экономики управления и права', 'экономика', 'управление', 'право', 'абрамов', 'новокузнецкая', 'реорганизация', 'ликвидация', 'ликвидирован'],
     sheet: {
@@ -3218,51 +3221,80 @@ function renderUniLogo(item, context) {
   return `<div class="uni-logo-fallback">${label}</div>`;
 }
 
+// Подразделения без собственной образовательной программы ВО/СПО — рендерятся
+// последними, после институтов (и архивной карточки ИЭУиП среди них).
+const UNI_OTHER_GROUP_IDS = ['gpk', 'dop', 'samara'];
+
+function renderPeopleCard(item, idx) {
+  const badge = getUniBadge(item);
+  return `
+    <button type="button" class="master-card uni-master-card--people" data-idx="${idx}" style="border-top-color:${getUniColor(item)}" aria-label="Открыть страницу: ${item.title}">
+      ${badge ? `<div class="luxury-badge">${badge}</div>` : ''}
+      <div class="master-card-title">${item.title}</div>
+      <div class="master-card-sub">${item.subtitle || ''}</div>
+      <div class="master-card-count">${item.label || 'Состав'}</div>
+    </button>
+  `;
+}
+
+function renderInstituteCard(item, idx) {
+  const hasCampuses = item.campuses && item.campuses.length > 0;
+  const metaText = item.subtitle || (hasCampuses ? formatCampusCount(item.campuses.length) : '');
+  const directorHtml = item.director
+    ? `<div class="uni-master-card__director"><span>Директор</span>${item.director.name}</div>`
+    : '';
+  return `
+    <button type="button" class="master-card uni-master-card" data-idx="${idx}" style="--uni-accent:${getUniColor(item)}" aria-label="Открыть страницу: ${item.title}">
+      <div class="uni-master-card__top">
+        <div class="uni-master-card__logo">${renderUniLogo(item, 'master')}</div>
+        <div class="uni-master-card__identity">
+          <div class="uni-master-card__title">${stripTrailingAbbr(item.title)}</div>
+          ${item.shortName ? `<div class="uni-master-card__short">${item.shortName}</div>` : ''}
+        </div>
+      </div>
+      ${directorHtml}
+      ${metaText ? `<div class="uni-master-card__meta">${metaText}</div>` : ''}
+    </button>
+  `;
+}
+
 function renderUniMaster() {
   const master = document.getElementById('uni-master');
-  const unitsHtml = universityData.map((item, idx) => {
-    const isPeople = item.kind === 'people';
-    if (isPeople) {
-      const badge = getUniBadge(item);
-      return `
-        <button type="button" class="master-card uni-master-card--people" data-idx="${idx}" style="border-top-color:${getUniColor(item)}" aria-label="Открыть страницу: ${item.title}">
-          ${badge ? `<div class="luxury-badge">${badge}</div>` : ''}
-          <div class="master-card-title">${item.title}</div>
-          <div class="master-card-sub">${item.subtitle || ''}</div>
-          <div class="master-card-count">${item.label || 'Состав'}</div>
-        </button>
-      `;
-    }
-    const hasCampuses = item.campuses && item.campuses.length > 0;
-    const metaText = item.subtitle || (hasCampuses ? formatCampusCount(item.campuses.length) : '');
-    const directorHtml = item.director
-      ? `<div class="uni-master-card__director"><span>Директор</span>${item.director.name}</div>`
-      : '';
-    return `
-      <button type="button" class="master-card uni-master-card" data-idx="${idx}" style="--uni-accent:${getUniColor(item)}" aria-label="Открыть страницу: ${item.title}">
-        <div class="uni-master-card__top">
-          <div class="uni-master-card__logo">${renderUniLogo(item, 'master')}</div>
-          <div class="uni-master-card__identity">
-            <div class="uni-master-card__title">${stripTrailingAbbr(item.title)}</div>
-            ${item.shortName ? `<div class="uni-master-card__short">${item.shortName}</div>` : ''}
-          </div>
-        </div>
-        ${directorHtml}
-        ${metaText ? `<div class="uni-master-card__meta">${metaText}</div>` : ''}
-      </button>
-    `;
-  }).join('');
+  const indexed = universityData.map((item, idx) => ({ item, idx }));
+
+  const peopleHtml = indexed
+    .filter(({ item }) => item.kind === 'people')
+    .map(({ item, idx }) => renderPeopleCard(item, idx))
+    .join('');
+
+  // Институты ВО/СПО — приоритетная группа, по алфавиту заголовка.
+  const instituteHtml = indexed
+    .filter(({ item }) => item.kind !== 'people' && !UNI_OTHER_GROUP_IDS.includes(item.id))
+    .sort((a, b) => a.item.title.localeCompare(b.item.title, 'ru'))
+    .map(({ item, idx }) => renderInstituteCard(item, idx))
+    .join('');
 
   const archivedHtml = archivedUniversityUnits.map(unit => `
-    <div class="master-card uni-master-card uni-master-card--archived">
-      <div class="uni-archived-badge">${unit.badge}</div>
-      <div class="uni-master-card__title">${unit.title}</div>
+    <div class="master-card uni-master-card uni-master-card--archived" style="--uni-accent:var(--gray)">
+      <div class="uni-master-card__top">
+        <div class="uni-master-card__logo uni-master-card__logo--archived">${renderUniLogo(unit, 'master')}</div>
+        <div class="uni-master-card__identity">
+          <div class="uni-archived-badge">${unit.badge}</div>
+          <div class="uni-master-card__title">${unit.title}</div>
+        </div>
+      </div>
       <div class="uni-archived-note">${unit.note}</div>
       <button type="button" class="uni-archived-btn" data-archived-sheet="${unit.id}">Что изменилось?</button>
     </div>
   `).join('');
 
-  master.innerHTML = unitsHtml + archivedHtml;
+  // Остальные подразделения (колледж, дирекция, филиал) — в конце.
+  const otherHtml = indexed
+    .filter(({ item }) => item.kind !== 'people' && UNI_OTHER_GROUP_IDS.includes(item.id))
+    .map(({ item, idx }) => renderInstituteCard(item, idx))
+    .join('');
+
+  master.innerHTML = peopleHtml + instituteHtml + archivedHtml + otherHtml;
 
   master.querySelectorAll('.master-card[data-idx]').forEach(card => {
     card.addEventListener('click', () => showInstituteDetail(parseInt(card.dataset.idx)));
