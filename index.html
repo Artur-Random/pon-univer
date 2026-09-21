@@ -4078,19 +4078,30 @@ function initYandexMap() {
 
   const collection = new ymaps.GeoObjectCollection();
 
+  const groups = new Map();
   universityData.forEach(inst => {
     if (inst.campuses) {
       inst.campuses.forEach(campus => {
         if (campus.coords) {
-          const placemark = new ymaps.Placemark(campus.coords, {
-            balloonContent: '<strong style="color:#2a3153">' + inst.title + '</strong><br><span style="font-size:12px">' + campus.comment + '</span><br><span style="color:#fb700b;font-size:12px">' + campus.address + '</span>'
-          }, {
-            preset: 'islands#orangeDotIcon'
-          });
-          collection.add(placemark);
+          const key = campus.coords.join(',');
+          if (!groups.has(key)) groups.set(key, []);
+          groups.get(key).push({ inst, campus });
         }
       });
     }
+  });
+
+  groups.forEach(entries => {
+    const balloonContent = entries.map(({ inst, campus }) =>
+      '<strong style="color:#2a3153">' + inst.title + '</strong><br><span style="font-size:12px">' + campus.comment + '</span>'
+    ).join('<hr style="margin:6px 0;border:none;border-top:1px solid #eee">') +
+      '<br><span style="color:#fb700b;font-size:12px">' + entries[0].campus.address + '</span>';
+    const placemark = new ymaps.Placemark(entries[0].campus.coords, {
+      balloonContent
+    }, {
+      preset: 'islands#orangeDotIcon'
+    });
+    collection.add(placemark);
   });
 
   globalYMap.geoObjects.add(collection);
