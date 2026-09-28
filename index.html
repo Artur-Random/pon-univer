@@ -741,6 +741,15 @@ body.dark-theme .hb-card{
 @media(min-width:600px){.hb-preview-img{height:300px}}
 .hb-preview-btn:active .hb-preview-img{transform:scale(1.02)}
 .hb-card.image-error .hb-preview-img{display:none}
+.hb-card--in-dev{cursor:default;filter:saturate(.7);opacity:.94;pointer-events:none}
+.hb-card--in-dev .hb-preview-img{filter:grayscale(1) contrast(.92)}
+.hb-card--in-dev .hb-card-title{color:var(--tmid)}
+.hb-in-dev-badge{
+  display:inline-flex;width:fit-content;margin-bottom:8px;padding:4px 9px;border-radius:999px;
+  font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+  color:#7a5b0a;background:rgba(180,140,20,.14);border:1px solid rgba(180,140,20,.30);
+}
+body.dark-theme .hb-in-dev-badge{color:#e6c869;background:rgba(226,194,102,.12);border-color:rgba(226,194,102,.26)}
 .hb-card-body{padding:16px 18px 18px;}
 .hb-card-title{
   font-size:16px;font-weight:700;color:var(--navy);
@@ -2938,9 +2947,11 @@ const handbookData = [
       {
         image: 'images/voinskiy-uchet.webp',
         id: 'military-registration',
+        inDevelopment: true,
+        badge: 'В разработке',
         alt: 'Воинский учёт: как подать заявление, какие документы нужны, куда обращаться',
         title: 'Воинский учёт',
-        summary: 'Как встать на учёт, какие документы нужны и куда идти',
+        summary: 'Правила часто меняются — раздел временно на паузе, актуальную информацию уточняйте на vu.mgpu.ru',
         text: `<h3>Кто встаёт на учёт</h3>
 <p>Граждане РФ мужского пола и женщины с военно-учётной специальностью, обучающиеся в МГПУ.</p>
 <h3>Как подать заявление</h3>
@@ -3439,7 +3450,24 @@ function showHandbookDetail(idx) {
   detail.style.display = '';
   animateFadeIn(detail);
 
-  const cardsHtml = (item.cards || []).map((c, cardIdx) => `
+  const cardsHtml = (item.cards || []).map((c, cardIdx) => c.inDevelopment ? `
+    <div class="hb-card hb-card--in-dev" data-card="${cardIdx}">
+      ${c.image ? `<div class="hb-preview-static" aria-hidden="true">
+        <img
+          src="${c.image}"
+          class="hb-preview-img"
+          alt="${c.alt || item.title || 'Инфографика справочника'}"
+          loading="lazy"
+          decoding="async"
+        >
+      </div>` : ''}
+      <div class="hb-card-body">
+        <div class="hb-in-dev-badge">${c.badge || 'В разработке'}</div>
+        <div class="hb-card-title">${c.title || item.title}</div>
+        ${c.summary ? `<div class="hb-card-summary">${c.summary}</div>` : ''}
+      </div>
+    </div>
+  ` : `
     <div class="hb-card" data-card="${cardIdx}">
       ${c.image ? `<button class="hb-preview-btn" data-card="${cardIdx}" aria-label="Открыть инфографику: ${c.title || c.alt || item.title}">
         <img
