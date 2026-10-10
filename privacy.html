@@ -5,14 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Политика конфиденциальности — Понятный Университет</title>
   <meta name="description" content="Политика конфиденциальности и использования cookies сайта «Понятный Университет» — студенческого навигатора ССиА ИПКР МГПУ.">
+  <meta name="theme-color" content="#251e37">
   <link rel="icon" href="./images/favi.ico" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Raleway:wght@600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --navy:#2a3153;--accent:#fb700b;--tdark:#000000;--tmid:#4a4a4a;
-      --cream:#fbfbfb;--warm:#e5e7eb;--burgundy:#800020;
+      --color-bg:#251e37;--color-text-primary:#f5f5f7;--color-text-secondary:#c9c2d6;
+      --color-action:#bd4c82;--color-action-text:#e9a9c8;--color-border:#4d3f72;--color-focus:#e9a9c8;
+      --color-surface-inverse:#382f55;--color-on-inverse:#f5f5f7;
       --font-main:'Inter',sans-serif;--font-head:'Raleway',sans-serif;
     }
 
@@ -25,32 +27,34 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      background: #2a3153;
-      color: #e2e8f0;
+      background: var(--color-bg);
+      color: var(--color-text-primary);
     }
 
-    a { color: var(--accent); }
-    a:visited { color: #ffaa66; }
+    a { color: var(--color-action-text); }
+    a:visited { color: #d3b4e6; }
+    :where(a,button):focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
 
     .site-header {
-      background: rgba(26, 35, 64, 0.97);
-      border-bottom: 2px solid var(--accent);
-      padding: 14px 20px;
+      background: var(--color-surface-inverse);
+      border-bottom: 2px solid var(--color-action);
+      padding: 6px 20px;
       position: sticky;
       top: 0;
       z-index: 100;
     }
 
     .header-back {
-      display: inline-block;
-      color: var(--warm);
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--color-on-inverse);
       text-decoration: none;
       font-size: 14px;
       font-weight: 500;
-      opacity: 0.85;
-      transition: opacity .15s;
+      transition: color .15s;
     }
-    .header-back:hover { opacity: 1; color: var(--warm); }
+    .header-back:hover { color: var(--color-action-text); }
 
     .content {
       flex: 1;
@@ -68,14 +72,14 @@
       font-family: var(--font-head);
       font-size: 26px;
       font-weight: 700;
-      color: #fff;
+      color: var(--color-text-primary);
       margin: 0 0 6px;
       line-height: 1.2;
     }
 
     .updated {
       font-size: 12px;
-      color: rgba(200, 215, 240, 0.55);
+      color: var(--color-text-secondary);
       margin: 0 0 28px;
     }
 
@@ -85,14 +89,14 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .07em;
-      color: var(--accent);
+      color: var(--color-action-text);
       margin: 28px 0 8px;
     }
 
     p, li {
       font-size: 14px;
       line-height: 1.7;
-      color: rgba(220, 230, 250, 0.88);
+      color: var(--color-text-primary);
       margin: 0 0 10px;
     }
 
@@ -105,13 +109,13 @@
 
     .divider {
       border: none;
-      border-top: 1px solid rgba(255,255,255,.1);
+      border-top: 1px solid var(--color-border);
       margin: 52px 0;
     }
 
     .main-footer {
-      background: rgba(15, 20, 40, 0.95);
-      border-top: 3px solid var(--accent);
+      background: var(--color-surface-inverse);
+      border-top: 3px solid var(--color-action);
       padding: 20px 14px 40px;
       text-align: center;
     }
@@ -119,7 +123,7 @@
       max-width: 1500px;
       margin: 0 auto;
       font-size: 11px;
-      color: var(--warm);
+      color: var(--color-on-inverse);
       line-height: 1.4;
     }
 
