@@ -1294,6 +1294,14 @@ body.site-notice-theme-seasonal .site-notice-marquee{background:var(--color-acti
 .site-notice-modal-title{color:#fff}
 .site-notice-modal-body p{margin:0 0 12px;font-size:13px;line-height:1.5;color:rgb(255 255 255 / .92)}
 .site-notice-modal-body a{color:#fff;text-decoration:underline}
+.site-notice-modal-badge:empty,.site-notice-modal-sign:empty{display:none}
+.site-notice-modal--release .site-notice-modal-close{background:var(--color-surface-alt);color:var(--color-text-primary)}
+@media(hover:hover){.site-notice-modal--release .site-notice-modal-close:hover{background:var(--color-border)}}
+.site-notice-modal--release .site-notice-modal-title{color:var(--color-text-primary)}
+.site-notice-modal--release .site-notice-modal-body p{color:var(--color-text-secondary)}
+.site-notice-modal--release .site-notice-modal-body a{color:var(--color-action-text)}
+.site-notice-modal--release .site-notice-modal-btn{background:var(--color-action);color:var(--color-on-action);font-weight:600}
+@media(hover:hover){.site-notice-modal--release .site-notice-modal-btn:hover{background:var(--color-action-hover);--ring:var(--color-action-hover-border);opacity:1}}
 .site-notice-modal-sign{color:#fff;font-weight:700;margin:14px 0 20px}
 .site-notice-modal-btn{background:#fff;font-weight:700}
 .site-notice-modal--technical .site-notice-modal-btn{color:#7a0f18}
@@ -1386,7 +1394,9 @@ html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .nav-btn,
 html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .hb-btn,
 html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .a11y-btn,
 html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .home-btn,
-html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .pilot-notice-badge{
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .pilot-notice-badge,
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .update-modal-btn,
+html[data-a11y-scheme]:not([data-a11y-scheme="default"]) .cookie-banner-btn{
   background:var(--a11y-fg) !important;
   color:var(--a11y-bg) !important;
   border-color:var(--a11y-fg) !important;
@@ -1829,9 +1839,10 @@ function shouldEnableRussiaDay() {
 if (shouldEnableRussiaDay()) document.body.classList.add('russia-day');
 
 // ── Site notices: unified banner system ──
-// Each entry: id, theme ('technical'|'seasonal'), start/end (ISO, half-open window
-// now>=start && now<end), marquee text, and an optional modal (popup shown once
-// per session). Array order = priority when several notices are active at once:
+// Each entry: id, theme ('technical'|'seasonal'|'release'), start/end (ISO string or
+// UTC milliseconds, half-open window now>=start && now<end), marquee text (empty = no
+// marquee), and an optional modal (popup shown once per session, or once per user when
+// the entry has seenKey = localStorage key). Array order = priority when several notices are active at once:
 // the first active notice sets the marquee colour, and the first active notice
 // that HAS a modal is the one that gets shown as a popup.
 var SITE_NOTICES = [
@@ -1842,6 +1853,21 @@ var SITE_NOTICES = [
     end:   '2026-09-15T12:00:00+03:00',
     marquee: '🎓 Поздравляем с началом нового учебного года! 🎓',
     modal: null
+  },
+  {
+    id: 'release-2-0',
+    theme: 'release',
+    start: Date.UTC(2026, 9, 11, 7, 0),   // 11.10.2026 10:00 МСК
+    end:   Date.UTC(2026, 9, 18, 9, 0),   // 18.10.2026 12:00 МСК
+    seenKey: 'notice_v2_seen',
+    marquee: '',
+    modal: {
+      badge: '',
+      title: 'Понятный Университет 2.0',
+      html: '<p>Мы полностью обновили дизайн сайта и улучшили графику. Всё, что было, на месте: просто стало удобнее и понятнее.</p>',
+      sign: '',
+      btn: 'Понятно'
+    }
   }
 ];
 function getActiveSiteNotices() {
@@ -1860,9 +1886,10 @@ function getActiveSiteNotices() {
   });
 }
 var activeSiteNotices = getActiveSiteNotices();
-if (activeSiteNotices.length) {
+var marqueeSiteNotices = activeSiteNotices.filter(function(n){ return n.marquee; });
+if (marqueeSiteNotices.length) {
   document.body.classList.add('site-notice-marquee-active');
-  document.body.classList.add('site-notice-theme-' + activeSiteNotices[0].theme);
+  document.body.classList.add('site-notice-theme-' + marqueeSiteNotices[0].theme);
 }
 
 // ═══════════════════════════════════════════
@@ -3612,7 +3639,7 @@ function scrollToElementWithOffset(target) {
 }
 
 function switchSection(id) {
-  localStorage.setItem('activeTab', id);
+  try { localStorage.setItem('activeTab', id); } catch (e) {}
   const _idToHash = { 'uni': 'mgpu' };
   const _hashId = _idToHash[id] || id;
   history.replaceState(null, '', id === 'home' ? location.pathname + location.search : '#' + _hashId);
@@ -3952,7 +3979,8 @@ function applyTheme(isDark) {
 }
 
 (function() {
-  const saved = localStorage.getItem('theme');
+  let saved = null;
+  try { saved = localStorage.getItem('theme'); } catch (e) {}
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   applyTheme(saved === 'dark' || (!saved && prefersDark));
 })();
@@ -3960,7 +3988,7 @@ function applyTheme(isDark) {
 themeBtn.addEventListener('click', () => {
   const isDark = !document.body.classList.contains('dark-theme');
   applyTheme(isDark);
-  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (e) {}
 });
 
 // ═══════════════════════════════════════════
@@ -4190,7 +4218,8 @@ window.addEventListener('popstate', (e) => {
   const validTabs = ['home', 'ipkr', 'uni', 'handbook', 'contacts'];
   const hash = location.hash.slice(1);
   const fromHash = hashToId[hash] || (validTabs.includes(hash) ? hash : null);
-  const saved = localStorage.getItem('activeTab');
+  let saved = null;
+  try { saved = localStorage.getItem('activeTab'); } catch (e) {}
   const target = fromHash || (saved && validTabs.includes(saved) && saved !== 'home' ? saved : null);
   if (target) switchSection(target);
   window.addEventListener('popstate', function() {
@@ -4322,7 +4351,7 @@ addSwipeToDismiss(document.getElementById('handbook-detail'));
   var notices = window.activeSiteNotices || [];
   if (!notices.length) return;
 
-  var marqueeText = notices.map(function(n){ return n.marquee; }).join('   •   ');
+  var marqueeText = notices.filter(function(n){ return n.marquee; }).map(function(n){ return n.marquee; }).join('   •   ');
   document.querySelectorAll('.site-notice-marquee-track span').forEach(function(span){
     span.textContent = marqueeText;
   });
@@ -4334,44 +4363,70 @@ addSwipeToDismiss(document.getElementById('handbook-detail'));
   if (!modalNotice) return;
 
   var DISMISS_KEY = 'pu_site_notice_dismissed_' + modalNotice.id;
-  var dismissed = false;
-  try { dismissed = sessionStorage.getItem(DISMISS_KEY) === '1'; } catch(e){}
-  if (dismissed) return;
+  var forced = new URLSearchParams(window.location.search).get('siteNotice') === modalNotice.id;
+  var seenKey = modalNotice.seenKey;
+  var closedNow = false;
+  function isSeen() {
+    if (forced) return false;
+    try {
+      return seenKey ? localStorage.getItem(seenKey) === '1' : sessionStorage.getItem(DISMISS_KEY) === '1';
+    } catch(e) { return false; }
+  }
+  function markSeen() {
+    closedNow = true;
+    if (forced) return;
+    try {
+      if (seenKey) localStorage.setItem(seenKey, '1'); else sessionStorage.setItem(DISMISS_KEY, '1');
+    } catch(e){}
+  }
+  if (isSeen()) return;
 
   var modal = document.getElementById('site-notice-modal');
   if (!modal) return;
 
-  document.getElementById('site-notice-modal-badge').textContent = modalNotice.modal.badge;
-  document.getElementById('site-notice-modal-title').textContent = modalNotice.modal.title;
-  document.getElementById('site-notice-modal-body').innerHTML = modalNotice.modal.html;
-  document.getElementById('site-notice-modal-sign').textContent = modalNotice.modal.sign;
-  document.getElementById('site-notice-dismiss').textContent = modalNotice.modal.btn;
-  modal.classList.add('site-notice-modal--' + modalNotice.theme);
+  function open() {
+    if (closedNow) return;
+    document.getElementById('site-notice-modal-badge').textContent = modalNotice.modal.badge;
+    document.getElementById('site-notice-modal-title').textContent = modalNotice.modal.title;
+    document.getElementById('site-notice-modal-body').innerHTML = modalNotice.modal.html;
+    document.getElementById('site-notice-modal-sign').textContent = modalNotice.modal.sign;
+    document.getElementById('site-notice-dismiss').textContent = modalNotice.modal.btn;
+    modal.classList.add('site-notice-modal--' + modalNotice.theme);
 
-  modal.removeAttribute('inert');
-  requestAnimationFrame(function(){
-    modal.classList.add('active');
-    modal.setAttribute('aria-hidden','false');
-    document.body.classList.add('modal-open');
-  });
-  function dismiss() {
-    modal.classList.remove('active');
-    modal.setAttribute('aria-hidden','true');
-    modal.setAttribute('inert','');
-    document.body.classList.remove('modal-open');
-    try { sessionStorage.setItem(DISMISS_KEY,'1'); } catch(e){}
+    var prevFocus = document.activeElement;
+    modal.removeAttribute('inert');
+    requestAnimationFrame(function(){
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden','false');
+      document.body.classList.add('modal-open');
+      document.getElementById('site-notice-dismiss').focus();
+    });
+    function dismiss() {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden','true');
+      modal.setAttribute('inert','');
+      document.body.classList.remove('modal-open');
+      markSeen();
+      if (prevFocus && prevFocus.focus && document.contains(prevFocus)) prevFocus.focus();
+    }
+    document.getElementById('site-notice-modal-close').addEventListener('click', dismiss);
+    document.getElementById('site-notice-dismiss').addEventListener('click', dismiss);
+    modal.addEventListener('click', function(e){ if (e.target === modal) dismiss(); });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && modal.classList.contains('active')) dismiss();
+    });
   }
-  document.getElementById('site-notice-modal-close').addEventListener('click', dismiss);
-  document.getElementById('site-notice-dismiss').addEventListener('click', dismiss);
-  modal.addEventListener('click', function(e){ if (e.target === modal) dismiss(); });
-  document.addEventListener('keydown', function(e){
-    if (e.key === 'Escape' && modal.classList.contains('active')) dismiss();
-  });
+
+  // не перекрываем cookie-баннер: если согласие ещё не дано, показываем анонс после его закрытия
+  var cookiePending = true;
+  try { cookiePending = localStorage.getItem('cookies_accepted') !== '1'; } catch(e) {}
+  if (cookiePending) window.__afterCookies = open; else open();
 })();
 
 function acceptCookies() {
   try { localStorage.setItem('cookies_accepted', '1'); } catch(e) {}
   document.getElementById('cookie-banner').style.display = 'none';
+  if (window.__afterCookies) { var after = window.__afterCookies; window.__afterCookies = null; after(); }
 }
 (function() {
   var accepted = false;
